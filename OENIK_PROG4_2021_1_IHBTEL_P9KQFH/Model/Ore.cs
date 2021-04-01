@@ -1,9 +1,18 @@
-﻿using System;
+﻿// <copyright file="Ore.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace Model
 {
-    public class Ore
+    using System;
+
+    /// <summary>
+    /// Ore.
+    /// </summary>
+    public class Ore 
     {
-        
+        public Ore()
+        {
+        }
     }
 }

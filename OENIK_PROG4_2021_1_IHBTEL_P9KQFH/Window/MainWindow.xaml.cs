@@ -1,4 +1,4 @@
-﻿namespace Window
+﻿namespace GameWindow
 {
     using System;
     using System.Collections.Generic;

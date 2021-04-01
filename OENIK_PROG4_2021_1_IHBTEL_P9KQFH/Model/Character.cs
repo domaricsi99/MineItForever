@@ -9,5 +9,6 @@
     class Character
     {
         public int MyProperty { get; set; }
+
     }
 }
