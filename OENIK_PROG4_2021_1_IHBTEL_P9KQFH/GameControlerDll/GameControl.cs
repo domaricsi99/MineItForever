@@ -1,24 +1,32 @@
-﻿using GameModelDll;
-using GameLogicDll;
-using GameRendererDll;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Threading;
-using System.Windows.Input;
-using System.Windows.Media;
+﻿// <copyright file="GameControl.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace GameControlerDll
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Threading;
+    using GameLogicDll;
+    using GameModelDll;
+    using GameRendererDll;
+
+    /// <summary>
+    /// Control the game.
+    /// </summary>
     public class GameControl : FrameworkElement
     {
-        GameModel model;
-        GameLogic logic;
-        GameRenderer renderer;
-        DispatcherTimer tickTimer;
+        private GameModel model;
+        private GameLogic logic;
+        private GameRenderer renderer;
+        private DispatcherTimer tickTimer;
 
         public GameControl()
         {

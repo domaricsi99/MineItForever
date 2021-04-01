@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameWindow", "Window\GameWindow.csproj", "{FC3CD71A-7AFC-40E2-82EF-1D022BBFEA85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLogicDll", "GameLogic\GameLogicDll.csproj", "{9DED21F0-DE15-4B70-A0C1-D5E96BE97FC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameLogicDll", "GameLogic\GameLogicDll.csproj", "{9DED21F0-DE15-4B70-A0C1-D5E96BE97FC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameModelDll", "GameModel\GameModelDll.csproj", "{FF5E2534-BA0D-4637-91BC-0A7F6EEEB8CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameModelDll", "GameModel\GameModelDll.csproj", "{FF5E2534-BA0D-4637-91BC-0A7F6EEEB8CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameRendererDll", "GameRendererDll\GameRendererDll.csproj", "{A67218B1-83F1-44A5-B037-E708E2E635A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameRendererDll", "GameRendererDll\GameRendererDll.csproj", "{A67218B1-83F1-44A5-B037-E708E2E635A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameControlerDll", "GameControlerDll\GameControlerDll.csproj", "{38303E1E-3590-46AC-8CEA-CD7779E316FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameControlerDll", "GameControlerDll\GameControlerDll.csproj", "{38303E1E-3590-46AC-8CEA-CD7779E316FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
