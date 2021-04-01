@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OENIK_PROG4_2021_1_IHBTEL_P9KQFH", "OENIK_PROG4_2021_1_IHBTEL_P9KQFH\OENIK_PROG4_2021_1_IHBTEL_P9KQFH.csproj", "{673CBFC6-40BD-4449-9155-273CF751AF7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OENIK_PROG4_2021_1_IHBTEL_P9KQFH", "OENIK_PROG4_2021_1_IHBTEL_P9KQFH\OENIK_PROG4_2021_1_IHBTEL_P9KQFH.csproj", "{673CBFC6-40BD-4449-9155-273CF751AF7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{6BA8B124-92F7-4C69-87B9-8890F693C2AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{673CBFC6-40BD-4449-9155-273CF751AF7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{673CBFC6-40BD-4449-9155-273CF751AF7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{673CBFC6-40BD-4449-9155-273CF751AF7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BA8B124-92F7-4C69-87B9-8890F693C2AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BA8B124-92F7-4C69-87B9-8890F693C2AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BA8B124-92F7-4C69-87B9-8890F693C2AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BA8B124-92F7-4C69-87B9-8890F693C2AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
