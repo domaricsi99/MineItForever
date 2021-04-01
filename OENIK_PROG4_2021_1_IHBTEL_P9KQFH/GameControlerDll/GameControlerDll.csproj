@@ -1,12 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
 	  <EnableNETAnalyzers>true</EnableNETAnalyzers>
 	  <AnalysisMode>AllEnabledByDefault</AnalysisMode>
 	  <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-	  <UseWPF>true</UseWPF>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,7 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GameControlerDll\GameControlerDll.csproj" />
+    <ProjectReference Include="..\GameLogic\GameLogicDll.csproj" />
+    <ProjectReference Include="..\GameModel\GameModelDll.csproj" />
+    <ProjectReference Include="..\GameRendererDll\GameRendererDll.csproj" />
   </ItemGroup>
 
 </Project>

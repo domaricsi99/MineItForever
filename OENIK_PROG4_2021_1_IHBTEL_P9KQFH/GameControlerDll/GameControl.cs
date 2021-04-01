@@ -1,5 +1,6 @@
-﻿using GameWindow.Logic;
-using GameWindow.Renderer;
+﻿using GameModelDll;
+using GameLogicDll;
+using GameRendererDll;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using GameWindow.Model;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace GameWindow
+namespace GameControlerDll
 {
     public class GameControl : FrameworkElement
     {
@@ -35,7 +35,8 @@ namespace GameWindow
             if (win != null)
             {
                 tickTimer = new DispatcherTimer();
-                tickTimer.Interval = TimeSpan.FromMilliseconds(40);
+                tickTimer.Interval = TimeSpan.FromMilliseconds(20);
+                tickTimer.Tick += TickTimer_Tick;
                 tickTimer.Start();
 
                 win.KeyDown += Win_KeyDown;
@@ -45,12 +46,18 @@ namespace GameWindow
             InvalidateVisual();
         }
 
+        private void TickTimer_Tick(object sender, EventArgs e)
+        {
+            logic.Fall();
+        }
+
         private void Win_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
             {
                 case Key.Left: logic.MoveCharacter(GameLogic.Direction.Left); break;
                 case Key.Right: logic.MoveCharacter(GameLogic.Direction.Right); break;
+                case Key.Space: logic.MoveCharacter(GameLogic.Direction.Up); break;
             }
         }
 

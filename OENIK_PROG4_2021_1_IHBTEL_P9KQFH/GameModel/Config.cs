@@ -1,12 +1,8 @@
-﻿namespace GameWindow.Model
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Windows.Media;
+using System;
+using System.Windows.Media;
 
+namespace GameModelDll
+{
     public static class Config
     {
         public static double Width = 700;
@@ -21,5 +17,10 @@
 
         public static int MinerWidth = 30;
         public static int MinerHeight = 60;
+
+        public static Brush BgGroundBrush = Brushes.Brown;
+        public static Brush GroundLineBrush = Brushes.DarkGreen;
+        public static int GroundWidth = 600;// 700
+        public static int GroundHeight = 30;
     }
 }

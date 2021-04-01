@@ -1,12 +1,9 @@
-﻿// <copyright file="Shape.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+using System;
+using System.Windows;
 
-namespace Model
+namespace GameModelDll
 {
-    using System.Windows;
-
-    abstract public class Shape
+    public class Shape
     {
         private Rect area;
 
