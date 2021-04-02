@@ -5,7 +5,7 @@ namespace GameModelDll
 {
     public class Shape
     {
-        private Rect area;
+        public Rect area;
 
         public Rect Area
         {
@@ -16,11 +16,6 @@ namespace GameModelDll
         {
             area.X = x;
             area.Y = y;
-        }
-
-        public Shape(double x, double y, double w, double h)
-        {
-            area = new Rect(x, y, w, h);
         }
 
         public void ChangeX(double dif)

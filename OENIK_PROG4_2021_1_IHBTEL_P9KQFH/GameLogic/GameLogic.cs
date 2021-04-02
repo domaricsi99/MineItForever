@@ -1,15 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GameModelDll;
+// <copyright file="GameLogic.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace GameLogicDll
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using GameRepository;
+
     public class GameLogic
     {
-        GameModel model;
+        private readonly Repo repo;
 
         public enum Direction
         {
@@ -18,9 +22,9 @@ namespace GameLogicDll
 
         public event EventHandler RefreshScreen;
 
-        public GameLogic(GameModel model)
+        public GameLogic(Repo repo)
         {
-            this.model = model;
+            this.repo = repo;
         }
 
         public void MoveCharacter(Direction d)
