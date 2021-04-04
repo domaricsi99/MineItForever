@@ -23,7 +23,7 @@ namespace GameModelDll
         public static int GroundWidth = 600;// 700
         public static int GroundHeight = 30;
 
-        public static Brush airBg = Brushes.Transparent;
+        public static Brush airBg = Brushes.Black;
         public static Brush dirtBg = Brushes.Brown;
         public static Brush copperBg = Brushes.Orange;
         public static Brush silverBg = Brushes.Silver;

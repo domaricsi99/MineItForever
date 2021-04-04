@@ -24,6 +24,10 @@ namespace GameModelDll
 
         public double DY { get; set; }
 
+        public Character()
+        {
+        }
+
         public Character(double x, double y, double w, double h)
             : base (x,y,w,h)
         {

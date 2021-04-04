@@ -16,7 +16,6 @@ namespace GameLogicDll
     {
         GameModel model;
         Repo repo;
-        MapRepository mapRepo;
 
         public enum Direction
         {
@@ -52,7 +51,7 @@ namespace GameLogicDll
 
         public Ore[,] DrawMap()
         {
-            List<Ore> map = repo.GameMapRepository.DrawMap();
+            List<Ore> map = this.repo.GameMapRepository.DrawMap();
             int delimeter = 5;
             Ore[,] oreMatrix = new Ore[map.Count/delimeter, delimeter];
             int counter = 0;

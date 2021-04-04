@@ -1,40 +1,43 @@
-﻿using GameModelDll;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations.Schema;
-
+﻿// <copyright file="GameDataBase.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace GameData
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using GameModelDll;
+    using Microsoft.EntityFrameworkCore;
+
     public class GameDataBase : DbContext
     {
-        public DbSet<Ore> Ores { get; set; }
 
-        public DbSet<Building> Buildings { get; set; }
+        // public DbSet<Building> Buildings { get; set; }
 
-        public DbSet<Ladder> Ladders { get; set; }
+        // public DbSet<Ladder> Ladders { get; set; }
 
-        public DbSet<Pickax> Pickaxes { get; set; }
+        // public DbSet<Pickax> Pickaxes { get; set; }
 
-        public DbSet<Character> Character { get; set; }
-
-        public DbSet<Map> Map { get; set; }
+        // public DbSet<Character> Character { get; set; }
 
         public GameDataBase()
         {
             this.Database.EnsureCreated();
         }
 
-        protected void OnModelCreating(ModelBuilder modelBuilder)
+        public DbSet<Ore> Ores { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             Ore silver = new Ore()
             {
+                OREID = 3,
                 Value = 20,
                 Hurt = false,
                 Score = 200,
@@ -43,6 +46,7 @@ namespace GameData
             };
             Ore gold = new Ore()
             {
+                OREID = 4,
                 Value = 40,
                 Hurt = false,
                 Score = 400,
@@ -51,7 +55,8 @@ namespace GameData
             };
             Ore stone = new Ore()
             {
-                Value = 0,
+                OREID = 10,
+                Value = 1,
                 Hurt = false,
                 Score = 50,
                 Level = 3,
@@ -59,6 +64,7 @@ namespace GameData
             };
             Ore copper = new Ore()
             {
+                OREID = 2,
                 Value = 10,
                 Hurt = false,
                 Score = 100,
@@ -67,6 +73,7 @@ namespace GameData
             };
             Ore dirt = new Ore()
             {
+                OREID=1,
                 Value = 5,
                 Hurt = false,
                 Score = 20,
@@ -75,6 +82,7 @@ namespace GameData
             };
             Ore lavaGem = new Ore()
             {
+                OREID = 12,
                 Value = 100,
                 Hurt = true,
                 Score = 1000,
@@ -83,6 +91,7 @@ namespace GameData
             };
             Ore diamond = new Ore()
             {
+                OREID = 111,
                 Value = 200,
                 Hurt = false,
                 Score = 2000,
@@ -91,6 +100,7 @@ namespace GameData
             };
             Ore air = new Ore()
             {
+                OREID = 200,
                 Value = 0,
                 Hurt = false,
                 Score = 0,

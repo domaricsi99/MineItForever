@@ -39,6 +39,7 @@ namespace GameControlerDll
 
         private void PongControl_Loaded(object sender, RoutedEventArgs e)
         {
+            db = new GameDataBase();
             model = new GameModel();
             repo = new Repo(db);
             logic = new GameLogic(model, repo);

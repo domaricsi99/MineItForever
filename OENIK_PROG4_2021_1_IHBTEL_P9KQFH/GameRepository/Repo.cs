@@ -21,6 +21,7 @@ namespace GameRepository
         public Repo(GameDataBase dbContext)
         {
             this.dbContext = dbContext;
+            mapRepo = new MapRepository(dbContext);
         }
 
         public MapRepository GameMapRepository => this.mapRepo;

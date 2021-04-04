@@ -19,29 +19,30 @@ namespace GameRendererDll
 
         public void Draw(DrawingContext ctx) // todo mindent kirajzolni, flappybol atirni
         {
-            DrawingGroup dg = new DrawingGroup();
-            Ore[,] map = gdll.DrawMap();
-            int oreX = 1;
-            int oreY = 50;
+            DrawingGroup dg = new DrawingGroup(); // Wasteful! TODO:
+            Ore[,] map = this.gdll.DrawMap();
+            int oreX = 0;
+            int oreY = 0;
 
-            GeometryDrawing background = new GeometryDrawing(Config.bgBrush,
+            GeometryDrawing background = new GeometryDrawing(
+                Config.bgBrush,
                 new Pen(Config.BorderBrush, Config.BorderSize),
                 new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
 
-
-            //GeometryDrawing miner = new GeometryDrawing(Config.MinerBgBrush,
+            // GeometryDrawing miner = new GeometryDrawing(Config.MinerBgBrush,
             //    new Pen(Config.MinerBgBrush, 1),
             //    new RectangleGeometry(model.Miner.Area));
 
-            //GeometryDrawing Ground = new GeometryDrawing(Config.BgGroundBrush,
+            // GeometryDrawing Ground = new GeometryDrawing(Config.BgGroundBrush,
             //    new Pen(Config.BgGroundBrush, 1),
             //    new RectangleGeometry(model.Ground.Area));
 
+            dg.Children.Add(background);
             for (int i = 0; i < map.GetLength(0); i++)
             {
                 for (int j = 0; j < map.GetLength(1); j++)
                 {
-                    switch (map[i,j].OreType)
+                    switch (map[i, j].OreType)
                     {
                         case "air":
                             GeometryDrawing Air = new GeometryDrawing(Config.airBg,
@@ -80,12 +81,14 @@ namespace GameRendererDll
                             dg.Children.Add(Diamond);
                             break;
                     }
-                    oreX = oreX + 45;
+
+                    oreX += 45;
                 }
-                oreY = oreY + 45;
+
+                oreY += 45;
+                oreX = 0;
             }
 
-            dg.Children.Add(background);
             //dg.Children.Add(miner);
             //dg.Children.Add(Ground);
 
