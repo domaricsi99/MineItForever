@@ -27,5 +27,13 @@ namespace GameModelDll
         {
             area.Y += dif;
         }
+
+        public Shape(double x, double y, double w, double h)
+        {
+            this.area.X = x;
+            this.area.Y = y;
+            this.area.Width = w;
+            this.area.Height = h;
+        }
     }
 }

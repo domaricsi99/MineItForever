@@ -9,11 +9,14 @@ namespace GameLogicDll
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using GameModelDll;
     using GameRepository;
 
     public class GameLogic
     {
-        private readonly Repo repo;
+        GameModel model;
+        Repo repo;
+        MapRepository mapRepo;
 
         public enum Direction
         {
@@ -22,8 +25,9 @@ namespace GameLogicDll
 
         public event EventHandler RefreshScreen;
 
-        public GameLogic(Repo repo)
+        public GameLogic(GameModel model, Repo repo)
         {
+            this.model = model;
             this.repo = repo;
         }
 
@@ -44,6 +48,24 @@ namespace GameLogicDll
             }
 
             RefreshScreen?.Invoke(this, EventArgs.Empty);
+        }
+
+        public Ore[,] DrawMap()
+        {
+            List<Ore> map = repo.GameMapRepository.DrawMap();
+            int delimeter = 5;
+            Ore[,] oreMatrix = new Ore[map.Count/delimeter, delimeter];
+            int counter = 0;
+            for (int i = 0; i < oreMatrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < oreMatrix.GetLength(1); j++)
+                {
+                    oreMatrix[i, j] = map[counter];
+                    counter++;
+                }
+            }
+
+            return oreMatrix;
         }
 
         public void Fall()

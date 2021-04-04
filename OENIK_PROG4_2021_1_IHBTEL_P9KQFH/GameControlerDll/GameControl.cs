@@ -14,9 +14,11 @@ namespace GameControlerDll
     using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Threading;
+    using GameData;
     using GameLogicDll;
     using GameModelDll;
     using GameRendererDll;
+    using GameRepository;
 
     /// <summary>
     /// Control the game.
@@ -25,8 +27,10 @@ namespace GameControlerDll
     {
         private GameModel model;
         private GameLogic logic;
+        private GameDataBase db;
         private GameRenderer renderer;
         private DispatcherTimer tickTimer;
+        Repo repo;
 
         public GameControl()
         {
@@ -36,8 +40,9 @@ namespace GameControlerDll
         private void PongControl_Loaded(object sender, RoutedEventArgs e)
         {
             model = new GameModel();
-            logic = new GameLogic(model);
-            renderer = new GameRenderer(model);
+            repo = new Repo(db);
+            logic = new GameLogic(model, repo);
+            renderer = new GameRenderer(model,logic);
             Window win = Window.GetWindow(this);
 
             if (win != null)
