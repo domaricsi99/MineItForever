@@ -74,7 +74,16 @@ namespace GameLogicDll
                 model.Miner.ChangeY(3);
             }
 
-            RefreshScreen?.Invoke(this, EventArgs.Empty);
+            this.RefreshScreen?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void MineGate()
+        {
+            // bool a = false;
+            if (model.Miner.Area.IntersectsWith(model.Gate.Area))
+            {
+                // a = true;
+            }
         }
     }
 }

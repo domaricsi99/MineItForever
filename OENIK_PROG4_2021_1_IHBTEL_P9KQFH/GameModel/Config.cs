@@ -33,5 +33,9 @@ namespace GameModelDll
         public static Brush oreLine = Brushes.Black;
         public static int oreWidth = 45;
         public static int oreHeight = 45;
+
+        public static Brush GateBg = Brushes.Pink;
+        public static int GateWidth = 30;
+        public static int GateHeight = 60;
     }
 }

@@ -12,10 +12,13 @@ namespace GameModelDll
 
         public Shape Ground { get; set; }
 
+        public Shape Gate { get; set; }
+
         public GameModel()
         {
             Miner = new Character(Config.Width / 2, Config.Height / 2, Config.MinerWidth, Config.MinerHeight);
             Ground = new Shape(0, Config.Height - Config.GroundHeight, Config.GroundWidth, Config.GroundHeight);
+            Gate = new Shape(Config.Width-100, Config.Height / 4, Config.GateWidth, Config.GateHeight);
         }
     }
 }

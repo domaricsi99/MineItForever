@@ -31,13 +31,12 @@ namespace GameControlerDll
         private GameRenderer renderer;
         private DispatcherTimer tickTimer;
         Repo repo;
-
         public GameControl()
         {
-            Loaded += PongControl_Loaded;
+            Loaded += GameControl_Loaded;
         }
 
-        private void PongControl_Loaded(object sender, RoutedEventArgs e)
+        private void GameControl_Loaded(object sender, RoutedEventArgs e)
         {
             db = new GameDataBase();
             model = new GameModel();
