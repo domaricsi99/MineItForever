@@ -104,8 +104,15 @@ namespace GameRendererDll
         //    ctx.DrawDrawing(dg);
         //}
 
+        public RectangleGeometry RectangleG(double oreX, double oreY)
+        {
+            return new RectangleGeometry(new Rect(oreX, oreY, Config.oreWidth, Config.oreHeight));
+        }
+
         public void Draw(DrawingContext ctx, int mapID) // todo mindent kirajzolni, flappybol atirni
         {
+            Pen black = new Pen(Brushes.Black, 1);
+
             if (mapID % 2 == 1)
             {
                 Ore[,] map = this.gdll.DrawMap();
@@ -125,38 +132,39 @@ namespace GameRendererDll
                         {
                             case "air":
                                 GeometryDrawing Air = new GeometryDrawing(Config.airBg,
-                                new Pen(Config.airBg, 1),
-                                new RectangleGeometry(new Rect(oreX, oreY, Config.oreWidth, Config.oreHeight)));
+                                black,
+                                RectangleG(oreX, oreY));
+                                ctx.DrawDrawing(Air);// ??
                                 dg.Children.Add(Air);
                                 break;
                             case "dirt":
                                 GeometryDrawing Dirt = new GeometryDrawing(Config.dirtBg,
-                                new Pen(Config.dirtBg, 1),
-                                new RectangleGeometry(new Rect(oreX, oreY, Config.oreWidth, Config.oreHeight)));
+                                black,
+                                RectangleG(oreX, oreY));
                                 dg.Children.Add(Dirt);
                                 break;
                             case "copper":
                                 GeometryDrawing Copper = new GeometryDrawing(Config.copperBg,
-                                new Pen(Config.copperBg, 1),
-                                new RectangleGeometry(new Rect(oreX, oreY, Config.oreWidth, Config.oreHeight)));
+                                black,
+                                RectangleG(oreX, oreY));
                                 dg.Children.Add(Copper);
                                 break;
                             case "silver":
                                 GeometryDrawing Silver = new GeometryDrawing(Config.silverBg,
-                                new Pen(Config.silverBg, 1),
-                                new RectangleGeometry(new Rect(oreX, oreY, Config.oreWidth, Config.oreHeight)));
+                                black,
+                                RectangleG(oreX, oreY));
                                 dg.Children.Add(Silver);
                                 break;
                             case "gold":
                                 GeometryDrawing Gold = new GeometryDrawing(Config.goldBg,
-                                new Pen(Config.goldBg, 1),
-                                new RectangleGeometry(new Rect(oreX, oreY, Config.oreWidth, Config.oreHeight)));
+                                black,
+                                RectangleG(oreX, oreY));
                                 dg.Children.Add(Gold);
                                 break;
                             case "diamond":
                                 GeometryDrawing Diamond = new GeometryDrawing(Config.diamondBg,
-                                new Pen(Config.diamondBg, 1),
-                                new RectangleGeometry(new Rect(oreX, oreY, Config.oreWidth, Config.oreHeight)));
+                                black,
+                                RectangleG(oreX, oreY));
                                 dg.Children.Add(Diamond);
                                 break;
                         }
@@ -170,7 +178,7 @@ namespace GameRendererDll
 
                 GeometryDrawing miner = new GeometryDrawing(
                     Config.MinerBgBrush,
-                    new Pen(Config.MinerBgBrush, 1),
+                    black,
                     new RectangleGeometry(this.model.Miner.Area));
                 dg.Children.Add(miner);
             }
@@ -178,11 +186,11 @@ namespace GameRendererDll
             {
                 GeometryDrawing background = new GeometryDrawing(
                     Config.bgBrush,
-                    new Pen(Config.BorderBrush, Config.BorderSize),
+                    black,
                     new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
 
                 GeometryDrawing gate = new GeometryDrawing(Config.GateBg,
-                   new Pen(Config.GateBg, 1),
+                   black,
                    new RectangleGeometry(this.model.Gate.Area));
 
                 dg.Children.Add(background);
@@ -190,12 +198,12 @@ namespace GameRendererDll
 
                 GeometryDrawing miner = new GeometryDrawing(
                     Config.MinerBgBrush,
-                    new Pen(Config.MinerBgBrush, 1),
+                    black,
                     new RectangleGeometry(this.model.Miner.Area));
 
                 GeometryDrawing ground = new GeometryDrawing(
                     Config.BgGroundBrush,
-                    new Pen(Config.BgGroundBrush, 1),
+                    black,
                     new RectangleGeometry(this.model.Ground.Area));
 
                 dg.Children.Add(miner);

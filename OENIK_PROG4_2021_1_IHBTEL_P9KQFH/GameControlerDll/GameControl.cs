@@ -51,7 +51,7 @@ namespace GameControlerDll
             if (win != null)
             {
                 this.tickTimer = new DispatcherTimer();
-                this.tickTimer.Interval = TimeSpan.FromMilliseconds(20);
+                this.tickTimer.Interval = TimeSpan.FromMilliseconds(75); // 20
                 this.tickTimer.Tick += this.TickTimer_Tick;
                 this.tickTimer.Start();
 
