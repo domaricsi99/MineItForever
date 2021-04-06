@@ -14,7 +14,6 @@ namespace GameControlerDll
     using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Threading;
-    using GameData;
     using GameLogicDll;
     using GameModelDll;
     using GameRendererDll;
@@ -27,11 +26,14 @@ namespace GameControlerDll
     {
         private GameModel model;
         private GameLogic logic;
-        private GameDataBase db;
+
+        // private GameDataBase db;
         private GameRenderer renderer;
         private DispatcherTimer tickTimer;
-        private Repo repo;
+
+        // private Repo repo;
         private int mapID = 0;
+        private MapRepository mapRepo;
 
         public GameControl()
         {
@@ -40,10 +42,9 @@ namespace GameControlerDll
 
         private void GameControl_Loaded(object sender, RoutedEventArgs e)
         {
-            this.db = new GameDataBase();
             this.model = new GameModel();
-            this.repo = new Repo(this.db);
-            this.logic = new GameLogic(this.model, this.repo);
+            this.mapRepo = new MapRepository();
+            this.logic = new GameLogic(this.model, this.mapRepo);
             this.renderer = new GameRenderer(this.model, this.logic);
             Window win = Window.GetWindow(this);
 

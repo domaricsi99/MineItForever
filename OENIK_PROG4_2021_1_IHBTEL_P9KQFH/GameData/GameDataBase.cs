@@ -35,6 +35,33 @@
 //        protected override void OnModelCreating(ModelBuilder modelBuilder)
 //        {
 //            base.OnModelCreating(modelBuilder);
+//            Ore dirt = new Ore()
+//            {
+//                OREID = 1,
+//                Value = 5,
+//                Hurt = false,
+//                Score = 20,
+//                Level = 0,
+//                OreType = "dirt",
+//            };
+//            Ore air = new Ore()
+//            {
+//                OREID = 200,
+//                Value = 0,
+//                Hurt = false,
+//                Score = 0,
+//                Level = 0,
+//                OreType = "air",
+//                canPass = true,
+//            };
+//            {
+//                OREID = 2,
+//                Value = 10,
+//                Hurt = false,
+//                Score = 100,
+//                Level = 1,
+//                OreType = "copper",
+//            };
 //            Ore silver = new Ore()
 //            {
 //                OREID = 3,
@@ -42,7 +69,8 @@
 //                Hurt = false,
 //                Score = 200,
 //                Level = 2,
-//                OreType = "silver",
+//
+//                = "silver",
 //            };
 //            Ore gold = new Ore()
 //            {
@@ -63,23 +91,7 @@
 //                OreType = "stone",
 //            };
 //            Ore copper = new Ore()
-//            {
-//                OREID = 2,
-//                Value = 10,
-//                Hurt = false,
-//                Score = 100,
-//                Level = 1,
-//                OreType = "copper",
-//            };
-//            Ore dirt = new Ore()
-//            {
-//                OREID = 1,
-//                Value = 5,
-//                Hurt = false,
-//                Score = 20,
-//                Level = 0,
-//                OreType = "dirt",
-//            };
+
 //            Ore lavaGem = new Ore()
 //            {
 //                OREID = 12,
@@ -98,16 +110,7 @@
 //                Level = 4,
 //                OreType = "diamond",
 //            };
-//            Ore air = new Ore()
-//            {
-//                OREID = 200,
-//                Value = 0,
-//                Hurt = false,
-//                Score = 0,
-//                Level = 0,
-//                OreType = "air",
-//                canPass = true,
-//            };
+
 
 //            // todo pickax
 //            // TODOD: Poison

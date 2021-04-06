@@ -14,8 +14,10 @@ namespace GameLogicDll
 
     public class GameLogic
     {
-        GameModel model;
-        Repo repo;
+        private GameModel model;
+
+        // Repo repo;
+        private MapRepository mapRepo;
 
         public enum Direction
         {
@@ -26,10 +28,10 @@ namespace GameLogicDll
 
         public event EventHandler ChangeScreen;
 
-        public GameLogic(GameModel model, Repo repo)
+        public GameLogic(GameModel model, MapRepository mapRepo)
         {
             this.model = model;
-            this.repo = repo;
+            this.mapRepo = mapRepo;
         }
 
         public void MoveCharacter(Direction d)
@@ -53,7 +55,7 @@ namespace GameLogicDll
 
         public Ore[,] DrawMap()
         {
-            List<Ore> map = this.repo.GameMapRepository.DrawMap();
+            List<Ore> map = this.mapRepo.DrawMap();
             int delimeter = 20;
             Ore[,] oreMatrix = new Ore[map.Count/delimeter, delimeter];
             int counter = 0;
@@ -71,7 +73,7 @@ namespace GameLogicDll
 
         public void Fall(int mapID)
         {
-            List<Ore> ores = this.repo.GameMapRepository.DrawMap();
+            List<Ore> ores = this.mapRepo.DrawMap();
             int numOfIntersect = 0;
             if (!model.Miner.Area.IntersectsWith(model.Ground.Area) && mapID == 0)
             {
