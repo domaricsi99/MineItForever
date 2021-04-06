@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace GameModelDll
 {
     [Table("Ores")]
-    public class Ore //: Shape
+    public class Ore : Shape
     {
         [Key]
         public int OREID { get; set; }

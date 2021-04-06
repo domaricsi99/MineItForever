@@ -5,6 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameControlerDll;assembly=GameControlerDll"
         mc:Ignorable="d"
-        Title="MainWindow" Width="800" Height="400">
+        Title="MainWindow" Width="1200" Height="600">
     <local:GameControl Margin="50,34,50,0"/>
 </Window>

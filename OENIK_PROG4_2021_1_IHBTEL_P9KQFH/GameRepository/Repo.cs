@@ -22,6 +22,7 @@ namespace GameRepository
         {
             this.dbContext = dbContext;
             mapRepo = new MapRepository(dbContext);
+            oreRepo = new GameRepository<Ore>(dbContext);
         }
 
         public MapRepository GameMapRepository => this.mapRepo;

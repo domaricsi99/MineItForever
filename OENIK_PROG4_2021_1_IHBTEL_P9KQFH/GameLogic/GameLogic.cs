@@ -24,6 +24,8 @@ namespace GameLogicDll
 
         public event EventHandler RefreshScreen;
 
+        public event EventHandler ChangeScreen;
+
         public GameLogic(GameModel model, Repo repo)
         {
             this.model = model;
@@ -52,7 +54,7 @@ namespace GameLogicDll
         public Ore[,] DrawMap()
         {
             List<Ore> map = this.repo.GameMapRepository.DrawMap();
-            int delimeter = 5;
+            int delimeter = 20;
             Ore[,] oreMatrix = new Ore[map.Count/delimeter, delimeter];
             int counter = 0;
             for (int i = 0; i < oreMatrix.GetLength(0); i++)
@@ -67,11 +69,28 @@ namespace GameLogicDll
             return oreMatrix;
         }
 
-        public void Fall()
+        public void Fall(int mapID)
         {
-            if (!model.Miner.Area.IntersectsWith(model.Ground.Area))
+            List<Ore> ores = this.repo.GameMapRepository.DrawMap();
+            int numOfIntersect = 0;
+            if (!model.Miner.Area.IntersectsWith(model.Ground.Area) && mapID == 0)
             {
                 model.Miner.ChangeY(3);
+            }
+            else if (mapID == 1)
+            {
+                foreach (var item in ores)
+                {
+                    if (this.model.Miner.area.IntersectsWith(item.area))
+                    {
+                        numOfIntersect++;
+                    }
+                }
+
+                if (numOfIntersect == 0)
+                {
+                    this.model.Miner.ChangeY(3);
+                }
             }
 
             this.RefreshScreen?.Invoke(this, EventArgs.Empty);
@@ -79,11 +98,17 @@ namespace GameLogicDll
 
         public void MineGate()
         {
-            // bool a = false;
+            bool a = false;
+
             if (model.Miner.Area.IntersectsWith(model.Gate.Area))
             {
-                // a = true;
+                this.ChangeScreen?.Invoke(this, EventArgs.Empty);
             }
+        }
+
+        public void setCharPosition(double x, double y)
+        {
+            model.Miner.SetXY(x, y); // TODO Model?
         }
     }
 }

@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GameRepository
 {
-    public abstract class GameRepository<T>
-        where T:class
+    public class GameRepository<T>
+        where T : class
     {
         private GameDataBase dbContext;
 

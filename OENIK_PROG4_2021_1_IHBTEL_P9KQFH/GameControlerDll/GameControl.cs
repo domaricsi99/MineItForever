@@ -30,55 +30,63 @@ namespace GameControlerDll
         private GameDataBase db;
         private GameRenderer renderer;
         private DispatcherTimer tickTimer;
-        Repo repo;
+        private Repo repo;
+        private int mapID = 0;
+
         public GameControl()
         {
-            Loaded += GameControl_Loaded;
+            this.Loaded += this.GameControl_Loaded;
         }
 
         private void GameControl_Loaded(object sender, RoutedEventArgs e)
         {
-            db = new GameDataBase();
-            model = new GameModel();
-            repo = new Repo(db);
-            logic = new GameLogic(model, repo);
-            renderer = new GameRenderer(model,logic);
+            this.db = new GameDataBase();
+            this.model = new GameModel();
+            this.repo = new Repo(this.db);
+            this.logic = new GameLogic(this.model, this.repo);
+            this.renderer = new GameRenderer(this.model, this.logic);
             Window win = Window.GetWindow(this);
 
             if (win != null)
             {
-                tickTimer = new DispatcherTimer();
-                tickTimer.Interval = TimeSpan.FromMilliseconds(20);
-                tickTimer.Tick += TickTimer_Tick;
-                tickTimer.Start();
+                this.tickTimer = new DispatcherTimer();
+                this.tickTimer.Interval = TimeSpan.FromMilliseconds(20);
+                this.tickTimer.Tick += this.TickTimer_Tick;
+                this.tickTimer.Start();
 
-                win.KeyDown += Win_KeyDown;
+                win.KeyDown += this.Win_KeyDown;
             }
 
-            logic.RefreshScreen += (obj, args) => InvalidateVisual();
-            InvalidateVisual();
+            this.logic.RefreshScreen += (obj, args) => this.InvalidateVisual();
+            this.logic.ChangeScreen += (obj, args) =>
+            {
+                this.mapID = 1;
+                this.logic.setCharPosition(0, 100 - Config.MinerHeight);
+            };
+            this.InvalidateVisual();
         }
 
         private void TickTimer_Tick(object sender, EventArgs e)
         {
-            logic.Fall();
+            this.logic.Fall(mapID);
+            this.logic.MineGate();
         }
 
         private void Win_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
             {
-                case Key.Left: logic.MoveCharacter(GameLogic.Direction.Left); break;
-                case Key.Right: logic.MoveCharacter(GameLogic.Direction.Right); break;
-                case Key.Space: logic.MoveCharacter(GameLogic.Direction.Up); break;
+                case Key.Left: this.logic.MoveCharacter(GameLogic.Direction.Left); break;
+                case Key.Right: this.logic.MoveCharacter(GameLogic.Direction.Right); break;
+                case Key.Space: this.logic.MoveCharacter(GameLogic.Direction.Up); break;
             }
         }
 
         protected override void OnRender(DrawingContext drawingContext)
         {
-            if (renderer != null)
+            if (this.renderer != null)
             {
-                renderer.Draw(drawingContext);
+                this.renderer.Draw(drawingContext, this.mapID);
             }
         }
     }
