@@ -5,12 +5,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace GameRepository
 {
     public class MapRepository //: GameRepository<Map>
     {
-        List<Ore> map;
+        private List<Ore> map;
 
         public MapRepository()
         {
@@ -30,7 +31,7 @@ namespace GameRepository
                     switch (item2)
                     {
                         case "0":
-                            map.Add(new Ore()
+                            this.map.Add(new Ore()
                             {
                                 OREID = 0,
                                 Value = 0,
@@ -39,12 +40,11 @@ namespace GameRepository
                                 Level = 0,
                                 OreType = "air",
                                 canPass = true,
+                                area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                             });
-                            map.Last().area.X = localOreX;
-                            map.Last().area.Y = localOreY;
                             break;
                         case "1":
-                            map.Add(new Ore()
+                            this.map.Add(new Ore()
                             {
                                 OREID = 1,
                                 Value = 5,
@@ -53,12 +53,11 @@ namespace GameRepository
                                 Level = 0,
                                 OreType = "dirt",
                                 canPass = false,
+                                area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                             });
-                            map.Last().area.X = localOreX;
-                            map.Last().area.Y = localOreY;
                             break;
                         case "2":
-                            map.Add(new Ore()
+                            this.map.Add(new Ore()
                             {
                                 OREID = 2,
                                 Value = 10,
@@ -67,12 +66,11 @@ namespace GameRepository
                                 Level = 1,
                                 OreType = "copper",
                                 canPass = false,
+                                area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                             });
-                            map.Last().area.X = localOreX;
-                            map.Last().area.Y = localOreY;
                             break;
                         case "3":
-                            map.Add(new Ore()
+                            this.map.Add(new Ore()
                             {
                                 OREID = 3,
                                 Value = 20,
@@ -81,12 +79,11 @@ namespace GameRepository
                                 Level = 2,
                                 OreType = "silver",
                                 canPass = false,
+                                area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                             });
-                            map.Last().area.X = localOreX;
-                            map.Last().area.Y = localOreY;
                             break;
                         case "4":
-                            map.Add(new Ore()
+                            this.map.Add(new Ore()
                             {
                                 OREID = 4,
                                 Value = 40,
@@ -95,12 +92,11 @@ namespace GameRepository
                                 Level = 3,
                                 OreType = "gold",
                                 canPass = false,
+                                area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                             });
-                            map.Last().area.X = localOreX;
-                            map.Last().area.Y = localOreY;
                             break;
                         case "5":
-                            map.Add(new Ore()
+                            this.map.Add(new Ore()
                             {
                                 OREID = 5,
                                 Value = 1,
@@ -109,12 +105,11 @@ namespace GameRepository
                                 Level = 3,
                                 OreType = "stone",
                                 canPass = false,
+                                area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                             });
-                            map.Last().area.X = localOreX;
-                            map.Last().area.Y = localOreY;
                             break;
                         case "6":
-                            map.Add(new Ore()
+                            this.map.Add(new Ore()
                             {
                                 OREID = 6,
                                 Value = 100,
@@ -123,12 +118,11 @@ namespace GameRepository
                                 Level = 4,
                                 OreType = "diamond",
                                 canPass = false,
+                                area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                             });
-                            map.Last().area.X = localOreX;
-                            map.Last().area.Y = localOreY;
                             break;
                         case "7":
-                            map.Add(new Ore()
+                            this.map.Add(new Ore()
                             {
                                 OREID = 7,
                                 Value = 200,
@@ -137,9 +131,8 @@ namespace GameRepository
                                 Level = 4,
                                 OreType = "lava",
                                 canPass = false,
+                                area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                             });
-                            map.Last().area.X = localOreX;
-                            map.Last().area.Y = localOreY;
                             break;
                     }
 
@@ -150,7 +143,7 @@ namespace GameRepository
                 localOreY += 45;
             }
 
-            return map;
+            return this.map;
         }
     }
 }

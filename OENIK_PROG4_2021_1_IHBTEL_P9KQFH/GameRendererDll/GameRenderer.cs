@@ -29,12 +29,14 @@ namespace GameRendererDll
         GameModel model;
         GameLogic gdll;
         DrawingGroup dg;
+        Ore[,] map;
 
         public GameRenderer(GameModel model, GameLogic logic)
         {
             this.model = model;
             this.gdll = logic;
-            dg = new DrawingGroup();
+            this.map = this.gdll.DrawMap();
+            this.dg = new DrawingGroup();
         }
 
         //public void Gdll_ChangeScreen(DrawingContext ctx)
@@ -112,29 +114,27 @@ namespace GameRendererDll
         public void Draw(DrawingContext ctx, int mapID) // todo mindent kirajzolni, flappybol atirni
         {
             Pen black = new Pen(Brushes.Black, 1);
-
+            this.dg.Children.Clear();
             if (mapID % 2 == 1)
             {
-                Ore[,] map = this.gdll.DrawMap();
                 int oreX = 0;
                 int oreY = 100;
                 GeometryDrawing background = new GeometryDrawing(
                     Config.bgBrush,
                     new Pen(Config.BorderBrush, Config.BorderSize),
                     new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
-                dg.Children.Add(background);
+                this.dg.Children.Add(background);
 
-                for (int i = 0; i < map.GetLength(0); i++)
+                for (int i = 0; i < this.map.GetLength(0); i++)
                 {
-                    for (int j = 0; j < map.GetLength(1); j++)
+                    for (int j = 0; j < this.map.GetLength(1); j++)
                     {
-                        switch (map[i, j].OreType)
+                        switch (this.map[i, j].OreType)
                         {
                             case "air":
                                 GeometryDrawing Air = new GeometryDrawing(Config.airBg,
                                 black,
                                 RectangleG(oreX, oreY));
-                                ctx.DrawDrawing(Air);// ??
                                 dg.Children.Add(Air);
                                 break;
                             case "dirt":
