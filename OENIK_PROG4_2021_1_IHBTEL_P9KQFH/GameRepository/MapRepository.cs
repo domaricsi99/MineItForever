@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace GameRepository
 {
-    public class MapRepository //: GameRepository<Map>
+    public class MapRepository : IMapRepository
     {
         private List<Ore> map;
 
