@@ -62,7 +62,7 @@ namespace GameControlerDll
             this.logic.ChangeScreen += (obj, args) =>
             {
                 this.mapID = 1;
-                this.logic.setCharPosition(0, 100 - Config.MinerHeight);
+                this.logic.setCharPosition(0 , 60 - Config.MinerHeight);
             };
             this.InvalidateVisual();
         }
@@ -77,9 +77,9 @@ namespace GameControlerDll
         {
             switch (e.Key)
             {
-                case Key.Left: this.logic.MoveCharacter(GameLogic.Direction.Left); break;
-                case Key.Right: this.logic.MoveCharacter(GameLogic.Direction.Right); break;
-                case Key.Space: this.logic.MoveCharacter(GameLogic.Direction.Up); break;
+                case Key.Left: this.logic.MoveCharacter(GameLogic.Direction.Left, this.mapID); break;
+                case Key.Right: this.logic.MoveCharacter(GameLogic.Direction.Right, this.mapID); break;
+                case Key.Space: this.logic.MoveCharacter(GameLogic.Direction.Up, this.mapID); break;
             }
         }
 

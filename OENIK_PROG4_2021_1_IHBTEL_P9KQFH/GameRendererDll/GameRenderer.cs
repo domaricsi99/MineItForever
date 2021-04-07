@@ -117,8 +117,8 @@ namespace GameRendererDll
             this.dg.Children.Clear();
             if (mapID % 2 == 1)
             {
-                int oreX = 0;
-                int oreY = 100;
+                int oreX = 0; // Config.Ore!
+                int oreY = 0;
                 GeometryDrawing background = new GeometryDrawing(
                     Config.bgBrush,
                     new Pen(Config.BorderBrush, Config.BorderSize),
