@@ -8,6 +8,10 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\FÉLÉVES_PROG4\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameRepository\GameRepository.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>

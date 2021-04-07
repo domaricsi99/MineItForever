@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GameRepository
 {
-    public class GameRepository<T> : IRepository<T>
+    public class GameRepository<T> : IGameRepository<T>
         where T : class
     {
         private GameDataBase dbContext;

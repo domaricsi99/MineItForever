@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GameRepository</name>
+    </assembly>
+    <members>
+        <member name="T:GameRepository.IGameRepository`1">
+            <summary>
+            base repo interface.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:GameRepository.IGameRepository`1.Add(`0)">
+            <summary>
+            add.
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:GameRepository.IGameRepository`1.Delete(`0)">
+            <summary>
+            delete.
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:GameRepository.IGameRepository`1.Update(`0)">
+            <summary>
+            update.
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:GameRepository.IGameRepository`1.GetOne(System.String)">
+            <summary>
+            get one.
+            </summary>
+            <param name="shortName"></param>
+            <returns>asd.</returns>
+        </member>
+        <member name="M:GameRepository.IGameRepository`1.GetAll">
+            <summary>
+            get all.
+            </summary>
+            <returns>asd.</returns>
+        </member>
+    </members>
+</doc>

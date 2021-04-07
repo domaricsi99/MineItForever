@@ -10,20 +10,7 @@ namespace GameRendererDll
     using GameLogicDll;
     using GameModelDll;
 
-    //public class MapEventArgs : EventArgs
-    //{
-    //    public DrawingContext drawingContext { get; set; }
-
-    //    public int Id { get; set; }
-
-    //    public MapEventArgs(DrawingContext context , int id)
-    //    {
-    //        this.drawingContext = context;
-    //        this.Id = id;
-    //    }
-    //}
-
-    public class GameRenderer
+    public class GameRenderer : IGameRenderer
     {
 
         GameModel model;

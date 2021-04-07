@@ -2,27 +2,27 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Threading;
+using GameLogicDll;
+using GameModelDll;
+using GameRendererDll;
+using GameRepository;
+
 namespace GameControlerDll
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Input;
-    using System.Windows.Media;
-    using System.Windows.Threading;
-    using GameLogicDll;
-    using GameModelDll;
-    using GameRendererDll;
-    using GameRepository;
-
     /// <summary>
     /// Control the game.
     /// </summary>
-    public class GameControl : FrameworkElement
+    public class GameControl : FrameworkElement, IGameControl
     {
         private GameModel model;
         private GameLogic logic;
@@ -40,7 +40,7 @@ namespace GameControlerDll
             this.Loaded += this.GameControl_Loaded;
         }
 
-        private void GameControl_Loaded(object sender, RoutedEventArgs e)
+        public void GameControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.model = new GameModel();
             this.mapRepo = new MapRepository();
@@ -67,13 +67,13 @@ namespace GameControlerDll
             this.InvalidateVisual();
         }
 
-        private void TickTimer_Tick(object sender, EventArgs e)
+        public void TickTimer_Tick(object sender, EventArgs e)
         {
             this.logic.Fall(mapID);
             this.logic.MineGate();
         }
 
-        private void Win_KeyDown(object sender, KeyEventArgs e)
+        public void Win_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
             {

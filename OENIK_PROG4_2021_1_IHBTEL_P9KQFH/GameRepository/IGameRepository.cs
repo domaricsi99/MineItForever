@@ -10,7 +10,7 @@
     /// base repo interface.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IRepository<T>
+    public interface IGameRepository<T>
         where T : class
     {
         /// <summary>
