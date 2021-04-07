@@ -9,6 +9,7 @@
 
     public interface IMapRepository
     {
+        bool CanJumpMethod(int predictOreX, int predictOreYLeft, int predictOreBottom, int predictOreYRight, int jumpCount);
         public List<Ore> DrawMap();
     }
 }

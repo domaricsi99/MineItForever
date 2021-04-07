@@ -27,5 +27,7 @@ namespace GameLogicDll
         public void MineGate();
 
         public void setCharPosition(double x, double y);
+
+        public bool CanJumpMethod(int predictOreX, int predictOreYLeft, int predictOreBottom, int predictOreYRight, int jumpCount);
     }
 }

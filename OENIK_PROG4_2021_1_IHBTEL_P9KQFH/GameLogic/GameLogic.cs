@@ -87,7 +87,7 @@ namespace GameLogicDll
                         }
                     }
                 }
-                else if (d == Direction.Up)
+                else if (d == Direction.Up && this.jumpCount < 3)
                 {
                     this.jumpCount++;
                     int predictOreX = (int)((this.model.Miner.Area.Top - 10) / Config.oreHeight);
@@ -95,7 +95,7 @@ namespace GameLogicDll
                     int predictOreYRight = (int)(this.model.Miner.Area.Right - 1) / Config.oreWidth;
                     int predictOreBottom = (int)(this.model.Miner.Area.Bottom + 10) / Config.oreHeight;
 
-                    if (CanMove(predictOreX, predictOreYLeft, predictOreBottom, predictOreYRight))
+                    if (this.CanJumpMethod(predictOreX, predictOreYLeft, predictOreBottom, predictOreYRight, this.jumpCount))
                     {
                         this.model.Miner.ChangeY(-60);
                     }
@@ -104,25 +104,29 @@ namespace GameLogicDll
                         this.jumpCount = 0;
                     }
                 }
+                else if (this.jumpCount >= 3)
+                {
+                    this.jumpCount = 0;
+                }
             }
 
             this.RefreshScreen?.Invoke(this, EventArgs.Empty);
         }
 
-        public bool CanMove (int predictOreX, int predictOreYLeft, int predictOreBottom, int predictOreYRight)
+        public bool CanJumpMethod(int predictOreX, int predictOreYLeft, int predictOreBottom, int predictOreYRight, int jumpCount)
         {
             bool move = false;
-            if ((this.jumpCount <= this.maxJump
-                    && !this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreYLeft].Area) // TODO: Levegoben nem kéne ugorjon hehe => kész félig meddig nem tökéletes R
+            this.jumpCount++;
+            if (((!this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreYLeft].Area) // TODO: Levegoben nem kéne ugorjon hehe => kész félig meddig nem tökéletes R
                     && !this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreYRight].Area)
                     && this.ore[predictOreBottom, predictOreYLeft].OreType != "air"
-                    && this.ore[predictOreBottom, predictOreYRight].OreType != "air") // ugrások számának vizsgálata
+                    && this.ore[predictOreBottom, predictOreYRight].OreType != "air")
+                    && jumpCount <= this.maxJump)
                     || ((this.ore[predictOreX, predictOreYLeft].canPass == true
-                    && this.jumpCount <= this.maxJump)
+                    && jumpCount <= this.maxJump)
                     && this.ore[predictOreX, predictOreYRight].canPass == true))
             {
                 move = true;
-
             }
 
             return move;

@@ -25,5 +25,7 @@ namespace GameModelDll
         public int Level { get; set; }
 
         public bool canPass { get; set; }
+
+        public bool canJump { get; set; }
     }
 }
