@@ -40,7 +40,6 @@ namespace GameRepository
                                 OreType = "air",
                                 canPass = true,
                                 area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
-                                canJump = true,
                             });
                             break;
                         case "1":

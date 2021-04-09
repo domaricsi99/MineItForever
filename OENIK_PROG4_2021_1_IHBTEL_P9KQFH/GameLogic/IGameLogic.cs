@@ -13,11 +13,6 @@ namespace GameLogicDll
 
     interface IGameLogic
     {
-        public enum Direction
-        {
-            Left, Right, Up, Down
-        }
-
         public void MoveCharacter(Direction d, int mapID);
 
         public Ore[,] DrawMap();

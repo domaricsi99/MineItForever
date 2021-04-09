@@ -104,63 +104,56 @@ namespace GameRendererDll
             this.dg.Children.Clear();
             if (mapID % 2 == 1)
             {
-                int oreX = 0; // Config.Ore!
-                int oreY = 0;
+                Ore[,] cica = this.gdll.MapPart();
                 GeometryDrawing background = new GeometryDrawing(
                     Config.bgBrush,
                     new Pen(Config.BorderBrush, Config.BorderSize),
                     new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
                 this.dg.Children.Add(background);
-
-                for (int i = 0; i < this.map.GetLength(0); i++)
+                for (int i = 0; i < cica.GetLength(0); i++)
                 {
-                    for (int j = 0; j < this.map.GetLength(1); j++)
+                    for (int j = 0; j < cica.GetLength(1); j++)
                     {
-                        switch (this.map[i, j].OreType)
+                        switch (cica[i, j].OreType)
                         {
                             case "air":
                                 GeometryDrawing Air = new GeometryDrawing(Config.airBg,
                                 black,
-                                RectangleG(oreX, oreY));
+                                RectangleG(cica[i, j].Area.X, cica[i, j].Area.Y));
                                 dg.Children.Add(Air);
                                 break;
                             case "dirt":
                                 GeometryDrawing Dirt = new GeometryDrawing(Config.dirtBg,
                                 black,
-                                RectangleG(oreX, oreY));
+                                RectangleG(cica[i, j].Area.X, cica[i, j].Area.Y));
                                 dg.Children.Add(Dirt);
                                 break;
                             case "copper":
                                 GeometryDrawing Copper = new GeometryDrawing(Config.copperBg,
                                 black,
-                                RectangleG(oreX, oreY));
+                                RectangleG(cica[i, j].Area.X, cica[i, j].Area.Y));
                                 dg.Children.Add(Copper);
                                 break;
                             case "silver":
                                 GeometryDrawing Silver = new GeometryDrawing(Config.silverBg,
                                 black,
-                                RectangleG(oreX, oreY));
+                                RectangleG(cica[i, j].Area.X, cica[i, j].Area.Y));
                                 dg.Children.Add(Silver);
                                 break;
                             case "gold":
                                 GeometryDrawing Gold = new GeometryDrawing(Config.goldBg,
                                 black,
-                                RectangleG(oreX, oreY));
+                                RectangleG(cica[i, j].Area.X, cica[i, j].Area.Y));
                                 dg.Children.Add(Gold);
                                 break;
                             case "diamond":
                                 GeometryDrawing Diamond = new GeometryDrawing(Config.diamondBg,
                                 black,
-                                RectangleG(oreX, oreY));
+                                RectangleG(cica[i, j].Area.X, cica[i, j].Area.Y));
                                 dg.Children.Add(Diamond);
                                 break;
                         }
-
-                        oreX += 45;
                     }
-
-                    oreY += 45;
-                    oreX = 0;
                 }
 
                 GeometryDrawing miner = new GeometryDrawing(

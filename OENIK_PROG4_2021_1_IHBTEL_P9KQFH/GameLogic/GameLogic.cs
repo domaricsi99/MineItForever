@@ -12,7 +12,12 @@ namespace GameLogicDll
     using GameModelDll;
     using GameRepository;
 
-    public class GameLogic : MapRepository
+    public enum Direction
+    {
+        Left, Right, Up, Down
+    }
+
+    public class GameLogic : IGameLogic
     {
         private GameModel model;
         private MapRepository mapRepo;
@@ -21,11 +26,6 @@ namespace GameLogicDll
 
         int jumpCount = 0; //ugrasok számát számolja
         int maxJump = 2; // max mennyit ugorhatunk
-
-        public enum Direction
-        {
-            Left, Right, Up, Down
-        }
 
         public event EventHandler RefreshScreen;
 
@@ -179,6 +179,35 @@ namespace GameLogicDll
         public void setCharPosition(double x, double y)
         {
             this.model.Miner.SetXY(x, y); // TODO Model?
+        }
+
+        public Ore[,] MapPart()
+        {
+            int minerPositionX = (int)model.Miner.Area.Y / Config.oreHeight;
+            int minerPositionY = (int)model.Miner.Area.X / Config.oreWidth;
+
+            if (minerPositionX - 2 < 0) minerPositionX = 2;
+            if (minerPositionY - 2 < 0) minerPositionY = 2;
+            if ((minerPositionX + 2) * 45 >= Config.Height) minerPositionX = ore.GetLength(0) - 3;
+            if ((minerPositionY + 2) * 45 >= Config.Width) minerPositionY = ore.GetLength(1) - 3;
+            // int topLeft = 0;
+
+            Ore[,] renderedOres = new Ore[5,5];
+            int startingPosY = minerPositionY;
+            for (int i = 0; i < renderedOres.GetLength(0); i++)
+            {
+                for (int j = 0; j < renderedOres.GetLength(1); j++)
+                {
+
+                    renderedOres[i, j] = this.ore[minerPositionX - 2, minerPositionY - 2];
+                    minerPositionY++;
+                }
+
+                minerPositionY = startingPosY;
+                minerPositionX++;
+            }
+
+            return renderedOres;
         }
     }
 }
