@@ -33,7 +33,6 @@ namespace GameRepository
                         case "0":
                             this.map.Add(new Ore()
                             {
-                                OREID = 0,
                                 Value = 0,
                                 Hurt = false,
                                 Score = 0,
@@ -47,7 +46,6 @@ namespace GameRepository
                         case "1":
                             this.map.Add(new Ore()
                             {
-                                OREID = 1,
                                 Value = 5,
                                 Hurt = false,
                                 Score = 20,
@@ -60,7 +58,6 @@ namespace GameRepository
                         case "2":
                             this.map.Add(new Ore()
                             {
-                                OREID = 2,
                                 Value = 10,
                                 Hurt = false,
                                 Score = 100,
@@ -73,7 +70,6 @@ namespace GameRepository
                         case "3":
                             this.map.Add(new Ore()
                             {
-                                OREID = 3,
                                 Value = 20,
                                 Hurt = false,
                                 Score = 200,
@@ -86,7 +82,6 @@ namespace GameRepository
                         case "4":
                             this.map.Add(new Ore()
                             {
-                                OREID = 4,
                                 Value = 40,
                                 Hurt = false,
                                 Score = 400,
@@ -99,7 +94,6 @@ namespace GameRepository
                         case "5":
                             this.map.Add(new Ore()
                             {
-                                OREID = 5,
                                 Value = 1,
                                 Hurt = false,
                                 Score = 50,
@@ -112,7 +106,6 @@ namespace GameRepository
                         case "6":
                             this.map.Add(new Ore()
                             {
-                                OREID = 6,
                                 Value = 100,
                                 Hurt = false,
                                 Score = 1000,
@@ -125,7 +118,6 @@ namespace GameRepository
                         case "7":
                             this.map.Add(new Ore()
                             {
-                                OREID = 7,
                                 Value = 200,
                                 Hurt = true,
                                 Score = 2000,

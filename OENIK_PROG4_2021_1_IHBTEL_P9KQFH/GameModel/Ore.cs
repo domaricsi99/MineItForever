@@ -8,12 +8,8 @@ using System.Threading.Tasks;
 
 namespace GameModelDll
 {
-    [Table("Ores")]
     public class Ore : Shape
     {
-        [Key]
-        public int OREID { get; set; }
-
         public bool Hurt { get; set; }
 
         public int Value { get; set; }
@@ -26,6 +22,6 @@ namespace GameModelDll
 
         public bool canPass { get; set; }
 
-        public bool canJump { get; set; }
+        public int BreakLevel { get; set; }
     }
 }

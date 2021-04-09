@@ -37,7 +37,6 @@ namespace GameData
             base.OnModelCreating(modelBuilder);
             Ore dirt = new Ore()
             {
-                OREID = 1,
                 Value = 5,
                 Hurt = false,
                 Score = 20,
@@ -46,7 +45,6 @@ namespace GameData
             };
             Ore air = new Ore()
             {
-                OREID = 200,
                 Value = 0,
                 Hurt = false,
                 Score = 0,
@@ -57,7 +55,6 @@ namespace GameData
 
             Ore copper = new Ore()
             {
-                OREID = 2,
                 Value = 10,
                 Hurt = false,
                 Score = 100,
@@ -66,7 +63,6 @@ namespace GameData
             };
             Ore silver = new Ore()
             {
-                OREID = 3,
                 Value = 20,
                 Hurt = false,
                 Score = 200,
@@ -76,7 +72,6 @@ namespace GameData
             };
             Ore gold = new Ore()
             {
-                OREID = 4,
                 Value = 40,
                 Hurt = false,
                 Score = 400,
@@ -85,7 +80,6 @@ namespace GameData
             };
             Ore stone = new Ore()
             {
-                OREID = 10,
                 Value = 1,
                 Hurt = false,
                 Score = 50,
@@ -95,7 +89,6 @@ namespace GameData
 
             Ore lavaGem = new Ore()
             {
-                OREID = 12,
                 Value = 100,
                 Hurt = true,
                 Score = 1000,
@@ -104,7 +97,6 @@ namespace GameData
             };
             Ore diamond = new Ore()
             {
-                OREID = 111,
                 Value = 200,
                 Hurt = false,
                 Score = 2000,
