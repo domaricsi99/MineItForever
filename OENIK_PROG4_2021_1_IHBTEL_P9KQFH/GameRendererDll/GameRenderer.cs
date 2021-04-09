@@ -169,6 +169,24 @@ namespace GameRendererDll
                     black,
                     new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
 
+                GeometryDrawing pickaxShop = new GeometryDrawing(
+                    Config.PickaxShopBg,
+                    black,
+                    new RectangleGeometry(this.model.PickaxShop.Area)
+                    );
+
+                GeometryDrawing healthShop = new GeometryDrawing(
+                    Config.HealthShopBg,
+                    black,
+                    new RectangleGeometry(this.model.HealthShop.Area)
+                    );
+
+                GeometryDrawing petrolShop = new GeometryDrawing(
+                    Config.PetrolShopBg,
+                    black,
+                    new RectangleGeometry(this.model.PetrolShop.Area)
+                    );
+
                 GeometryDrawing gate = new GeometryDrawing(Config.GateBg,
                    black,
                    new RectangleGeometry(this.model.Gate.Area));
@@ -187,6 +205,9 @@ namespace GameRendererDll
                     new RectangleGeometry(this.model.Ground.Area));
 
                 dg.Children.Add(miner);
+                dg.Children.Add(pickaxShop);
+                dg.Children.Add(healthShop);
+                dg.Children.Add(petrolShop);
                 dg.Children.Add(ground);
 
             }
