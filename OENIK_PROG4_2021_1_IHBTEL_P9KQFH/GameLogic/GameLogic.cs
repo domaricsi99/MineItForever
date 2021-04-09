@@ -99,14 +99,6 @@ namespace GameLogicDll
                     {
                         this.model.Miner.ChangeY(-60);
                     }
-                    else
-                    {
-                        this.jumpCount = 0;
-                    }
-                }
-                else if (this.jumpCount >= 3)
-                {
-                    this.jumpCount = 0;
                 }
             }
 
@@ -116,7 +108,6 @@ namespace GameLogicDll
         public bool CanJumpMethod(int predictOreX, int predictOreYLeft, int predictOreBottom, int predictOreYRight, int jumpCount)
         {
             bool move = false;
-            this.jumpCount++;
             if (((!this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreYLeft].Area) // TODO: Levegoben nem kéne ugorjon hehe => kész félig meddig nem tökéletes R
                     && !this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreYRight].Area)
                     && this.ore[predictOreBottom, predictOreYLeft].OreType != "air"
@@ -166,6 +157,11 @@ namespace GameLogicDll
                     || (this.ore[predictOreX, predictOreYLeft].canPass == true && this.ore[predictOreX, predictOreYRight].canPass == true))
                 {
                     this.model.Miner.ChangeY(5);
+                    this.jumpCount = 5;
+                }
+                else
+                {
+                    this.jumpCount = 0;
                 }
             }
 
