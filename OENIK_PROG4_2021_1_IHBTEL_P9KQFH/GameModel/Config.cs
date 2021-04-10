@@ -40,10 +40,16 @@ namespace GameModelDll
         public static int GateWidth = 30;
         public static int GateHeight = 60;
 
-        public static Brush PickaxShopBg = Brushes.DarkBlue;
-        public static Brush HealthShopBg = Brushes.DarkCyan;
-        public static Brush PetrolShopBg = Brushes.DarkGoldenrod;
-        public static int BuildingWidth = 100;
-        public static int BuildingHeight = 120;
+        public static Brush PickaxShopHouseBg = Brushes.DarkBlue;
+        public static Brush HealthShopHouseBg = Brushes.DarkCyan;
+        public static Brush PetrolShopHouseBg = Brushes.DarkGoldenrod;
+        public static int BuildingWidth = 90;
+        public static int BuildingHeight = 110;
+
+        public static Brush PickaxShopBg = Brushes.Red;
+        public static Brush HealthShopBg = Brushes.Orange;
+        public static Brush PetrolShopBg = Brushes.PaleGreen;
+        public static int ShopWidth = 45;
+        public static int ShopHeight = 45;
     }
 }

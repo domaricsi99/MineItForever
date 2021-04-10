@@ -31,6 +31,8 @@ namespace GameLogicDll
 
         public event EventHandler ChangeScreen;
 
+        public event EventHandler ShopScreen;
+
         public GameLogic(GameModel model, MapRepository mapRepo)
         {
             this.model = model;
@@ -108,7 +110,7 @@ namespace GameLogicDll
         public bool CanJumpMethod(int predictOreX, int predictOreYLeft, int predictOreBottom, int predictOreYRight, int jumpCount)
         {
             bool move = false;
-            if (((!this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreYLeft].Area) // TODO: Levegoben nem kéne ugorjon hehe => kész félig meddig nem tökéletes R
+            if (((!this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreYLeft].Area)
                     && !this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreYRight].Area)
                     && this.ore[predictOreBottom, predictOreYLeft].OreType != "air"
                     && this.ore[predictOreBottom, predictOreYRight].OreType != "air")
@@ -176,6 +178,22 @@ namespace GameLogicDll
             }
         }
 
+        public void IntersectsWithShop()
+        {
+            if (this.model.Miner.Area.IntersectsWith(this.model.HealthShop.Area))
+            {
+                this.ShopScreen?.Invoke(this, EventArgs.Empty);
+            }
+            else if (this.model.Miner.Area.IntersectsWith(this.model.PetrolShop.Area))
+            {
+                this.ShopScreen?.Invoke(this, EventArgs.Empty);
+            }
+            else if (this.model.Miner.Area.IntersectsWith(this.model.PickaxShop.Area))
+            {
+                this.ShopScreen?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
         public void setCharPosition(double x, double y)
         {
             this.model.Miner.SetXY(x, y); // TODO Model?
@@ -183,16 +201,31 @@ namespace GameLogicDll
 
         public Ore[,] MapPart()
         {
-            int minerPositionX = (int)model.Miner.Area.Y / Config.oreHeight;
-            int minerPositionY = (int)model.Miner.Area.X / Config.oreWidth;
+            int minerPositionX = (int)this.model.Miner.Area.Y / Config.oreHeight;
+            int minerPositionY = (int)this.model.Miner.Area.X / Config.oreWidth;
 
-            if (minerPositionX - 2 < 0) minerPositionX = 2;
-            if (minerPositionY - 2 < 0) minerPositionY = 2;
-            if ((minerPositionX + 2) * 45 >= Config.Height) minerPositionX = ore.GetLength(0) - 3;
-            if ((minerPositionY + 2) * 45 >= Config.Width) minerPositionY = ore.GetLength(1) - 3;
+            if (minerPositionX - 2 < 0)
+            {
+                minerPositionX = 2;
+            }
+
+            if (minerPositionY - 2 < 0)
+            {
+                minerPositionY = 2;
+            }
+
+            if ((minerPositionX + 2) * 45 >= Config.Height)
+            {
+                minerPositionX = this.ore.GetLength(0) - 3;
+            }
+
+            if ((minerPositionY + 2) * 45 >= Config.Width)
+            {
+                minerPositionY = this.ore.GetLength(1) - 3;
+            }
+
             // int topLeft = 0;
-
-            Ore[,] renderedOres = new Ore[5,5];
+            Ore[,] renderedOres = new Ore[5, 5];
             int startingPosY = minerPositionY;
             for (int i = 0; i < renderedOres.GetLength(0); i++)
             {

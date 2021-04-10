@@ -64,13 +64,20 @@ namespace GameControlerDll
                 this.mapID = 1;
                 this.logic.setCharPosition(0 , 60 - Config.MinerHeight);
             };
+
+            this.logic.ShopScreen += (obj, args) =>
+            {
+                this.mapID = 3;
+            };
+
             this.InvalidateVisual();
         }
 
         public void TickTimer_Tick(object sender, EventArgs e)
         {
-            this.logic.Fall(mapID);
+            this.logic.Fall(this.mapID);
             this.logic.MineGate();
+            this.logic.IntersectsWithShop();
         }
 
         public void Win_KeyDown(object sender, KeyEventArgs e)
