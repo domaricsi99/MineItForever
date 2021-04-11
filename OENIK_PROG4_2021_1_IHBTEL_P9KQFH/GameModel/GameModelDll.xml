@@ -4,5 +4,20 @@
         <name>GameModelDll</name>
     </assembly>
     <members>
+        <member name="P:GameModelDll.GameModel.Gate">
+            <summary>
+            Gets or sets out of the first screen to mine.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.MapThreeToOneGate">
+            <summary>
+            Gets or sets out of shop to first screen.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.MapTwoToOneGate">
+            <summary>
+            Gets or sets out of mine to first screen.
+            </summary>
+        </member>
     </members>
 </doc>

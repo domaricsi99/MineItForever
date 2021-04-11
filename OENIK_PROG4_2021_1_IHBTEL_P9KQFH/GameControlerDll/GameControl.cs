@@ -70,6 +70,11 @@ namespace GameControlerDll
                 this.mapID = 3;
             };
 
+            this.logic.BackToMapOneScreen += (obj, args) =>
+            {
+                this.mapID = 0;
+            };
+
             this.InvalidateVisual();
         }
 
@@ -77,6 +82,7 @@ namespace GameControlerDll
         {
             this.logic.Fall(this.mapID);
             this.logic.MineGate();
+            this.logic.MapOneGate();
             this.logic.IntersectsWithShop();
         }
 

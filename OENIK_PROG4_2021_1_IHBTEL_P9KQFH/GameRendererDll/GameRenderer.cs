@@ -89,10 +89,16 @@ namespace GameRendererDll
                     }
                 }
 
+                GeometryDrawing mapOneGate = new GeometryDrawing(Config.MapTwoToOneGateBg,
+                   black,
+                   new RectangleGeometry(this.model.MapTwoToOneGate.Area));
+
                 GeometryDrawing miner = new GeometryDrawing(
                     Config.MinerBgBrush,
                     black,
                     new RectangleGeometry(this.model.Miner.Area));
+
+                this.dg.Children.Add(mapOneGate);
                 this.dg.Children.Add(miner);
             }
             else if (mapID % 2 == 0)
@@ -163,13 +169,31 @@ namespace GameRendererDll
                 this.dg.Children.Add(petrolShop);
                 this.dg.Children.Add(miner);
             }
-            else if (mapID % 2 == 1 && mapID == 3)
+            else if (mapID % 2 == 1 && mapID == 3) // TODO kirajzolni a shop ablakokat
             {
                 GeometryDrawing background = new GeometryDrawing(
                     Config.bgBrush,
                     new Pen(Config.BorderBrush, Config.BorderSize),
                     new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
-                throw new Exception("Új ablak megírásának helye");
+
+                GeometryDrawing ground = new GeometryDrawing(
+                    Config.BgGroundBrush,
+                    black,
+                    new RectangleGeometry(this.model.Ground.Area));
+
+                GeometryDrawing miner = new GeometryDrawing(
+                    Config.MinerBgBrush,
+                    black,
+                    new RectangleGeometry(this.model.Miner.Area));
+
+                GeometryDrawing mapOneGate = new GeometryDrawing(Config.MapThreetoOneGateBg,
+                   black,
+                   new RectangleGeometry(this.model.MapThreeToOneGate.Area));
+
+                this.dg.Children.Add(background);
+                this.dg.Children.Add(ground);
+                this.dg.Children.Add(mapOneGate);
+                this.dg.Children.Add(miner);
             }
 
             ctx.DrawDrawing(this.dg);

@@ -37,6 +37,8 @@ namespace GameModelDll
         public static int oreY = 0;
 
         public static Brush GateBg = Brushes.Pink;
+        public static Brush MapThreetoOneGateBg = Brushes.Green;
+        public static Brush MapTwoToOneGateBg = Brushes.Red;
         public static int GateWidth = 30;
         public static int GateHeight = 60;
 

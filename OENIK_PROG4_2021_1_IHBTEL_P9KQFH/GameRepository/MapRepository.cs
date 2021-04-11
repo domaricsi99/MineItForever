@@ -22,7 +22,8 @@ namespace GameRepository
             this.map = new List<Ore>();
             int localOreX = Config.oreX;
             int localOreY = Config.oreY;
-            string[] fajlsorai = File.ReadAllLines("palya.txt");
+            string[] fajlsorai = File.ReadAllLines(@"palya.txt");
+            //string[] fajlsorai = File.ReadAllLines("palya.txt");
             foreach (var item in fajlsorai)
             {
                 string[] splitteltsor = item.Split(';');

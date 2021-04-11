@@ -31,6 +31,8 @@ namespace GameLogicDll
 
         public event EventHandler ChangeScreen;
 
+        public event EventHandler BackToMapOneScreen;
+
         public event EventHandler ShopScreen;
 
         public GameLogic(GameModel model, MapRepository mapRepo)
@@ -43,7 +45,7 @@ namespace GameLogicDll
 
         public void MoveCharacter(Direction d, int mapID)
         {
-            if (mapID == 0)
+            if (mapID == 0 || mapID == 3)
             {
                 if (d == Direction.Left && this.model.Miner.Area.Left > 0)
                 {
@@ -166,6 +168,10 @@ namespace GameLogicDll
                     this.jumpCount = 0;
                 }
             }
+            else if (!this.model.Miner.Area.IntersectsWith(this.model.Ground.Area) && mapID == 3)
+            {
+                this.model.Miner.ChangeY(5);
+            }
 
             this.RefreshScreen?.Invoke(this, EventArgs.Empty);
         }
@@ -175,6 +181,18 @@ namespace GameLogicDll
             if (this.model.Miner.Area.IntersectsWith(this.model.Gate.Area))
             {
                 this.ChangeScreen?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        public void MapOneGate()
+        {
+            if (this.model.Miner.Area.IntersectsWith(this.model.MapThreeToOneGate.Area))
+            {
+                this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
+            }
+            else if (this.model.Miner.Area.IntersectsWith(this.model.MapTwoToOneGate.Area))
+            {
+                this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
             }
         }
 
