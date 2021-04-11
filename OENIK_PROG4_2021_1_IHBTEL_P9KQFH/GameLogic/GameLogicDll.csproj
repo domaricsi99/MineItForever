@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+	  <EnableNETAnalyzers>true</EnableNETAnalyzers>
+	  <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+	  <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>GameLogicDll.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameModel\GameModelDll.csproj" />
+    <ProjectReference Include="..\GameRepository\GameRepository.csproj" />
+  </ItemGroup>
+
+</Project>

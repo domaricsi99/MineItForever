@@ -1,0 +1,178 @@
+// <copyright file="GameRenderer.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace GameRendererDll
+{
+    using System;
+    using System.Windows;
+    using System.Windows.Media;
+    using GameLogicDll;
+    using GameModelDll;
+
+    public class GameRenderer : IGameRenderer
+    {
+
+        GameModel model;
+        GameLogic gdll;
+        DrawingGroup dg;
+        Ore[,] map;
+
+        public GameRenderer(GameModel model, GameLogic logic)
+        {
+            this.model = model;
+            this.gdll = logic;
+            this.map = this.gdll.DrawMap();
+            this.dg = new DrawingGroup();
+        }
+
+        public RectangleGeometry RectangleG(double oreX, double oreY)
+        {
+            return new RectangleGeometry(new Rect(oreX, oreY, Config.oreWidth, Config.oreHeight));
+        }
+
+        public void Draw(DrawingContext ctx, int mapID) // todo mindent kirajzolni, flappybol atirni
+        {
+            Pen black = new Pen(Brushes.Black, 1);
+            this.dg.Children.Clear();
+            if (mapID % 2 == 1 && mapID != 3)
+            {
+                Ore[,] oreMatrix = this.gdll.MapPart();
+                GeometryDrawing background = new GeometryDrawing(
+                    Config.bgBrush,
+                    new Pen(Config.BorderBrush, Config.BorderSize),
+                    new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+                this.dg.Children.Add(background);
+                for (int i = 0; i < oreMatrix.GetLength(0); i++)
+                {
+                    for (int j = 0; j < oreMatrix.GetLength(1); j++)
+                    {
+                        switch (oreMatrix[i, j].OreType)
+                        {
+                            case "air":
+                                GeometryDrawing Air = new GeometryDrawing(Config.airBg,
+                                black,
+                                RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
+                                this.dg.Children.Add(Air);
+                                break;
+                            case "dirt":
+                                GeometryDrawing Dirt = new GeometryDrawing(Config.dirtBg,
+                                black,
+                                RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
+                                this.dg.Children.Add(Dirt);
+                                break;
+                            case "copper":
+                                GeometryDrawing Copper = new GeometryDrawing(Config.copperBg,
+                                black,
+                                RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
+                                this.dg.Children.Add(Copper);
+                                break;
+                            case "silver":
+                                GeometryDrawing Silver = new GeometryDrawing(Config.silverBg,
+                                black,
+                                RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
+                                this.dg.Children.Add(Silver);
+                                break;
+                            case "gold":
+                                GeometryDrawing Gold = new GeometryDrawing(Config.goldBg,
+                                black,
+                                RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
+                                this.dg.Children.Add(Gold);
+                                break;
+                            case "diamond":
+                                GeometryDrawing Diamond = new GeometryDrawing(Config.diamondBg,
+                                black,
+                                RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
+                                this.dg.Children.Add(Diamond);
+                                break;
+                        }
+                    }
+                }
+
+                GeometryDrawing miner = new GeometryDrawing(
+                    Config.MinerBgBrush,
+                    black,
+                    new RectangleGeometry(this.model.Miner.Area));
+                this.dg.Children.Add(miner);
+            }
+            else if (mapID % 2 == 0)
+            {
+                GeometryDrawing background = new GeometryDrawing(
+                    Config.bgBrush,
+                    black,
+                    new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+
+                GeometryDrawing gate = new GeometryDrawing(Config.GateBg,
+                   black,
+                   new RectangleGeometry(this.model.Gate.Area));
+
+                this.dg.Children.Add(background);
+                this.dg.Children.Add(gate);
+
+                GeometryDrawing miner = new GeometryDrawing(
+                    Config.MinerBgBrush,
+                    black,
+                    new RectangleGeometry(this.model.Miner.Area));
+
+                GeometryDrawing pickaxShopHouse = new GeometryDrawing(
+                    Config.PickaxShopHouseBg,
+                    black,
+                    new RectangleGeometry(this.model.PickaxShopHouse.Area)
+                    );
+
+                GeometryDrawing healthShopHouse = new GeometryDrawing(
+                    Config.HealthShopHouseBg,
+                    black,
+                    new RectangleGeometry(this.model.HealthShopHouse.Area)
+                    );
+
+                GeometryDrawing petrolShopHouse = new GeometryDrawing(
+                    Config.PetrolShopHouseBg,
+                    black,
+                    new RectangleGeometry(this.model.PetrolShopHouse.Area)
+                    );
+
+                GeometryDrawing ground = new GeometryDrawing(
+                    Config.BgGroundBrush,
+                    black,
+                    new RectangleGeometry(this.model.Ground.Area));
+
+                GeometryDrawing pickaxShop = new GeometryDrawing(
+                    Config.PickaxShopBg,
+                    black,
+                    new RectangleGeometry(this.model.PickaxShop.Area)
+                    );
+
+                GeometryDrawing healthShop = new GeometryDrawing(
+                    Config.HealthShopBg,
+                    black,
+                    new RectangleGeometry(this.model.HealthShop.Area)
+                    );
+
+                GeometryDrawing petrolShop = new GeometryDrawing(
+                    Config.PetrolShopBg,
+                    black,
+                    new RectangleGeometry(this.model.PetrolShop.Area)
+                    );
+                this.dg.Children.Add(pickaxShopHouse);
+                this.dg.Children.Add(healthShopHouse);
+                this.dg.Children.Add(petrolShopHouse);
+                this.dg.Children.Add(ground);
+                this.dg.Children.Add(pickaxShop);
+                this.dg.Children.Add(healthShop);
+                this.dg.Children.Add(petrolShop);
+                this.dg.Children.Add(miner);
+            }
+            else if (mapID % 2 == 1 && mapID == 3)
+            {
+                GeometryDrawing background = new GeometryDrawing(
+                    Config.bgBrush,
+                    new Pen(Config.BorderBrush, Config.BorderSize),
+                    new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+                throw new Exception("Új ablak megírásának helye");
+            }
+
+            ctx.DrawDrawing(this.dg);
+        }
+    }
+}
