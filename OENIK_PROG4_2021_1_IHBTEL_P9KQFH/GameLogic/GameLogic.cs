@@ -11,6 +11,7 @@ namespace GameLogicDll
     using System.Threading.Tasks;
     using GameModelDll;
     using GameRepository;
+    using System.Windows;
 
     public enum Direction
     {
@@ -176,40 +177,42 @@ namespace GameLogicDll
             this.RefreshScreen?.Invoke(this, EventArgs.Empty);
         }
 
-        public void MineGate()
+        public void MineGate(int mapID)
         {
-            if (this.model.Miner.Area.IntersectsWith(this.model.Gate.Area))
+            if (this.model.Miner.Area.IntersectsWith(this.model.Gate.Area) && mapID == 0)
             {
                 this.ChangeScreen?.Invoke(this, EventArgs.Empty);
             }
+            else if (this.model.Miner.Area.IntersectsWith(this.model.MapThreeToOneGate.Area) && mapID == 3)
+            {
+                this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
+            }
+            else if (this.model.Miner.Area.IntersectsWith(this.model.MapTwoToOneGate.Area) && mapID == 1)
+            {
+                this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
+            }
         }
 
-        public void MapOneGate()
+        public void Click()
         {
-            if (this.model.Miner.Area.IntersectsWith(this.model.MapThreeToOneGate.Area))
-            {
-                this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
-            }
-            else if (this.model.Miner.Area.IntersectsWith(this.model.MapTwoToOneGate.Area))
-            {
-                this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
-            }
+            // model.Button.Margin.
         }
 
-        public void IntersectsWithShop()
+        public bool IntersectsWithShop() // TODO: Eventként
         {
             if (this.model.Miner.Area.IntersectsWith(this.model.HealthShop.Area))
             {
-                this.ShopScreen?.Invoke(this, EventArgs.Empty);
+                return true;
             }
             else if (this.model.Miner.Area.IntersectsWith(this.model.PetrolShop.Area))
             {
-                this.ShopScreen?.Invoke(this, EventArgs.Empty);
+                return true;
             }
             else if (this.model.Miner.Area.IntersectsWith(this.model.PickaxShop.Area))
             {
-                this.ShopScreen?.Invoke(this, EventArgs.Empty);
+                return true;
             }
+            return false;
         }
 
         public void setCharPosition(double x, double y)

@@ -19,7 +19,7 @@ namespace GameLogicDll
 
         public void Fall(int mapID);
 
-        public void MineGate();
+        public void MineGate(int mapID);
 
         public void setCharPosition(double x, double y);
 

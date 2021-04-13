@@ -15,14 +15,14 @@ namespace GameRepository
 
             pickaxes.Add(new Pickax()
             {
-                Name = "basic",
+                Name = "cheap",
                 Price = 0,
                 Strength = 0,
             });
 
             pickaxes.Add(new Pickax()
             {
-                Name = "ketto",
+                Name = "basic",
                 Price = 10,
                 Strength = 1,
             });

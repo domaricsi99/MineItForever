@@ -47,7 +47,6 @@ namespace GameControlerDll
             this.logic = new GameLogic(this.model, this.mapRepo);
             this.renderer = new GameRenderer(this.model, this.logic);
             Window win = Window.GetWindow(this);
-
             if (win != null)
             {
                 this.tickTimer = new DispatcherTimer();
@@ -56,6 +55,8 @@ namespace GameControlerDll
                 this.tickTimer.Start();
 
                 win.KeyDown += this.Win_KeyDown;
+                win.MouseDoubleClick += this.Win_MouseDoubleClick;
+                // win.StylusButtonDown += Win_StylusButtonDown;
             }
 
             this.logic.RefreshScreen += (obj, args) => this.InvalidateVisual();
@@ -67,7 +68,7 @@ namespace GameControlerDll
 
             this.logic.ShopScreen += (obj, args) =>
             {
-                this.mapID = 3;
+                this.mapID = 0;
             };
 
             this.logic.BackToMapOneScreen += (obj, args) =>
@@ -78,11 +79,20 @@ namespace GameControlerDll
             this.InvalidateVisual();
         }
 
+        //private void Win_StylusButtonDown(object sender, StylusButtonEventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        private void Win_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this.logic.Click();
+        }
+
         public void TickTimer_Tick(object sender, EventArgs e)
         {
             this.logic.Fall(this.mapID);
-            this.logic.MineGate();
-            this.logic.MapOneGate();
+            this.logic.MineGate(mapID);
             this.logic.IntersectsWithShop();
         }
 
@@ -93,6 +103,11 @@ namespace GameControlerDll
                 case Key.Left: this.logic.MoveCharacter(Direction.Left, this.mapID); break;
                 case Key.Right: this.logic.MoveCharacter(Direction.Right, this.mapID); break;
                 case Key.Space: this.logic.MoveCharacter(Direction.Up, this.mapID); break;
+            }
+            switch (e)
+            {
+                default:
+                    break;
             }
         }
 
