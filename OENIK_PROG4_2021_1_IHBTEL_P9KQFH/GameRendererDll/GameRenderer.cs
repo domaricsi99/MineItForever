@@ -223,7 +223,6 @@ namespace GameRendererDll
                     Visibility = Visibility.Visible,
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
-                    
                 };
 
                 Button saveButton = new Button()
@@ -234,6 +233,8 @@ namespace GameRendererDll
                     Width = Config.ButtonWidth,
                     Background = Brushes.Blue,
                 };
+
+                
 
                 this.dg.Children.Add(background);
                 //this.dg.Children.Add(loadBackground);

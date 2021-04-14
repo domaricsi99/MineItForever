@@ -48,7 +48,7 @@ namespace GameLogicDll
 
         public void MoveCharacter(Direction d, int mapID)
         {
-            if (mapID == 0 || mapID == 3)
+            if (mapID == 0)
             {
                 if (d == Direction.Left && this.model.Miner.Area.Left > 0)
                 {
@@ -60,38 +60,46 @@ namespace GameLogicDll
                 }
                 else if (d == Direction.Up)
                 {
-                    this.model.Miner.ChangeY(-30);
+                    this.model.Miner.ChangeY(-60);
                 }
             }
             else if (mapID == 1)
             {
                 if (d == Direction.Left && this.model.Miner.Area.Left > 0)
                 {
-                    int predictOreX = (int)((this.model.Miner.Area.Bottom - (Config.MinerHeight / 2)) / Config.oreHeight);
-                    int predictOreY = ((int)this.model.Miner.Area.Left - 8) / Config.oreWidth;
+                    //int predictOreX = (int)((this.model.Miner.Area.Bottom - (Config.MinerHeight / 2)) / Config.oreHeight);
+                    //int predictOreY = ((int)this.model.Miner.Area.Left - 8) / Config.oreWidth;
 
-                    if (!this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreY].Area)
-                        || this.ore[predictOreX, predictOreY].canPass == true)
+                    //if (!this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreY].Area)
+                    //    || this.ore[predictOreX, predictOreY].canPass == true)
+                    //{
+                    //    this.model.Miner.ChangeX(-7.5);
+                    //}
+                    if (Movement(this.model.Miner, Direction.Left))
                     {
                         this.model.Miner.ChangeX(-7.5);
                     }
                 }
                 else if (d == Direction.Right && this.model.Miner.Area.Right < Config.Width)
                 {
-                    int predictOreX = (int)((this.model.Miner.Area.Bottom - (Config.MinerHeight / 2)) / Config.oreHeight);
-                    int predictOreY = ((int)this.model.Miner.Area.Right + 8) / Config.oreWidth;
-                    if (predictOreY > Config.Width)
-                    {
-                        predictOreX = this.ore.GetLength(1);
-                    }
+                    //int predictOreX = (int)((this.model.Miner.Area.Bottom - (Config.MinerHeight / 2)) / Config.oreHeight);
+                    //int predictOreY = ((int)this.model.Miner.Area.Right + 8) / Config.oreWidth;
+                    //if (predictOreY > Config.Width)
+                    //{
+                    //    predictOreX = this.ore.GetLength(1);
+                    //}
 
-                    if (predictOreY < 20)
+                    //if (predictOreY < 20)
+                    //{
+                    //    if (!this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreY].Area)
+                    //        || this.ore[predictOreX, predictOreY].canPass == true)
+                    //    {
+                    //        this.model.Miner.ChangeX(7.5);
+                    //    }
+                    //}
+                    if (Movement(this.model.Miner, Direction.Right))
                     {
-                        if (!this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreY].Area)
-                            || this.ore[predictOreX, predictOreY].canPass == true)
-                        {
-                            this.model.Miner.ChangeX(7.5);
-                        }
+                        this.model.Miner.ChangeX(7.5);
                     }
                 }
                 else if (d == Direction.Up && this.jumpCount < 3)
@@ -155,21 +163,26 @@ namespace GameLogicDll
             }
             else if (mapID == 1)
             {
-                int q = 0;
-                foreach (var item in this.ore) // TODO: While megoldás
+                int i = 0;
+                int j = 0;
+                Ore[,] renderedOres = MapPart();
+                while (renderedOres[i, j].Area.IntersectsWith(this.model.Miner.Area) && renderedOres[i, j].canPass == false)
                 {
-                    if (item.Area.IntersectsWith(this.model.Miner.Area) && item.canPass == false)
+                    if (j == renderedOres.GetLength(1) - 1)
                     {
-                        this.jumpCount = 0;
-                        q = 1;
+                        if (i == renderedOres.GetLength(0) - 1)
+                        {
+                            break;
+                        }
+
+                        j = 0;
+                        i++;
                     }
-                    else
-                    {
-                        this.jumpCount = 5;
-                    }
+
+                    j++;
                 }
 
-                if (q == 0)
+                if (i == renderedOres.GetLength(0) - 1 || j == renderedOres.GetLength(1) - 1)
                 {
                     foreach (var item in ore)
                     {
@@ -183,6 +196,68 @@ namespace GameLogicDll
             }
 
             this.RefreshScreen?.Invoke(this, EventArgs.Empty);
+        }
+
+        public bool Movement(Character character, Direction d)
+        {
+            int i = 0;
+            int j = 0;
+            Ore[,] renderedOres = MapPart();
+            while (!(renderedOres[i, j].Area.IntersectsWith(this.model.Miner.Area) && renderedOres[i, j].canPass == false))
+            {
+                if (j == renderedOres.GetLength(1) - 1)
+                {
+                    if (i == renderedOres.GetLength(0) - 1)
+                    {
+                        break;
+                    }
+
+                    j = 0;
+                    i++;
+                }
+
+                j++;
+            }
+
+            switch (d)
+            {
+                case Direction.Left:
+                    if (i == renderedOres.GetLength(0) - 3 || j == renderedOres.GetLength(1) - 4)
+                    {
+                            return true;
+                    }
+
+                    break;
+                case Direction.Right:
+                    if (i == renderedOres.GetLength(0) - 3 || j == renderedOres.GetLength(1) - 2)
+                    {
+                        return true;
+                    }
+                    break;
+                default:
+                    if (i == renderedOres.GetLength(0) - 1 || j == renderedOres.GetLength(1) - 1)
+                    {
+                            return true;
+                    }
+
+                    break;
+            }
+
+            return false;
+        }
+
+        public int Round(double number)
+        {
+            double remnant = number % 45;
+            if (remnant < 22.5)
+            {
+                number -= remnant;
+            }
+            else
+            {
+                number += 45 - remnant;
+            }
+            return (int)number;
         }
 
         public void MineGate(int mapID)
