@@ -29,6 +29,7 @@ namespace GameModelDll
         public static Brush silverBg = Brushes.Silver;
         public static Brush goldBg = Brushes.Gold;
         public static Brush diamondBg = Brushes.LightCyan;
+        public static Brush stoneBg = Brushes.DarkGray;
 
         public static Brush oreLine = Brushes.Black;
         public static int oreWidth = 45;
@@ -53,5 +54,9 @@ namespace GameModelDll
         public static Brush PetrolShopBg = Brushes.PaleGreen;
         public static int ShopWidth = 45;
         public static int ShopHeight = 45;
+
+        public static Brush ButtonBg = Brushes.Transparent;
+        public static int ButtonWidth = 90;
+        public static int ButtonHeight = 60;
     }
 }

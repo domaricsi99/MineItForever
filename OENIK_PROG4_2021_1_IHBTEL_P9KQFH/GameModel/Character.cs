@@ -18,7 +18,7 @@ namespace GameModelDll
 
         public int PickAxLevel { get; set; }
 
-        public Map Map { get; set; }
+        public string[] Map { get; set; } // Map (?)
 
         public string Name { get; set; }
 

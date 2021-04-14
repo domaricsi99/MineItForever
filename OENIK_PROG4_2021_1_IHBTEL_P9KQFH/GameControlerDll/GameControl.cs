@@ -32,8 +32,9 @@ namespace GameControlerDll
         private DispatcherTimer tickTimer;
 
         // private Repo repo;
-        private int mapID = 0;
+        private int mapID = 0; // !!!!
         private MapRepository mapRepo;
+        private CharacterRepository charRepo;
 
         public GameControl()
         {
@@ -44,7 +45,8 @@ namespace GameControlerDll
         {
             this.model = new GameModel();
             this.mapRepo = new MapRepository();
-            this.logic = new GameLogic(this.model, this.mapRepo);
+            this.charRepo = new CharacterRepository();
+            this.logic = new GameLogic(this.model, this.mapRepo, this.charRepo);
             this.renderer = new GameRenderer(this.model, this.logic);
             Window win = Window.GetWindow(this);
             if (win != null)

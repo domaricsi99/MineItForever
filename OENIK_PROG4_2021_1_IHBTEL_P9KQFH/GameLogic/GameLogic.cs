@@ -22,6 +22,7 @@ namespace GameLogicDll
     {
         private GameModel model;
         private MapRepository mapRepo;
+        private CharacterRepository charRepo;
         private List<Ore> map;
         Ore[,] ore;
 
@@ -36,10 +37,11 @@ namespace GameLogicDll
 
         public event EventHandler ShopScreen;
 
-        public GameLogic(GameModel model, MapRepository mapRepo)
+        public GameLogic(GameModel model, MapRepository mapRepo, CharacterRepository charRepo)
         {
             this.model = model;
             this.mapRepo = mapRepo;
+            this.charRepo = charRepo;
             this.map = this.mapRepo.DrawMap();
             this.ore = this.DrawMap();
         }
@@ -280,6 +282,18 @@ namespace GameLogicDll
             }
 
             return renderedOres;
+        }
+
+        public object SaveGame()
+        {
+            this.charRepo.SaveGame(model.Miner);
+            return null;
+        }
+
+        public object LoadGame()
+        {
+            this.charRepo.LoadGame(model.Miner.Name);
+            return null;
         }
     }
 }

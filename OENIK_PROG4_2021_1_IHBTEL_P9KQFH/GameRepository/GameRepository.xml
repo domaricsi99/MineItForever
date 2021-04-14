@@ -4,6 +4,12 @@
         <name>GameRepository</name>
     </assembly>
     <members>
+        <member name="M:GameRepository.CharacterRepository.LoadGame(System.String)">
+            <summary>
+            Character name equals file name.
+            </summary>
+            <param name="name"></param>
+        </member>
         <member name="T:GameRepository.IGameRepository`1">
             <summary>
             base repo interface.

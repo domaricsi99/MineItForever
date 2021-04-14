@@ -34,7 +34,9 @@ namespace GameModelDll
 
         public Building PetrolShopHouse { get; set; }
 
-        // public Shape Button { get; set; }
+        public Shape SaveButtonRectangle { get; set; }
+
+        public Shape LoadButtonRectangle { get; set; }
 
         public Shape PickaxShop { get; set; }
 
@@ -42,7 +44,6 @@ namespace GameModelDll
 
         public Shape PetrolShop { get; set; }
 
-        public Button Button { get; set; }
 
         public GameModel()
         {
@@ -57,13 +58,8 @@ namespace GameModelDll
             this.PetrolShop = new Shape(this.PetrolShopHouse.Area.X + (Config.BuildingWidth / 2) - 20, this.PetrolShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
             this.MapThreeToOneGate = new Shape(Config.Width - (Config.GateWidth * 2), Config.Height - (Config.GroundHeight + Config.GateHeight), Config.GateWidth * 2, Config.GateHeight);
             this.MapTwoToOneGate = new Shape(Config.Width - Config.oreWidth, 0, Config.oreWidth, Config.oreHeight);
-            // this.Button = new Shape(Config.Width/2, Config.Height/2 , 30, 30);
-            this.Button = new Button()
-            {
-                Height = 45,
-                Width = 60,
-            };
-
+            this.SaveButtonRectangle = new Shape(Config.Width / 2 + 20, Config.Height / 2 + 20, Config.BuildingWidth, Config.BuildingHeight);
+            this.LoadButtonRectangle = new Shape(SaveButtonRectangle.Area.X + Config.BuildingWidth, SaveButtonRectangle.Area.Y + Config.BuildingHeight , Config.BuildingWidth, Config.BuildingHeight);
         }
     }
 }

@@ -10,6 +10,6 @@ namespace GameRepository
     {
         public Character LoadGame(string name);
 
-        public void SaveGame(Character character);
+        public bool SaveGame(Character character);
     }
 }
