@@ -153,20 +153,26 @@ namespace GameLogicDll
             }
             else if (mapID == 1)
             {
-                int predictOreX = (int)(this.model.Miner.Area.Bottom + 5) / Config.oreHeight;
-                int predictOreYLeft = (int)(this.model.Miner.Area.Left + 1) / Config.oreWidth;
-                int predictOreYRight = (int)(this.model.Miner.Area.Right - 1) / Config.oreWidth;
-
-                if ((!this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreYLeft].Area)
-                    && !this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreYRight].Area))
-                    || (this.ore[predictOreX, predictOreYLeft].canPass == true && this.ore[predictOreX, predictOreYRight].canPass == true))
+                int q = 0;
+                foreach (var item in this.ore) // TODO: While megoldás
                 {
-                    this.model.Miner.ChangeY(5);
-                    this.jumpCount = 5;
+                    if (item.Area.IntersectsWith(this.model.Miner.Area) && item.canPass == false)
+                    {
+                        this.jumpCount = 0;
+                        q = 1;
+                    }
+                    else
+                    {
+                        this.jumpCount = 5;
+                    }
                 }
-                else
+
+                if (q == 0)
                 {
-                    this.jumpCount = 0;
+                    foreach (var item in ore)
+                    {
+                        item.ChangeY(-5);
+                    }
                 }
             }
             else if (!this.model.Miner.Area.IntersectsWith(this.model.Ground.Area) && mapID == 3)
@@ -212,6 +218,7 @@ namespace GameLogicDll
             {
                 return true;
             }
+
             return false;
         }
 
@@ -222,43 +229,54 @@ namespace GameLogicDll
 
         public Ore[,] MapPart()
         {
-            int minerPositionX = (int)this.model.Miner.Area.Y / Config.oreHeight;
-            int minerPositionY = (int)this.model.Miner.Area.X / Config.oreWidth;
-
-            if (minerPositionX - 2 < 0)
-            {
-                minerPositionX = 2;
-            }
-
-            if (minerPositionY - 2 < 0)
-            {
-                minerPositionY = 2;
-            }
-
-            if ((minerPositionX + 2) * 45 >= Config.Height)
-            {
-                minerPositionX = this.ore.GetLength(0) - 3;
-            }
-
-            if ((minerPositionY + 2) * 45 >= Config.Width)
-            {
-                minerPositionY = this.ore.GetLength(1) - 3;
-            }
-
-            // int topLeft = 0;
             Ore[,] renderedOres = new Ore[5, 5];
-            int startingPosY = minerPositionY;
+            int intersectOreX = 2;
+            int intersectOreY = 2;
+
+            for (int i = 0; i < ore.GetLength(0); i++) // TODO: WHile megoldás szebb!
+            {
+                for (int j = 0; j < ore.GetLength(1); j++)
+                {
+                    if (this.model.Miner.Area.IntersectsWith(this.ore[i,j].Area))
+                    {
+                        intersectOreX = i;
+                        intersectOreY = j;
+                    }
+                }
+            }
+
+            if (intersectOreX - 2 < 0)
+            {
+                intersectOreX = 2;
+            }
+
+            if (intersectOreY - 2 < 0)
+            {
+                intersectOreY = 2;
+            }
+
+            if ((intersectOreX + 2) >= this.ore.GetLength(0))
+            {
+                intersectOreX = this.ore.GetLength(0) - 3;
+            }
+
+            if ((intersectOreY + 2) * 45 >= Config.Width)
+            {
+                intersectOreY = this.ore.GetLength(1) - 3;
+            }
+
+            int startingPosY = intersectOreY;
             for (int i = 0; i < renderedOres.GetLength(0); i++)
             {
                 for (int j = 0; j < renderedOres.GetLength(1); j++)
                 {
 
-                    renderedOres[i, j] = this.ore[minerPositionX - 2, minerPositionY - 2];
-                    minerPositionY++;
+                    renderedOres[i, j] = this.ore[intersectOreX - 2, intersectOreY - 2];
+                    intersectOreY++;
                 }
 
-                minerPositionY = startingPosY;
-                minerPositionX++;
+                intersectOreY = startingPosY;
+                intersectOreX++;
             }
 
             return renderedOres;
