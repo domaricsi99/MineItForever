@@ -22,12 +22,11 @@ namespace GameRepository
             this.map = new List<Ore>();
             int localOreX = Config.oreX;
             int localOreY = Config.oreY;
-            string[] fajlsorai = File.ReadAllLines(@"palya.txt");
-            //string[] fajlsorai = File.ReadAllLines("palya.txt");
-            foreach (var item in fajlsorai)
+            string[] fileLines = File.ReadAllLines(@"palya.txt");
+            foreach (var item in fileLines)
             {
-                string[] splitteltsor = item.Split(';');
-                foreach (var item2 in splitteltsor)
+                string[] splitLine = item.Split(';');
+                foreach (var item2 in splitLine)
                 {
                     switch (item2)
                     {

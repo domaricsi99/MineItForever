@@ -18,6 +18,10 @@ namespace GameModelDll
 
         public int PickAxLevel { get; set; }
 
+        public Map Map { get; set; }
+
+        public string Name { get; set; }
+
         public List<Ore> Backpack;
 
         public double DX { get; set; }
