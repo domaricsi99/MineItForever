@@ -163,32 +163,47 @@ namespace GameLogicDll
             }
             else if (mapID == 1)
             {
+
                 int i = 0;
                 int j = 0;
                 Ore[,] renderedOres = MapPart();
-                while (renderedOres[i, j].Area.IntersectsWith(this.model.Miner.Area) && renderedOres[i, j].canPass == false)
-                {
-                    if (j == renderedOres.GetLength(1) - 1)
-                    {
-                        if (i == renderedOres.GetLength(0) - 1)
-                        {
-                            break;
-                        }
-
-                        j = 0;
-                        i++;
-                    }
-
-                    j++;
-                }
-
-                if (i == renderedOres.GetLength(0) - 1 || j == renderedOres.GetLength(1) - 1)
+                while (!this.model.Miner.Area.IntersectsWith(renderedOres[i,j].Area) && renderedOres[i, j].canPass == false) // itt van egy vegtelen ciklus
                 {
                     foreach (var item in ore)
                     {
+
                         item.ChangeY(-5);
+
                     }
                 }
+
+               
+                //int i = 0;
+                //int j = 0;
+                //Ore[,] renderedOres = MapPart();
+                //while (renderedOres[i, j].Area.IntersectsWith(this.model.Miner.Area) && renderedOres[i, j].canPass == false)
+                //{
+                //    if (j == renderedOres.GetLength(1) - 1)
+                //    {
+                //        if (i == renderedOres.GetLength(0) - 1)
+                //        {
+                //            break;
+                //        }
+
+                //        j = 0;
+                //        i++;
+                //    }
+
+                //    j++;
+                //}
+
+                //if (i <= renderedOres.GetLength(0) || j <= renderedOres.GetLength(1))
+                //{
+                //    foreach (var item in ore)
+                //    {
+                //        item.ChangeY(-5);
+                //    }
+                //}
             }
             else if (!this.model.Miner.Area.IntersectsWith(this.model.Ground.Area) && mapID == 3)
             {
@@ -203,7 +218,7 @@ namespace GameLogicDll
             int i = 0;
             int j = 0;
             Ore[,] renderedOres = MapPart();
-            while (!(renderedOres[i, j].Area.IntersectsWith(this.model.Miner.Area) && renderedOres[i, j].canPass == false))
+            while (this.model.Miner.Area.IntersectsWith(renderedOres[i, j].Area) && renderedOres[i, j].canPass == false)
             {
                 if (j == renderedOres.GetLength(1) - 1)
                 {
@@ -222,20 +237,20 @@ namespace GameLogicDll
             switch (d)
             {
                 case Direction.Left:
-                    if (i == renderedOres.GetLength(0) - 3 || j == renderedOres.GetLength(1) - 4)
+                    if (i <= renderedOres.GetLength(0) || j <= renderedOres.GetLength(1)) // igy tudunk jobbra balra mozogni 
                     {
                             return true;
                     }
 
                     break;
                 case Direction.Right:
-                    if (i == renderedOres.GetLength(0) - 3 || j == renderedOres.GetLength(1) - 2)
+                    if (i <= renderedOres.GetLength(0) || j <= renderedOres.GetLength(1) )
                     {
                         return true;
                     }
                     break;
                 default:
-                    if (i == renderedOres.GetLength(0) - 1 || j == renderedOres.GetLength(1) - 1)
+                    if (i <= renderedOres.GetLength(0) || j <= renderedOres.GetLength(1))
                     {
                             return true;
                     }
