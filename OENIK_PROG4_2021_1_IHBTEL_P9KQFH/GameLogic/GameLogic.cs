@@ -25,6 +25,7 @@ namespace GameLogicDll
         private CharacterRepository charRepo;
         private List<Ore> map;
         Ore[,] ore;
+        Character character ;
 
         int jumpCount = 0; //ugrasok számát számolja
         int maxJump = 2; // max mennyit ugorhatunk
@@ -44,10 +45,14 @@ namespace GameLogicDll
             this.charRepo = charRepo;
             this.map = this.mapRepo.DrawMap();
             this.ore = this.DrawMap();
+            character = LoadGame();
         }
 
         public void MoveCharacter(Direction d, int mapID)
         {
+
+            string name = model.Miner.Name;
+
             if (mapID == 0)
             {
                 if (d == Direction.Left && this.model.Miner.Area.Left > 0)
@@ -327,10 +332,9 @@ namespace GameLogicDll
             return null;
         }
 
-        public object LoadGame()
+        public Character LoadGame()
         {
-            this.charRepo.LoadGame(model.Miner.Name);
-            return null;
+            return this.charRepo.LoadGame(model.Miner.Name);
         }
     }
 }

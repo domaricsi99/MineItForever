@@ -35,5 +35,31 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:GameWindow.NewGameDataWindow">
+            <summary>
+            Interaction logic for NewGameDataWindow.xaml
+            </summary>
+            <summary>
+            NewGameDataWindow
+            </summary>
+        </member>
+        <member name="M:GameWindow.NewGameDataWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:GameWindow.StartPage">
+            <summary>
+            Interaction logic for StartPage.xaml.
+            </summary>
+            <summary>
+            StartPage
+            </summary>
+        </member>
+        <member name="M:GameWindow.StartPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
     </members>
 </doc>

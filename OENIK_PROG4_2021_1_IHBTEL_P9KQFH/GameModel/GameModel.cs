@@ -44,7 +44,6 @@ namespace GameModelDll
 
         public Shape PetrolShop { get; set; }
 
-
         public GameModel()
         {
             this.Miner = new Character(Config.Width / 2, Config.Height / 2, Config.MinerWidth, Config.MinerHeight);

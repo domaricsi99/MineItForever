@@ -31,10 +31,13 @@ namespace GameControlerDll
         private GameRenderer renderer;
         private DispatcherTimer tickTimer;
 
+        public string Name { get; set; }
+
         // private Repo repo;
         private int mapID = 0; // !!!!
         private MapRepository mapRepo;
         private CharacterRepository charRepo;
+        public Character character;
 
         public GameControl()
         {
@@ -48,6 +51,7 @@ namespace GameControlerDll
             this.charRepo = new CharacterRepository();
             this.logic = new GameLogic(this.model, this.mapRepo, this.charRepo);
             this.renderer = new GameRenderer(this.model, this.logic);
+            character = logic.LoadGame();
             Window win = Window.GetWindow(this);
             if (win != null)
             {
@@ -58,7 +62,6 @@ namespace GameControlerDll
 
                 win.KeyDown += this.Win_KeyDown;
                 win.MouseDoubleClick += this.Win_MouseDoubleClick;
-                // win.StylusButtonDown += Win_StylusButtonDown;
             }
 
             this.logic.RefreshScreen += (obj, args) => this.InvalidateVisual();
@@ -80,11 +83,6 @@ namespace GameControlerDll
 
             this.InvalidateVisual();
         }
-
-        //private void Win_StylusButtonDown(object sender, StylusButtonEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         private void Win_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

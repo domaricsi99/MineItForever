@@ -17,12 +17,12 @@ namespace GameRepository
         {
         }
 
-        public List<Ore> DrawMap()
+        public List<Ore> DrawMap() // Character char
         {
             this.map = new List<Ore>();
             int localOreX = Config.oreX;
             int localOreY = Config.oreY;
-            string[] fileLines = File.ReadAllLines(@"palya.txt");
+            string[] fileLines = File.ReadAllLines("palya.txt"); // char.Map;
             foreach (var item in fileLines)
             {
                 string[] splitLine = item.Split(';');

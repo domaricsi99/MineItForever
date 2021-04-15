@@ -28,23 +28,26 @@ namespace GameRepository
             {
                 string[] fileLines = File.ReadAllLines(name + ".txt");
 
-                Character character = new Character()
-                {
-                    Name = fileLines[0],
-                    Health = int.Parse(fileLines[1]),
-                    Fuel = int.Parse(fileLines[2]),
-                    PickAxLevel = int.Parse(fileLines[3]),
-                    Money = int.Parse(fileLines[4]),
-                    Score = int.Parse(fileLines[5]),
-                };
+
+                //Character character = new Character()
+                //{
+                //    Name = fileLines[0],
+                //    Health = int.Parse(fileLines[1]),
+                //    Fuel = int.Parse(fileLines[2]),
+                //    PickAxLevel = int.Parse(fileLines[3]),
+                //    Money = int.Parse(fileLines[4]),
+                //    Score = int.Parse(fileLines[5]),
+                //};
 
                 string[] map = File.ReadAllLines(name + "Map.txt");
 
-                character.Map = map;
+                //character.Map = map;
 
-                return character;
+                Character chara = new Character(int.Parse(fileLines[1]), int.Parse(fileLines[2]), int.Parse(fileLines[4]), int.Parse(fileLines[5]), int.Parse(fileLines[3]), map, fileLines[0]);
+
+                //return character;
+                return chara;
             }
-            
         }
 
         public bool SaveGame (Character character)
@@ -73,6 +76,21 @@ namespace GameRepository
                 File.WriteAllLines(character.Name + "Map", character.Map);
                 return true;
             }
+        }
+
+        public void NewCharacter (string name)
+        {
+            Character character = new Character()
+            {
+                Name = name,
+                PickAxLevel = 0,
+                Fuel = 100,
+                Health = 100,
+                Money = 10,
+                Score = 0,
+                Map = File.ReadAllLines("palya.txt"),
+            };
+            SaveGame(character);
         }
     }
 }
