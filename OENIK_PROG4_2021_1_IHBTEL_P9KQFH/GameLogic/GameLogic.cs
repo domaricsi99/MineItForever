@@ -75,7 +75,7 @@ namespace GameLogicDll
                     //{
                     //    this.model.Miner.ChangeX(-7.5);
                     //}
-                    if (Movement(this.model.Miner, Direction.Left))
+                    if (Movement(d))
                     {
                         this.model.Miner.ChangeX(-7.5);
                     }
@@ -97,7 +97,7 @@ namespace GameLogicDll
                     //        this.model.Miner.ChangeX(7.5);
                     //    }
                     //}
-                    if (Movement(this.model.Miner, Direction.Right))
+                    if (Movement(d))
                     {
                         this.model.Miner.ChangeX(7.5);
                     }
@@ -163,116 +163,63 @@ namespace GameLogicDll
             }
             else if (mapID == 1)
             {
-
-                int i = 0;
-                int j = 0;
+                bool canFall = true;
                 Ore[,] renderedOres = MapPart();
-                while (!this.model.Miner.Area.IntersectsWith(renderedOres[i,j].Area) && renderedOres[i, j].canPass == false) // itt van egy vegtelen ciklus
+                foreach (var item in renderedOres)
                 {
-                    foreach (var item in ore)
+                    if (item.Area.IntersectsWith(this.model.Miner.Area) && item.canPass == false)
                     {
-
-                        item.ChangeY(-5);
-
+                        canFall = false;
+                        break;
                     }
                 }
 
-               
-                //int i = 0;
-                //int j = 0;
-                //Ore[,] renderedOres = MapPart();
-                //while (renderedOres[i, j].Area.IntersectsWith(this.model.Miner.Area) && renderedOres[i, j].canPass == false)
-                //{
-                //    if (j == renderedOres.GetLength(1) - 1)
-                //    {
-                //        if (i == renderedOres.GetLength(0) - 1)
-                //        {
-                //            break;
-                //        }
-
-                //        j = 0;
-                //        i++;
-                //    }
-
-                //    j++;
-                //}
-
-                //if (i <= renderedOres.GetLength(0) || j <= renderedOres.GetLength(1))
-                //{
-                //    foreach (var item in ore)
-                //    {
-                //        item.ChangeY(-5);
-                //    }
-                //}
-            }
-            else if (!this.model.Miner.Area.IntersectsWith(this.model.Ground.Area) && mapID == 3)
-            {
-                this.model.Miner.ChangeY(5);
+                if (canFall)
+                {
+                    foreach (var item2 in ore)
+                    {
+                        item2.ChangeY(-5);
+                    }
+                }
             }
 
             this.RefreshScreen?.Invoke(this, EventArgs.Empty);
         }
 
-        public bool Movement(Character character, Direction d)
+        public bool Movement(Direction d)
         {
-            int i = 0;
-            int j = 0;
-            Ore[,] renderedOres = MapPart();
-            while (this.model.Miner.Area.IntersectsWith(renderedOres[i, j].Area) && renderedOres[i, j].canPass == false)
-            {
-                if (j == renderedOres.GetLength(1) - 1)
-                {
-                    if (i == renderedOres.GetLength(0) - 1)
-                    {
-                        break;
-                    }
-
-                    j = 0;
-                    i++;
-                }
-
-                j++;
-            }
+            bool canGoThrough = true;
+            Ore[,] renderedOres = this.MapPart();
 
             switch (d)
             {
                 case Direction.Left:
-                    if (i <= renderedOres.GetLength(0) || j <= renderedOres.GetLength(1)) // igy tudunk jobbra balra mozogni 
+                    foreach (var item in renderedOres)
                     {
-                            return true;
+                        if (item.Area.Left <= this.model.Miner.Area.Left - 5 && this.model.Miner.Area.Left - 5 <= item.Area.Right
+                            && item.canPass == false && item.Area.Bottom <= this.model.Miner.Area.Bottom && this.model.Miner.Area.Top <= item.Area.Top)
+                        {
+                            return false;
+                        }
                     }
 
-                    break;
+                    return true;
                 case Direction.Right:
-                    if (i <= renderedOres.GetLength(0) || j <= renderedOres.GetLength(1) )
+                    foreach (var item in renderedOres)
                     {
-                        return true;
-                    }
-                    break;
-                default:
-                    if (i <= renderedOres.GetLength(0) || j <= renderedOres.GetLength(1))
-                    {
-                            return true;
+                        if (item.Area.Left <= this.model.Miner.Area.Right + 5 && this.model.Miner.Area.Right + 5 <= item.Area.Right
+                            && item.canPass == false && item.Area.Bottom <= this.model.Miner.Area.Bottom && this.model.Miner.Area.Top <= item.Area.Top)
+                        {
+                            return false;
+                        }
                     }
 
+                    return true;
+                default:
                     break;
             }
 
             return false;
-        }
-
-        public int Round(double number)
-        {
-            double remnant = number % 45;
-            if (remnant < 22.5)
-            {
-                number -= remnant;
-            }
-            else
-            {
-                number += 45 - remnant;
-            }
-            return (int)number;
         }
 
         public void MineGate(int mapID)

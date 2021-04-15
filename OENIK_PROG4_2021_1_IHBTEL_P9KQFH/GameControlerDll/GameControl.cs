@@ -65,7 +65,7 @@ namespace GameControlerDll
             this.logic.ChangeScreen += (obj, args) =>
             {
                 this.mapID = 1;
-                this.logic.setCharPosition(0 , 60 - Config.MinerHeight);
+                this.logic.setCharPosition(0, 120 - Config.MinerHeight);
             };
 
             this.logic.ShopScreen += (obj, args) =>
