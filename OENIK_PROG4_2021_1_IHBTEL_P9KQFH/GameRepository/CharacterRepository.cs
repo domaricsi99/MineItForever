@@ -43,7 +43,18 @@ namespace GameRepository
 
                 //character.Map = map;
 
-                Character chara = new Character(int.Parse(fileLines[1]), int.Parse(fileLines[2]), int.Parse(fileLines[4]), int.Parse(fileLines[5]), int.Parse(fileLines[3]), map, fileLines[0]);
+                Character chara = new Character(
+                    int.Parse(fileLines[1]),
+                    int.Parse(fileLines[2]),
+                    int.Parse(fileLines[4]),
+                    int.Parse(fileLines[5]),
+                    int.Parse(fileLines[3]),
+                    map, fileLines[0],
+                    Config.Width / 2,
+                    Config.Height / 2,
+                    Config.MinerWidth,
+                    Config.MinerHeight
+                    );
 
                 //return character;
                 return chara;

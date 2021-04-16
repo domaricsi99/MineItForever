@@ -49,9 +49,11 @@ namespace GameControlerDll
             this.model = new GameModel();
             this.mapRepo = new MapRepository();
             this.charRepo = new CharacterRepository();
-            this.logic = new GameLogic(this.model, this.mapRepo, this.charRepo);
-            this.renderer = new GameRenderer(this.model, this.logic);
-            character = logic.LoadGame();
+            this.character = this.charRepo.LoadGame("alma");
+            //this.logic = new GameLogic(this.model, this.mapRepo, this.charRepo);
+            this.logic = new GameLogic(this.model, this.mapRepo, this.charRepo, this.character);
+            //this.logic = new GameLogic(character);
+            this.renderer = new GameRenderer(this.model, this.logic, this.character);
             Window win = Window.GetWindow(this);
             if (win != null)
             {
@@ -61,7 +63,6 @@ namespace GameControlerDll
                 this.tickTimer.Start();
 
                 win.KeyDown += this.Win_KeyDown;
-                win.MouseDoubleClick += this.Win_MouseDoubleClick;
             }
 
             this.logic.RefreshScreen += (obj, args) => this.InvalidateVisual();
@@ -82,11 +83,6 @@ namespace GameControlerDll
             };
 
             this.InvalidateVisual();
-        }
-
-        private void Win_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            this.logic.Click();
         }
 
         public void TickTimer_Tick(object sender, EventArgs e)

@@ -20,13 +20,16 @@ namespace GameRendererDll
         Ore[,] map;
         StackPanel sp;
 
-        public GameRenderer(GameModel model, GameLogic logic)
+        Character character;
+
+        public GameRenderer(GameModel model, GameLogic logic, Character character)
         {
             this.model = model;
             this.gdll = logic;
             this.map = this.gdll.DrawMap();
             this.dg = new DrawingGroup();
             this.sp = new StackPanel();
+            this.character = character;
         }
 
         public RectangleGeometry RectangleG(double oreX, double oreY)
@@ -36,6 +39,7 @@ namespace GameRendererDll
 
         public void Draw(DrawingContext ctx, int mapID) // todo mindent kirajzolni, flappybol atirni
         {
+
             Pen black = new Pen(Brushes.Black, 1);
 
             this.dg.Children.Clear();
@@ -106,7 +110,7 @@ namespace GameRendererDll
                 GeometryDrawing miner = new GeometryDrawing(
                     Config.MinerBgBrush,
                     black,
-                    new RectangleGeometry(this.model.Miner.Area));
+                    new RectangleGeometry(character.Area));
 
                 this.dg.Children.Add(mapOneGate);
                 this.dg.Children.Add(miner);
@@ -118,21 +122,6 @@ namespace GameRendererDll
                    black,
                    new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
                 this.dg.Children.Add(background);
-                //StackPanel sp = new StackPanel();
-                //if (gdll.IntersectsWithShop())
-                //{
-                //    Button button = new Button()
-                //    {
-                //        Height = 250,
-                //        Width = 900,
-                //        Background = Brushes.Black,
-                //        Content = gdll.SavedGame(model.Miner),
-                //    };
-                //    sp.Children.Add(button);
-
-                //    Grid.SetRow(button, 250);
-                //    Grid.SetColumn(button, 250);
-                //}
 
                 GeometryDrawing gate = new GeometryDrawing(Config.GateBg,
                    black,
@@ -143,7 +132,7 @@ namespace GameRendererDll
                 GeometryDrawing miner = new GeometryDrawing(
                     Config.MinerBgBrush,
                     black,
-                    new RectangleGeometry(this.model.Miner.Area));
+                    new RectangleGeometry(this.character.Area));
 
                 GeometryDrawing pickaxShopHouse = new GeometryDrawing(
                     Config.PickaxShopHouseBg,
@@ -194,55 +183,7 @@ namespace GameRendererDll
                 this.dg.Children.Add(petrolShop);
                 this.dg.Children.Add(miner);
             }
-            else if (mapID == 4) // START PAGE --> LOAD SAVE 
-            {
-                GeometryDrawing background = new GeometryDrawing(
-                    Config.bgBrush,
-                    black,
-                    new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
 
-                //GeometryDrawing loadBackground = new GeometryDrawing(
-                //    Config.ButtonBg,
-                //    black,
-                //    new RectangleGeometry(this.model.SaveButtonRectangle.Area));
-
-                //GeometryDrawing saveBackground = new GeometryDrawing(
-                //    Config.ButtonBg,
-                //    black,
-                //    new RectangleGeometry(this.model.SaveButtonRectangle.Area));
-
-                Button loadButton = new Button()
-                {
-                    Height = Config.ButtonHeight,
-                    Width = Config.ButtonWidth,
-                    Content = this.gdll.LoadGame(),
-                    BorderBrush = Brushes.Black,
-                    Background = Brushes.Red,
-                    Margin = new Thickness(10,10,10,10),
-                    SnapsToDevicePixels = true,
-                    Visibility = Visibility.Visible,
-                    HorizontalAlignment = HorizontalAlignment.Left,
-                    VerticalAlignment = VerticalAlignment.Top,
-                };
-
-                Button saveButton = new Button()
-                {
-                    Content = this.gdll.SaveGame(),
-                    BorderBrush = Brushes.Black,
-                    Height = Config.ButtonHeight,
-                    Width = Config.ButtonWidth,
-                    Background = Brushes.Blue,
-                };
-
-                
-
-                this.dg.Children.Add(background);
-                //this.dg.Children.Add(loadBackground);
-                //this.dg.Children.Add(saveBackground);
-                this.sp.Children.Add(loadButton);
-                this.sp.Children.Add(saveButton);
-            }
-            
             ctx.DrawDrawing(this.dg);
         }
     }

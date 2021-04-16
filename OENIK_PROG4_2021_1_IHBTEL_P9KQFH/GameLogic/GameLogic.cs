@@ -38,6 +38,16 @@ namespace GameLogicDll
 
         public event EventHandler ShopScreen;
 
+        public GameLogic(GameModel model, MapRepository mapRepo, CharacterRepository charRepo, Character character)
+        {
+            this.model = model;
+            this.mapRepo = mapRepo;
+            this.charRepo = charRepo;
+            this.map = this.mapRepo.DrawMap();
+            this.ore = this.DrawMap();
+            this.character = character;
+        }
+
         public GameLogic(GameModel model, MapRepository mapRepo, CharacterRepository charRepo)
         {
             this.model = model;
@@ -45,32 +55,32 @@ namespace GameLogicDll
             this.charRepo = charRepo;
             this.map = this.mapRepo.DrawMap();
             this.ore = this.DrawMap();
-            character = LoadGame();
         }
+        //public GameLogic(Character character)
+        //{
+        //    this.character = character;
+        //}
 
         public void MoveCharacter(Direction d, int mapID)
         {
-
-            string name = model.Miner.Name;
-
             if (mapID == 0)
             {
-                if (d == Direction.Left && this.model.Miner.Area.Left > 0)
+                if (d == Direction.Left && this.character.Area.Left > 0)
                 {
-                    this.model.Miner.ChangeX(-10);
+                    this.character.ChangeX(-10);
                 }
-                else if (d == Direction.Right && this.model.Miner.Area.Right < Config.Width)
+                else if (d == Direction.Right && this.character.Area.Right < Config.Width)
                 {
-                    this.model.Miner.ChangeX(+10);
+                    this.character.ChangeX(+10);
                 }
                 else if (d == Direction.Up)
                 {
-                    this.model.Miner.ChangeY(-60);
+                    this.character.ChangeY(-60);
                 }
             }
             else if (mapID == 1)
             {
-                if (d == Direction.Left && this.model.Miner.Area.Left > 0)
+                if (d == Direction.Left && this.character.Area.Left > 0)
                 {
                     //int predictOreX = (int)((this.model.Miner.Area.Bottom - (Config.MinerHeight / 2)) / Config.oreHeight);
                     //int predictOreY = ((int)this.model.Miner.Area.Left - 8) / Config.oreWidth;
@@ -82,10 +92,10 @@ namespace GameLogicDll
                     //}
                     if (Movement(d))
                     {
-                        this.model.Miner.ChangeX(-7.5);
+                        this.character.ChangeX(-7.5);
                     }
                 }
-                else if (d == Direction.Right && this.model.Miner.Area.Right < Config.Width)
+                else if (d == Direction.Right && this.character.Area.Right < Config.Width)
                 {
                     //int predictOreX = (int)((this.model.Miner.Area.Bottom - (Config.MinerHeight / 2)) / Config.oreHeight);
                     //int predictOreY = ((int)this.model.Miner.Area.Right + 8) / Config.oreWidth;
@@ -104,16 +114,16 @@ namespace GameLogicDll
                     //}
                     if (Movement(d))
                     {
-                        this.model.Miner.ChangeX(7.5);
+                        this.character.ChangeX(7.5);
                     }
                 }
                 else if (d == Direction.Up && this.jumpCount < 61)
                 {
                     this.jumpCount++;
-                    int predictOreX = (int)((this.model.Miner.Area.Top - 10) / Config.oreHeight);
-                    int predictOreYLeft = (int)(this.model.Miner.Area.Left + 1) / Config.oreWidth;
-                    int predictOreYRight = (int)(this.model.Miner.Area.Right - 1) / Config.oreWidth;
-                    int predictOreBottom = (int)(this.model.Miner.Area.Bottom + 10) / Config.oreHeight;
+                    int predictOreX = (int)((this.character.Area.Top - 10) / Config.oreHeight);
+                    int predictOreYLeft = (int)(this.character.Area.Left + 1) / Config.oreWidth;
+                    int predictOreYRight = (int)(this.character.Area.Right - 1) / Config.oreWidth;
+                    int predictOreBottom = (int)(this.character.Area.Bottom + 10) / Config.oreHeight;
                     if (this.CanJumpMethod(predictOreX, predictOreYLeft, predictOreBottom, predictOreYRight, this.jumpCount))
                     {
                         MapJump();
@@ -140,8 +150,8 @@ namespace GameLogicDll
         public bool CanJumpMethod(int predictOreX, int predictOreYLeft, int predictOreBottom, int predictOreYRight, int jumpCount)
         {
             bool move = false;
-            if ((!(this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreYLeft].Area)
-                    && !this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreYRight].Area)
+            if ((!(this.character.Area.IntersectsWith(this.ore[predictOreX, predictOreYLeft].Area)
+                    && !this.character.Area.IntersectsWith(this.ore[predictOreX, predictOreYRight].Area)
                     && this.ore[predictOreBottom, predictOreYLeft].OreType != "air"
                     && this.ore[predictOreBottom, predictOreYRight].OreType != "air")
                     && jumpCount <= this.maxJump)
@@ -158,7 +168,7 @@ namespace GameLogicDll
         public Ore[,] DrawMap()
         {
             int delimeter = 20;
-            Ore[,] oreMatrix = new Ore[this.map.Count / delimeter, delimeter];
+            Ore[,] oreMatrix = new Ore[this.character.Map.Length / delimeter, delimeter]; // lehet kula
             int counter = 0;
             for (int i = 0; i < oreMatrix.GetLength(0); i++)
             {
@@ -174,9 +184,9 @@ namespace GameLogicDll
 
         public void Fall(int mapID) // csak alattunk
         {
-            if (!this.model.Miner.Area.IntersectsWith(this.model.Ground.Area) && mapID == 0)
+            if (!this.character.Area.IntersectsWith(this.model.Ground.Area) && mapID == 0)
             {
-                this.model.Miner.ChangeY(5);
+                this.character.ChangeY(5);
             }
             else if (mapID == 1)
             {
@@ -184,7 +194,7 @@ namespace GameLogicDll
                 Ore[,] renderedOres = MapPart();
                 foreach (var item in renderedOres)
                 {
-                    if (item.Area.IntersectsWith(this.model.Miner.Area) && item.canPass == false)
+                    if (item.Area.IntersectsWith(this.character.Area) && item.canPass == false)
                     {
                         canFall = false;
                         break;
@@ -213,8 +223,8 @@ namespace GameLogicDll
                 case Direction.Left:
                     foreach (var item in renderedOres)
                     {
-                        if (item.Area.Left <= this.model.Miner.Area.Left - 5 && this.model.Miner.Area.Left - 5 <= item.Area.Right
-                            && item.canPass == false && item.Area.Bottom <= this.model.Miner.Area.Bottom && this.model.Miner.Area.Top <= item.Area.Top)
+                        if (item.Area.Left <= this.character.Area.Left - 5 && this.character.Area.Left - 5 <= item.Area.Right
+                            && item.canPass == false && item.Area.Bottom <= this.character.Area.Bottom && this.character.Area.Top <= item.Area.Top)
                         {
                             return false;
                         }
@@ -224,8 +234,8 @@ namespace GameLogicDll
                 case Direction.Right:
                     foreach (var item in renderedOres)
                     {
-                        if (item.Area.Left <= this.model.Miner.Area.Right + 5 && this.model.Miner.Area.Right + 5 <= item.Area.Right
-                            && item.canPass == false && item.Area.Bottom <= this.model.Miner.Area.Bottom && this.model.Miner.Area.Top <= item.Area.Top)
+                        if (item.Area.Left <= this.character.Area.Right + 5 && this.character.Area.Right + 5 <= item.Area.Right
+                            && item.canPass == false && item.Area.Bottom <= this.character.Area.Bottom && this.character.Area.Top <= item.Area.Top)
                         {
                             return false;
                         }
@@ -241,15 +251,15 @@ namespace GameLogicDll
 
         public void MineGate(int mapID)
         {
-            if (this.model.Miner.Area.IntersectsWith(this.model.Gate.Area) && mapID == 0)
+            if (this.character.Area.IntersectsWith(this.model.Gate.Area) && mapID == 0)
             {
                 this.ChangeScreen?.Invoke(this, EventArgs.Empty);
             }
-            else if (this.model.Miner.Area.IntersectsWith(this.model.MapThreeToOneGate.Area) && mapID == 3)
+            else if (this.character.Area.IntersectsWith(this.model.MapThreeToOneGate.Area) && mapID == 3)
             {
                 this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
             }
-            else if (this.model.Miner.Area.IntersectsWith(this.model.MapTwoToOneGate.Area) && mapID == 1)
+            else if (this.character.Area.IntersectsWith(this.model.MapTwoToOneGate.Area) && mapID == 1)
             {
                 this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
             }
@@ -257,15 +267,15 @@ namespace GameLogicDll
 
         public bool IntersectsWithShop() // TODO: Eventként
         {
-            if (this.model.Miner.Area.IntersectsWith(this.model.HealthShop.Area))
+            if (this.character.Area.IntersectsWith(this.model.HealthShop.Area))
             {
                 return true;
             }
-            else if (this.model.Miner.Area.IntersectsWith(this.model.PetrolShop.Area))
+            else if (this.character.Area.IntersectsWith(this.model.PetrolShop.Area))
             {
                 return true;
             }
-            else if (this.model.Miner.Area.IntersectsWith(this.model.PickaxShop.Area))
+            else if (this.character.Area.IntersectsWith(this.model.PickaxShop.Area))
             {
                 return true;
             }
@@ -275,7 +285,7 @@ namespace GameLogicDll
 
         public void setCharPosition(double x, double y)
         {
-            this.model.Miner.SetXY(x, y); // TODO Model?
+            this.character.SetXY(x, y); // TODO Model?
         }
 
         public Ore[,] MapPart()
@@ -288,7 +298,7 @@ namespace GameLogicDll
             {
                 for (int j = 0; j < ore.GetLength(1); j++)
                 {
-                    if (this.model.Miner.Area.IntersectsWith(this.ore[i,j].Area))
+                    if (this.character.Area.IntersectsWith(this.ore[i,j].Area))
                     {
                         intersectOreX = i;
                         intersectOreY = j;
@@ -333,15 +343,14 @@ namespace GameLogicDll
             return renderedOres;
         }
 
-        public object SaveGame()
+        public void SaveGame(Character character)
         {
-            this.charRepo.SaveGame(model.Miner);
-            return null;
+            this.charRepo.SaveGame(character);
         }
 
-        public Character LoadGame()
+        public Character LoadGame(string name)
         {
-            return this.charRepo.LoadGame(model.Miner.Name);
+            return this.charRepo.LoadGame(name);
         }
     }
 }
