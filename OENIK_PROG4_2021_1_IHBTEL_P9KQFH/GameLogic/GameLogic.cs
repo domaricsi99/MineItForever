@@ -40,12 +40,12 @@ namespace GameLogicDll
 
         public GameLogic(GameModel model, MapRepository mapRepo, CharacterRepository charRepo, Character character)
         {
+            this.character = character;
             this.model = model;
             this.mapRepo = mapRepo;
             this.charRepo = charRepo;
-            this.map = this.mapRepo.DrawMap();
+            this.map = this.mapRepo.DrawMap(character); // this.mapRepo.DrawMap();
             this.ore = this.DrawMap();
-            this.character = character;
         }
 
         public GameLogic(GameModel model, MapRepository mapRepo, CharacterRepository charRepo)
@@ -53,7 +53,7 @@ namespace GameLogicDll
             this.model = model;
             this.mapRepo = mapRepo;
             this.charRepo = charRepo;
-            this.map = this.mapRepo.DrawMap();
+            this.map = this.mapRepo.DrawMap(character);
             this.ore = this.DrawMap();
         }
         //public GameLogic(Character character)
@@ -168,7 +168,7 @@ namespace GameLogicDll
         public Ore[,] DrawMap()
         {
             int delimeter = 20;
-            Ore[,] oreMatrix = new Ore[this.character.Map.Length / delimeter, delimeter]; // lehet kula
+            Ore[,] oreMatrix = new Ore[this.character.Map.Length, delimeter]; // lehet kula
             int counter = 0;
             for (int i = 0; i < oreMatrix.GetLength(0); i++)
             {
@@ -181,6 +181,23 @@ namespace GameLogicDll
 
             return oreMatrix;
         }
+
+        //public Ore[,] DrawMap()
+        //{
+        //    int delimeter = 20;
+        //    Ore[,] oreMatrix = new Ore[this.character.Map.Length / delimeter, delimeter]; // lehet kula
+        //    int counter = 0;
+        //    for (int i = 0; i < oreMatrix.GetLength(0); i++)
+        //    {
+        //        for (int j = 0; j < oreMatrix.GetLength(1); j++)
+        //        {
+        //            oreMatrix[i, j] = this.map[counter];
+        //            counter++;
+        //        }
+        //    }
+
+        //    return oreMatrix;
+        //}
 
         public void Fall(int mapID) // csak alattunk
         {
@@ -318,12 +335,12 @@ namespace GameLogicDll
 
             if ((intersectOreX + 2) >= this.ore.GetLength(0))
             {
-                intersectOreX = this.ore.GetLength(0) - 3;
+                intersectOreX = this.ore.GetLength(0) -3 ; // -3
             }
 
             if ((intersectOreY + 2) * 45 >= Config.Width)
             {
-                intersectOreY = this.ore.GetLength(1) - 3;
+                intersectOreY = this.ore.GetLength(1) -3; // -3
             }
 
             int startingPosY = intersectOreY;
@@ -332,7 +349,7 @@ namespace GameLogicDll
                 for (int j = 0; j < renderedOres.GetLength(1); j++)
                 {
 
-                    renderedOres[i, j] = this.ore[intersectOreX - 2, intersectOreY - 2];
+                    renderedOres[i, j] = this.ore[intersectOreX - 2, intersectOreY - 2]; // -2-2
                     intersectOreY++;
                 }
 
