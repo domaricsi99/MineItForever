@@ -107,17 +107,20 @@ namespace GameLogicDll
                         this.model.Miner.ChangeX(7.5);
                     }
                 }
-                else if (d == Direction.Up && this.jumpCount < 3)
+                else if (d == Direction.Up && this.jumpCount < 61)
                 {
                     this.jumpCount++;
                     int predictOreX = (int)((this.model.Miner.Area.Top - 10) / Config.oreHeight);
                     int predictOreYLeft = (int)(this.model.Miner.Area.Left + 1) / Config.oreWidth;
                     int predictOreYRight = (int)(this.model.Miner.Area.Right - 1) / Config.oreWidth;
                     int predictOreBottom = (int)(this.model.Miner.Area.Bottom + 10) / Config.oreHeight;
-
                     if (this.CanJumpMethod(predictOreX, predictOreYLeft, predictOreBottom, predictOreYRight, this.jumpCount))
                     {
-                        this.model.Miner.ChangeY(-60);
+                        MapJump();
+                    }
+                    else
+                    {
+                        jumpCount = 0;
                     }
                 }
             }
@@ -125,17 +128,26 @@ namespace GameLogicDll
             this.RefreshScreen?.Invoke(this, EventArgs.Empty);
         }
 
+        public void MapJump()
+        {
+            foreach (var item2 in ore)
+            {
+                item2.ChangeY(60);
+                this.jumpCount = 60;
+            }
+        }
+
         public bool CanJumpMethod(int predictOreX, int predictOreYLeft, int predictOreBottom, int predictOreYRight, int jumpCount)
         {
             bool move = false;
-            if (((!this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreYLeft].Area)
+            if ((!(this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreYLeft].Area)
                     && !this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreYRight].Area)
                     && this.ore[predictOreBottom, predictOreYLeft].OreType != "air"
                     && this.ore[predictOreBottom, predictOreYRight].OreType != "air")
                     && jumpCount <= this.maxJump)
                     || ((this.ore[predictOreX, predictOreYLeft].canPass == true
                     && jumpCount <= this.maxJump)
-                    && this.ore[predictOreX, predictOreYRight].canPass == true))
+                    && this.ore[predictOreX, predictOreYRight].canPass == true)) // mindig a 2. feltetel fog teljesulni 
             {
                 move = true;
             }
@@ -241,11 +253,6 @@ namespace GameLogicDll
             {
                 this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
             }
-        }
-
-        public void Click()
-        {
-            // model.Button.Margin.
         }
 
         public bool IntersectsWithShop() // TODO: Eventként

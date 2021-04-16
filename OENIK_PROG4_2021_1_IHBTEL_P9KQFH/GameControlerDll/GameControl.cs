@@ -104,11 +104,6 @@ namespace GameControlerDll
                 case Key.Right: this.logic.MoveCharacter(Direction.Right, this.mapID); break;
                 case Key.Space: this.logic.MoveCharacter(Direction.Up, this.mapID); break;
             }
-            switch (e)
-            {
-                default:
-                    break;
-            }
         }
 
         protected override void OnRender(DrawingContext drawingContext)
