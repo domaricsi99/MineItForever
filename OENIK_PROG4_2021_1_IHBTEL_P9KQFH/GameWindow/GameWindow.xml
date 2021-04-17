@@ -37,7 +37,7 @@
         </member>
         <member name="T:GameWindow.NewGameDataWindow">
             <summary>
-            Interaction logic for NewGameDataWindow.xaml
+            Interaction logic for NewGameDataWindow.xaml.
             </summary>
             <summary>
             NewGameDataWindow

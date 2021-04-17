@@ -49,7 +49,7 @@ namespace GameControlerDll
             this.model = new GameModel();
             this.mapRepo = new MapRepository();
             this.charRepo = new CharacterRepository();
-            this.character = this.charRepo.LoadGame(NameW);
+            this.character = this.charRepo.LoadGame("alma");
             //this.logic = new GameLogic(this.model, this.mapRepo, this.charRepo);
             this.logic = new GameLogic(this.model, this.mapRepo, this.charRepo, this.character);
             //this.logic = new GameLogic(character);

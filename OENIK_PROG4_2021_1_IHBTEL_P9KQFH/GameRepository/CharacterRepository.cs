@@ -68,12 +68,9 @@ namespace GameRepository
                 profile[4] = character.Money.ToString();
                 profile[5] = character.Score.ToString();
 
-                // MAYBE character.Name + ".txt"
-                File.WriteAllLines(character.Name, profile);
+                File.WriteAllLines(character.Name + ".txt", profile);
 
-                //MAP
-                // MAYBE character.Name + "Map" + ".txt"
-                File.WriteAllLines(character.Name + "Map", character.Map);
+                File.WriteAllLines(character.Name + "Map.txt", character.Map);
                 return true;
             }
         }

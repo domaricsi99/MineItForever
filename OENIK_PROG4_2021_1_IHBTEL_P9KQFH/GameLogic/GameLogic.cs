@@ -273,6 +273,7 @@ namespace GameLogicDll
             {
                 this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
             }
+            SaveGame(character);
         }
 
         public bool IntersectsWithShop() // TODO: Eventként
@@ -368,7 +369,7 @@ namespace GameLogicDll
             Ore[,] renderedOres = this.MapPart();
             foreach (var item in renderedOres)
             {
-                if (this.character.PickAxLevel >= item.Level && item.OreType != "air" && this.character.Area.TopRight == item.Area.TopLeft || this.character.Area.TopLeft == item.Area.TopRight)
+                if ((this.character.PickAxLevel >= item.Level && item.OreType != "air") && (this.character.Area.TopRight == item.Area.TopLeft || this.character.Area.TopLeft == item.Area.TopRight))
                 {
                     this.character.Backpack.Add(item);
                     this.character.Score += item.Score;
