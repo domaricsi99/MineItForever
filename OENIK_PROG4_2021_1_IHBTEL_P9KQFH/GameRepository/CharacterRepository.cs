@@ -28,22 +28,11 @@ namespace GameRepository
             {
                 string[] fileLines = File.ReadAllLines(name + ".txt");
 
-
-                //Character character = new Character()
-                //{
-                //    Name = fileLines[0],
-                //    Health = int.Parse(fileLines[1]),
-                //    Fuel = int.Parse(fileLines[2]),
-                //    PickAxLevel = int.Parse(fileLines[3]),
-                //    Money = int.Parse(fileLines[4]),
-                //    Score = int.Parse(fileLines[5]),
-                //};
-
                 string[] map = File.ReadAllLines(name + "Map.txt");
 
-                //character.Map = map;
+                // 0 - Name, 1 - Health, 2 - Fuel, 3 - PickAxLevel, 4 - Money, 5 - Score
 
-                Character chara = new Character(
+                Character character = new Character(
                     int.Parse(fileLines[1]),
                     int.Parse(fileLines[2]),
                     int.Parse(fileLines[4]),
@@ -56,8 +45,8 @@ namespace GameRepository
                     Config.MinerHeight
                     );
 
-                //return character;
-                return chara;
+                character.Backpack = new List<Ore>();
+                return character;
             }
         }
 

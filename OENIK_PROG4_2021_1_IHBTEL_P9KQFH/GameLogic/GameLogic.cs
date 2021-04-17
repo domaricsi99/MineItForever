@@ -26,6 +26,7 @@ namespace GameLogicDll
         private List<Ore> map;
         Ore[,] ore;
         Character character ;
+        Ore newAir;
 
         int jumpCount = 0; //ugrasok számát számolja
         int maxJump = 2; // max mennyit ugorhatunk
@@ -46,6 +47,7 @@ namespace GameLogicDll
             this.charRepo = charRepo;
             this.map = this.mapRepo.DrawMap(character); // this.mapRepo.DrawMap();
             this.ore = this.DrawMap();
+            newAir = mapRepo.MakeAir();
         }
 
         public GameLogic(GameModel model, MapRepository mapRepo, CharacterRepository charRepo)
@@ -94,6 +96,10 @@ namespace GameLogicDll
                     {
                         this.character.ChangeX(-7.5);
                     }
+                    else
+                    {
+                        Mining();
+                    }
                 }
                 else if (d == Direction.Right && this.character.Area.Right < Config.Width)
                 {
@@ -115,6 +121,10 @@ namespace GameLogicDll
                     if (Movement(d))
                     {
                         this.character.ChangeX(7.5);
+                    }
+                    else
+                    {
+                        Mining();
                     }
                 }
                 else if (d == Direction.Up && this.jumpCount < 61)
@@ -182,23 +192,6 @@ namespace GameLogicDll
             return oreMatrix;
         }
 
-        //public Ore[,] DrawMap()
-        //{
-        //    int delimeter = 20;
-        //    Ore[,] oreMatrix = new Ore[this.character.Map.Length / delimeter, delimeter]; // lehet kula
-        //    int counter = 0;
-        //    for (int i = 0; i < oreMatrix.GetLength(0); i++)
-        //    {
-        //        for (int j = 0; j < oreMatrix.GetLength(1); j++)
-        //        {
-        //            oreMatrix[i, j] = this.map[counter];
-        //            counter++;
-        //        }
-        //    }
-
-        //    return oreMatrix;
-        //}
-
         public void Fall(int mapID) // csak alattunk
         {
             if (!this.character.Area.IntersectsWith(this.model.Ground.Area) && mapID == 0)
@@ -208,7 +201,7 @@ namespace GameLogicDll
             else if (mapID == 1)
             {
                 bool canFall = true;
-                Ore[,] renderedOres = MapPart();
+                Ore[,] renderedOres = this.MapPart();
                 foreach (var item in renderedOres)
                 {
                     if (item.Area.IntersectsWith(this.character.Area) && item.canPass == false)
@@ -302,7 +295,7 @@ namespace GameLogicDll
 
         public void setCharPosition(double x, double y)
         {
-            this.character.SetXY(x, y); // TODO Model?
+            this.character.SetXY(x, y);
         }
 
         public Ore[,] MapPart()
@@ -335,12 +328,12 @@ namespace GameLogicDll
 
             if ((intersectOreX + 2) >= this.ore.GetLength(0))
             {
-                intersectOreX = this.ore.GetLength(0) -3 ; // -3
+                intersectOreX = this.ore.GetLength(0) - 3;
             }
 
             if ((intersectOreY + 2) * 45 >= Config.Width)
             {
-                intersectOreY = this.ore.GetLength(1) -3; // -3
+                intersectOreY = this.ore.GetLength(1) - 3;
             }
 
             int startingPosY = intersectOreY;
@@ -349,7 +342,7 @@ namespace GameLogicDll
                 for (int j = 0; j < renderedOres.GetLength(1); j++)
                 {
 
-                    renderedOres[i, j] = this.ore[intersectOreX - 2, intersectOreY - 2]; // -2-2
+                    renderedOres[i, j] = this.ore[intersectOreX - 2, intersectOreY - 2];
                     intersectOreY++;
                 }
 
@@ -368,6 +361,28 @@ namespace GameLogicDll
         public Character LoadGame(string name)
         {
             return this.charRepo.LoadGame(name);
+        }
+
+        public void Mining ()
+        {
+            Ore[,] renderedOres = this.MapPart();
+            foreach (var item in renderedOres)
+            {
+                if (this.character.PickAxLevel >= item.Level && item.OreType != "air" && this.character.Area.TopRight == item.Area.TopLeft || this.character.Area.TopLeft == item.Area.TopRight)
+                {
+                    this.character.Backpack.Add(item);
+                    this.character.Score += item.Score;
+                    this.character.Money += item.Value;
+
+                    item.OreType = this.newAir.OreType;
+                    item.canPass = this.newAir.canPass;
+                    item.Hurt = this.newAir.Hurt;
+                    item.BreakLevel = this.newAir.BreakLevel;
+                    item.Score = this.newAir.Score;
+                    item.Level = this.newAir.Level;
+                    item.Value = this.newAir.Value;
+                }
+            }
         }
     }
 }

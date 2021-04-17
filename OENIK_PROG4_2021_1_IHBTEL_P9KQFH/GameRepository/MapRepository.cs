@@ -136,5 +136,19 @@ namespace GameRepository
 
             return this.map;
         }
+
+        public Ore MakeAir()
+        {
+            return new Ore()
+            {
+                BreakLevel = 0,
+                canPass = true,
+                Hurt = false,
+                Level = 0,
+                OreType = "air",
+                Score = 0,
+                Value = 0,
+            };
+        }
     }
 }
