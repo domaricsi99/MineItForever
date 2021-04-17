@@ -31,7 +31,7 @@ namespace GameControlerDll
         private GameRenderer renderer;
         private DispatcherTimer tickTimer;
 
-        public string Name { get; set; }
+        public string NameW { get; set; }
 
         // private Repo repo;
         private int mapID = 0; // !!!!
@@ -49,7 +49,7 @@ namespace GameControlerDll
             this.model = new GameModel();
             this.mapRepo = new MapRepository();
             this.charRepo = new CharacterRepository();
-            this.character = this.charRepo.LoadGame("alma");
+            this.character = this.charRepo.LoadGame(NameW);
             //this.logic = new GameLogic(this.model, this.mapRepo, this.charRepo);
             this.logic = new GameLogic(this.model, this.mapRepo, this.charRepo, this.character);
             //this.logic = new GameLogic(character);
