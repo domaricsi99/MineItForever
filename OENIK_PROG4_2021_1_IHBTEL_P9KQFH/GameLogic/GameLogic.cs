@@ -56,6 +56,7 @@ namespace GameLogicDll
             this.map = this.mapRepo.DrawMap(this.character);
             this.ore = this.DrawMap();
         }
+
         //public GameLogic(Character character)
         //{
         //    this.character = character;
@@ -80,57 +81,26 @@ namespace GameLogicDll
             }
             else if (mapID == 1)
             {
+                double moveSize = Movement(d);
+
                 if (d == Direction.Left && this.character.Area.Left > 0)
                 {
-                    //int predictOreX = (int)((this.model.Miner.Area.Bottom - (Config.MinerHeight / 2)) / Config.oreHeight);
-                    //int predictOreY = ((int)this.model.Miner.Area.Left - 8) / Config.oreWidth;
-
-                    //if (!this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreY].Area)
-                    //    || this.ore[predictOreX, predictOreY].canPass == true)
-                    //{
-                    //    this.model.Miner.ChangeX(-7.5);
-                    //}
-                    if (Movement(d))
+                    this.character.ChangeX(-moveSize);
+                    if (moveSize == 0 && !this.falling)
                     {
-                        this.character.ChangeX(-7.5);
-                    }
-                    else
-                    {
-                        Mining();
+                        Mining(d);
                     }
                 }
                 else if (d == Direction.Right && this.character.Area.Right < Config.Width)
                 {
-                    //int predictOreX = (int)((this.model.Miner.Area.Bottom - (Config.MinerHeight / 2)) / Config.oreHeight);
-                    //int predictOreY = ((int)this.model.Miner.Area.Right + 8) / Config.oreWidth;
-                    //if (predictOreY > Config.Width)
-                    //{
-                    //    predictOreX = this.ore.GetLength(1);
-                    //}
-
-                    //if (predictOreY < 20)
-                    //{
-                    //    if (!this.model.Miner.Area.IntersectsWith(this.ore[predictOreX, predictOreY].Area)
-                    //        || this.ore[predictOreX, predictOreY].canPass == true)
-                    //    {
-                    //        this.model.Miner.ChangeX(7.5);
-                    //    }
-                    //}
-                    if (Movement(d))
+                    this.character.ChangeX(moveSize);
+                    if (moveSize == 0 && !this.falling)
                     {
-                        this.character.ChangeX(7.5);
-                    }
-                    else
-                    {
-                        Mining();
+                        Mining(d);
                     }
                 }
                 else if (d == Direction.Up)
                 {
-                    //int predictOreX = (int)((this.character.Area.Top - 10) / Config.oreHeight);
-                    //int predictOreYLeft = (int)(this.character.Area.Left + 1) / Config.oreWidth;
-                    //int predictOreYRight = (int)(this.character.Area.Right - 1) / Config.oreWidth;
-                    //int predictOreBottom = (int)(this.character.Area.Bottom + 10) / Config.oreHeight;
                     if (this.CanJumpMethod())
                     {
                         MapMovementDown();
@@ -151,26 +121,11 @@ namespace GameLogicDll
 
         public bool CanJumpMethod()
         {
-            //bool move = false;
-            //if ((!(this.character.Area.IntersectsWith(this.ore[predictOreX, predictOreYLeft].Area)
-            //        && !this.character.Area.IntersectsWith(this.ore[predictOreX, predictOreYRight].Area)
-            //        && this.ore[predictOreBottom, predictOreYLeft].OreType != "air"
-            //        && this.ore[predictOreBottom, predictOreYRight].OreType != "air")
-            //        && jumpCount <= this.maxJump)
-            //        || ((this.ore[predictOreX, predictOreYLeft].canPass == true
-            //        && jumpCount <= this.maxJump)
-            //        && this.ore[predictOreX, predictOreYRight].canPass == true)) // mindig a 2. feltetel fog teljesulni 
-            //{
-            //    move = true;
-            //}
-
-            //return move;
-
             Ore[,] renderedOres = this.MapPart();
 
             if (!this.falling)
             {
-                Rect test = new Rect()
+                Rect predictedChar = new Rect()
                 {
                     X = this.character.Area.X,
                     Y = this.character.Area.Y - 60,
@@ -182,7 +137,7 @@ namespace GameLogicDll
                 foreach (var item in renderedOres)
                 {
 
-                    if (item.Area.IntersectsWith(test) && item.OreType != "air")
+                    if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air")
                     {
                         return false;
                     }
@@ -225,7 +180,15 @@ namespace GameLogicDll
                 {
                     if (item.Area.IntersectsWith(this.character.Area) && item.canPass == false)
                     {
-                        canFall = false;
+                        if (this.character.Area.Top >= item.Area.Bottom)
+                        {
+                            // this.character.SetXY(this.character.Area.X, item.Area.Bottom + 1);
+                        }
+                        else
+                        {
+                            canFall = false;
+                        }
+
                         break;
                     }
                 }
@@ -248,40 +211,60 @@ namespace GameLogicDll
             this.RefreshScreen?.Invoke(this, EventArgs.Empty);
         }
 
-        public bool Movement(Direction d)
+        public double Movement(Direction d)
         {
-            bool canGoThrough = true;
             Ore[,] renderedOres = this.MapPart();
+            double movementRange = 7.5;
+            Rect predictedChar = new Rect()
+            {
+                    X = this.character.Area.X,
+                    Y = this.character.Area.Y + 1,
+                    Height = this.character.Area.Height - 2,
+                    Width = this.character.Area.Width,
+            };
 
             switch (d)
             {
                 case Direction.Left:
+                    predictedChar.X -= 7.5;
                     foreach (var item in renderedOres)
                     {
-                        if (item.Area.Left <= this.character.Area.Left - 5 && this.character.Area.Left - 5 <= item.Area.Right
-                            && item.canPass == false && item.Area.Bottom <= this.character.Area.Bottom && this.character.Area.Top <= item.Area.Top)
+                        //if (item.Area.Left <= this.character.Area.Left - 5 && this.character.Area.Left - 5 <= item.Area.Right
+                        //    && item.canPass == false && item.Area.Bottom <= this.character.Area.Bottom && this.character.Area.Top <= item.Area.Top)
+                        //{
+                        //    return false;
+                        //}
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air")
                         {
-                            return false;
+                            movementRange = (predictedChar.X + 7.5) - item.Area.Right - 1;
+                            if (movementRange < 2)
+                            {
+                                return 0;
+                            }
                         }
                     }
 
-                    return true;
+                    break;
                 case Direction.Right:
+                    predictedChar.X += 7.5;
                     foreach (var item in renderedOres)
                     {
-                        if (item.Area.Left <= this.character.Area.Right + 5 && this.character.Area.Right + 5 <= item.Area.Right
-                            && item.canPass == false && item.Area.Bottom <= this.character.Area.Bottom && this.character.Area.Top <= item.Area.Top)
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air")
                         {
-                            return false;
+                            movementRange = item.Area.Left - 1 - (predictedChar.X + Config.MinerWidth - 7.5);
+                            if (movementRange < 2)
+                            {
+                                return 0;
+                            }
                         }
                     }
 
-                    return true;
+                    break;
                 default:
                     break;
             }
 
-            return false;
+            return movementRange;
         }
 
         public void MineGate(int mapID)
@@ -298,6 +281,7 @@ namespace GameLogicDll
             {
                 this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
             }
+
             SaveGame(character);
         }
 
@@ -367,7 +351,6 @@ namespace GameLogicDll
             {
                 for (int j = 0; j < renderedOres.GetLength(1); j++)
                 {
-
                     renderedOres[i, j] = this.ore[intersectOreX - 2, intersectOreY - 2];
                     intersectOreY++;
                 }
@@ -390,25 +373,78 @@ namespace GameLogicDll
             return this.charRepo.LoadGame(name);
         }
 
-        public void Mining ()
+        public void Mining(Direction d)
         {
             Ore[,] renderedOres = this.MapPart();
-            foreach (var item in renderedOres)
+            Rect predictedChar = new Rect()
             {
-                if ((this.character.PickAxLevel >= item.Level && item.OreType != "air") && (this.character.Area.TopRight == item.Area.TopLeft || this.character.Area.TopLeft == item.Area.TopRight))
-                {
-                    this.character.Backpack.Add(item);
-                    this.character.Score += item.Score;
-                    this.character.Money += item.Value; // Nem itt majd a shopban ha eladtuk
+                X = this.character.Area.X,
+                Y = this.character.Area.Y + 1,
+                Height = this.character.Area.Height - 2,
+                Width = this.character.Area.Width,
+            };
+            //foreach (var item in renderedOres)
+            //{
+            //    Point asd = item.Area.TopLeft;
+            //    if ((this.character.PickAxLevel >= item.Level && item.OreType != "air") && (this.character.Area.TopRight == () || this.character.Area.TopLeft == item.Area.TopRight))
+            //    {
+            //        this.character.Backpack.Add(item);
+            //        this.character.Score += item.Score;
+            //        this.character.Money += item.Value; // Nem itt majd a shopban ha eladtuk
 
-                    item.OreType = this.newAir.OreType;
-                    item.canPass = this.newAir.canPass;
-                    item.Hurt = this.newAir.Hurt;
-                    item.BreakLevel = this.newAir.BreakLevel;
-                    item.Score = this.newAir.Score;
-                    item.Level = this.newAir.Level;
-                    item.Value = this.newAir.Value;
-                }
+            //        item.OreType = this.newAir.OreType;
+            //        item.canPass = this.newAir.canPass;
+            //        item.Hurt = this.newAir.Hurt;
+            //        item.BreakLevel = this.newAir.BreakLevel;
+            //        item.Score = this.newAir.Score;
+            //        item.Level = this.newAir.Level;
+            //        item.Value = this.newAir.Value;
+            //    }
+            //}
+            switch (d)
+            {
+                case Direction.Left:
+                    predictedChar.X -= 7.5;
+                    foreach (var item in renderedOres)
+                    {
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && this.character.PickAxLevel >= item.Level)
+                        {
+                            this.character.Backpack.Add(item);
+                            this.character.Score += item.Score;
+                            this.character.Money += item.Value; // Nem itt majd a shopban ha eladtuk
+
+                            item.OreType = this.newAir.OreType;
+                            item.canPass = this.newAir.canPass;
+                            item.Hurt = this.newAir.Hurt;
+                            item.BreakLevel = this.newAir.BreakLevel;
+                            item.Score = this.newAir.Score;
+                            item.Level = this.newAir.Level;
+                            item.Value = this.newAir.Value;
+                        }
+                    }
+
+                    break;
+                case Direction.Right:
+                    predictedChar.X += 7.5;
+                    foreach (var item in renderedOres)
+                    {
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && this.character.PickAxLevel >= item.Level)
+                        {
+                                this.character.Backpack.Add(item);
+                                this.character.Score += item.Score;
+                                this.character.Money += item.Value; // Nem itt majd a shopban ha eladtuk
+
+                                item.OreType = this.newAir.OreType;
+                                item.canPass = this.newAir.canPass;
+                                item.Hurt = this.newAir.Hurt;
+                                item.BreakLevel = this.newAir.BreakLevel;
+                                item.Score = this.newAir.Score;
+                                item.Level = this.newAir.Level;
+                                item.Value = this.newAir.Value;
+                        }
+                    }
+
+                    break;
             }
         }
     }

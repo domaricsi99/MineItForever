@@ -16,7 +16,7 @@ namespace GameModelDll
         public static Brush MinerLineBrush = Brushes.Blue;
 
         public static int MinerWidth = 30;
-        public static int MinerHeight = 45;
+        public static int MinerHeight = 40;
 
         public static Brush BgGroundBrush = Brushes.RosyBrown;
         public static Brush GroundLineBrush = Brushes.DarkGreen;

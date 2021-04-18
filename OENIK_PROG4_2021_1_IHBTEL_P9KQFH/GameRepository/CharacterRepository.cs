@@ -31,7 +31,7 @@ namespace GameRepository
 
                 string[] map = File.ReadAllLines(name + "Map.txt");
 
-                // 0 - Name, 1 - Health, 2 - Fuel, 3 - PickAxLevel, 4 - Money, 5 - Score
+                // 0 - Name, 1 - Health, 2 - Fuel, 3 - PickAxLevel, 4 - Money, 5 - Score XML MEGOLDÁS
 
                 Character character = new Character(
                     int.Parse(fileLines[1]),
