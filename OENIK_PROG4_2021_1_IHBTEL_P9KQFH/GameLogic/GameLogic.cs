@@ -27,9 +27,7 @@ namespace GameLogicDll
         Ore[,] ore;
         Character character;
         Ore newAir;
-
-        int jumpCount = 0; //ugrasok számát számolja
-        int maxJump = 2; // max mennyit ugorhatunk
+        bool falling;
 
         public event EventHandler RefreshScreen;
 
@@ -69,11 +67,11 @@ namespace GameLogicDll
             {
                 if (d == Direction.Left && this.character.Area.Left > 0)
                 {
-                    this.character.ChangeX(-10);
+                    this.character.ChangeX(-7.5);
                 }
                 else if (d == Direction.Right && this.character.Area.Right < Config.Width)
                 {
-                    this.character.ChangeX(+10);
+                    this.character.ChangeX(+7.5);
                 }
                 else if (d == Direction.Up)
                 {
@@ -127,20 +125,15 @@ namespace GameLogicDll
                         Mining();
                     }
                 }
-                else if (d == Direction.Up && this.jumpCount < 61)
+                else if (d == Direction.Up)
                 {
-                    this.jumpCount++;
-                    int predictOreX = (int)((this.character.Area.Top - 10) / Config.oreHeight);
-                    int predictOreYLeft = (int)(this.character.Area.Left + 1) / Config.oreWidth;
-                    int predictOreYRight = (int)(this.character.Area.Right - 1) / Config.oreWidth;
-                    int predictOreBottom = (int)(this.character.Area.Bottom + 10) / Config.oreHeight;
-                    if (this.CanJumpMethod(predictOreX, predictOreYLeft, predictOreBottom, predictOreYRight, this.jumpCount))
+                    //int predictOreX = (int)((this.character.Area.Top - 10) / Config.oreHeight);
+                    //int predictOreYLeft = (int)(this.character.Area.Left + 1) / Config.oreWidth;
+                    //int predictOreYRight = (int)(this.character.Area.Right - 1) / Config.oreWidth;
+                    //int predictOreBottom = (int)(this.character.Area.Bottom + 10) / Config.oreHeight;
+                    if (this.CanJumpMethod())
                     {
-                        MapJump();
-                    }
-                    else
-                    {
-                        jumpCount = 0;
+                        MapMovementDown();
                     }
                 }
             }
@@ -148,31 +141,57 @@ namespace GameLogicDll
             this.RefreshScreen?.Invoke(this, EventArgs.Empty);
         }
 
-        public void MapJump()
+        public void MapMovementDown()
         {
-            foreach (var item2 in ore)
+            foreach (var item in this.ore)
             {
-                item2.ChangeY(60);
-                this.jumpCount = 60;
+                item.ChangeY(60);
             }
         }
 
-        public bool CanJumpMethod(int predictOreX, int predictOreYLeft, int predictOreBottom, int predictOreYRight, int jumpCount)
+        public bool CanJumpMethod()
         {
-            bool move = false;
-            if ((!(this.character.Area.IntersectsWith(this.ore[predictOreX, predictOreYLeft].Area)
-                    && !this.character.Area.IntersectsWith(this.ore[predictOreX, predictOreYRight].Area)
-                    && this.ore[predictOreBottom, predictOreYLeft].OreType != "air"
-                    && this.ore[predictOreBottom, predictOreYRight].OreType != "air")
-                    && jumpCount <= this.maxJump)
-                    || ((this.ore[predictOreX, predictOreYLeft].canPass == true
-                    && jumpCount <= this.maxJump)
-                    && this.ore[predictOreX, predictOreYRight].canPass == true)) // mindig a 2. feltetel fog teljesulni 
+            //bool move = false;
+            //if ((!(this.character.Area.IntersectsWith(this.ore[predictOreX, predictOreYLeft].Area)
+            //        && !this.character.Area.IntersectsWith(this.ore[predictOreX, predictOreYRight].Area)
+            //        && this.ore[predictOreBottom, predictOreYLeft].OreType != "air"
+            //        && this.ore[predictOreBottom, predictOreYRight].OreType != "air")
+            //        && jumpCount <= this.maxJump)
+            //        || ((this.ore[predictOreX, predictOreYLeft].canPass == true
+            //        && jumpCount <= this.maxJump)
+            //        && this.ore[predictOreX, predictOreYRight].canPass == true)) // mindig a 2. feltetel fog teljesulni 
+            //{
+            //    move = true;
+            //}
+
+            //return move;
+
+            Ore[,] renderedOres = this.MapPart();
+
+            if (!this.falling)
             {
-                move = true;
+                Rect test = new Rect()
+                {
+                    X = this.character.Area.X,
+                    Y = this.character.Area.Y - 60,
+                    Size = this.character.Area.Size,
+                    Height = this.character.Area.Height,
+                    Width = this.character.Area.Width,
+                };
+
+                foreach (var item in renderedOres)
+                {
+
+                    if (item.Area.IntersectsWith(test) && item.OreType != "air")
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
             }
 
-            return move;
+            return false;
         }
 
         public Ore[,] DrawMap()
@@ -217,6 +236,12 @@ namespace GameLogicDll
                     {
                         item2.ChangeY(-5);
                     }
+
+                    falling = true;
+                }
+                else
+                {
+                    falling = false;
                 }
             }
 
