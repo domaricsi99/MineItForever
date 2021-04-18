@@ -25,7 +25,7 @@ namespace GameLogicDll
         private CharacterRepository charRepo;
         private List<Ore> map;
         Ore[,] ore;
-        Character character ;
+        Character character;
         Ore newAir;
 
         int jumpCount = 0; //ugrasok számát számolja
@@ -45,9 +45,9 @@ namespace GameLogicDll
             this.model = model;
             this.mapRepo = mapRepo;
             this.charRepo = charRepo;
-            this.map = this.mapRepo.DrawMap(character); // this.mapRepo.DrawMap();
+            this.map = this.mapRepo.DrawMap(character);
             this.ore = this.DrawMap();
-            newAir = mapRepo.MakeAir();
+            this.newAir = this.mapRepo.MakeAir();
         }
 
         public GameLogic(GameModel model, MapRepository mapRepo, CharacterRepository charRepo)
@@ -55,7 +55,7 @@ namespace GameLogicDll
             this.model = model;
             this.mapRepo = mapRepo;
             this.charRepo = charRepo;
-            this.map = this.mapRepo.DrawMap(character);
+            this.map = this.mapRepo.DrawMap(this.character);
             this.ore = this.DrawMap();
         }
         //public GameLogic(Character character)
@@ -357,6 +357,7 @@ namespace GameLogicDll
         public void SaveGame(Character character)
         {
             this.charRepo.SaveGame(character);
+            // this.charRepo.SaveMap();
         }
 
         public Character LoadGame(string name)
@@ -373,7 +374,7 @@ namespace GameLogicDll
                 {
                     this.character.Backpack.Add(item);
                     this.character.Score += item.Score;
-                    this.character.Money += item.Value;
+                    this.character.Money += item.Value; // Nem itt majd a shopban ha eladtuk
 
                     item.OreType = this.newAir.OreType;
                     item.canPass = this.newAir.canPass;

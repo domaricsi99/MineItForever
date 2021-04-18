@@ -12,16 +12,17 @@ namespace GameRepository
     public class MapRepository : IMapRepository
     {
         private List<Ore> map;
+
         public MapRepository()
         {
         }
 
-        public List<Ore> DrawMap(Character character) // Character char
+        public List<Ore> DrawMap(Character character)
         {
             this.map = new List<Ore>();
             int localOreX = Config.oreX;
             int localOreY = Config.oreY;
-            string[] fileLines = character.Map; // File.ReadAllLines("palya.txt"); // char.Map;
+            string[] fileLines = character.Map;
             foreach (var item in fileLines)
             {
                 string[] splitLine = item.Split(';');

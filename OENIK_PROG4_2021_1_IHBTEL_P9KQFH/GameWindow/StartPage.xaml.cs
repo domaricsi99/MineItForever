@@ -21,6 +21,7 @@
     public partial class StartPage : Window
     {
         CharacterRepository characterRepository;
+
         public StartPage()
         {
             characterRepository = new CharacterRepository();

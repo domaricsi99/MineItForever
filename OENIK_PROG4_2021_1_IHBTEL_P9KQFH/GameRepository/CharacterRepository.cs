@@ -14,6 +14,7 @@ namespace GameRepository
         {
 
         }
+
         /// <summary>
         /// Character name equals file name.
         /// </summary>
@@ -70,12 +71,12 @@ namespace GameRepository
 
                 File.WriteAllLines(character.Name + ".txt", profile);
 
-                File.WriteAllLines(character.Name + "Map.txt", character.Map);
+                File.WriteAllLines(character.Name + "Map.txt", character.Map); // nem menti ki vagy is de, egyszer olvassuk be ez a baja TODO
                 return true;
             }
         }
 
-        public void NewCharacter (string name)
+        public void NewCharacter(string name)
         {
             Character character = new Character()
             {

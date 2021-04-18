@@ -24,8 +24,6 @@ namespace GameWindow
     /// </summary>
     public partial class NewGameDataWindow : Window
     {
-        private readonly Character character;
-
         public NewGameDataWindow()
         {
             InitializeComponent();
