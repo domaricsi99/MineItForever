@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameRepository
 {
-    class ShopRepsitory : IShopRepository
+    public class ShopRepsitory : IShopRepository
     {
         public List<Pickax> PickaxList()
         {
@@ -17,35 +17,35 @@ namespace GameRepository
             {
                 Name = "cheap",
                 Price = 0,
-                Strength = 0,
+                Level = 0,
             });
 
             pickaxes.Add(new Pickax()
             {
                 Name = "basic",
-                Price = 10,
-                Strength = 1,
+                Price = 100,
+                Level = 1,
             });
 
             pickaxes.Add(new Pickax()
             {
                 Name = "intermediate",
-                Price = 20,
-                Strength = 2,
+                Price = 200,
+                Level = 2,
             });
 
             pickaxes.Add(new Pickax()
             {
                 Name = "advanced",
-                Price = 30,
-                Strength = 3,
+                Price = 300,
+                Level = 3,
             });
 
             pickaxes.Add(new Pickax()
             {
                 Name = "professional",
-                Price = 40,
-                Strength = 4,
+                Price = 400,
+                Level = 4,
             });
 
             return pickaxes;

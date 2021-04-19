@@ -10,7 +10,7 @@ namespace GameModelDll
     {
         public string Name { get; set; }
 
-        public int Strength { get; set; }
+        public int Level { get; set; }
 
         public int Price { get; set; }
     }

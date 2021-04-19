@@ -23,6 +23,7 @@ namespace GameLogicDll
         private GameModel model;
         private MapRepository mapRepo;
         private CharacterRepository charRepo;
+        private ShopRepsitory shopRepo;
         private List<Ore> map;
         Ore[,] ore;
         Character character;
@@ -46,6 +47,7 @@ namespace GameLogicDll
             this.map = this.mapRepo.DrawMap(character);
             this.ore = this.DrawMap();
             this.newAir = this.mapRepo.MakeAir();
+            this.shopRepo = new ShopRepsitory();
         }
 
         public GameLogic(GameModel model, MapRepository mapRepo, CharacterRepository charRepo)
@@ -446,6 +448,90 @@ namespace GameLogicDll
 
                     break;
             }
+        }
+
+        public string HealthBuyLogic()
+        {
+            string message = " ";
+
+            var maxHealth = 100 - this.character.Health;
+
+            int cost = maxHealth * 2; // 1 health vasarlasa 2 pénz
+            if (this.character.Money - cost >= 0)
+            {
+                this.character.Money -= cost;
+                message = "Your health is 100!";
+            }
+            else
+            {
+                message = "You don't have enough money!";
+            }
+
+            return message;
+        }
+
+        public string PetrolBuyLogic()
+        {
+            string message = " ";
+
+            var maxPetrol = 100 - this.character.Fuel;
+
+            int cost = maxPetrol * 2; // 1 health vasarlasa 2 pénz
+            if (this.character.Money - cost >= 0)
+            {
+                this.character.Money -= cost;
+                message = "Your petrol tank is full!";
+            }
+            else
+            {
+                message = "You don't have enough money!";
+            }
+
+            return message;
+        }
+
+        public string SellOreLogic()
+        {
+            string message = " ";
+            int money = 0;
+            foreach (var item in this.character.Backpack)
+            {
+                this.character.Money += item.Value;
+                money += item.Value;
+            }
+
+            this.character.Backpack = null;
+
+            message = $"You got {money}$ !";
+            return message;
+        }
+
+        public string PickaxBuyLogic()
+        {
+            string message = " ";
+
+            var pickaxes = this.shopRepo.PickaxList();
+            int currentPickaxLevel = this.character.PickAxLevel;
+
+            foreach (var item in pickaxes)
+            {
+                if (item.Level == currentPickaxLevel + 1)
+                {
+                    if (this.character.Money - item.Price >= 0)
+                    {
+                        this.character.Money -= item.Price;
+                        this.character.PickAxLevel = item.Level;
+                        message = $"Your pickax level is {item.Level}!";
+                    }
+                }
+                else if (currentPickaxLevel == 4)
+                {
+                    message = "You have the highest level of pickax!"; // $"You have {this.character.Money}$ but the pickax price is {item.Price}$";
+                    break;
+                }
+            }
+
+            return message;
         }
     }
 }
