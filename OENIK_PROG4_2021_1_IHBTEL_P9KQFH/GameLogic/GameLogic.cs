@@ -300,8 +300,8 @@ namespace GameLogicDll
             if (this.character.Area.IntersectsWith(this.model.Gate.Area) && mapID == 0)
             {
                 this.ChangeScreen?.Invoke(this, EventArgs.Empty);
+                SaveGame(this.character);
             }
-            SaveGame(character);
         }
 
         public bool IntersectsWithShop() // TODO: Eventként
@@ -384,7 +384,6 @@ namespace GameLogicDll
         public void SaveGame(Character character)
         {
             this.charRepo.SaveGame(character);
-            // this.charRepo.SaveMap();
         }
 
         public Character LoadGame(string name)
@@ -392,7 +391,7 @@ namespace GameLogicDll
             return this.charRepo.LoadGame(name);
         }
 
-        public void Mining(Direction d)
+        public void Mining(Direction d) // TODO rendes mapbol irjuk felul
         {
             Ore[,] renderedOres = this.MapPart();
             Rect predictedChar = new Rect()

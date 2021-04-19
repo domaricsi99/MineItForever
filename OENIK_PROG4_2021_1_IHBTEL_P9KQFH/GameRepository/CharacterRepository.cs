@@ -51,29 +51,21 @@ namespace GameRepository
             }
         }
 
-        public bool SaveGame (Character character)
+        public bool SaveGame(Character character)
         {
+            // 0 - Name, 1 - Health, 2 - Fuel, 3 - PickAxLevel, 4 - Money, 5 - Score
+            string[] profile = new string[6];
+            profile[0] = character.Name;
+            profile[1] = character.Health.ToString();
+            profile[2] = character.Fuel.ToString();
+            profile[3] = character.PickAxLevel.ToString();
+            profile[4] = character.Money.ToString();
+            profile[5] = character.Score.ToString();
 
-            if (character.Name == null)
-            {
-                return false;
-            }
-            else
-            {
-                // 0 - Name, 1 - Health, 2 - Fuel, 3 - PickAxLevel, 4 - Money, 5 - Score
-                string[] profile = new string[6];
-                profile[0] = character.Name;
-                profile[1] = character.Health.ToString();
-                profile[2] = character.Fuel.ToString();
-                profile[3] = character.PickAxLevel.ToString();
-                profile[4] = character.Money.ToString();
-                profile[5] = character.Score.ToString();
+            File.WriteAllLines(character.Name + ".txt", profile);
 
-                File.WriteAllLines(character.Name + ".txt", profile);
-
-                File.WriteAllLines(character.Name + "Map.txt", character.Map); // nem menti ki vagy is de, egyszer olvassuk be ez a baja TODO
-                return true;
-            }
+            File.WriteAllLines(character.Name + "Map.txt", character.Map); // nem menti ki vagy is de, egyszer olvassuk be ez a baja TODO
+            return true;
         }
 
         public void NewCharacter(string name)
