@@ -126,6 +126,30 @@ namespace GameRepository
                                 area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                             });
                             break;
+                        case "8":
+                            this.map.Add(new Ore()
+                            {
+                                Value = 0,
+                                Hurt = false,
+                                Score = 0,
+                                Level = 99999,
+                                OreType = "ground2",
+                                canPass = false,
+                                area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
+                            });
+                            break;
+                        case "9":
+                            this.map.Add(new Ore()
+                            {
+                                Value = 0,
+                                Hurt = false,
+                                Score = 0,
+                                Level = 99999,
+                                OreType = "gate",
+                                canPass = false,
+                                area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
+                            });
+                            break;
                     }
 
                     localOreX += 45;

@@ -119,20 +119,27 @@ namespace GameRendererDll
                                 RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(Stone);
                                 break;
+                            case "gate":
+                                GeometryDrawing mapOneGate = new GeometryDrawing(Config.MapTwoToOneGateBg,
+                                black,
+                                RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
+                                this.dg.Children.Add(mapOneGate);
+                                break;
+                            case "ground2":
+                                GeometryDrawing mineGround = new GeometryDrawing(Brushes.DarkOliveGreen,
+                                black,
+                                RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
+                                this.dg.Children.Add(mineGround);
+                                break;
                         }
                     }
                 }
-
-                GeometryDrawing mapOneGate = new GeometryDrawing(Config.MapTwoToOneGateBg,
-                   black,
-                   new RectangleGeometry(this.model.MapTwoToOneGate.Area));
 
                 GeometryDrawing miner = new GeometryDrawing(
                     Config.MinerBgBrush,
                     black,
                     new RectangleGeometry(character.Area));
 
-                this.dg.Children.Add(mapOneGate);
                 this.dg.Children.Add(miner);
             }
             else if (mapID == 0) // SHOP AND GATE TO MINE

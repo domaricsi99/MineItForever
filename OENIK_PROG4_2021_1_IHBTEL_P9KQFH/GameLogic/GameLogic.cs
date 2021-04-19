@@ -239,18 +239,17 @@ namespace GameLogicDll
                     predictedChar.X -= 7.5;
                     foreach (var item in renderedOres)
                     {
-                        //if (item.Area.Left <= this.character.Area.Left - 5 && this.character.Area.Left - 5 <= item.Area.Right
-                        //    && item.canPass == false && item.Area.Bottom <= this.character.Area.Bottom && this.character.Area.Top <= item.Area.Top)
-                        //{
-                        //    return false;
-                        //}
-                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air")
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "gate")
                         {
                             movementRange = (predictedChar.X + 7.5) - item.Area.Right - 1;
                             if (movementRange < 2)
                             {
                                 return 0;
                             }
+                        }
+                        else if (item.Area.IntersectsWith(predictedChar) && item.OreType == "gate")
+                        {
+                            this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
                         }
                     }
 
@@ -259,7 +258,7 @@ namespace GameLogicDll
                     predictedChar.X += 7.5;
                     foreach (var item in renderedOres)
                     {
-                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air")
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "gate")
                         {
                             movementRange = item.Area.Left - 1 - (predictedChar.X + Config.MinerWidth - 7.5);
                             if (movementRange < 2)
@@ -267,10 +266,14 @@ namespace GameLogicDll
                                 return 0;
                             }
                         }
+                        else if (item.Area.IntersectsWith(predictedChar) && item.OreType == "gate")
+                        {
+                            this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
+                        }
                     }
 
                     break;
-                case Direction.Down:
+                case Direction.Down: // TODO BALÁZS lehet nem kell
                     predictedChar.Y += 60;
                     foreach (var item in renderedOres)
                     {
@@ -298,15 +301,6 @@ namespace GameLogicDll
             {
                 this.ChangeScreen?.Invoke(this, EventArgs.Empty);
             }
-            else if (this.character.Area.IntersectsWith(this.model.MapThreeToOneGate.Area) && mapID == 3)
-            {
-                this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
-            }
-            else if (this.character.Area.IntersectsWith(this.model.MapTwoToOneGate.Area) && mapID == 1)
-            {
-                this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
-            }
-
             SaveGame(character);
         }
 

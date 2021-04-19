@@ -66,7 +66,7 @@ namespace GameControlerDll
             this.logic.ChangeScreen += (obj, args) =>
             {
                 this.mapID = 1;
-                this.logic.setCharPosition(0, 120 - Config.MinerHeight);
+                this.logic.setCharPosition(60, 120 - Config.MinerHeight);
             };
 
             this.logic.ShopScreen += (obj, args) =>
@@ -77,6 +77,7 @@ namespace GameControlerDll
             this.logic.BackToMapOneScreen += (obj, args) =>
             {
                 this.mapID = 0;
+                this.logic.setCharPosition(Config.Width - 60, Config.Height - this.model.Ground.Area.Height - Config.MinerHeight); // lehet szar
             };
 
             this.InvalidateVisual();

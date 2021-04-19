@@ -18,16 +18,6 @@ namespace GameModelDll
         /// </summary>
         public Shape Gate { get; set; }
 
-        /// <summary>
-        /// Gets or sets out of shop to first screen.
-        /// </summary>
-        public Shape MapThreeToOneGate { get; set; }
-
-        /// <summary>
-        /// Gets or sets out of mine to first screen.
-        /// </summary>
-        public Shape MapTwoToOneGate { get; set; }
-
         public Building PickaxShopHouse { get; set; }
 
         public Building HealthShopHouse { get; set; }
@@ -54,8 +44,6 @@ namespace GameModelDll
             this.PickaxShop = new Shape((Config.BuildingWidth / 2) - 10, this.PickaxShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
             this.HealthShop = new Shape(this.HealthShopHouse.Area.X + (Config.BuildingWidth / 2) - 20, this.HealthShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
             this.PetrolShop = new Shape(this.PetrolShopHouse.Area.X + (Config.BuildingWidth / 2) - 20, this.PetrolShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
-            this.MapThreeToOneGate = new Shape(Config.Width - (Config.GateWidth * 2), Config.Height - (Config.GroundHeight + Config.GateHeight), Config.GateWidth * 2, Config.GateHeight);
-            this.MapTwoToOneGate = new Shape(Config.Width - Config.oreWidth, 0, Config.oreWidth, Config.oreHeight);
             this.SaveButtonRectangle = new Shape(Config.Width / 2 + 20, Config.Height / 2 + 20, Config.BuildingWidth, Config.BuildingHeight);
             this.LoadButtonRectangle = new Shape(SaveButtonRectangle.Area.X + Config.BuildingWidth, SaveButtonRectangle.Area.Y + Config.BuildingHeight , Config.BuildingWidth, Config.BuildingHeight);
         }
