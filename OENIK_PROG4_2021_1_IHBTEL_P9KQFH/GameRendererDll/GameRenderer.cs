@@ -22,7 +22,9 @@ namespace GameRendererDll
         FormattedText formattedText;
         int score;
         Character character;
-        Point textLocation = new Point(Config.Width / 2, 0); // maybe config.height
+        Point scoreLocation = new Point(Config.Width / 2, 0);
+        Point healthLocation = new Point(Config.Width - 35, 0);
+        Point petrolLocation = new Point(Config.Width - 150, 0);
 
         public GameRenderer(GameModel model, GameLogic logic, Character character)
         {
@@ -189,6 +191,8 @@ namespace GameRendererDll
 
             ctx.DrawDrawing(this.dg);
             this.DrawScoreText(ctx);
+            this.DrawHealthText(ctx);
+            this.DrawPetrolText(ctx);
         }
 
         private FormattedText DrawScoreText(DrawingContext ctx)
@@ -202,9 +206,45 @@ namespace GameRendererDll
                     System.Globalization.CultureInfo.CurrentCulture,
                     FlowDirection.LeftToRight,
                     font,
-                    16,
+                    20,
                     Brushes.Black, 1);
-            ctx.DrawText(this.formattedText, this.textLocation);
+            ctx.DrawText(this.formattedText, this.scoreLocation);
+
+            return this.formattedText;
+        }
+
+        private FormattedText DrawHealthText(DrawingContext ctx)
+        {
+            int health = this.character.Health;
+
+            Typeface font = new Typeface("Arial");
+
+            this.formattedText = new FormattedText(
+                    health.ToString(),
+                    System.Globalization.CultureInfo.CurrentCulture,
+                    FlowDirection.LeftToRight,
+                    font,
+                    20,
+                    Brushes.Red, 1);
+            ctx.DrawText(this.formattedText, this.healthLocation);
+
+            return this.formattedText;
+        }
+
+        private FormattedText DrawPetrolText(DrawingContext ctx)
+        {
+            int petrol = this.character.Fuel;
+
+            Typeface font = new Typeface("Arial");
+
+            this.formattedText = new FormattedText(
+                    petrol.ToString(),
+                    System.Globalization.CultureInfo.CurrentCulture,
+                    FlowDirection.LeftToRight,
+                    font,
+                    20,
+                    Brushes.Black, 1);
+            ctx.DrawText(this.formattedText, this.petrolLocation);
 
             return this.formattedText;
         }
