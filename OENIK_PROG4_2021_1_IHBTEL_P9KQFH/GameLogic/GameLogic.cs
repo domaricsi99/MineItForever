@@ -450,11 +450,11 @@ namespace GameLogicDll
             }
         }
 
-        public string HealthBuyLogic()
+        public string HealthBuyLogic() // 
         {
             string message = " ";
 
-            var maxHealth = 100 - this.character.Health;
+            int maxHealth = 100 - this.character.Health;
 
             int cost = maxHealth * 2; // 1 health vasarlasa 2 pénz
             if (this.character.Money - cost >= 0)
@@ -476,7 +476,7 @@ namespace GameLogicDll
 
             var maxPetrol = 100 - this.character.Fuel;
 
-            int cost = maxPetrol * 2; // 1 health vasarlasa 2 pénz
+            int cost = maxPetrol * 2; // 1 petrol vasarlasa 2 pénz
             if (this.character.Money - cost >= 0)
             {
                 this.character.Money -= cost;
@@ -510,7 +510,7 @@ namespace GameLogicDll
         {
             string message = " ";
 
-            var pickaxes = this.shopRepo.PickaxList();
+            List<Pickax> pickaxes = this.shopRepo.PickaxList();
             int currentPickaxLevel = this.character.PickAxLevel;
 
             foreach (var item in pickaxes)
@@ -521,12 +521,16 @@ namespace GameLogicDll
                     {
                         this.character.Money -= item.Price;
                         this.character.PickAxLevel = item.Level;
-                        message = $"Your pickax level is {item.Level}!";
+                        message = $"Your pickax level is {item.Level}!"; // miket tudsz vele kiszedni csicsa
+                    }
+                    else if (this.character.Money - item.Price <= 0)
+                    {
+                        message = "You don't have enough money!";
                     }
                 }
                 else if (currentPickaxLevel == 4)
                 {
-                    message = "You have the highest level of pickax!"; // $"You have {this.character.Money}$ but the pickax price is {item.Price}$";
+                    message = "You have the highest level of pickax!";
                     break;
                 }
             }

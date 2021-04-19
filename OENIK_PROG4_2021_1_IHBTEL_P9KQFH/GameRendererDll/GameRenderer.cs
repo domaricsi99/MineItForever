@@ -19,8 +19,10 @@ namespace GameRendererDll
         DrawingGroup dg;
         Ore[,] map;
         StackPanel sp;
-
+        FormattedText formattedText;
+        int score;
         Character character;
+        Point textLocation = new Point(Config.Width / 2, 0); // maybe config.height
 
         public GameRenderer(GameModel model, GameLogic logic, Character character)
         {
@@ -39,7 +41,6 @@ namespace GameRendererDll
 
         public void Draw(DrawingContext ctx, int mapID) // todo mindent kirajzolni, flappybol atirni
         {
-
             Pen black = new Pen(Brushes.Black, 1);
 
             this.dg.Children.Clear();
@@ -51,6 +52,8 @@ namespace GameRendererDll
                     new Pen(Config.BorderBrush, Config.BorderSize),
                     new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
                 this.dg.Children.Add(background);
+                this.DrawScoreText(ctx);
+
                 for (int i = 0; i < oreMatrix.GetLength(0); i++)
                 {
                     for (int j = 0; j < oreMatrix.GetLength(1); j++)
@@ -185,6 +188,25 @@ namespace GameRendererDll
             }
 
             ctx.DrawDrawing(this.dg);
+            this.DrawScoreText(ctx);
+        }
+
+        private FormattedText DrawScoreText(DrawingContext ctx)
+        {
+            this.score = this.character.Score;
+
+            Typeface font = new Typeface("Arial");
+
+            this.formattedText = new FormattedText(
+                    score.ToString(),
+                    System.Globalization.CultureInfo.CurrentCulture,
+                    FlowDirection.LeftToRight,
+                    font,
+                    16,
+                    Brushes.Black, 1);
+            ctx.DrawText(this.formattedText, this.textLocation);
+
+            return this.formattedText;
         }
     }
 }
