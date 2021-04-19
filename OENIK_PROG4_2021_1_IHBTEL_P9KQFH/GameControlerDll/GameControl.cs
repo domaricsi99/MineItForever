@@ -59,7 +59,6 @@ namespace GameControlerDll
                 this.tickTimer.Interval = TimeSpan.FromMilliseconds(20);
                 this.tickTimer.Tick += this.TickTimer_Tick;
                 this.tickTimer.Start();
-
                 win.KeyDown += this.Win_KeyDown;
             }
 

@@ -25,6 +25,7 @@ namespace GameRendererDll
         Point scoreLocation = new Point(Config.Width / 2, 0);
         Point healthLocation = new Point(Config.Width - 35, 0);
         Point petrolLocation = new Point(Config.Width - 150, 0);
+        int num = 1;
 
         public GameRenderer(GameModel model, GameLogic logic, Character character)
         {
@@ -48,6 +49,20 @@ namespace GameRendererDll
             this.dg.Children.Clear();
             if (mapID == 1) // MINE
             {
+                if (this.num == 1)
+                {
+                    this.character.Fuel--;
+                    this.num++;
+                }
+                else if (num == 20) // TODO beallit
+                {
+                    this.num = 1;
+                }
+                else
+                {
+                    this.num++;
+                }
+
                 Ore[,] oreMatrix = this.gdll.MapPart();
                 GeometryDrawing background = new GeometryDrawing(
                     Config.bgBrush,
