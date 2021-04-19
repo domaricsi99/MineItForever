@@ -108,6 +108,14 @@ namespace GameLogicDll
                         MapMovementDown();
                     }
                 }
+                else if (d == Direction.Down)
+                {
+                    //this.character.ChangeY(60);
+                    if (moveSize == 0 && !this.falling)
+                    {
+                        Mining(d);
+                    }
+                }
             }
 
             this.RefreshScreen?.Invoke(this, EventArgs.Empty);
@@ -262,6 +270,21 @@ namespace GameLogicDll
                     }
 
                     break;
+                case Direction.Down:
+                    predictedChar.Y += 60;
+                    foreach (var item in renderedOres)
+                    {
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air")
+                        {
+                            movementRange = item.Area.Top - (predictedChar.Bottom);
+                            if (movementRange <= 59)
+                            {
+                                return 0;
+                            }
+                        }
+                    }
+
+                    break;
                 default:
                     break;
             }
@@ -385,24 +408,7 @@ namespace GameLogicDll
                 Height = this.character.Area.Height - 2,
                 Width = this.character.Area.Width,
             };
-            //foreach (var item in renderedOres)
-            //{
-            //    Point asd = item.Area.TopLeft;
-            //    if ((this.character.PickAxLevel >= item.Level && item.OreType != "air") && (this.character.Area.TopRight == () || this.character.Area.TopLeft == item.Area.TopRight))
-            //    {
-            //        this.character.Backpack.Add(item);
-            //        this.character.Score += item.Score;
-            //        this.character.Money += item.Value; // Nem itt majd a shopban ha eladtuk
 
-            //        item.OreType = this.newAir.OreType;
-            //        item.canPass = this.newAir.canPass;
-            //        item.Hurt = this.newAir.Hurt;
-            //        item.BreakLevel = this.newAir.BreakLevel;
-            //        item.Score = this.newAir.Score;
-            //        item.Level = this.newAir.Level;
-            //        item.Value = this.newAir.Value;
-            //    }
-            //}
             switch (d)
             {
                 case Direction.Left:
@@ -443,6 +449,27 @@ namespace GameLogicDll
                                 item.Score = this.newAir.Score;
                                 item.Level = this.newAir.Level;
                                 item.Value = this.newAir.Value;
+                        }
+                    }
+
+                    break;
+                case Direction.Down:
+                    predictedChar.Y += 45;
+                    foreach (var item in renderedOres)
+                    {
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && this.character.PickAxLevel >= item.Level)
+                        {
+                            this.character.Backpack.Add(item);
+                            this.character.Score += item.Score;
+                            this.character.Money += item.Value; // Nem itt majd a shopban ha eladtuk
+
+                            item.OreType = this.newAir.OreType;
+                            item.canPass = this.newAir.canPass;
+                            item.Hurt = this.newAir.Hurt;
+                            item.BreakLevel = this.newAir.BreakLevel;
+                            item.Score = this.newAir.Score;
+                            item.Level = this.newAir.Level;
+                            item.Value = this.newAir.Value;
                         }
                     }
 

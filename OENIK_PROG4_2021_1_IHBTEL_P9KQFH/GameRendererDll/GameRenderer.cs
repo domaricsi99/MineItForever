@@ -54,7 +54,7 @@ namespace GameRendererDll
                     this.character.Fuel--;
                     this.num++;
                 }
-                else if (num == 20) // TODO beallit
+                else if (this.num == 50) // TODO beallit
                 {
                     this.num = 1;
                 }

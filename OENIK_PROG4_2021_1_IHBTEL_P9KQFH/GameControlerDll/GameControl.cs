@@ -96,6 +96,7 @@ namespace GameControlerDll
                 case Key.Left: this.logic.MoveCharacter(Direction.Left, this.mapID); break;
                 case Key.Right: this.logic.MoveCharacter(Direction.Right, this.mapID); break;
                 case Key.Space: this.logic.MoveCharacter(Direction.Up, this.mapID); break;
+                case Key.Down: this.logic.MoveCharacter(Direction.Down, this.mapID); break;
             }
         }
 
