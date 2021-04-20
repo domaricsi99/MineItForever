@@ -257,7 +257,7 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.White, 1);
+                    Brushes.Gray, 1);
             ctx.DrawText(this.formattedText, this.scoreLocation);
 
             return this.formattedText;
@@ -293,7 +293,7 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.White, 1);
+                    Brushes.Gray, 1);
             ctx.DrawText(this.formattedText, this.petrolLocation);
 
             return this.formattedText;
