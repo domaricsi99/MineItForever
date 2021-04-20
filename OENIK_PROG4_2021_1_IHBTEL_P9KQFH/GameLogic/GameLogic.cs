@@ -144,7 +144,6 @@ namespace GameLogicDll
 
                 foreach (var item in renderedOres)
                 {
-
                     if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air")
                     {
                         return false;
@@ -477,7 +476,7 @@ namespace GameLogicDll
                 {
                     if (renderedOres[i, j].OreType == "air"
                         && renderedOres[i, j].Area.Left <= point.X && renderedOres[i, j].Area.Right >= point.X
-                        && renderedOres[i, j].Area.Bottom <= point.Y && renderedOres[i, j].Area.Top >= point.Y)
+                        && renderedOres[i, j].Area.Bottom >= point.Y && renderedOres[i, j].Area.Top <= point.Y)
                     {
                         renderedOres[i, j].OreType = this.newLadder.OreType;
                         renderedOres[i, j].canPass = this.newLadder.canPass;
