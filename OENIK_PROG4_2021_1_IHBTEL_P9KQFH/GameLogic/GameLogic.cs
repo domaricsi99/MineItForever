@@ -108,10 +108,13 @@ namespace GameLogicDll
                 }
                 else if (d == Direction.Down)
                 {
-                    //this.character.ChangeY(60);
                     if (moveSize == 0 && !this.falling)
                     {
                         Mining(d);
+                    }
+                    else if (moveSize == 1)
+                    {
+                        MapMovementUpLadder();
                     }
                 }
                 else if (d == Direction.Climb)
@@ -138,7 +141,7 @@ namespace GameLogicDll
         {
             foreach (var item in this.ore)
             {
-                item.ChangeY(-60); // TODO beallit
+                item.ChangeY(-5); // TODO beallit
             }
         }
 
@@ -297,19 +300,23 @@ namespace GameLogicDll
                     }
 
                     break;
-                case Direction.Down: // TODO BALÁZS lehet nem kell
-                    predictedChar.Y += 60;
+                case Direction.Down:
+                    predictedChar.Y += 40; // nem tudom miert ennyi
                     foreach (var item in renderedOres)
                     {
-                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder")
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType == "ladder")
+                        {
+                            return 1;
+                        }
+                        else if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder")
                         {
                             return 0;
                         }
+
                     }
 
                     break;
-                case Direction.Climb: // TODO BALÁZS lehet nem kell
-                    //predictedChar.Y += 5;
+                case Direction.Climb:
                     foreach (var item in renderedOres)
                     {
                         if (item.Area.IntersectsWith(predictedChar) && item.OreType == "ladder")
@@ -481,7 +488,7 @@ namespace GameLogicDll
                     predictedChar.Y += 45;
                     foreach (var item in renderedOres)
                     {
-                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && this.character.PickAxLevel >= item.Level)
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder" && this.character.PickAxLevel >= item.Level)
                         {
                             this.character.Backpack.Add(item);
                             this.character.Score += item.Score;
