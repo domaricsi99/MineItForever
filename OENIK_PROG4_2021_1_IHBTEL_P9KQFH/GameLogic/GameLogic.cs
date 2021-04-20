@@ -12,6 +12,7 @@ namespace GameLogicDll
     using GameModelDll;
     using GameRepository;
     using System.Windows;
+    using System.Windows.Input;
 
     public enum Direction
     {

@@ -53,6 +53,8 @@ namespace GameControlerDll
             this.logic = new GameLogic(this.model, this.mapRepo, this.charRepo, this.character);
             this.renderer = new GameRenderer(this.model, this.logic, this.character);
             Window win = Window.GetWindow(this);
+
+
             if (win != null)
             {
                 this.tickTimer = new DispatcherTimer();
@@ -69,6 +71,8 @@ namespace GameControlerDll
                 this.logic.setCharPosition(60, 120 - Config.MinerHeight);
             };
 
+            this.MouseLeftButtonDown += this.GameControl_MouseLeftButtonDown;
+
             this.logic.ShopScreen += (obj, args) =>
             {
                 this.mapID = 0;
@@ -81,6 +85,11 @@ namespace GameControlerDll
             };
 
             this.InvalidateVisual();
+        }
+
+        private void GameControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var q = e.GetPosition(this);
         }
 
         public void TickTimer_Tick(object sender, EventArgs e)
