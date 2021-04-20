@@ -24,8 +24,6 @@ namespace GameWindow
     /// </summary>
     public partial class NewGameDataWindow : Window
     {
-        public string CharacterName { get; set; }
-
         public NewGameDataWindow()
         {
             InitializeComponent();
@@ -35,6 +33,7 @@ namespace GameWindow
         {
             this.DialogResult = true;
             MainWindow mw = new MainWindow();
+            mw.NewName = this.newName.Text;
             this.Hide();
             mw.ShowDialog();
         }

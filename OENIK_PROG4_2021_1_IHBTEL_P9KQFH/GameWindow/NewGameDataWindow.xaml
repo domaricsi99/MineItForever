@@ -3,18 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:gc ="clr-namespace:GameControlerDll;assembly=GameControlerDll"
         mc:Ignorable="d"
         Title="NewGameDataWindow" Height="234" Width="656">
-    <Window.Resources>
-        <gc:GameControl x:Key="GC"/>
-    </Window.Resources>
-    
-    <Grid DataContext="{StaticResource  GC}">
-        <TextBox Text ="{Binding Path= character.Name}" HorizontalAlignment="Left" Height="59" Margin="335,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193" />
-        <Label Content="PLEASE ADD YOUR CHRACTER NAME" HorizontalAlignment="Left" Margin="87,93,0,0" VerticalAlignment="Top" Height="30" Width="214"/>
-        <Button Click="OK_Click" Content="OK" HorizontalAlignment="Left" Margin="129,156,0,0" VerticalAlignment="Top" Width="172" Height="39"/>
-        <Button Click="Cancel_Click" Content="CANCEL" HorizontalAlignment="Left" Margin="356,156,0,0" VerticalAlignment="Top" Width="172" Height="39" />
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="13*"/>
+            <ColumnDefinition Width="69*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Name="newName" HorizontalAlignment="Left" Height="59" Margin="231,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193" Grid.Column="1" />
+        <Label Content="PLEASE ADD YOUR CHRACTER NAME" HorizontalAlignment="Left" Margin="87,93,0,0" VerticalAlignment="Top" Height="30" Width="214" Grid.ColumnSpan="2"/>
+        <Button Click="OK_Click" Content="OK" HorizontalAlignment="Left" Margin="25,156,0,0" VerticalAlignment="Top" Width="172" Height="39" Grid.Column="1"/>
+        <Button Click="Cancel_Click" Content="CANCEL" HorizontalAlignment="Left" Margin="252,156,0,0" VerticalAlignment="Top" Width="172" Height="39" Grid.Column="1" />
 
     </Grid>
 </Window>

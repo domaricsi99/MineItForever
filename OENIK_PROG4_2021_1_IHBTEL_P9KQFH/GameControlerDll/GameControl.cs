@@ -54,7 +54,6 @@ namespace GameControlerDll
             this.renderer = new GameRenderer(this.model, this.logic, this.character);
             Window win = Window.GetWindow(this);
 
-
             if (win != null)
             {
                 this.tickTimer = new DispatcherTimer();
@@ -89,7 +88,7 @@ namespace GameControlerDll
 
         private void GameControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var q = e.GetPosition(this);
+            Point q = e.GetPosition(this);
         }
 
         public void TickTimer_Tick(object sender, EventArgs e)
