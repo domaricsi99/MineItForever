@@ -114,9 +114,32 @@ namespace GameLogicDll
                         Mining(d);
                     }
                 }
+                else if (d == Direction.Climb)
+                {
+                    if (moveSize == 0 && !this.falling)
+                    {
+                        MapMovementDownLadder();
+                    }
+                }
             }
 
             this.RefreshScreen?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void MapMovementDownLadder() // mint h lfele mennenk
+        {
+            foreach (var item in this.ore)
+            {
+                item.ChangeY(5); // TODO beallit
+            }
+        }
+
+        public void MapMovementUpLadder() // mint ha felfele mennenk
+        {
+            foreach (var item in this.ore)
+            {
+                item.ChangeY(-60); // TODO beallit
+            }
         }
 
         public void MapMovementDown()
@@ -185,7 +208,7 @@ namespace GameLogicDll
                 Ore[,] renderedOres = this.MapPart();
                 foreach (var item in renderedOres)
                 {
-                    if (item.Area.IntersectsWith(this.character.Area) && item.canPass == false)
+                    if ( item.Area.IntersectsWith(this.character.Area) && item.canPass == false)
                     {
                         if (this.character.Area.Top >= item.Area.Bottom)
                         {
@@ -197,6 +220,10 @@ namespace GameLogicDll
                         }
 
                         break;
+                    }
+                    else if ( item.Area.IntersectsWith(this.character.Area) && item.OreType == "ladder")
+                    {
+                        canFall = false;
                     }
                 }
 
@@ -236,7 +263,7 @@ namespace GameLogicDll
                     predictedChar.X -= 7.5;
                     foreach (var item in renderedOres)
                     {
-                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "gate")
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder" && item.OreType != "gate")
                         {
                             movementRange = (predictedChar.X + 7.5) - item.Area.Right - 1;
                             if (movementRange < 2)
@@ -255,7 +282,7 @@ namespace GameLogicDll
                     predictedChar.X += 7.5;
                     foreach (var item in renderedOres)
                     {
-                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "gate")
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder" && item.OreType != "gate")
                         {
                             movementRange = item.Area.Left - 1 - (predictedChar.X + Config.MinerWidth - 7.5);
                             if (movementRange < 2)
@@ -274,13 +301,20 @@ namespace GameLogicDll
                     predictedChar.Y += 60;
                     foreach (var item in renderedOres)
                     {
-                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air")
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder")
                         {
-                            movementRange = item.Area.Top - (predictedChar.Bottom);
-                            if (movementRange <= 59)
-                            {
-                                return 0;
-                            }
+                            return 0;
+                        }
+                    }
+
+                    break;
+                case Direction.Climb: // TODO BALÁZS lehet nem kell
+                    //predictedChar.Y += 5;
+                    foreach (var item in renderedOres)
+                    {
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType == "ladder")
+                        {
+                            return 0;
                         }
                     }
 
@@ -405,7 +439,7 @@ namespace GameLogicDll
                     predictedChar.X -= 7.5;
                     foreach (var item in renderedOres)
                     {
-                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && this.character.PickAxLevel >= item.Level)
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder" && this.character.PickAxLevel >= item.Level)
                         {
                             this.character.Backpack.Add(item);
                             this.character.Score += item.Score;
@@ -426,7 +460,7 @@ namespace GameLogicDll
                     predictedChar.X += 7.5;
                     foreach (var item in renderedOres)
                     {
-                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && this.character.PickAxLevel >= item.Level)
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder" && this.character.PickAxLevel >= item.Level)
                         {
                                 this.character.Backpack.Add(item);
                                 this.character.Score += item.Score;

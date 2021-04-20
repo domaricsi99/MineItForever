@@ -180,7 +180,7 @@ namespace GameRepository
         {
             return new Ore()
             {
-                BreakLevel = 99,
+                BreakLevel = 0,
                 canPass = true,
                 Hurt = false,
                 Level = 0,
