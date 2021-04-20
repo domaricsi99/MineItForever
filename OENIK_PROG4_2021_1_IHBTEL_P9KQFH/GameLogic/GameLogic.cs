@@ -16,7 +16,7 @@ namespace GameLogicDll
 
     public enum Direction
     {
-        Left, Right, Up, Down
+        Left, Right, Up, Down, Climb
     }
 
     public class GameLogic : IGameLogic
@@ -29,6 +29,7 @@ namespace GameLogicDll
         Ore[,] ore;
         Character character;
         Ore newAir;
+        Ore newLadder;
         bool falling;
 
         public event EventHandler RefreshScreen;
@@ -48,6 +49,7 @@ namespace GameLogicDll
             this.map = this.mapRepo.DrawMap(character);
             this.ore = this.DrawMap();
             this.newAir = this.mapRepo.MakeAir();
+            this.newLadder = this.mapRepo.MakeLadder();
             this.shopRepo = new ShopRepsitory();
         }
 
@@ -59,11 +61,6 @@ namespace GameLogicDll
             this.map = this.mapRepo.DrawMap(this.character);
             this.ore = this.DrawMap();
         }
-
-        //public GameLogic(Character character)
-        //{
-        //    this.character = character;
-        //}
 
         public void MoveCharacter(Direction d, int mapID)
         {
@@ -471,7 +468,31 @@ namespace GameLogicDll
             }
         }
 
-        public string HealthBuyLogic() // 
+        public void DropLadder(Point point)
+        {
+            Ore[,] renderedOres = this.MapPart();
+            for (int i = 0; i < renderedOres.GetLength(0); i++)
+            {
+                for (int j = 0; j < renderedOres.GetLength(1); j++)
+                {
+                    if (renderedOres[i, j].OreType == "air"
+                        && renderedOres[i, j].Area.Left <= point.X && renderedOres[i, j].Area.Right >= point.X
+                        && renderedOres[i, j].Area.Bottom <= point.Y && renderedOres[i, j].Area.Top >= point.Y)
+                    {
+                        renderedOres[i, j].OreType = this.newLadder.OreType;
+                        renderedOres[i, j].canPass = this.newLadder.canPass;
+                        renderedOres[i, j].Hurt = this.newLadder.Hurt;
+                        renderedOres[i, j].BreakLevel = this.newLadder.BreakLevel;
+                        renderedOres[i, j].Score = this.newLadder.Score;
+                        renderedOres[i, j].Level = this.newLadder.Level;
+                        renderedOres[i, j].Value = this.newLadder.Value;
+                        break;
+                    }
+                }
+            }
+        }
+
+        public string HealthBuyLogic()
         {
             string message = " ";
 

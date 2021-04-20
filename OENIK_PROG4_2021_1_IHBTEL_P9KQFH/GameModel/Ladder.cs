@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GameModelDll
 {
-    public class Ladder
+    public class Ladder : Shape
     {
+
     }
 }

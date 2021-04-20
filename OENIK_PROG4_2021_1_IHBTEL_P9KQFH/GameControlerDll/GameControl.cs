@@ -89,6 +89,7 @@ namespace GameControlerDll
         private void GameControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point q = e.GetPosition(this);
+            this.logic.DropLadder(q);
         }
 
         public void TickTimer_Tick(object sender, EventArgs e)
@@ -106,6 +107,7 @@ namespace GameControlerDll
                 case Key.Right: this.logic.MoveCharacter(Direction.Right, this.mapID); break;
                 case Key.Space: this.logic.MoveCharacter(Direction.Up, this.mapID); break;
                 case Key.Down: this.logic.MoveCharacter(Direction.Down, this.mapID); break;
+                case Key.Up: this.logic.MoveCharacter(Direction.Climb, this.mapID); break; // ket up le kell kezelni kulonben be fog szarni
             }
         }
 

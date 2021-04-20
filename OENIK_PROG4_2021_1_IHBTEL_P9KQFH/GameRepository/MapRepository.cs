@@ -175,5 +175,19 @@ namespace GameRepository
                 Value = 0,
             };
         }
+
+        public Ore MakeLadder()
+        {
+            return new Ore()
+            {
+                BreakLevel = 99,
+                canPass = true,
+                Hurt = false,
+                Level = 0,
+                OreType = "ladder",
+                Score = 0,
+                Value = 0,
+            };
+        }
     }
 }

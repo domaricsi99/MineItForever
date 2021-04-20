@@ -159,6 +159,12 @@ namespace GameRendererDll
                                 RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(mineGround);
                                 break;
+                            case "ladder":
+                                GeometryDrawing ladder = new GeometryDrawing(Config.LadderBg,
+                                black,
+                                RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
+                                this.dg.Children.Add(ladder);
+                                break;
                         }
                     }
                 }

@@ -58,5 +58,7 @@ namespace GameModelDll
         public static Brush ButtonBg = Brushes.Transparent;
         public static int ButtonWidth = 90;
         public static int ButtonHeight = 60;
+
+        public static Brush LadderBg = Brushes.Bisque;
     }
 }
