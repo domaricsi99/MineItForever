@@ -24,6 +24,8 @@ namespace GameWindow
     /// </summary>
     public partial class NewGameDataWindow : Window
     {
+        public string CharacterName { get; set; }
+
         public NewGameDataWindow()
         {
             InitializeComponent();
