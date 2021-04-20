@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameData", "GameData\GameDa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameRepository", "GameRepository\GameRepository.csproj", "{70845BD4-1253-4702-88D6-B42CEBA1AF96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLogicTest", "GameLogicTest\GameLogicTest.csproj", "{DB7F2A68-83AD-4329-99D4-47F186781FE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameLogicTest", "GameLogicTest\GameLogicTest.csproj", "{DB7F2A68-83AD-4329-99D4-47F186781FE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

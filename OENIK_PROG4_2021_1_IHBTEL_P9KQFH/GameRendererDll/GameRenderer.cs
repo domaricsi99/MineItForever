@@ -5,10 +5,13 @@
 namespace GameRendererDll
 {
     using System;
+    using System.Collections.Generic;
+    using System.Reflection;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media;
+    using System.Windows.Media.Imaging;
     using GameLogicDll;
     using GameModelDll;
 
@@ -26,6 +29,7 @@ namespace GameRendererDll
         Point healthLocation = new Point(Config.Width - 35, 0);
         Point petrolLocation = new Point(Config.Width - 150, 0);
         int num = 1;
+        Dictionary<string, Brush> myBrushes = new Dictionary<string, Brush>();
 
         public GameRenderer(GameModel model, GameLogic logic, Character character)
         {
@@ -41,6 +45,30 @@ namespace GameRendererDll
         {
             return new RectangleGeometry(new Rect(oreX, oreY, Config.oreWidth, Config.oreHeight));
         }
+
+        Brush GetBrush(string fname, bool isTiled)
+        {
+            if (!myBrushes.ContainsKey(fname))
+            {
+                BitmapImage bmp = new BitmapImage();
+                bmp.BeginInit();
+                bmp.StreamSource = Assembly.GetExecutingAssembly().GetManifestResourceStream(fname);
+                bmp.EndInit();
+                ImageBrush ib = new ImageBrush(bmp);
+                if (isTiled)
+                {
+                    ib.TileMode = TileMode.Tile;
+                    ib.Viewport = new Rect(0, 0, Config.Width,Config.Height);
+                    ib.ViewportUnits = BrushMappingMode.Absolute;
+                }
+
+                myBrushes[fname] = ib;
+            }
+
+            return myBrushes[fname];
+        }
+
+        Brush bgBrush { get { return GetBrush("GameRendererDll.Images.BackGround.bmp", true); } }
 
         public void Draw(DrawingContext ctx, int mapID) // todo mindent kirajzolni, flappybol atirni
         {
@@ -65,7 +93,7 @@ namespace GameRendererDll
 
                 Ore[,] oreMatrix = this.gdll.MapPart();
                 GeometryDrawing background = new GeometryDrawing(
-                    Config.bgBrush,
+                    bgBrush,
                     new Pen(Config.BorderBrush, Config.BorderSize),
                     new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
                 this.dg.Children.Add(background);
@@ -229,7 +257,7 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.Black, 1);
+                    Brushes.White, 1);
             ctx.DrawText(this.formattedText, this.scoreLocation);
 
             return this.formattedText;
@@ -265,7 +293,7 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.Black, 1);
+                    Brushes.White, 1);
             ctx.DrawText(this.formattedText, this.petrolLocation);
 
             return this.formattedText;
