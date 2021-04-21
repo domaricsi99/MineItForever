@@ -18,12 +18,15 @@ namespace GameWindow
     using System.Windows.Media.Imaging;
     using System.Windows.Shapes;
     using GameModelDll;
+    using GameRepository;
 
     /// <summary>
     /// Interaction logic for NewGameDataWindow.xaml.
     /// </summary>
     public partial class NewGameDataWindow : Window
     {
+        CharacterRepository repo = new CharacterRepository();
+
         public NewGameDataWindow()
         {
             InitializeComponent();
@@ -33,7 +36,7 @@ namespace GameWindow
         {
             this.DialogResult = true;
             MainWindow mw = new MainWindow();
-            mw.NewName = this.newName.Text;
+            this.repo.NewCharacter(this.newName.Text);
             this.Hide();
             mw.ShowDialog();
         }

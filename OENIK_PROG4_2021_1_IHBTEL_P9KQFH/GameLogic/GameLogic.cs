@@ -426,9 +426,9 @@ namespace GameLogicDll
             this.charRepo.SaveGame(character);
         }
 
-        public Character LoadGame(string name)
+        public Character LoadGame()
         {
-            return this.charRepo.LoadGame(name);
+            return this.charRepo.StartGame();
         }
 
         public void Mining(Direction d) // TODO rendes mapbol irjuk felul

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace GameRepository
 {
@@ -12,43 +13,46 @@ namespace GameRepository
     {
         public CharacterRepository()
         {
+            try
+            {
+                XDocument.Load("Profiles.xml");
+            }
+            catch (FileNotFoundException)
+            {
+                new XDocument(
+                    new XElement("CharacterList")).Save("Profiles.xml");
+            }
 
+            try
+            {
+                XDocument.Load("selectedProfile.xml");
+            }
+            catch (FileNotFoundException)
+            {
+                new XDocument(new XElement("Character")).Save("selectedProfile.xml");
+            }
         }
 
         /// <summary>
         /// Character name equals file name.
         /// </summary>
         /// <param name="name"></param>
-        public Character LoadGame(string name)
+        public Character StartGame()
         {
-            if (name == null)
+            XDocument character = XDocument.Load("selectedProfile.xml");
+            Character selectedChar = new Character()
             {
-                return null;
-            }
-            else
-            {
-                string[] fileLines = File.ReadAllLines(name + ".txt");
-
-                string[] map = File.ReadAllLines(name + "Map.txt");
-
-                // 0 - Name, 1 - Health, 2 - Fuel, 3 - PickAxLevel, 4 - Money, 5 - Score XML MEGOLDÁS
-
-                Character character = new Character(
-                    int.Parse(fileLines[1]),
-                    int.Parse(fileLines[2]),
-                    int.Parse(fileLines[4]),
-                    int.Parse(fileLines[5]),
-                    int.Parse(fileLines[3]),
-                    map, fileLines[0],
-                    Config.Width / 2,
-                    Config.Height / 2,
-                    Config.MinerWidth,
-                    Config.MinerHeight
-                    );
-
-                character.Backpack = new List<Ore>();
-                return character;
-            }
+                Name = character.Root.Element("Name").Value,
+                Health = int.Parse(character.Root.Element("Health").Value),
+                Fuel = int.Parse(character.Root.Element("Fuel").Value),
+                Score = int.Parse(character.Root.Element("Score").Value),
+                Money = int.Parse(character.Root.Element("Money").Value),
+                PickAxLevel = int.Parse(character.Root.Element("PickLevel").Value),
+                Area = new System.Windows.Rect(Config.Width / 2, Config.Height / 2, Config.MinerWidth, Config.MinerHeight),
+                Map = character.Root.Element("Map").Value.Split(','),
+                Backpack = new List<Ore>(),
+            };
+            return selectedChar;
         }
 
         public bool SaveGame(Character character)
@@ -68,8 +72,49 @@ namespace GameRepository
             return true;
         }
 
+        public void LoadSelectedProfile(Character selectedChar)
+        {
+            new XDocument(
+                    new XElement("Character",
+                        new XElement("Name", selectedChar.Name),
+                        new XElement("PickLevel", selectedChar.PickAxLevel),
+                        new XElement("Fuel", selectedChar.Fuel),
+                        new XElement("Health", selectedChar.Health),
+                        new XElement("Score", selectedChar.Score),
+                        new XElement("Money", selectedChar.Money),
+                        new XElement("Map", selectedChar.Map))).Save("selectedProfile.xml");
+        }
+
+        public List<Character> LoadAllProfile()
+        {
+            List<Character> profiles = new List<Character>();
+
+            XDocument xdoc = XDocument.Load("Profiles.xml");
+
+            List<XElement> xelementProfiles = xdoc.Root.Elements("Character").ToList();
+
+            foreach (var item in xelementProfiles)
+            {
+                profiles.Add(new Character()
+                {
+                    Name = item.Element("Name").Value,
+                    Health = int.Parse(item.Element("Health").Value),
+                    Fuel = int.Parse(item.Element("Fuel").Value),
+                    Score = int.Parse(item.Element("Score").Value),
+                    Money = int.Parse(item.Element("Money").Value),
+                    PickAxLevel = int.Parse(item.Element("PickLevel").Value),
+                    Area = new System.Windows.Rect(Config.Width / 2, Config.Height / 2, Config.MinerWidth, Config.MinerHeight),
+                    Map = item.Element("Map").Value.Split(','),
+                    Backpack = new List<Ore>(),
+                });
+            }
+
+            return profiles;
+        }
+
         public void NewCharacter(string name)
         {
+            XDocument xdoc = XDocument.Load("Profiles.xml");
             Character character = new Character()
             {
                 Name = name,
@@ -80,7 +125,27 @@ namespace GameRepository
                 Score = 0,
                 Map = File.ReadAllLines("palya.txt"),
             };
-            SaveGame(character);
+
+            new XDocument(
+                new XElement("Character",
+                    new XElement("Name", character.Name),
+                    new XElement("PickLevel", character.PickAxLevel),
+                    new XElement("Fuel", character.Fuel),
+                    new XElement("Health", character.Health),
+                    new XElement("Score", character.Score),
+                    new XElement("Money", character.Money),
+                    new XElement("Map", character.Map))).Save("selectedProfile.xml");
+
+            xdoc.Root.Add(new XElement("Character",
+                    new XElement("Name", character.Name),
+                    new XElement("PickLevel", character.PickAxLevel),
+                    new XElement("Fuel", character.Fuel),
+                    new XElement("Health", character.Health),
+                    new XElement("Score", character.Score),
+                    new XElement("Money", character.Money),
+                    new XElement("Map", character.Map)));
+            xdoc.Save("Profiles.xml");
+            // SaveGame(character);
         }
     }
 }

@@ -22,6 +22,19 @@
             Application Entry Point.
             </summary>
         </member>
+        <member name="T:GameWindow.LoadGameDataWindow">
+            <summary>
+            Interaction logic for LoadGameDataWindow.xaml.
+            </summary>
+            <summary>
+            LoadGameDataWindow
+            </summary>
+        </member>
+        <member name="M:GameWindow.LoadGameDataWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:GameWindow.MainWindow">
             <summary>
             Interaction logic for MainWindow.xaml.

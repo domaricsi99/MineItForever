@@ -36,9 +36,9 @@
 
         private void LoadGame_Click(object sender, RoutedEventArgs e)
         {
-            NewGameDataWindow newGameDataWindow = new NewGameDataWindow();
+            LoadGameDataWindow loadGameDataWindow = new LoadGameDataWindow();
             this.Hide();
-            newGameDataWindow.ShowDialog();
+            loadGameDataWindow.ShowDialog();
         }
 
         private void Highscore_Click(object sender, RoutedEventArgs e)

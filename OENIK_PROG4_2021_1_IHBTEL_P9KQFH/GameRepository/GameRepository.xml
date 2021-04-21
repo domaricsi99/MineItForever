@@ -4,7 +4,7 @@
         <name>GameRepository</name>
     </assembly>
     <members>
-        <member name="M:GameRepository.CharacterRepository.LoadGame(System.String)">
+        <member name="M:GameRepository.CharacterRepository.StartGame">
             <summary>
             Character name equals file name.
             </summary>

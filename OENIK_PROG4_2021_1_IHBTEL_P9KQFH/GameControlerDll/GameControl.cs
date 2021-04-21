@@ -51,7 +51,7 @@ namespace GameControlerDll
             this.model = new GameModel();
             this.mapRepo = new MapRepository();
             this.charRepo = new CharacterRepository();
-            this.character = this.charRepo.LoadGame("alma");
+            this.character = this.charRepo.StartGame();
             this.logic = new GameLogic(this.model, this.mapRepo, this.charRepo, this.character);
             this.renderer = new GameRenderer(this.model, this.logic, this.character);
             Window win = Window.GetWindow(this);
@@ -95,8 +95,8 @@ namespace GameControlerDll
 
         private void GameControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Point q = e.GetPosition(this);
-            this.logic.DropLadder(q, this.mapID);
+            Point cursorPos = e.GetPosition(this);
+            this.logic.DropLadder(cursorPos, this.mapID);
             //this.logic.Click(q, this.mapID);
         }
 

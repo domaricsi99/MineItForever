@@ -8,8 +8,8 @@ namespace GameRepository
 
     public interface IChracterRepository
     {
-        public Character LoadGame(string name);
+        // public Character LoadGame(string name);
 
-        public bool SaveGame(Character character);
+        // public bool SaveGame(Character character);
     }
 }
