@@ -11,6 +11,6 @@ namespace GameRendererDll
     {
         public RectangleGeometry RectangleG(double oreX, double oreY);
 
-        public void Draw(DrawingContext ctx, int mapID);
+        public void Draw(DrawingContext ctx, int mapID, string intersectShop);
     }
 }

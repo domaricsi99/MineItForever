@@ -40,6 +40,8 @@ namespace GameLogicDll
 
         public event EventHandler ShopScreen;
 
+        public event EventHandler EndGameEvent;
+
         public GameLogic(GameModel model, MapRepository mapRepo, CharacterRepository charRepo, Character character)
         {
             this.character = character;
@@ -342,22 +344,22 @@ namespace GameLogicDll
             }
         }
 
-        public bool IntersectsWithShop() // TODO: Eventként
+        public string IntersectsWithShop() // TODO: Eventként
         {
             if (this.character.Area.IntersectsWith(this.model.HealthShop.Area))
             {
-                return true;
+                return "health";
             }
             else if (this.character.Area.IntersectsWith(this.model.PetrolShop.Area))
             {
-                return true;
+                return "petrol";
             }
             else if (this.character.Area.IntersectsWith(this.model.PickaxShop.Area))
             {
-                return true;
+                return "pickax";
             }
 
-            return false;
+            return "none";
         }
 
         public void setCharPosition(double x, double y)
@@ -508,28 +510,32 @@ namespace GameLogicDll
             }
         }
 
-        public void DropLadder(Point point)
+        public void DropLadder(Point point, int mapID)
         {
-            Ore[,] renderedOres = this.MapPart();
-            for (int i = 0; i < renderedOres.GetLength(0); i++)
+            if (mapID == 1)
             {
-                for (int j = 0; j < renderedOres.GetLength(1); j++)
+                Ore[,] renderedOres = this.MapPart();
+                for (int i = 0; i < renderedOres.GetLength(0); i++)
                 {
-                    if (renderedOres[i, j].OreType == "air"
-                        && renderedOres[i, j].Area.Left <= point.X && renderedOres[i, j].Area.Right >= point.X
-                        && renderedOres[i, j].Area.Bottom >= point.Y && renderedOres[i, j].Area.Top <= point.Y)
+                    for (int j = 0; j < renderedOres.GetLength(1); j++)
                     {
-                        renderedOres[i, j].OreType = this.newLadder.OreType;
-                        renderedOres[i, j].canPass = this.newLadder.canPass;
-                        renderedOres[i, j].Hurt = this.newLadder.Hurt;
-                        renderedOres[i, j].BreakLevel = this.newLadder.BreakLevel;
-                        renderedOres[i, j].Score = this.newLadder.Score;
-                        renderedOres[i, j].Level = this.newLadder.Level;
-                        renderedOres[i, j].Value = this.newLadder.Value;
-                        break;
+                        if (renderedOres[i, j].OreType == "air"
+                            && renderedOres[i, j].Area.Left <= point.X && renderedOres[i, j].Area.Right >= point.X
+                            && renderedOres[i, j].Area.Bottom >= point.Y && renderedOres[i, j].Area.Top <= point.Y)
+                        {
+                            renderedOres[i, j].OreType = this.newLadder.OreType;
+                            renderedOres[i, j].canPass = this.newLadder.canPass;
+                            renderedOres[i, j].Hurt = this.newLadder.Hurt;
+                            renderedOres[i, j].BreakLevel = this.newLadder.BreakLevel;
+                            renderedOres[i, j].Score = this.newLadder.Score;
+                            renderedOres[i, j].Level = this.newLadder.Level;
+                            renderedOres[i, j].Value = this.newLadder.Value;
+                            break;
+                        }
                     }
                 }
             }
+            
         }
 
         public string HealthBuyLogic()
@@ -619,5 +625,25 @@ namespace GameLogicDll
 
             return message;
         }
+
+        public void EndGame()
+        {
+            if (this.character.Health <= 0 || this.character.Fuel <= 0)
+            {
+                this.EndGameEvent?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        //public void Click(Point point, int mapID)
+        //{
+        //    if (mapID == 0)
+        //    {
+        //        if (model.ButtonShape.Area.Left <= point.X && model.ButtonShape.Area.Right >= point.X
+        //           && model.ButtonShape.Area.Bottom >= point.Y && model.ButtonShape.Area.Top <= point.Y)
+        //        {
+        //            throw new Exception();
+        //        }
+        //    }
+        //}
     }
 }

@@ -35,6 +35,8 @@ namespace GameControlerDll
 
         // private Repo repo;
         private int mapID = 0; // !!!!
+        private string intersectShop;
+
         private MapRepository mapRepo;
         private CharacterRepository charRepo;
         public Character character;
@@ -83,20 +85,27 @@ namespace GameControlerDll
                 this.logic.setCharPosition(Config.Width - 60, Config.Height - this.model.Ground.Area.Height - Config.MinerHeight); // lehet szar
             };
 
+            this.logic.EndGameEvent += (obj, args) =>
+            {
+                this.mapID = 2;
+            };
+
             this.InvalidateVisual();
         }
 
         private void GameControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point q = e.GetPosition(this);
-            this.logic.DropLadder(q);
+            this.logic.DropLadder(q, this.mapID);
+            //this.logic.Click(q, this.mapID);
         }
 
         public void TickTimer_Tick(object sender, EventArgs e)
         {
             this.logic.Fall(this.mapID);
             this.logic.MineGate(this.mapID);
-            this.logic.IntersectsWithShop();
+            this.intersectShop = this.logic.IntersectsWithShop();
+            this.logic.EndGame();
         }
 
         public void Win_KeyDown(object sender, KeyEventArgs e)
@@ -115,7 +124,7 @@ namespace GameControlerDll
         {
             if (this.renderer != null)
             {
-                this.renderer.Draw(drawingContext, this.mapID);
+                this.renderer.Draw(drawingContext, this.mapID, this.intersectShop);
             }
         }
     }

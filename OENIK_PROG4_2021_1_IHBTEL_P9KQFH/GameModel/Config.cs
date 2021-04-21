@@ -55,9 +55,11 @@ namespace GameModelDll
         public static int ShopWidth = 45;
         public static int ShopHeight = 45;
 
-        public static Brush ButtonBg = Brushes.Transparent;
+        public static Brush ButtonBg = Brushes.White;
         public static int ButtonWidth = 90;
         public static int ButtonHeight = 60;
+        public static int ButtonBgWidth = 400;
+        public static int ButtonBgHeight = 150;
 
         public static Brush LadderBg = Brushes.Bisque;
     }

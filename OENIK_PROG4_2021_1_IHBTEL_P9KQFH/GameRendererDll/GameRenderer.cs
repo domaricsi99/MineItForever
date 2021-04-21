@@ -21,7 +21,6 @@ namespace GameRendererDll
         GameLogic gdll;
         DrawingGroup dg;
         Ore[,] map;
-        StackPanel sp;
         FormattedText formattedText;
         int score;
         Character character;
@@ -37,7 +36,6 @@ namespace GameRendererDll
             this.gdll = logic;
             this.map = this.gdll.DrawMap();
             this.dg = new DrawingGroup();
-            this.sp = new StackPanel();
             this.character = character;
         }
 
@@ -70,7 +68,7 @@ namespace GameRendererDll
 
         Brush bgBrush { get { return GetBrush("GameRendererDll.Images.BackGround.bmp", true); } }
 
-        public void Draw(DrawingContext ctx, int mapID) // todo mindent kirajzolni, flappybol atirni
+        public void Draw(DrawingContext ctx, int mapID, string intersectShop) // todo mindent kirajzolni, flappybol atirni
         {
             Pen black = new Pen(Brushes.Black, 1);
 
@@ -198,20 +196,17 @@ namespace GameRendererDll
                 GeometryDrawing pickaxShopHouse = new GeometryDrawing(
                     Config.PickaxShopHouseBg,
                     black,
-                    new RectangleGeometry(this.model.PickaxShopHouse.Area)
-                    );
+                    new RectangleGeometry(this.model.PickaxShopHouse.Area));
 
                 GeometryDrawing healthShopHouse = new GeometryDrawing(
                     Config.HealthShopHouseBg,
                     black,
-                    new RectangleGeometry(this.model.HealthShopHouse.Area)
-                    );
+                    new RectangleGeometry(this.model.HealthShopHouse.Area));
 
                 GeometryDrawing petrolShopHouse = new GeometryDrawing(
                     Config.PetrolShopHouseBg,
                     black,
-                    new RectangleGeometry(this.model.PetrolShopHouse.Area)
-                    );
+                    new RectangleGeometry(this.model.PetrolShopHouse.Area));
 
                 GeometryDrawing ground = new GeometryDrawing(
                     Config.BgGroundBrush,
@@ -221,20 +216,68 @@ namespace GameRendererDll
                 GeometryDrawing pickaxShop = new GeometryDrawing(
                     Config.PickaxShopBg,
                     black,
-                    new RectangleGeometry(this.model.PickaxShop.Area)
-                    );
+                    new RectangleGeometry(this.model.PickaxShop.Area));
 
                 GeometryDrawing healthShop = new GeometryDrawing(
                     Config.HealthShopBg,
                     black,
-                    new RectangleGeometry(this.model.HealthShop.Area)
-                    );
+                    new RectangleGeometry(this.model.HealthShop.Area));
 
                 GeometryDrawing petrolShop = new GeometryDrawing(
                     Config.PetrolShopBg,
                     black,
-                    new RectangleGeometry(this.model.PetrolShop.Area)
-                    );
+                    new RectangleGeometry(this.model.PetrolShop.Area));
+
+                #region render intersect
+                /*
+                if (intersectShop == "health")
+                {
+                    GeometryDrawing ButtonShop = new GeometryDrawing(
+                    Config.ButtonBg,
+                    black,
+                    new RectangleGeometry(this.model.ButtonShape.Area));
+
+                    GeometryDrawing ButtonBackg = new GeometryDrawing(
+                    Config.ButtonBg,
+                    black,
+                    new RectangleGeometry(this.model.ButtonBackground.Area));
+
+                    this.dg.Children.Add(ButtonBackg);
+                    this.dg.Children.Add(ButtonShop);
+                }
+                else if (intersectShop == "petrol")
+                {
+                    GeometryDrawing ButtonShop = new GeometryDrawing(
+                    Config.ButtonBg,
+                    black,
+                    new RectangleGeometry(this.model.ButtonShape.Area));
+
+                    GeometryDrawing ButtonBackg = new GeometryDrawing(
+                    Config.ButtonBg,
+                    black,
+                    new RectangleGeometry(this.model.ButtonBackground.Area));
+
+                    this.dg.Children.Add(ButtonBackg);
+                    this.dg.Children.Add(ButtonShop);
+                }
+                else if (intersectShop == "pickax")
+                {
+                    GeometryDrawing ButtonShop = new GeometryDrawing(
+                    Config.ButtonBg,
+                    black,
+                    new RectangleGeometry(this.model.ButtonShape.Area));
+
+                    GeometryDrawing ButtonBackg = new GeometryDrawing(
+                    Config.ButtonBg,
+                    black,
+                    new RectangleGeometry(this.model.ButtonBackground.Area));
+
+                    this.dg.Children.Add(ButtonBackg);
+                    this.dg.Children.Add(ButtonShop);
+                }
+                */
+                #endregion
+
                 this.dg.Children.Add(pickaxShopHouse);
                 this.dg.Children.Add(healthShopHouse);
                 this.dg.Children.Add(petrolShopHouse);
@@ -244,11 +287,27 @@ namespace GameRendererDll
                 this.dg.Children.Add(petrolShop);
                 this.dg.Children.Add(miner);
             }
+            else if (mapID == 2)
+            {
+                GeometryDrawing background = new GeometryDrawing(
+                   Config.bgBrush,
+                   black,
+                   new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+                this.dg.Children.Add(background);
+
+            }
 
             ctx.DrawDrawing(this.dg);
-            this.DrawScoreText(ctx);
-            this.DrawHealthText(ctx);
-            this.DrawPetrolText(ctx);
+            if (mapID == 2)
+            {
+                this.EndGameText(ctx);
+            }
+            else
+            {
+                this.DrawScoreText(ctx);
+                this.DrawHealthText(ctx);
+                this.DrawPetrolText(ctx);
+            }
         }
 
         private FormattedText DrawScoreText(DrawingContext ctx)
@@ -301,6 +360,26 @@ namespace GameRendererDll
                     20,
                     Brushes.Gray, 1);
             ctx.DrawText(this.formattedText, this.petrolLocation);
+
+            return this.formattedText;
+        }
+
+        private FormattedText EndGameText(DrawingContext ctx)
+        {
+            int petrol = this.character.Fuel;
+
+            Typeface font = new Typeface("Arial");
+
+            Point p = new Point(255, 200);
+
+            this.formattedText = new FormattedText(
+                    $"GAME OVER B*TCH\n       Your score{this.character.Score}",
+                    System.Globalization.CultureInfo.CurrentCulture,
+                    FlowDirection.LeftToRight,
+                    font,
+                    40,
+                    Brushes.HotPink, 1);
+            ctx.DrawText(this.formattedText, p);
 
             return this.formattedText;
         }

@@ -34,6 +34,10 @@ namespace GameModelDll
 
         public Shape PetrolShop { get; set; }
 
+        public Shape ButtonShape { get; set; }
+
+        public Shape ButtonBackground { get; set; }
+
         public GameModel()
         {
             this.Ground = new Shape(0, Config.Height - Config.GroundHeight, Config.GroundWidth, Config.GroundHeight);
@@ -44,8 +48,10 @@ namespace GameModelDll
             this.PickaxShop = new Shape((Config.BuildingWidth / 2) - 10, this.PickaxShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
             this.HealthShop = new Shape(this.HealthShopHouse.Area.X + (Config.BuildingWidth / 2) - 20, this.HealthShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
             this.PetrolShop = new Shape(this.PetrolShopHouse.Area.X + (Config.BuildingWidth / 2) - 20, this.PetrolShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
-            this.SaveButtonRectangle = new Shape(Config.Width / 2 + 20, Config.Height / 2 + 20, Config.BuildingWidth, Config.BuildingHeight);
-            this.LoadButtonRectangle = new Shape(SaveButtonRectangle.Area.X + Config.BuildingWidth, SaveButtonRectangle.Area.Y + Config.BuildingHeight , Config.BuildingWidth, Config.BuildingHeight);
+
+            this.ButtonBackground = new Shape(Config.Width / 2, Config.Height / 6, Config.ButtonBgWidth, Config.ButtonBgHeight);
+            this.ButtonShape = new Shape(ButtonBackground.Area.X + 10, ButtonBackground.Area.Y + 10 , Config.ButtonWidth, Config.ButtonHeight);
+
         }
     }
 }
