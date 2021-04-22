@@ -86,6 +86,8 @@ namespace GameRendererDll
 
         Brush groundBrush { get { return GetBrush("GameRendererDll.Images.ground.bmp", false); } }
 
+        Brush lavaBrush { get { return GetBrush("GameRendererDll.Images.lava.bmp", false); } }
+
         public void Draw(DrawingContext ctx, int mapID, string intersectShop) // todo mindent kirajzolni, flappybol atirni
         {
             Pen black = new Pen(Brushes.Black, 1);
@@ -180,6 +182,12 @@ namespace GameRendererDll
                                 black,
                                 RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(ladder);
+                                break;
+                            case "lava":
+                                GeometryDrawing lava = new GeometryDrawing(lavaBrush,
+                                black,
+                                RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
+                                this.dg.Children.Add(lava);
                                 break;
                         }
                     }

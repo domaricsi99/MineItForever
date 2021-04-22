@@ -20,7 +20,7 @@
     <None Remove="Images\gold.bmp" />
     <None Remove="Images\ground.bmp" />
     <None Remove="Images\ladder.bmp" />
-    <None Remove="Images\lava.png" />
+    <None Remove="Images\lava.bmp" />
     <None Remove="Images\shopWindowBackground.bmp" />
     <None Remove="Images\silver.bmp" />
     <None Remove="Images\stone.bmp" />
@@ -34,7 +34,7 @@
     <EmbeddedResource Include="Images\gold.bmp" />
     <EmbeddedResource Include="Images\ground.bmp" />
     <EmbeddedResource Include="Images\ladder.bmp" />
-    <EmbeddedResource Include="Images\lava.png" />
+    <EmbeddedResource Include="Images\lava.bmp" />
     <EmbeddedResource Include="Images\shopWindowBackground.bmp" />
     <EmbeddedResource Include="Images\silver.bmp" />
     <EmbeddedResource Include="Images\stone.bmp" />

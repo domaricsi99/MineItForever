@@ -501,7 +501,7 @@ namespace GameLogicDll
                             this.character.Backpack.Add(item);
                             this.character.Score += item.Score;
                             this.character.Money += item.Value; // Nem itt majd a shopban ha eladtuk
-
+                            Damage(item);
                             item.OreType = this.newAir.OreType;
                             item.canPass = this.newAir.canPass;
                             item.Hurt = this.newAir.Hurt;
@@ -522,7 +522,7 @@ namespace GameLogicDll
                                 this.character.Backpack.Add(item);
                                 this.character.Score += item.Score;
                                 this.character.Money += item.Value; // Nem itt majd a shopban ha eladtuk
-
+                                Damage(item);
                                 item.OreType = this.newAir.OreType;
                                 item.canPass = this.newAir.canPass;
                                 item.Hurt = this.newAir.Hurt;
@@ -543,7 +543,7 @@ namespace GameLogicDll
                             this.character.Backpack.Add(item);
                             this.character.Score += item.Score;
                             this.character.Money += item.Value; // Nem itt majd a shopban ha eladtuk
-
+                            Damage(item);
                             item.OreType = this.newAir.OreType;
                             item.canPass = this.newAir.canPass;
                             item.Hurt = this.newAir.Hurt;
@@ -706,6 +706,15 @@ namespace GameLogicDll
             if (this.character.Health <= 0 || this.character.Fuel <= 0)
             {
                 this.EndGameEvent?.Invoke(this, EventArgs.Empty);
+                SaveGame(character);
+            }
+        }
+
+        public void Damage (Ore ore)
+        {
+            if (ore.OreType == "lava")
+            {
+                this.character.Health -= 20;
             }
         }
 
