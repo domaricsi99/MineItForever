@@ -18,7 +18,9 @@
     <None Remove="Images\diamond.bmp" />
     <None Remove="Images\dirt.bmp" />
     <None Remove="Images\gold.bmp" />
+    <None Remove="Images\ground.bmp" />
     <None Remove="Images\lava.png" />
+    <None Remove="Images\shopWindowBackground.bmp" />
     <None Remove="Images\silver.bmp" />
     <None Remove="Images\stone.bmp" />
   </ItemGroup>
@@ -29,7 +31,9 @@
     <EmbeddedResource Include="Images\diamond.bmp" />
     <EmbeddedResource Include="Images\dirt.bmp" />
     <EmbeddedResource Include="Images\gold.bmp" />
+    <EmbeddedResource Include="Images\ground.bmp" />
     <EmbeddedResource Include="Images\lava.png" />
+    <EmbeddedResource Include="Images\shopWindowBackground.bmp" />
     <EmbeddedResource Include="Images\silver.bmp" />
     <EmbeddedResource Include="Images\stone.bmp" />
   </ItemGroup>

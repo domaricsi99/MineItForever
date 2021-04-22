@@ -56,7 +56,7 @@ namespace GameRendererDll
                 if (isTiled)
                 {
                     ib.TileMode = TileMode.Tile;
-                    ib.Viewport = new Rect(0, 0, Config.Width,Config.Height);
+                    ib.Viewport = new Rect(0, 0, Config.Width, Config.Height);
                     ib.ViewportUnits = BrushMappingMode.Absolute;
                 }
 
@@ -68,19 +68,23 @@ namespace GameRendererDll
 
         Brush bgBrush { get { return GetBrush("GameRendererDll.Images.BackGround.bmp", true); } }
 
-        Brush copperBrush { get { return GetBrush("GameRendererDll.Images.copper.bmp", true); } }
-        
-        Brush diamondBrush { get { return GetBrush("GameRendererDll.Images.diamond.bmp", true); } }
+        Brush copperBrush { get { return GetBrush("GameRendererDll.Images.copper.bmp", false); } }
 
-        Brush dirtBrush { get { return GetBrush("GameRendererDll.Images.dirt.bmp", true); } }
+        Brush diamondBrush { get { return GetBrush("GameRendererDll.Images.diamond.bmp", false); } }
 
-        Brush goldBrush { get { return GetBrush("GameRendererDll.Images.gold.bmp", true); } }
+        Brush dirtBrush { get { return GetBrush("GameRendererDll.Images.dirt.bmp", false); } }
 
-        Brush silverBrush { get { return GetBrush("GameRendererDll.Images.silver.bmp", true); } }
+        Brush goldBrush { get { return GetBrush("GameRendererDll.Images.gold.bmp", false); } }
 
-        Brush stoneBrush { get { return GetBrush("GameRendererDll.Images.stone.bmp", true); } }
+        Brush silverBrush { get { return GetBrush("GameRendererDll.Images.silver.bmp", false); } }
 
-        Brush ladderBrush { get { return GetBrush("GameRendererDll.Images.ladder.bmp", true); } }
+        Brush stoneBrush { get { return GetBrush("GameRendererDll.Images.stone.bmp", false); } }
+
+        Brush ladderBrush { get { return GetBrush("GameRendererDll.Images.ladder.bmp", false); } }
+
+        Brush shopWindowBackgroundBrush { get { return GetBrush("GameRendererDll.Images.shopWindowBackground.bmp", true); } }
+
+        Brush groundBrush { get { return GetBrush("GameRendererDll.Images.ground.bmp", false); } }
 
         public void Draw(DrawingContext ctx, int mapID, string intersectShop) // todo mindent kirajzolni, flappybol atirni
         {
@@ -118,7 +122,7 @@ namespace GameRendererDll
                         switch (oreMatrix[i, j].OreType)
                         {
                             case "air":
-                                GeometryDrawing Air = new GeometryDrawing(copperBrush,
+                                GeometryDrawing Air = new GeometryDrawing(Config.airBg,
                                 black,
                                 RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(Air);
@@ -191,7 +195,7 @@ namespace GameRendererDll
             else if (mapID == 0) // SHOP AND GATE TO MINE
             {
                 GeometryDrawing background = new GeometryDrawing(
-                   Config.bgBrush,
+                   shopWindowBackgroundBrush,
                    black,
                    new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
                 this.dg.Children.Add(background);
@@ -223,7 +227,7 @@ namespace GameRendererDll
                     new RectangleGeometry(this.model.PetrolShopHouse.Area));
 
                 GeometryDrawing ground = new GeometryDrawing(
-                    Config.BgGroundBrush,
+                    groundBrush,
                     black,
                     new RectangleGeometry(this.model.Ground.Area));
 
