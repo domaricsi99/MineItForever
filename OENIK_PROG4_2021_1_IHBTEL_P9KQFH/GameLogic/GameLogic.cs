@@ -31,6 +31,7 @@ namespace GameLogicDll
         Ore newAir;
         Ore newLadder;
         bool falling;
+        int fallCounter;
 
         public event EventHandler RefreshScreen;
 
@@ -203,6 +204,7 @@ namespace GameLogicDll
 
         public void Fall(int mapID) // csak alattunk
         {
+
             if (!this.character.Area.IntersectsWith(this.model.Ground.Area) && mapID == 0)
             {
                 this.character.ChangeY(5);
@@ -239,11 +241,19 @@ namespace GameLogicDll
                         item2.ChangeY(-5);
                     }
 
+                    if (mapID == 1)
+                    {
+                        fallCounter += 5;
+                        DeadFall(fallCounter);
+                    }
+
                     falling = true;
                 }
                 else
                 {
                     falling = false;
+                    fallCounter = 0;
+
                 }
             }
 
@@ -715,6 +725,25 @@ namespace GameLogicDll
             if (ore.OreType == "lava")
             {
                 this.character.Health -= 20;
+            }
+        }
+
+        public void DeadFall(int counter)
+        {
+            switch (counter)
+            {
+                case 135:
+                    character.Health -= 20;
+                    break;
+                case 180:
+                    character.Health -= 40;
+                    break;
+                case 225:
+                    character.Health -= 80;
+                    break;
+                case 270:
+                    character.Health -= 100;
+                    break;
             }
         }
 
