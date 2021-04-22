@@ -68,6 +68,20 @@ namespace GameRendererDll
 
         Brush bgBrush { get { return GetBrush("GameRendererDll.Images.BackGround.bmp", true); } }
 
+        Brush copperBrush { get { return GetBrush("GameRendererDll.Images.copper.bmp", true); } }
+        
+        Brush diamondBrush { get { return GetBrush("GameRendererDll.Images.diamond.bmp", true); } }
+
+        Brush dirtBrush { get { return GetBrush("GameRendererDll.Images.dirt.bmp", true); } }
+
+        Brush goldBrush { get { return GetBrush("GameRendererDll.Images.gold.bmp", true); } }
+
+        Brush silverBrush { get { return GetBrush("GameRendererDll.Images.silver.bmp", true); } }
+
+        Brush stoneBrush { get { return GetBrush("GameRendererDll.Images.stone.bmp", true); } }
+
+        Brush ladderBrush { get { return GetBrush("GameRendererDll.Images.ladder.bmp", true); } }
+
         public void Draw(DrawingContext ctx, int mapID, string intersectShop) // todo mindent kirajzolni, flappybol atirni
         {
             Pen black = new Pen(Brushes.Black, 1);
@@ -104,43 +118,43 @@ namespace GameRendererDll
                         switch (oreMatrix[i, j].OreType)
                         {
                             case "air":
-                                GeometryDrawing Air = new GeometryDrawing(Config.airBg,
+                                GeometryDrawing Air = new GeometryDrawing(copperBrush,
                                 black,
                                 RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(Air);
                                 break;
                             case "dirt":
-                                GeometryDrawing Dirt = new GeometryDrawing(Config.dirtBg,
+                                GeometryDrawing Dirt = new GeometryDrawing(dirtBrush,
                                 black,
                                 RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(Dirt);
                                 break;
                             case "copper":
-                                GeometryDrawing Copper = new GeometryDrawing(Config.copperBg,
+                                GeometryDrawing Copper = new GeometryDrawing(copperBrush,
                                 black,
                                 RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(Copper);
                                 break;
                             case "silver":
-                                GeometryDrawing Silver = new GeometryDrawing(Config.silverBg,
+                                GeometryDrawing Silver = new GeometryDrawing(silverBrush,
                                 black,
                                 RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(Silver);
                                 break;
                             case "gold":
-                                GeometryDrawing Gold = new GeometryDrawing(Config.goldBg,
+                                GeometryDrawing Gold = new GeometryDrawing(goldBrush,
                                 black,
                                 RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(Gold);
                                 break;
                             case "diamond":
-                                GeometryDrawing Diamond = new GeometryDrawing(Config.diamondBg,
+                                GeometryDrawing Diamond = new GeometryDrawing(diamondBrush,
                                 black,
                                 RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(Diamond);
                                 break;
                             case "stone":
-                                GeometryDrawing Stone = new GeometryDrawing(Config.stoneBg,
+                                GeometryDrawing Stone = new GeometryDrawing(stoneBrush,
                                 black,
                                 RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(Stone);
@@ -152,13 +166,13 @@ namespace GameRendererDll
                                 this.dg.Children.Add(mapOneGate);
                                 break;
                             case "ground2":
-                                GeometryDrawing mineGround = new GeometryDrawing(Brushes.DarkOliveGreen,
+                                GeometryDrawing mineGround = new GeometryDrawing(stoneBrush,
                                 black,
                                 RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(mineGround);
                                 break;
                             case "ladder":
-                                GeometryDrawing ladder = new GeometryDrawing(Config.LadderBg,
+                                GeometryDrawing ladder = new GeometryDrawing(ladderBrush,
                                 black,
                                 RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(ladder);
@@ -373,7 +387,7 @@ namespace GameRendererDll
             Point p = new Point(255, 200);
 
             this.formattedText = new FormattedText(
-                    $"GAME OVER B*TCH\n       Your score{this.character.Score}",
+                    $"GAME OVER\nYour score: {this.character.Score}",
                     System.Globalization.CultureInfo.CurrentCulture,
                     FlowDirection.LeftToRight,
                     font,
