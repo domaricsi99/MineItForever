@@ -187,7 +187,7 @@ namespace GameLogicDll
         public Ore[,] DrawMap()
         {
             int delimeter = 20;
-            Ore[,] oreMatrix = new Ore[this.character.Map.Length, delimeter]; // lehet kula
+            Ore[,] oreMatrix = new Ore[this.character.Map.Count / 20, delimeter];
             int counter = 0;
             for (int i = 0; i < oreMatrix.GetLength(0); i++)
             {

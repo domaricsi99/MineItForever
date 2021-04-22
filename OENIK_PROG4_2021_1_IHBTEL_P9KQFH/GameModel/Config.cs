@@ -8,6 +8,7 @@ namespace GameModelDll
         public static double Width = 900;
         public static double Height = 400;
         public static int BorderSize = 4;
+        public static int MapDelimeter = 20;
 
         public static Brush bgBrush = Brushes.White;
         public static Brush BorderBrush = Brushes.DarkGray;

@@ -49,7 +49,7 @@ namespace GameRepository
                 Money = int.Parse(character.Root.Element("Money").Value),
                 PickAxLevel = int.Parse(character.Root.Element("PickLevel").Value),
                 Area = new System.Windows.Rect(Config.Width / 2, Config.Height / 2, Config.MinerWidth, Config.MinerHeight),
-                Map = character.Root.Element("Map").Value.Split(','),
+                Map = character.Root.Element("Map").Value.Split(';').ToList(),
                 Backpack = new List<Ore>(),
             };
             return selectedChar;
@@ -104,9 +104,9 @@ namespace GameRepository
                     Money = int.Parse(item.Element("Money").Value),
                     PickAxLevel = int.Parse(item.Element("PickLevel").Value),
                     Area = new System.Windows.Rect(Config.Width / 2, Config.Height / 2, Config.MinerWidth, Config.MinerHeight),
-                    Map = item.Element("Map").Value.Split(','),
+                    Map = item.Element("Map").Value.Split(';').ToList(),
                     Backpack = new List<Ore>(),
-                });
+                }); ;
             }
 
             return profiles;
@@ -115,6 +115,7 @@ namespace GameRepository
         public void NewCharacter(string name)
         {
             XDocument xdoc = XDocument.Load("Profiles.xml");
+            string mapString = XDocument.Load("Map.xml").Element("Map").Value;
             Character character = new Character()
             {
                 Name = name,
@@ -123,7 +124,7 @@ namespace GameRepository
                 Health = 100,
                 Money = 10,
                 Score = 0,
-                Map = File.ReadAllLines("palya.txt"),
+                Map = XDocument.Load("Map.xml").Element("Map").Value.Split(';').ToList(),
             };
 
             new XDocument(
@@ -134,7 +135,7 @@ namespace GameRepository
                     new XElement("Health", character.Health),
                     new XElement("Score", character.Score),
                     new XElement("Money", character.Money),
-                    new XElement("Map", character.Map))).Save("selectedProfile.xml");
+                    new XElement("Map", mapString))).Save("selectedProfile.xml");
 
             xdoc.Root.Add(new XElement("Character",
                     new XElement("Name", character.Name),
@@ -143,7 +144,7 @@ namespace GameRepository
                     new XElement("Health", character.Health),
                     new XElement("Score", character.Score),
                     new XElement("Money", character.Money),
-                    new XElement("Map", character.Map)));
+                    new XElement("Map", mapString)));
             xdoc.Save("Profiles.xml");
             // SaveGame(character);
         }
