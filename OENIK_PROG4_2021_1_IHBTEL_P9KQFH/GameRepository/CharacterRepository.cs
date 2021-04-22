@@ -55,30 +55,48 @@ namespace GameRepository
             return selectedChar;
         }
 
-        public bool SaveGame(Character character)
+        public void SaveGame(Character character)
         {
-            // 0 - Name, 1 - Health, 2 - Fuel, 3 - PickAxLevel, 4 - Money, 5 - Score
-            //string[] profile = new string[6];
-            //profile[0] = character.Name;
-            //profile[1] = character.Health.ToString();
-            //profile[2] = character.Fuel.ToString();
-            //profile[3] = character.PickAxLevel.ToString();
-            //profile[4] = character.Money.ToString();
-            //profile[5] = character.Score.ToString();
-
-            //File.WriteAllLines(character.Name + ".txt", profile);
-
-            //File.WriteAllLines(character.Name + "Map.txt", character.Map); // nem menti ki vagy is de, egyszer olvassuk be ez a baja TODO
-
+            string mapString = mapToXml(character);
             XDocument selProfile = XDocument.Load("Profiles.xml");
-            var element = from charProf in selProfile.Root.Elements("Character")
-                          where charProf.Element("Name").Value == character.Name
-                          select charProf;
+            selProfile.Root.Elements("Character").Elements("Name")
+                .Single(profName => profName.Value == character.Name)
+                .Parent.Element("Fuel").Value = character.Fuel.ToString();
 
-            return true;
+            selProfile.Root.Elements("Character").Elements("Name")
+                .Single(profName => profName.Value == character.Name)
+                .Parent.Element("Health").Value = character.Health.ToString();
+
+            selProfile.Root.Elements("Character").Elements("Name")
+                .Single(profName => profName.Value == character.Name)
+                .Parent.Element("Score").Value = character.Score.ToString();
+
+            selProfile.Root.Elements("Character").Elements("Name")
+                .Single(profName => profName.Value == character.Name)
+                .Parent.Element("Money").Value = character.Money.ToString();
+
+            selProfile.Root.Elements("Character").Elements("Name")
+                .Single(profName => profName.Value == character.Name)
+                .Parent.Element("Map").Value = mapString;
+
+            selProfile.Save("Profiles.xml");
         }
 
         public void LoadSelectedProfile(Character selectedChar)
+        {
+            string mapString = mapToXml(selectedChar);
+            new XDocument(
+                    new XElement("Character",
+                        new XElement("Name", selectedChar.Name),
+                        new XElement("PickLevel", selectedChar.PickAxLevel),
+                        new XElement("Fuel", selectedChar.Fuel),
+                        new XElement("Health", selectedChar.Health),
+                        new XElement("Score", selectedChar.Score),
+                        new XElement("Money", selectedChar.Money),
+                        new XElement("Map", mapString))).Save("selectedProfile.xml");
+        }
+
+        public string mapToXml(Character selectedChar)
         {
             string mapString = string.Empty;
             for (int i = 0; i < selectedChar.Map.Count; i++)
@@ -92,16 +110,7 @@ namespace GameRepository
                     mapString += selectedChar.Map[i] + ";";
                 }
             }
-
-            new XDocument(
-                    new XElement("Character",
-                        new XElement("Name", selectedChar.Name),
-                        new XElement("PickLevel", selectedChar.PickAxLevel),
-                        new XElement("Fuel", selectedChar.Fuel),
-                        new XElement("Health", selectedChar.Health),
-                        new XElement("Score", selectedChar.Score),
-                        new XElement("Money", selectedChar.Money),
-                        new XElement("Map", mapString))).Save("selectedProfile.xml");
+            return mapString;
         }
 
         public List<Character> LoadAllProfile()
