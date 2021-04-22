@@ -535,7 +535,34 @@ namespace GameLogicDll
                     }
                 }
             }
-            
+        }
+
+        public void PickUpLadder(Point point, int mapID)
+        {
+            if (mapID == 1)
+            {
+                Ore[,] renderedOres = this.MapPart();
+                for (int i = 0; i < renderedOres.GetLength(0); i++)
+                {
+                    for (int j = 0; j < renderedOres.GetLength(1); j++)
+                    {
+                        if (renderedOres[i, j].OreType == "ladder"
+                            && renderedOres[i, j].Area.Left <= point.X && renderedOres[i, j].Area.Right >= point.X
+                            && renderedOres[i, j].Area.Bottom >= point.Y && renderedOres[i, j].Area.Top <= point.Y)
+                        {
+                            renderedOres[i, j].OreType = this.newAir.OreType;
+                            renderedOres[i, j].canPass = this.newAir.canPass;
+                            renderedOres[i, j].Hurt = this.newAir.Hurt;
+                            renderedOres[i, j].BreakLevel = this.newAir.BreakLevel;
+                            renderedOres[i, j].Score = this.newAir.Score;
+                            renderedOres[i, j].Level = this.newAir.Level;
+                            renderedOres[i, j].Value = this.newAir.Value;
+                            break;
+                        }
+                    }
+                }
+            }
+
         }
 
         public string HealthBuyLogic()

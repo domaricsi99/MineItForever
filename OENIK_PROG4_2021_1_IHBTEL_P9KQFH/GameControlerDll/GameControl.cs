@@ -75,6 +75,7 @@ namespace GameControlerDll
 
             this.MouseLeftButtonDown += this.GameControl_MouseLeftButtonDown;
 
+            this.MouseRightButtonDown += GameControl_MouseRightButtonDown;
             this.logic.ShopScreen += (obj, args) =>
             {
                 this.mapID = 0;
@@ -92,6 +93,12 @@ namespace GameControlerDll
             };
 
             this.InvalidateVisual();
+        }
+
+        private void GameControl_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Point cursorPos = e.GetPosition(this);
+            this.logic.PickUpLadder(cursorPos, this.mapID);
         }
 
         private void GameControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
