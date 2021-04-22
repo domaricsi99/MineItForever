@@ -306,7 +306,9 @@ namespace GameLogicDll
                     predictedChar.Y += 40; // nem tudom miert ennyi
                     foreach (var item in renderedOres)
                     {
-                        if (item.Area.IntersectsWith(predictedChar) && item.OreType == "ladder")
+                        if (item.OreType == "ladder" 
+                            && item.Area.Left <= predictedChar.Left
+                            && item.Area.Right >= predictedChar.Right)
                         {
                             return 1;
                         }
@@ -321,7 +323,9 @@ namespace GameLogicDll
                 case Direction.Climb:
                     foreach (var item in renderedOres)
                     {
-                        if (item.Area.IntersectsWith(predictedChar) && item.OreType == "ladder")
+                        if (item.OreType == "ladder"
+                            && item.Area.Left <= predictedChar.Left
+                            && item.Area.Right >= predictedChar.Right)
                         {
                             return 0;
                         }
@@ -457,6 +461,9 @@ namespace GameLogicDll
                         break;
                     case "gate":
                         mapStringList.Add("9");
+                        break;
+                    case "ladder":
+                        mapStringList.Add("10");
                         break;
                     default:
                         break;

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GameControlerDll;assembly=GameControlerDll"
         xmlns:repo="clr-namespace:GameRepository;assembly=GameRepository"
         mc:Ignorable="d"
-        Title="MainWindow" Width="1000" Height="500">
+        Title="MainWindow" Width="908" Height="419">
 
     <Window.Resources>
         <DataTemplate x:Key="Pickaxes" DataType="{x:Type repo:ShopRepsitory}">
@@ -14,9 +14,9 @@
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
-    
-    <Grid>
-        <local:GameControl Margin="50,24,50,10"/>
-        
+
+    <Grid HorizontalAlignment="Center" Width="900" Height="400" VerticalAlignment="Top">
+        <local:GameControl Margin="0,0,100,0" Height="366" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
