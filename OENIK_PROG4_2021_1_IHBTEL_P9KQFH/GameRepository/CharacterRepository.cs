@@ -31,6 +31,15 @@ namespace GameRepository
             {
                 new XDocument(new XElement("Character")).Save("selectedProfile.xml");
             }
+
+            try
+            {
+                XDocument.Load("Highscore.xml");
+            }
+            catch (FileNotFoundException)
+            {
+                new XDocument(new XElement("Character")).Save("Highscore.xml");
+            }
         }
 
         /// <summary>
@@ -138,6 +147,27 @@ namespace GameRepository
             }
 
             return profiles;
+        }
+
+        public List<Character> LoadHighscore()
+        {
+            List<Character> profiles = new List<Character>();
+
+            XDocument xdoc = XDocument.Load("Highscore.xml");
+
+            List<XElement> xelementProfiles = xdoc.Root.Elements("Character").ToList();
+
+            foreach (var item in xelementProfiles)
+            {
+                profiles.Add(new Character()
+                {
+                    Name = item.Element("Name").Value,
+                    Score = int.Parse(item.Element("Score").Value),
+                });
+            }
+
+            List<Character> sortedHighscore = profiles.OrderByDescending(x => x.Score).ToList();
+            return sortedHighscore;
         }
 
         public void NewCharacter(string name)

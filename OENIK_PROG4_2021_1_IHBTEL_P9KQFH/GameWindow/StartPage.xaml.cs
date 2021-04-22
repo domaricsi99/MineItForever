@@ -43,7 +43,9 @@
 
         private void Highscore_Click(object sender, RoutedEventArgs e)
         {
-
+            HighscoreWindow hsWindow = new HighscoreWindow();
+            this.Hide();
+            hsWindow.ShowDialog();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

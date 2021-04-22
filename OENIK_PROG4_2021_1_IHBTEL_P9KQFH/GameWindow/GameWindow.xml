@@ -22,6 +22,19 @@
             Application Entry Point.
             </summary>
         </member>
+        <member name="T:GameWindow.HighscoreWindow">
+            <summary>
+            Interaction logic for HighscoreWindow.xaml
+            </summary>
+            <summary>
+            HighscoreWindow
+            </summary>
+        </member>
+        <member name="M:GameWindow.HighscoreWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:GameWindow.LoadGameDataWindow">
             <summary>
             Interaction logic for LoadGameDataWindow.xaml.
