@@ -58,31 +58,41 @@ namespace GameRepository
         public bool SaveGame(Character character)
         {
             // 0 - Name, 1 - Health, 2 - Fuel, 3 - PickAxLevel, 4 - Money, 5 - Score
-            string[] profile = new string[6];
-            profile[0] = character.Name;
-            profile[1] = character.Health.ToString();
-            profile[2] = character.Fuel.ToString();
-            profile[3] = character.PickAxLevel.ToString();
-            profile[4] = character.Money.ToString();
-            profile[5] = character.Score.ToString();
+            //string[] profile = new string[6];
+            //profile[0] = character.Name;
+            //profile[1] = character.Health.ToString();
+            //profile[2] = character.Fuel.ToString();
+            //profile[3] = character.PickAxLevel.ToString();
+            //profile[4] = character.Money.ToString();
+            //profile[5] = character.Score.ToString();
 
-            File.WriteAllLines(character.Name + ".txt", profile);
+            //File.WriteAllLines(character.Name + ".txt", profile);
 
-            File.WriteAllLines(character.Name + "Map.txt", character.Map); // nem menti ki vagy is de, egyszer olvassuk be ez a baja TODO
+            //File.WriteAllLines(character.Name + "Map.txt", character.Map); // nem menti ki vagy is de, egyszer olvassuk be ez a baja TODO
 
             XDocument selProfile = XDocument.Load("Profiles.xml");
             var element = from charProf in selProfile.Root.Elements("Character")
                           where charProf.Element("Name").Value == character.Name
                           select charProf;
 
-            var q = selProfile.Root.Descendants("Character")
-                .Where(x => x.Element("Name").Value == character.Name);
-
             return true;
         }
 
         public void LoadSelectedProfile(Character selectedChar)
         {
+            string mapString = string.Empty;
+            for (int i = 0; i < selectedChar.Map.Count; i++)
+            {
+                if (i == selectedChar.Map.Count - 1)
+                {
+                    mapString += selectedChar.Map[i];
+                }
+                else
+                {
+                    mapString += selectedChar.Map[i] + ";";
+                }
+            }
+
             new XDocument(
                     new XElement("Character",
                         new XElement("Name", selectedChar.Name),
@@ -91,7 +101,7 @@ namespace GameRepository
                         new XElement("Health", selectedChar.Health),
                         new XElement("Score", selectedChar.Score),
                         new XElement("Money", selectedChar.Money),
-                        new XElement("Map", selectedChar.Map))).Save("selectedProfile.xml");
+                        new XElement("Map", mapString))).Save("selectedProfile.xml");
         }
 
         public List<Character> LoadAllProfile()
