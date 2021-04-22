@@ -423,6 +423,47 @@ namespace GameLogicDll
 
         public void SaveGame(Character character)
         {
+            List<string> mapStringList = new List<string>();
+            foreach (var item in this.map)
+            {
+                switch (item.OreType)
+                {
+                    case "air":
+                        mapStringList.Add("0");
+                        break;
+                    case "dirt":
+                        mapStringList.Add("1");
+                        break;
+                    case "copper":
+                        mapStringList.Add("2");
+                        break;
+                    case "silver":
+                        mapStringList.Add("3");
+                        break;
+                    case "gold":
+                        mapStringList.Add("4");
+                        break;
+                    case "stone":
+                        mapStringList.Add("5");
+                        break;
+                    case "diamond":
+                        mapStringList.Add("6");
+                        break;
+                    case "lava":
+                        mapStringList.Add("7");
+                        break;
+                    case "ground2":
+                        mapStringList.Add("8");
+                        break;
+                    case "gate":
+                        mapStringList.Add("9");
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            character.Map = mapStringList;
             this.charRepo.SaveGame(character);
         }
 
