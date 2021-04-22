@@ -17,7 +17,7 @@ namespace GameRepository
         {
         }
 
-        public List<Ore> DrawMap(Character character)
+        public List<Ore> StringToOreList(Character character)
         {
             this.map = new List<Ore>();
             int localOreX = Config.oreX;

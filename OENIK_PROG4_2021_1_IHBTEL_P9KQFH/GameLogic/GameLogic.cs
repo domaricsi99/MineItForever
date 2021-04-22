@@ -48,7 +48,7 @@ namespace GameLogicDll
             this.model = model;
             this.mapRepo = mapRepo;
             this.charRepo = charRepo;
-            this.map = this.mapRepo.DrawMap(character);
+            this.map = this.mapRepo.StringToOreList(character);
             this.ore = this.DrawMap();
             this.newAir = this.mapRepo.MakeAir();
             this.newLadder = this.mapRepo.MakeLadder();
@@ -60,7 +60,7 @@ namespace GameLogicDll
             this.model = model;
             this.mapRepo = mapRepo;
             this.charRepo = charRepo;
-            this.map = this.mapRepo.DrawMap(this.character);
+            this.map = this.mapRepo.StringToOreList(this.character);
             this.ore = this.DrawMap();
         }
 

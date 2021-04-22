@@ -9,6 +9,6 @@
 
     public interface IMapRepository
     {
-        public List<Ore> DrawMap(Character character);
+        public List<Ore> StringToOreList(Character character);
     }
 }

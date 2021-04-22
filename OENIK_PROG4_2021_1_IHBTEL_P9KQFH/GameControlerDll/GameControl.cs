@@ -52,6 +52,7 @@ namespace GameControlerDll
             this.mapRepo = new MapRepository();
             this.charRepo = new CharacterRepository();
             this.character = this.charRepo.StartGame();
+            this.charRepo.SaveGame(this.character);
             this.logic = new GameLogic(this.model, this.mapRepo, this.charRepo, this.character);
             this.renderer = new GameRenderer(this.model, this.logic, this.character);
             Window win = Window.GetWindow(this);

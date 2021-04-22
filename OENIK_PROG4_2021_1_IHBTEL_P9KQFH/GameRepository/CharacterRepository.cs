@@ -69,6 +69,15 @@ namespace GameRepository
             File.WriteAllLines(character.Name + ".txt", profile);
 
             File.WriteAllLines(character.Name + "Map.txt", character.Map); // nem menti ki vagy is de, egyszer olvassuk be ez a baja TODO
+
+            XDocument selProfile = XDocument.Load("Profiles.xml");
+            var element = from charProf in selProfile.Root.Elements("Character")
+                          where charProf.Element("Name").Value == character.Name
+                          select charProf;
+
+            var q = selProfile.Root.Descendants("Character")
+                .Where(x => x.Element("Name").Value == character.Name);
+
             return true;
         }
 
@@ -106,7 +115,7 @@ namespace GameRepository
                     Area = new System.Windows.Rect(Config.Width / 2, Config.Height / 2, Config.MinerWidth, Config.MinerHeight),
                     Map = item.Element("Map").Value.Split(';').ToList(),
                     Backpack = new List<Ore>(),
-                }); ;
+                });
             }
 
             return profiles;
