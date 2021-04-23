@@ -12,7 +12,7 @@ namespace GameLogicDll
     using GameModelDll;
     using GameRepository;
     using System.Windows;
-    using System.Windows.Input;
+
 
     public enum Direction
     {
@@ -43,6 +43,8 @@ namespace GameLogicDll
         public event EventHandler ShopScreen;
 
         public event EventHandler EndGameEvent;
+
+        public event EventHandler BackToMainMenuEvent;
 
         public GameLogic(GameModel model, MapRepository mapRepo, CharacterRepository charRepo, Character character)
         {
@@ -772,6 +774,14 @@ namespace GameLogicDll
                 }
 
                 this.SaveGame(this.character);
+            }
+            else if (mapID == 2)
+            {
+                if (this.model.EndGameButton.Area.Left <= point.X && this.model.EndGameButton.Area.Right >= point.X
+                   && this.model.EndGameButton.Area.Bottom >= point.Y && this.model.EndGameButton.Area.Top <= point.Y)
+                {
+                    this.BackToMainMenuEvent?.Invoke(this, EventArgs.Empty); // jobb oldali buy
+                }
             }
         }
     }

@@ -93,6 +93,12 @@ namespace GameControlerDll
                 this.mapID = 2;
             };
 
+            this.logic.BackToMainMenuEvent += (obj, args) =>
+            {
+                win.Close();
+                //TODO StartPage meghívás
+            };
+
             this.InvalidateVisual();
         }
 

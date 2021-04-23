@@ -42,6 +42,8 @@ namespace GameModelDll
 
         public Shape ButtonBackground { get; set; }
 
+        public Shape EndGameButton{ get; set; }
+
         public GameModel()
         {
             this.Ground = new Shape(0, Config.Height - Config.GroundHeight, Config.GroundWidth, Config.GroundHeight);
@@ -59,6 +61,8 @@ namespace GameModelDll
 
             this.PetrolButtonShape = new Shape(ButtonBackground.Area.X + 40, ButtonBackground.Area.Y + 100, Config.ButtonWidth, Config.ButtonHeight);
             this.HealthButtonShape = new Shape(220 + PetrolButtonShape.Area.X, PetrolButtonShape.Area.Y, Config.ButtonWidth, Config.ButtonHeight);
+
+            this.EndGameButton = new Shape(Config.Width / 2 - (Config.EndGameButtonWidth / 2), Config.Height - Config.EndGameButtonHeight - 20, Config.EndGameButtonWidth, Config.EndGameButtonHeight);
         }
     }
 }

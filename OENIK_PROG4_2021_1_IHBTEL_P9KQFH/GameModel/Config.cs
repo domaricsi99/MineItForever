@@ -62,6 +62,9 @@ namespace GameModelDll
         public static int ButtonBgWidth = 400;
         public static int ButtonBgHeight = 150;
 
+        public static int EndGameButtonWidth = 180;
+        public static int EndGameButtonHeight = 50;
+
         public static Brush LadderBg = Brushes.Bisque;
     }
 }

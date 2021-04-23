@@ -99,6 +99,8 @@ namespace GameRendererDll
 
         Brush SellButtonBrush { get { return GetBrush("GameRendererDll.Images.sell button.bmp", false); } }
 
+        Brush EndGameButtonBrush { get { return GetBrush("GameRendererDll.Images.Main menu.bmp", false); } }
+
         public void Draw(DrawingContext ctx, int mapID, string intersectShop) // todo mindent kirajzolni, flappybol atirni
         {
             Pen black = null;//new Pen(Brushes.Black, 1);
@@ -314,7 +316,14 @@ namespace GameRendererDll
                    Config.bgBrush,
                    black,
                    new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+
+                GeometryDrawing endGameButton = new GeometryDrawing(
+                    EndGameButtonBrush,
+                    black,
+                    new RectangleGeometry(this.model.EndGameButton.Area));
+
                 this.dg.Children.Add(background);
+                this.dg.Children.Add(endGameButton);
 
             }
 
