@@ -30,11 +30,15 @@ namespace GameModelDll
 
         public Shape PickaxShop { get; set; }
 
-        public Shape HealthShop { get; set; }
+        public Shape SellShop { get; set; }
 
-        public Shape PetrolShop { get; set; }
+        public Shape PetrolAndHealthShop { get; set; }
 
         public Shape ButtonShape { get; set; }
+
+        public Shape PetrolButtonShape { get; set; }
+
+        public Shape HealthButtonShape { get; set; }
 
         public Shape ButtonBackground { get; set; }
 
@@ -46,12 +50,15 @@ namespace GameModelDll
             this.HealthShopHouse = new Building(this.PickaxShopHouse.area.Y / 2, Config.Height - (Config.GroundHeight + Config.BuildingHeight), Config.BuildingWidth, Config.BuildingHeight);
             this.PetrolShopHouse = new Building(this.HealthShopHouse.area.Y - 10, Config.Height - (Config.GroundHeight + Config.BuildingHeight), Config.BuildingWidth, Config.BuildingHeight);
             this.PickaxShop = new Shape((Config.BuildingWidth / 2) - 10, this.PickaxShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
-            this.HealthShop = new Shape(this.HealthShopHouse.Area.X + (Config.BuildingWidth / 2) - 20, this.HealthShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
-            this.PetrolShop = new Shape(this.PetrolShopHouse.Area.X + (Config.BuildingWidth / 2) - 20, this.PetrolShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
+            this.SellShop = new Shape(this.HealthShopHouse.Area.X + (Config.BuildingWidth / 2) - 20, this.HealthShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
+            this.PetrolAndHealthShop = new Shape(this.PetrolShopHouse.Area.X + (Config.BuildingWidth / 2) - 20, this.PetrolShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
 
             this.ButtonBackground = new Shape(Config.Width / 2, Config.Height / 6, Config.ButtonBgWidth, Config.ButtonBgHeight);
-            this.ButtonShape = new Shape(ButtonBackground.Area.X + 10, ButtonBackground.Area.Y + 10 , Config.ButtonWidth, Config.ButtonHeight);
 
+            this.ButtonShape = new Shape(550, ButtonBackground.Area.Y + 100, Config.ButtonWidth, Config.ButtonHeight);
+
+            this.PetrolButtonShape = new Shape(ButtonBackground.Area.X + 40, ButtonBackground.Area.Y + 100, Config.ButtonWidth, Config.ButtonHeight);
+            this.HealthButtonShape = new Shape(220 + PetrolButtonShape.Area.X, PetrolButtonShape.Area.Y, Config.ButtonWidth, Config.ButtonHeight);
         }
     }
 }

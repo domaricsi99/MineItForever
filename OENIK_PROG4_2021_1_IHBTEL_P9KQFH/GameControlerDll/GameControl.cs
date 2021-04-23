@@ -75,7 +75,8 @@ namespace GameControlerDll
 
             this.MouseLeftButtonDown += this.GameControl_MouseLeftButtonDown;
 
-            this.MouseRightButtonDown += GameControl_MouseRightButtonDown;
+            this.MouseRightButtonDown += this.GameControl_MouseRightButtonDown;
+
             this.logic.ShopScreen += (obj, args) =>
             {
                 this.mapID = 0;
@@ -105,7 +106,7 @@ namespace GameControlerDll
         {
             Point cursorPos = e.GetPosition(this);
             this.logic.DropLadder(cursorPos, this.mapID);
-            //this.logic.Click(q, this.mapID);
+            this.logic.Click(cursorPos, this.mapID, this.intersectShop);
         }
 
         public void TickTimer_Tick(object sender, EventArgs e)

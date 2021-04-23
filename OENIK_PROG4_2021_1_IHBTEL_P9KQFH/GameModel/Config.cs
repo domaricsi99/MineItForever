@@ -58,7 +58,7 @@ namespace GameModelDll
 
         public static Brush ButtonBg = Brushes.White;
         public static int ButtonWidth = 90;
-        public static int ButtonHeight = 60;
+        public static int ButtonHeight = 45;
         public static int ButtonBgWidth = 400;
         public static int ButtonBgHeight = 150;
 

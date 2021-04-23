@@ -32,6 +32,7 @@ namespace GameLogicDll
         Ore newLadder;
         bool falling;
         int fallCounter;
+        public string message = "";
 
         public event EventHandler RefreshScreen;
 
@@ -204,7 +205,6 @@ namespace GameLogicDll
 
         public void Fall(int mapID) // csak alattunk
         {
-
             if (!this.character.Area.IntersectsWith(this.model.Ground.Area) && mapID == 0)
             {
                 this.character.ChangeY(5);
@@ -241,11 +241,8 @@ namespace GameLogicDll
                         item2.ChangeY(-5);
                     }
 
-                    if (mapID == 1)
-                    {
-                        fallCounter += 5;
-                        DeadFall(fallCounter);
-                    }
+                    fallCounter += 5;
+                    DeadFall(fallCounter);
 
                     falling = true;
                 }
@@ -360,15 +357,15 @@ namespace GameLogicDll
 
         public string IntersectsWithShop() // TODO: Eventként
         {
-            if (this.character.Area.IntersectsWith(this.model.HealthShop.Area))
+            if (this.character.Area.IntersectsWith(this.model.SellShop.Area)) // sell
             {
-                return "health";
+                return "sell";
             }
-            else if (this.character.Area.IntersectsWith(this.model.PetrolShop.Area))
+            else if (this.character.Area.IntersectsWith(this.model.PetrolAndHealthShop.Area)) // 1
             {
-                return "petrol";
+                return "petrol;Health";
             }
-            else if (this.character.Area.IntersectsWith(this.model.PickaxShop.Area))
+            else if (this.character.Area.IntersectsWith(this.model.PickaxShop.Area)) // 3
             {
                 return "pickax";
             }
@@ -510,7 +507,6 @@ namespace GameLogicDll
                         {
                             this.character.Backpack.Add(item);
                             this.character.Score += item.Score;
-                            this.character.Money += item.Value; // Nem itt majd a shopban ha eladtuk
                             Damage(item);
                             item.OreType = this.newAir.OreType;
                             item.canPass = this.newAir.canPass;
@@ -531,7 +527,6 @@ namespace GameLogicDll
                         {
                                 this.character.Backpack.Add(item);
                                 this.character.Score += item.Score;
-                                this.character.Money += item.Value; // Nem itt majd a shopban ha eladtuk
                                 Damage(item);
                                 item.OreType = this.newAir.OreType;
                                 item.canPass = this.newAir.canPass;
@@ -552,7 +547,6 @@ namespace GameLogicDll
                         {
                             this.character.Backpack.Add(item);
                             this.character.Score += item.Score;
-                            this.character.Money += item.Value; // Nem itt majd a shopban ha eladtuk
                             Damage(item);
                             item.OreType = this.newAir.OreType;
                             item.canPass = this.newAir.canPass;
@@ -625,8 +619,6 @@ namespace GameLogicDll
 
         public string HealthBuyLogic()
         {
-            string message = " ";
-
             int maxHealth = 100 - this.character.Health;
 
             int cost = maxHealth * 2; // 1 health vasarlasa 2 pénz
@@ -645,8 +637,6 @@ namespace GameLogicDll
 
         public string PetrolBuyLogic()
         {
-            string message = " ";
-
             var maxPetrol = 100 - this.character.Fuel;
 
             int cost = maxPetrol * 2; // 1 petrol vasarlasa 2 pénz
@@ -665,12 +655,14 @@ namespace GameLogicDll
 
         public string SellOreLogic()
         {
-            string message = " ";
             int money = 0;
-            foreach (var item in this.character.Backpack)
+            if (this.character.Backpack != null)
             {
-                this.character.Money += item.Value;
-                money += item.Value;
+                foreach (var item in this.character.Backpack)
+                {
+                    this.character.Money += item.Value;
+                    money += item.Value;
+                }
             }
 
             this.character.Backpack = null;
@@ -681,8 +673,6 @@ namespace GameLogicDll
 
         public string PickaxBuyLogic()
         {
-            string message = " ";
-
             List<Pickax> pickaxes = this.shopRepo.PickaxList();
             int currentPickaxLevel = this.character.PickAxLevel;
 
@@ -695,10 +685,12 @@ namespace GameLogicDll
                         this.character.Money -= item.Price;
                         this.character.PickAxLevel = item.Level;
                         message = $"Your pickax level is {item.Level}!"; // miket tudsz vele kiszedni csicsa
+                        break;
                     }
                     else if (this.character.Money - item.Price <= 0)
                     {
                         message = "You don't have enough money!";
+                        break;
                     }
                 }
                 else if (currentPickaxLevel == 4)
@@ -747,16 +739,38 @@ namespace GameLogicDll
             }
         }
 
-        //public void Click(Point point, int mapID)
-        //{
-        //    if (mapID == 0)
-        //    {
-        //        if (model.ButtonShape.Area.Left <= point.X && model.ButtonShape.Area.Right >= point.X
-        //           && model.ButtonShape.Area.Bottom >= point.Y && model.ButtonShape.Area.Top <= point.Y)
-        //        {
-        //            throw new Exception();
-        //        }
-        //    }
-        //}
+        public void Click(Point point, int mapID, string shop)
+        {
+            if (mapID == 0)
+            {
+                if (shop == "petrol;Health")
+                {
+                    if (this.model.HealthButtonShape.Area.Left <= point.X && this.model.HealthButtonShape.Area.Right >= point.X
+                   && this.model.HealthButtonShape.Area.Bottom >= point.Y && this.model.HealthButtonShape.Area.Top <= point.Y)
+                    {
+                        this.HealthBuyLogic(); // jobb oldali buy
+                    }
+                    else if (this.model.PetrolButtonShape.Area.Left <= point.X && this.model.PetrolButtonShape.Area.Right >= point.X
+                   && this.model.PetrolButtonShape.Area.Bottom >= point.Y && this.model.PetrolButtonShape.Area.Top <= point.Y)
+                    {
+                        this.PetrolBuyLogic();
+                    }
+                }
+                else if (shop == "sell" // TODO SELL SHOP
+                   && this.model.ButtonShape.Area.Left <= point.X && this.model.ButtonShape.Area.Right >= point.X
+                   && this.model.ButtonShape.Area.Bottom >= point.Y && this.model.ButtonShape.Area.Top <= point.Y)
+                {
+                    this.SellOreLogic();
+                }
+                else if (shop == "pickax"
+                   && this.model.ButtonShape.Area.Left <= point.X && this.model.ButtonShape.Area.Right >= point.X
+                   && this.model.ButtonShape.Area.Bottom >= point.Y && this.model.ButtonShape.Area.Top <= point.Y)
+                {
+                    this.PickaxBuyLogic();
+                }
+
+                this.SellOreLogic();
+            }
+        }
     }
 }
