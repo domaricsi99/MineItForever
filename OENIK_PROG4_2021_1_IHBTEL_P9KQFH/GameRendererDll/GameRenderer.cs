@@ -27,6 +27,7 @@ namespace GameRendererDll
         Point scoreLocation = new Point(Config.Width / 2, 0);
         Point healthLocation = new Point(Config.Width - 35, 0);
         Point petrolLocation = new Point(Config.Width - 150, 0);
+        Point moneyLocation = new Point(0, 0);
 
         Point shopMessageLocation = new Point(550, Config.ButtonBgHeight - 50);
         Point HealthPriceShopTextLocation = new Point(700, Config.ButtonBgHeight - 50);
@@ -100,7 +101,7 @@ namespace GameRendererDll
 
         public void Draw(DrawingContext ctx, int mapID, string intersectShop) // todo mindent kirajzolni, flappybol atirni
         {
-            Pen black = new Pen(Brushes.Black, 1);
+            Pen black = null;//new Pen(Brushes.Black, 1);
 
             this.dg.Children.Clear();
             if (mapID == 1) // MINE
@@ -125,7 +126,7 @@ namespace GameRendererDll
                     new Pen(Config.BorderBrush, Config.BorderSize),
                     new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
                 this.dg.Children.Add(background);
-                this.DrawScoreText(ctx);
+                this.DrawScoreText(ctx, mapID);
 
                 for (int i = 0; i < oreMatrix.GetLength(0); i++)
                 {
@@ -229,21 +230,6 @@ namespace GameRendererDll
                     black,
                     new RectangleGeometry(this.character.Area));
 
-                GeometryDrawing pickaxShopHouse = new GeometryDrawing(
-                    Config.PickaxShopHouseBg,
-                    black,
-                    new RectangleGeometry(this.model.PickaxShopHouse.Area));
-
-                GeometryDrawing healthShopHouse = new GeometryDrawing(
-                    Config.HealthShopHouseBg,
-                    black,
-                    new RectangleGeometry(this.model.HealthShopHouse.Area));
-
-                GeometryDrawing petrolShopHouse = new GeometryDrawing(
-                    Config.PetrolShopHouseBg,
-                    black,
-                    new RectangleGeometry(this.model.PetrolShopHouse.Area));
-
                 GeometryDrawing ground = new GeometryDrawing(
                     groundBrush,
                     black,
@@ -316,9 +302,6 @@ namespace GameRendererDll
                     this.dg.Children.Add(ButtonShop);
                 }
 
-                this.dg.Children.Add(pickaxShopHouse);
-                this.dg.Children.Add(healthShopHouse);
-                this.dg.Children.Add(petrolShopHouse);
                 this.dg.Children.Add(ground);
                 this.dg.Children.Add(pickaxShop);
                 this.dg.Children.Add(healthShop);
@@ -342,9 +325,10 @@ namespace GameRendererDll
             }
             else
             {
-                this.DrawScoreText(ctx);
-                this.DrawHealthText(ctx);
-                this.DrawPetrolText(ctx);
+                this.DrawScoreText(ctx, mapID);
+                this.DrawHealthText(ctx, mapID);
+                this.DrawPetrolText(ctx, mapID);
+                this.DrawMoneyText(ctx, mapID);
             }
 
             if (intersectShop == "sell" || intersectShop == "pickax")
@@ -358,8 +342,14 @@ namespace GameRendererDll
             }
         }
 
-        private FormattedText DrawScoreText(DrawingContext ctx)
+        private FormattedText DrawScoreText(DrawingContext ctx, int mapID)
         {
+            SolidColorBrush color = Brushes.White;
+            if (mapID == 0)
+            {
+                color = Brushes.Black;
+            }
+
             this.score = this.character.Score;
 
             Typeface font = new Typeface("Arial");
@@ -370,13 +360,13 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.Gray, 1);
+                    color, 1);
             ctx.DrawText(this.formattedText, this.scoreLocation);
 
             return this.formattedText;
         }
 
-        private FormattedText DrawHealthText(DrawingContext ctx)
+        private FormattedText DrawHealthText(DrawingContext ctx, int mapID)
         {
             int health = this.character.Health;
 
@@ -394,8 +384,14 @@ namespace GameRendererDll
             return this.formattedText;
         }
 
-        private FormattedText DrawPetrolText(DrawingContext ctx)
+        private FormattedText DrawPetrolText(DrawingContext ctx, int mapID)
         {
+            SolidColorBrush color = Brushes.White;
+            if (mapID == 0)
+            {
+                color = Brushes.Black;
+            }
+
             int petrol = this.character.Fuel;
 
             Typeface font = new Typeface("Arial");
@@ -406,8 +402,32 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.Gray, 1);
+                    color, 1);
             ctx.DrawText(this.formattedText, this.petrolLocation);
+
+            return this.formattedText;
+        }
+
+        private FormattedText DrawMoneyText(DrawingContext ctx, int mapID)
+        {
+            SolidColorBrush color = Brushes.White;
+            if (mapID == 0)
+            {
+                color = Brushes.Black;
+            }
+
+            string money = this.character.Money + " $";
+
+            Typeface font = new Typeface("Arial");
+
+            this.formattedText = new FormattedText(
+                    money,
+                    System.Globalization.CultureInfo.CurrentCulture,
+                    FlowDirection.LeftToRight,
+                    font,
+                    20,
+                    color, 1);
+            ctx.DrawText(this.formattedText, this.moneyLocation);
 
             return this.formattedText;
         }
@@ -452,7 +472,7 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.Gray, 1);
+                    Brushes.Black, 1);
             ctx.DrawText(this.formattedText, this.shopMessageLocation);
 
             return this.formattedText;
@@ -470,7 +490,7 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.Gray, 1);
+                    Brushes.Black, 1);
             ctx.DrawText(this.formattedText, this.HealthPriceShopTextLocation); // todo elhelyezés
 
             return this.formattedText;
@@ -488,7 +508,7 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.Gray, 1);
+                    Brushes.Black, 1);
             ctx.DrawText(this.formattedText, this.PetrolPriceShopTextLocation); // todo elhelyezés
 
             return this.formattedText;

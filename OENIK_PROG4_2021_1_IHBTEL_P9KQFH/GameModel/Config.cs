@@ -50,9 +50,9 @@ namespace GameModelDll
         public static int BuildingWidth = 90;
         public static int BuildingHeight = 110;
 
-        public static Brush PickaxShopBg = Brushes.Red;
-        public static Brush HealthShopBg = Brushes.Orange;
-        public static Brush PetrolShopBg = Brushes.PaleGreen;
+        public static Brush PickaxShopBg = Brushes.Transparent;
+        public static Brush HealthShopBg = Brushes.Transparent;
+        public static Brush PetrolShopBg = Brushes.Transparent;
         public static int ShopWidth = 45;
         public static int ShopHeight = 45;
 

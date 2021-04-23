@@ -625,6 +625,7 @@ namespace GameLogicDll
             if (this.character.Money - cost >= 0)
             {
                 this.character.Money -= cost;
+                this.character.Health = 100;
                 message = "Your health is 100!";
             }
             else
@@ -643,6 +644,7 @@ namespace GameLogicDll
             if (this.character.Money - cost >= 0)
             {
                 this.character.Money -= cost;
+                this.character.Fuel = 100;
                 message = "Your petrol tank is full!";
             }
             else
@@ -665,7 +667,7 @@ namespace GameLogicDll
                 }
             }
 
-            this.character.Backpack = null;
+            this.character.Backpack.Clear();
 
             message = $"You got {money}$ !";
             return message;
@@ -769,7 +771,7 @@ namespace GameLogicDll
                     this.PickaxBuyLogic();
                 }
 
-                this.SellOreLogic();
+                this.SaveGame(this.character);
             }
         }
     }
