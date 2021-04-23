@@ -1,4 +1,8 @@
-﻿namespace GameWindow
+﻿// <copyright file="MainWindow.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace GameWindow
 {
     using System;
     using System.Collections.Generic;
