@@ -455,9 +455,9 @@ namespace GameRendererDll
                 {
                     foreach (var item in this.character.Backpack)
                     {
-                        this.character.Money += item.Value;
                         money += item.Value;
                     }
+
                     shopMessage = $"A táskádban {this.character.Backpack.Count} darab érc van! \nÖssz értéke: {money}$ ";
                 }
             }
@@ -472,7 +472,7 @@ namespace GameRendererDll
                     shopMessage = $"Jelenlegi csákányod ereje: {this.character.PickAxLevel}! \nKövetkezõ csákány ereje:{this.character.PickAxLevel + 1}!";
                 }
             }
-            
+
             Typeface font = new Typeface("Arial");
 
             this.formattedText = new FormattedText(

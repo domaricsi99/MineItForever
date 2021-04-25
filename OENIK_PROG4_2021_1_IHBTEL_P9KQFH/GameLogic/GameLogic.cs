@@ -508,7 +508,18 @@ namespace GameLogicDll
                     {
                         if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder" && this.character.PickAxLevel >= item.Level)
                         {
-                            this.character.Backpack.Add(item);
+                            this.character.Backpack.Add(new Ore()
+                            {
+                                Area = item.Area,
+                                BreakLevel = item.BreakLevel,
+                                canPass = item.canPass,
+                                Hurt = item.Hurt,
+                                Score = item.Score,
+                                Level = item.Level,
+                                OreType = item.OreType,
+                                Value = item.Value,
+                            });
+
                             this.character.Score += item.Score;
                             Damage(item);
                             item.OreType = this.newAir.OreType;
@@ -781,7 +792,7 @@ namespace GameLogicDll
                 if (this.model.EndGameButton.Area.Left <= point.X && this.model.EndGameButton.Area.Right >= point.X
                    && this.model.EndGameButton.Area.Bottom >= point.Y && this.model.EndGameButton.Area.Top <= point.Y)
                 {
-                    this.BackToMainMenuEvent?.Invoke(this, EventArgs.Empty); // jobb oldali buy
+                    this.BackToMainMenuEvent?.Invoke(this, EventArgs.Empty);
                 }
             }
         }
