@@ -324,7 +324,6 @@ namespace GameRendererDll
 
                 this.dg.Children.Add(background);
                 this.dg.Children.Add(endGameButton);
-
             }
 
             ctx.DrawDrawing(this.dg);

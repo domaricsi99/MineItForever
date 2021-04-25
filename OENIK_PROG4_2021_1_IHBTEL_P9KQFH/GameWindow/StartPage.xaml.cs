@@ -25,6 +25,7 @@
         public StartPage()
         {
             characterRepository = new CharacterRepository();
+            InitializeComponent();
         }
 
         private void NewGame_Click(object sender, RoutedEventArgs e)
@@ -50,7 +51,8 @@
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
+            System.Environment.Exit(0);
         }
     }
 }

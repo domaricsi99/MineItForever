@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:GameControlerDll;assembly=GameControlerDll"
         xmlns:repo="clr-namespace:GameRepository;assembly=GameRepository"
         mc:Ignorable="d"
-        Title="MainWindow" Width="925" Height="427">
+        Title="MainWindow" Width="925" Height="427"
+        Closed="Window_Closed">
+    
 
     <Window.Resources>
         <DataTemplate x:Key="Pickaxes" DataType="{x:Type repo:ShopRepsitory}">

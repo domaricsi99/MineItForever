@@ -28,5 +28,11 @@ namespace GameWindow
         {
             InitializeComponent();
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            StartPage sp = new StartPage();
+            sp.ShowDialog();
+        }
     }
 }
