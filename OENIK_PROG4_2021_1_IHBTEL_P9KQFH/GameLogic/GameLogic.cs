@@ -32,6 +32,8 @@ namespace GameLogicDll
         Ore newLadder;
         bool falling;
         int fallCounter;
+        bool dead = false;
+
         public string message = "";
 
         public event EventHandler RefreshScreen;
@@ -312,13 +314,13 @@ namespace GameLogicDll
 
                     break;
                 case Direction.Down:
-                    predictedChar.Y += 40; // nem tudom miert ennyi
+                    predictedChar.Y += 5;
                     foreach (var item in renderedOres)
                     {
                         if (item.OreType == "ladder"
                             && item.Area.Left <= predictedChar.Left
                             && item.Area.Right >= predictedChar.Right
-                            && item.Area.Bottom >= predictedChar.Bottom - 35)
+                            && item.Area.IntersectsWith(predictedChar))
                         {
                             return 1;
                         }
@@ -723,8 +725,15 @@ namespace GameLogicDll
         {
             if (this.character.Health <= 0 || this.character.Fuel <= 0)
             {
-                this.EndGameEvent?.Invoke(this, EventArgs.Empty);
-                SaveGame(character);
+                Ore[,] renderedOres = this.MapPart();
+                foreach (var item in renderedOres)
+                {
+                    if (item.Area.IntersectsWith(character.Area) && item.OreType != "air")
+                    {
+                        this.EndGameEvent?.Invoke(this, EventArgs.Empty);
+                        SaveGame(character);
+                    }
+                }
             }
         }
 
@@ -751,6 +760,7 @@ namespace GameLogicDll
                     break;
                 case 270:
                     character.Health -= 100;
+                    dead = true;
                     break;
             }
         }

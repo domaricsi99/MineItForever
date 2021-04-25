@@ -377,6 +377,10 @@ namespace GameRendererDll
         public FormattedText DrawHealthText(DrawingContext ctx, int mapID)
         {
             int health = this.character.Health;
+            if (this.character.Health <= 0)
+            {
+                health = 0;
+            }
 
             Typeface font = new Typeface("Arial");
 
