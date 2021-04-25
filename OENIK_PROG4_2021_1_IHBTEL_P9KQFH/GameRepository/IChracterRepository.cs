@@ -5,11 +5,26 @@
 namespace GameRepository
 {
     using GameModelDll;
+    using System.Collections.Generic;
 
     public interface IChracterRepository
     {
-        // public Character LoadGame(string name);
+        public Character StartGame();
 
-        // public bool SaveGame(Character character);
+        public void SaveGame(Character character);
+
+        public void LoadSelectedProfile(Character selectedChar);
+
+        public string mapToXml(Character selectedChar);
+
+        public string backpackToXml(Character character);
+
+        public List<Ore> ListToOre(List<string> stringList);
+
+        public List<Character> LoadAllProfile();
+
+        public List<Character> LoadHighscore();
+
+        public void NewCharacter(string name);
     }
 }

@@ -350,7 +350,7 @@ namespace GameRendererDll
             }
         }
 
-        private FormattedText DrawScoreText(DrawingContext ctx, int mapID)
+        public FormattedText DrawScoreText(DrawingContext ctx, int mapID)
         {
             SolidColorBrush color = Brushes.White;
             if (mapID == 0)
@@ -374,7 +374,7 @@ namespace GameRendererDll
             return this.formattedText;
         }
 
-        private FormattedText DrawHealthText(DrawingContext ctx, int mapID)
+        public FormattedText DrawHealthText(DrawingContext ctx, int mapID)
         {
             int health = this.character.Health;
 
@@ -392,7 +392,7 @@ namespace GameRendererDll
             return this.formattedText;
         }
 
-        private FormattedText DrawPetrolText(DrawingContext ctx, int mapID)
+        public FormattedText DrawPetrolText(DrawingContext ctx, int mapID)
         {
             SolidColorBrush color = Brushes.White;
             if (mapID == 0)
@@ -416,7 +416,7 @@ namespace GameRendererDll
             return this.formattedText;
         }
 
-        private FormattedText DrawMoneyText(DrawingContext ctx, int mapID)
+        public FormattedText DrawMoneyText(DrawingContext ctx, int mapID)
         {
             SolidColorBrush color = Brushes.White;
             if (mapID == 0)
@@ -440,7 +440,7 @@ namespace GameRendererDll
             return this.formattedText;
         }
 
-        private FormattedText ShopText(DrawingContext ctx, string intersectShop)
+        public FormattedText ShopText(DrawingContext ctx, string intersectShop)
         {
             string shopMessage = "";
             int money = 0;
@@ -486,7 +486,7 @@ namespace GameRendererDll
             return this.formattedText;
         }
 
-        private FormattedText HealthPriceShopText(DrawingContext ctx)
+        public FormattedText HealthPriceShopText(DrawingContext ctx)
         {
             string priceShopMessage = "Life: 2$/piece";
 
@@ -504,7 +504,7 @@ namespace GameRendererDll
             return this.formattedText;
         }
 
-        private FormattedText PetrolPriceShopText(DrawingContext ctx)
+        public FormattedText PetrolPriceShopText(DrawingContext ctx)
         {
             string priceShopMessage = "Petrol: 2$/liter";
 
@@ -522,7 +522,7 @@ namespace GameRendererDll
             return this.formattedText;
         }
 
-        private FormattedText ReturnShopText(DrawingContext ctx)
+        public FormattedText ReturnShopText(DrawingContext ctx)
         {
             string message = gdll.message;
 
@@ -540,7 +540,7 @@ namespace GameRendererDll
             return this.formattedText;
         }
 
-        private FormattedText EndGameText(DrawingContext ctx)
+        public FormattedText EndGameText(DrawingContext ctx)
         {
             int petrol = this.character.Fuel;
 

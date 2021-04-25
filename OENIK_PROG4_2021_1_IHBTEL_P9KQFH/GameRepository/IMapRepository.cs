@@ -10,5 +10,9 @@
     public interface IMapRepository
     {
         public List<Ore> StringToOreList(Character character);
+
+        public Ore MakeAir();
+
+        public Ore MakeLadder();
     }
 }

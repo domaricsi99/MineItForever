@@ -101,13 +101,13 @@ namespace GameControlerDll
             this.InvalidateVisual();
         }
 
-        private void GameControl_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        public void GameControl_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point cursorPos = e.GetPosition(this);
             this.logic.PickUpLadder(cursorPos, this.mapID);
         }
 
-        private void GameControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        public void GameControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point cursorPos = e.GetPosition(this);
             this.logic.DropLadder(cursorPos, this.mapID);

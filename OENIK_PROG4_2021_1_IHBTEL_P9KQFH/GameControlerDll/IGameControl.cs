@@ -17,6 +17,10 @@ namespace GameControlerDll
     {
         public void GameControl_Loaded(object sender, RoutedEventArgs e);
 
+        public void GameControl_MouseRightButtonDown(object sender, MouseButtonEventArgs e);
+
+        public void GameControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e);
+
         public void TickTimer_Tick(object sender, EventArgs e);
 
         public void Win_KeyDown(object sender, KeyEventArgs e);
