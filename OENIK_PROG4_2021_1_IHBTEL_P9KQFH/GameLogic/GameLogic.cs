@@ -315,9 +315,10 @@ namespace GameLogicDll
                     predictedChar.Y += 40; // nem tudom miert ennyi
                     foreach (var item in renderedOres)
                     {
-                        if (item.OreType == "ladder" 
+                        if (item.OreType == "ladder"
                             && item.Area.Left <= predictedChar.Left
-                            && item.Area.Right >= predictedChar.Right)
+                            && item.Area.Right >= predictedChar.Right
+                            && item.Area.Bottom >= predictedChar.Bottom - 35)
                         {
                             return 1;
                         }
