@@ -127,7 +127,7 @@ namespace GameLogicDll
                 }
                 else if (d == Direction.Climb)
                 {
-                    if (moveSize == 0 && !this.falling)
+                    if (moveSize == 1 && !this.falling)
                     {
                         MapMovementDownLadder();
                     }
@@ -265,6 +265,7 @@ namespace GameLogicDll
         {
             Ore[,] renderedOres = this.MapPart();
             double movementRange = 7.5;
+            int canPassThrough = 0;
             Rect predictedChar = new Rect()
             {
                     X = this.character.Area.X,
@@ -314,36 +315,43 @@ namespace GameLogicDll
 
                     break;
                 case Direction.Down:
-                    predictedChar.Y += 5;
+                    predictedChar.Y += Config.MinerHeight;
                     foreach (var item in renderedOres)
                     {
-                        if (item.OreType == "ladder"
+                        if ((item.OreType == "ladder" || item.OreType == "air")
                             && item.Area.Left <= predictedChar.Left
                             && item.Area.Right >= predictedChar.Right
                             && item.Area.IntersectsWith(predictedChar))
                         {
-                            return 1;
+                            canPassThrough = 1;
+                            return canPassThrough;
                         }
-                        else if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder")
+                        else
                         {
-                            return 0;
+                            canPassThrough = 0;
                         }
-
                     }
 
-                    break;
+                    return canPassThrough;
                 case Direction.Climb:
+                    predictedChar.Y -= Config.MinerHeight;
                     foreach (var item in renderedOres)
                     {
-                        if (item.OreType == "ladder"
+                        if ((item.OreType == "ladder" || item.OreType == "air")
                             && item.Area.Left <= predictedChar.Left
-                            && item.Area.Right >= predictedChar.Right)
+                            && item.Area.Right >= predictedChar.Right
+                            && item.Area.IntersectsWith(predictedChar))
                         {
-                            return 0;
+                            canPassThrough = 1;
+                            return canPassThrough;
+                        }
+                        else
+                        {
+                            canPassThrough = 0;
                         }
                     }
 
-                    break;
+                    return canPassThrough;
                 default:
                     break;
             }
