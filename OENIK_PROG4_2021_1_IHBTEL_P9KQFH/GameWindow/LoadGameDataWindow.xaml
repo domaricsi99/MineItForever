@@ -7,20 +7,23 @@
         xmlns:local="clr-namespace:GameWindow"
         xmlns:charModel="clr-namespace:GameModelDll;assembly=GameModelDll"
         mc:Ignorable="d"
-        Title="LoadGameDataWindow" Height="450" Width="800">
+        Title="Select profile" Height="450" Width="800">
     <Window.Resources>
         <DataTemplate x:Key="horizontalProfiles" DataType="{x:Type charModel:Character}">
             <StackPanel>
-                <Label Content="Profile Name:"/>
-                <Label Content="{Binding Path=Name}"/>
+                <Label Content="Profile Name:" Foreground="White"/>
+                <Label Content="{Binding Path=Name}" Foreground="White"/>
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
-    <Grid>
-        <Button Content="Load Game" HorizontalAlignment="Left" Margin="100,365,0,0" VerticalAlignment="Top" Height="40" Width="140" Click="Load_Game_Click"/>
-        <Button Content="Exit to Main Menu" HorizontalAlignment="Left" Margin="560,365,0,0" VerticalAlignment="Top" Height="40" Width="140" Click="Exit_Click"/>
-        <ListBox ItemsSource="{Binding ElementName=LoadGameWindow, Path=AllChar}" ItemTemplate="{StaticResource horizontalProfiles}" Margin="50,100,50,100"
-             SelectedItem="{Binding ElementName=LoadGameWindow, Path=SelectedProfile}">
+    <Grid HorizontalAlignment="Right" Width="800" Height="434" VerticalAlignment="Center">
+        <Grid.Background>
+            <ImageBrush ImageSource= "C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\Féléves feladat\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameWindow\BgImages\load game.bmp" Stretch="Fill"/>
+        </Grid.Background>
+        <Button Background="Transparent" Foreground="White" BorderThickness="0" Content="Load Game" Margin="73,339,593,63" Click="Load_Game_Click"/>
+        <Button Background="Transparent" Foreground="White" BorderThickness="0" Content="Exit to Main Menu" Margin="607,334,73,68" Click="Exit_Click"/>
+        <ListBox ItemsSource="{Binding ElementName=LoadGameWindow, Path=AllChar}" ItemTemplate="{StaticResource horizontalProfiles}" Margin="234,145,233,143"
+             SelectedItem="{Binding ElementName=LoadGameWindow, Path=SelectedProfile}" Background="Transparent" BorderThickness="0">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel VerticalAlignment="Center"></WrapPanel>

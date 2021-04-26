@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameWindow"
         mc:Ignorable="d"
-        Title="StartPage" Height="450" Width="800">
-    <Grid>
-        <Button Click="NewGame_Click" Content="New Game" HorizontalAlignment="Left" Margin="125,232,0,0" VerticalAlignment="Top" Height="39" Width="88"/>
-        <Button Click="Highscore_Click" Content="Highscore" HorizontalAlignment="Left" Margin="425,232,0,0" VerticalAlignment="Top" Height="39" Width="88"/>
-        <Button Click="Exit_Click" Content="Exit" HorizontalAlignment="Left" Margin="582,232,0,0" VerticalAlignment="Top" Height="39" Width="88"/>
-        <Button Click="LoadGame_Click"  Content="Load Game" HorizontalAlignment="Left" Margin="276,232,0,0" VerticalAlignment="Top" Height="39" Width="88"/>
+        Title="Main Menu" Height="450" Width="800">
+    <Grid HorizontalAlignment="Right" Width="800" Height="450" VerticalAlignment="Center">
+        <Grid.Background>
+            <ImageBrush ImageSource= "C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\Féléves feladat\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameWindow\BgImages\StartBg2.bmp" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Button Background="Transparent" Foreground="White" BorderThickness="0" Click="LoadGame_Click"  Content="Load Game" Margin="339,196,339,217" Height="20" Width="100"/>
+        <Button Background="Transparent" Foreground="White" BorderThickness="0" Click="NewGame_Click" Content="New Game" Margin="339,167,339,246" Height="20" Width="100"/>
+        <Button Background="Transparent" Foreground="White" BorderThickness="0" Click="Exit_Click" Content="Exit" Margin="339,255,339,157" Height="20" Width="100"/>
+        <Button Background="Transparent" Foreground="White" BorderThickness="0" Click="Highscore_Click" Content="Highscore" Margin="339,226,339,184" Height="20" Width="100"/>
     </Grid>
 </Window>
