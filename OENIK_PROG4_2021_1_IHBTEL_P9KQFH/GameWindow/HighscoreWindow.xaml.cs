@@ -37,7 +37,10 @@ namespace GameWindow
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-
+            this.DialogResult = false;
+            StartPage sp = new StartPage();
+            this.Hide();
+            sp.ShowDialog();
         }
     }
 }
