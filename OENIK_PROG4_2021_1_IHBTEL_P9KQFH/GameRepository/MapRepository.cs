@@ -23,8 +23,6 @@ namespace GameRepository
             int localOreX = Config.oreX;
             int localOreY = Config.oreY;
             int counter = 0;
-            character.Map.Clear();
-            character.Map = RandomMap();
             foreach (string item in character.Map)
             {
                 switch (item)

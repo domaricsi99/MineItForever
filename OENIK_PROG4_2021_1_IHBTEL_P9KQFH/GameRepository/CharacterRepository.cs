@@ -40,6 +40,15 @@ namespace GameRepository
             {
                 new XDocument(new XElement("Character")).Save("Highscore.xml");
             }
+            try
+            {
+                XDocument.Load("Map.xml");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public Character StartGame()
@@ -288,8 +297,9 @@ namespace GameRepository
 
         public void NewCharacter(string name)
         {
+            MapRepository newMap = new MapRepository();
             XDocument xdoc = XDocument.Load("Profiles.xml");
-            string mapString = XDocument.Load("Map.xml").Element("Map").Value;
+            List<string> mapList = newMap.RandomMap();
             Character character = new Character()
             {
                 Name = name,
@@ -298,9 +308,11 @@ namespace GameRepository
                 Health = 100,
                 Money = 10,
                 Score = 0,
-                Map = XDocument.Load("Map.xml").Element("Map").Value.Split(';').ToList(),
+                Map = mapList,
                 Backpack = new List<Ore>(),
             };
+
+            string mapString = mapToXml(character);
 
             new XDocument(
                 new XElement("Character",

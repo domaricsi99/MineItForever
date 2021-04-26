@@ -219,20 +219,13 @@ namespace GameLogicDll
                 Ore[,] renderedOres = this.MapPart();
                 foreach (var item in renderedOres)
                 {
-                    if ( item.Area.IntersectsWith(this.character.Area) && item.canPass == false)
+                    if (item.Area.IntersectsWith(this.character.Area) && item.canPass == false)
                     {
-                        if (this.character.Area.Top >= item.Area.Bottom)
-                        {
-                            // this.character.SetXY(this.character.Area.X, item.Area.Bottom + 1);
-                        }
-                        else
-                        {
-                            canFall = false;
-                        }
+                        canFall = false;
 
                         break;
                     }
-                    else if ( item.Area.IntersectsWith(this.character.Area) && item.OreType == "ladder")
+                    else if (item.Area.IntersectsWith(this.character.Area) && item.OreType == "ladder")
                     {
                         canFall = false;
                     }
@@ -520,12 +513,7 @@ namespace GameLogicDll
                         {
                             this.character.Backpack.Add(new Ore()
                             {
-                                Area = item.Area,
-                                BreakLevel = item.BreakLevel,
-                                canPass = item.canPass,
-                                Hurt = item.Hurt,
                                 Score = item.Score,
-                                Level = item.Level,
                                 OreType = item.OreType,
                                 Value = item.Value,
                             });
@@ -549,7 +537,12 @@ namespace GameLogicDll
                     {
                         if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder" && this.character.PickAxLevel >= item.Level)
                         {
-                                this.character.Backpack.Add(item);
+                                this.character.Backpack.Add(new Ore()
+                                {
+                                    Score = item.Score,
+                                    OreType = item.OreType,
+                                    Value = item.Value,
+                                });
                                 this.character.Score += item.Score;
                                 Damage(item);
                                 item.OreType = this.newAir.OreType;
@@ -569,7 +562,12 @@ namespace GameLogicDll
                     {
                         if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder" && this.character.PickAxLevel >= item.Level)
                         {
-                            this.character.Backpack.Add(item);
+                            this.character.Backpack.Add(new Ore()
+                            {
+                                Score = item.Score,
+                                OreType = item.OreType,
+                                Value = item.Value,
+                            });
                             this.character.Score += item.Score;
                             Damage(item);
                             item.OreType = this.newAir.OreType;
@@ -738,8 +736,8 @@ namespace GameLogicDll
                 {
                     if (item.Area.IntersectsWith(character.Area) && item.OreType != "air")
                     {
-                        this.EndGameEvent?.Invoke(this, EventArgs.Empty);
                         SaveGame(character);
+                        this.EndGameEvent?.Invoke(this, EventArgs.Empty);
                     }
                 }
             }
