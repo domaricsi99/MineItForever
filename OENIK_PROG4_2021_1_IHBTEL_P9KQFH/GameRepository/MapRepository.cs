@@ -23,6 +23,8 @@ namespace GameRepository
             int localOreX = Config.oreX;
             int localOreY = Config.oreY;
             int counter = 0;
+            character.Map.Clear();
+            character.Map = RandomMap();
             foreach (string item in character.Map)
             {
                 switch (item)
@@ -175,6 +177,10 @@ namespace GameRepository
             return this.map;
         }
 
+        /// <summary>
+        /// Make air.
+        /// </summary>
+        /// <returns>Air.</returns>
         public Ore MakeAir()
         {
             return new Ore()
@@ -189,6 +195,10 @@ namespace GameRepository
             };
         }
 
+        /// <summary>
+        /// Make ladder.
+        /// </summary>
+        /// <returns>Ladder.</returns>
         public Ore MakeLadder()
         {
             return new Ore()
@@ -201,6 +211,84 @@ namespace GameRepository
                 Score = 0,
                 Value = 0,
             };
+        }
+
+        /// <summary>
+        /// Make random map.
+        /// </summary>
+        /// <returns>Random map in string list.</returns>
+        public List<string> RandomMap()
+        {
+            // 0-air, 1-dirt - 50, 2-copper-20, 3-silver -10, 4-gold-10, 5-stone, 6-diamond-5, 7-lava-5, 9-gate
+            Random r = new Random();
+
+            List<string> map = new List<string>();
+
+            int size = 2000;
+
+            for (int i = 0; i < size; i++)
+            {
+                if (i <= 19)
+                {
+                    map.Add("5");
+                }
+                else if (i > 19 && i <= 39)
+                {
+                    map.Add("0");
+                }
+                else if (i > 39 && i <= 58)
+                {
+                    if (i == 40)
+                    {
+                        map.Add("9");
+                    }
+
+                    map.Add("0");
+                }
+                else if (i > 58 && i <= 77)
+                {
+                    if (i == 59)
+                    {
+                        map.Add("9");
+                    }
+
+                    map.Add("0");
+                }
+                else if (i > 77 && i <= 81)
+                {
+                    map.Add("5");
+                }
+                else
+                {
+                    int randomNumber = r.Next(0, 101);
+                    if (randomNumber <= 50) // dirt
+                    {
+                        map.Add("1");
+                    }
+                    else if (randomNumber > 50 && randomNumber <= 70) // copper
+                    {
+                        map.Add("2");
+                    }
+                    else if (randomNumber > 70 && randomNumber <= 80) // silver
+                    {
+                        map.Add("3");
+                    }
+                    else if (randomNumber > 80 && randomNumber <= 90 && i >= size / 4) // gold
+                    {
+                        map.Add("4");
+                    }
+                    else if (randomNumber > 90 && randomNumber <= 95 && i >= size / 2) // diamond
+                    {
+                        map.Add("6");
+                    }
+                    else if (randomNumber > 95 && randomNumber <= 100 && i >= size / 2) // lava
+                    {
+                        map.Add("7");
+                    }
+                }
+            }
+
+            return map;
         }
     }
 }
