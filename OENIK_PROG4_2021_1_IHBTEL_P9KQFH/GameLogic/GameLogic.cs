@@ -239,12 +239,11 @@ namespace GameLogicDll
                     }
 
                     fallCounter += 5;
-                    DeadFall(fallCounter);
-
                     falling = true;
                 }
                 else
                 {
+                    DeadFall(fallCounter);
                     falling = false;
                     fallCounter = 0;
 
@@ -731,19 +730,12 @@ namespace GameLogicDll
         {
             if (this.character.Health <= 0 || this.character.Fuel <= 0)
             {
-                Ore[,] renderedOres = this.MapPart();
-                foreach (var item in renderedOres)
-                {
-                    if (item.Area.IntersectsWith(character.Area) && item.OreType != "air")
-                    {
-                        SaveGame(character);
+                // Delete save --> Highscore
                         this.EndGameEvent?.Invoke(this, EventArgs.Empty);
-                    }
-                }
             }
         }
 
-        public void Damage (Ore ore)
+        public void Damage(Ore ore)
         {
             if (ore.OreType == "lava")
             {
