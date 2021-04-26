@@ -18,9 +18,9 @@
     <None Remove="Images\diamond.bmp" />
     <None Remove="Images\dirt.bmp" />
     <None Remove="Images\gameover.bmp" />
-    <None Remove="Images\gate bottom.bmp" />
-    <None Remove="Images\gate top.bmp" />
     <None Remove="Images\gate.bmp" />
+    <None Remove="Images\gatebottom.bmp" />
+    <None Remove="Images\gatetop.bmp" />
     <None Remove="Images\gold.bmp" />
     <None Remove="Images\ground.bmp" />
     <None Remove="Images\ladder.bmp" />
@@ -40,8 +40,8 @@
     <EmbeddedResource Include="Images\diamond.bmp" />
     <EmbeddedResource Include="Images\dirt.bmp" />
     <EmbeddedResource Include="Images\gameover.bmp" />
-    <EmbeddedResource Include="Images\gate bottom.bmp" />
-    <EmbeddedResource Include="Images\gate top.bmp" />
+    <EmbeddedResource Include="Images\gatebottom.bmp" />
+    <EmbeddedResource Include="Images\gatetop.bmp" />
     <EmbeddedResource Include="Images\gate.bmp" />
     <EmbeddedResource Include="Images\gold.bmp" />
     <EmbeddedResource Include="Images\ground.bmp" />

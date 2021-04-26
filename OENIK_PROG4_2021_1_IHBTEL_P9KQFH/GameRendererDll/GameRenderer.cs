@@ -107,9 +107,9 @@ namespace GameRendererDll
 
         Brush GateBrush { get { return GetBrush("GameRendererDll.Images.gate.bmp", false); } }
 
-        Brush MineGate1Brush { get { return GetBrush("GameRendererDll.Images.gate top.bmp", false); } }
+        Brush MineGate1Brush { get { return GetBrush("GameRendererDll.Images.gatetop.bmp", false); } }
 
-        Brush MineGate2Brush { get { return GetBrush("GameRendererDll.Images.gate bottom.bmp", false); } }
+        Brush MineGate2Brush { get { return GetBrush("GameRendererDll.Images.gatebottom.bmp", false); } }
 
         public void Draw(DrawingContext ctx, int mapID, string intersectShop) // todo mindent kirajzolni, flappybol atirni
         {

@@ -280,7 +280,7 @@ namespace GameLogicDll
                                 return 0;
                             }
                         }
-                        else if (item.Area.IntersectsWith(predictedChar) && item.OreType == "gate")
+                        else if (item.Area.IntersectsWith(predictedChar) && item.OreType == "gate" || item.OreType == "gate2" || item.OreType == "gate3")
                         {
                             this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
                         }
@@ -476,6 +476,12 @@ namespace GameLogicDll
                         break;
                     case "ladder":
                         mapStringList.Add("10");
+                        break;
+                    case "gate2":
+                        mapStringList.Add("11");
+                        break;
+                    case "gate3":
+                        mapStringList.Add("12");
                         break;
                     default:
                         break;
