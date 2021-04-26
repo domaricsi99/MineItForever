@@ -41,5 +41,41 @@
             </summary>
             <returns>asd.</returns>
         </member>
+        <member name="M:GameRepository.IMapRepository.MakeAir">
+            <summary>
+            Make air.
+            </summary>
+            <returns>Air.</returns>
+        </member>
+        <member name="M:GameRepository.IMapRepository.MakeLadder">
+            <summary>
+            Make ladder.
+            </summary>
+            <returns>Ladder.</returns>
+        </member>
+        <member name="M:GameRepository.IMapRepository.RandomMap">
+            <summary>
+            Make random Map.
+            </summary>
+            <returns>Random map.</returns>
+        </member>
+        <member name="M:GameRepository.MapRepository.MakeAir">
+            <summary>
+            Make air.
+            </summary>
+            <returns>Air.</returns>
+        </member>
+        <member name="M:GameRepository.MapRepository.MakeLadder">
+            <summary>
+            Make ladder.
+            </summary>
+            <returns>Ladder.</returns>
+        </member>
+        <member name="M:GameRepository.MapRepository.RandomMap">
+            <summary>
+            Make random map.
+            </summary>
+            <returns>Random map in string list.</returns>
+        </member>
     </members>
 </doc>

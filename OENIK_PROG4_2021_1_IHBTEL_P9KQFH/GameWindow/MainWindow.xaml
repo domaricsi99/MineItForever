@@ -4,7 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameControlerDll;assembly=GameControlerDll"
+        xmlns:repo="clr-namespace:GameRepository;assembly=GameRepository"
         mc:Ignorable="d"
-        Title="MainWindow" Width="1000" Height="500">
-    <local:GameControl Margin="50,34,50,0"/>
+        Title="MainWindow" Width="925" Height="427"
+        Closed="Window_Closed">
+    
+
+    <Window.Resources>
+        <DataTemplate x:Key="Pickaxes" DataType="{x:Type repo:ShopRepsitory}">
+            <StackPanel Orientation="Horizontal">
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid HorizontalAlignment="Center" Width="900" Height="400" VerticalAlignment="Top">
+        <local:GameControl Margin="0,0,100,0" Height="366" VerticalAlignment="Top"/>
+
+    </Grid>
 </Window>

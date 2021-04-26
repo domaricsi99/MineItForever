@@ -1,4 +1,4 @@
-﻿// <copyright file="MainWindow.xaml.cs" company="PlaceholderCompany">
+﻿// <copyright file="HighscoreWindow.xaml.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -16,22 +16,30 @@ namespace GameWindow
     using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
-    using System.Windows.Navigation;
     using System.Windows.Shapes;
+    using GameModelDll;
+    using GameRepository;
 
     /// <summary>
-    /// Interaction logic for MainWindow.xaml.
+    /// Interaction logic for HighscoreWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HighscoreWindow : Window
     {
-        public MainWindow()
+        public List<Character> AllChar { get; set; }
+
+        CharacterRepository repo = new CharacterRepository();
+
+        public HighscoreWindow()
         {
-            InitializeComponent();
+            this.AllChar = this.repo.LoadHighscore();
+            this.InitializeComponent();
         }
 
-        private void Window_Closed(object sender, EventArgs e)
+        private void Exit_Click(object sender, RoutedEventArgs e)
         {
+            this.DialogResult = false;
             StartPage sp = new StartPage();
+            this.Hide();
             sp.ShowDialog();
         }
     }

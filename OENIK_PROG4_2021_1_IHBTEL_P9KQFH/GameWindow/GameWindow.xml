@@ -22,15 +22,67 @@
             Application Entry Point.
             </summary>
         </member>
+        <member name="T:GameWindow.HighscoreWindow">
+            <summary>
+            Interaction logic for HighscoreWindow.xaml
+            </summary>
+            <summary>
+            HighscoreWindow
+            </summary>
+        </member>
+        <member name="M:GameWindow.HighscoreWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:GameWindow.LoadGameDataWindow">
+            <summary>
+            Interaction logic for LoadGameDataWindow.xaml.
+            </summary>
+            <summary>
+            LoadGameDataWindow
+            </summary>
+        </member>
+        <member name="M:GameWindow.LoadGameDataWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:GameWindow.MainWindow">
             <summary>
-            Interaction logic for MainWindow.xaml
+            Interaction logic for MainWindow.xaml.
             </summary>
             <summary>
             MainWindow
             </summary>
         </member>
         <member name="M:GameWindow.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:GameWindow.NewGameDataWindow">
+            <summary>
+            Interaction logic for NewGameDataWindow.xaml.
+            </summary>
+            <summary>
+            NewGameDataWindow
+            </summary>
+        </member>
+        <member name="M:GameWindow.NewGameDataWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:GameWindow.StartPage">
+            <summary>
+            Interaction logic for StartPage.xaml.
+            </summary>
+            <summary>
+            StartPage
+            </summary>
+        </member>
+        <member name="M:GameWindow.StartPage.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>

@@ -9,7 +9,8 @@ namespace GameModelDll
 
         public Rect Area
         {
-            get { return area; }
+            get { return this.area; }
+            set { this.area = value; }
         }
 
         public void SetXY(double x, double y)

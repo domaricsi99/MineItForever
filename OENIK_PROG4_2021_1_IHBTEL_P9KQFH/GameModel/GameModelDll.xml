@@ -4,5 +4,10 @@
         <name>GameModelDll</name>
     </assembly>
     <members>
+        <member name="P:GameModelDll.GameModel.Gate">
+            <summary>
+            Gets or sets out of the first screen to mine.
+            </summary>
+        </member>
     </members>
 </doc>

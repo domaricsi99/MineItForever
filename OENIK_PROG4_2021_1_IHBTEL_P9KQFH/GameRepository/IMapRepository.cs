@@ -9,6 +9,24 @@
 
     public interface IMapRepository
     {
-        public List<Ore> DrawMap();
+        public List<Ore> StringToOreList(Character character);
+
+        /// <summary>
+        /// Make air.
+        /// </summary>
+        /// <returns>Air.</returns>
+        public Ore MakeAir();
+
+        /// <summary>
+        /// Make ladder.
+        /// </summary>
+        /// <returns>Ladder.</returns>
+        public Ore MakeLadder();
+
+        /// <summary>
+        /// Make random Map.
+        /// </summary>
+        /// <returns>Random map.</returns>
+        List<string> RandomMap();
     }
 }

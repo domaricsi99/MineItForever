@@ -11,6 +11,24 @@ namespace GameRendererDll
     {
         public RectangleGeometry RectangleG(double oreX, double oreY);
 
-        public void Draw(DrawingContext ctx, int mapID);
+        public void Draw(DrawingContext ctx, int mapID, string intersectShop);
+
+        public FormattedText DrawScoreText(DrawingContext ctx, int mapID);
+
+        public FormattedText DrawHealthText(DrawingContext ctx, int mapID);
+
+        public FormattedText DrawPetrolText(DrawingContext ctx, int mapID);
+
+        public FormattedText DrawMoneyText(DrawingContext ctx, int mapID);
+
+        public FormattedText ShopText(DrawingContext ctx, string intersectShop);
+
+        public FormattedText HealthPriceShopText(DrawingContext ctx);
+
+        public FormattedText PetrolPriceShopText(DrawingContext ctx);
+
+        public FormattedText ReturnShopText(DrawingContext ctx);
+
+        public FormattedText EndGameText(DrawingContext ctx);
     }
 }

@@ -8,15 +8,9 @@ namespace GameModelDll
 {
     public class Pickax
     {
-        enum Name
-        {
-            x, y, z // todo
-        }
+        public string Name { get; set; }
 
-        enum Strength
-        {
-            x = 0, y = 1, z = 2, a = 3 //todo
-        }
+        public int Level { get; set; }
 
         public int Price { get; set; }
     }

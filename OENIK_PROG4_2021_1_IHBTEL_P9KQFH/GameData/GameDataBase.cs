@@ -86,7 +86,6 @@ namespace GameData
                 Level = 3,
                 OreType = "stone",
             };
-
             Ore lavaGem = new Ore()
             {
                 Value = 100,

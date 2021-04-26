@@ -8,6 +8,7 @@ namespace GameModelDll
         public static double Width = 900;
         public static double Height = 400;
         public static int BorderSize = 4;
+        public static int MapDelimeter = 20;
 
         public static Brush bgBrush = Brushes.White;
         public static Brush BorderBrush = Brushes.DarkGray;
@@ -16,7 +17,7 @@ namespace GameModelDll
         public static Brush MinerLineBrush = Brushes.Blue;
 
         public static int MinerWidth = 30;
-        public static int MinerHeight = 45;
+        public static int MinerHeight = 40;
 
         public static Brush BgGroundBrush = Brushes.RosyBrown;
         public static Brush GroundLineBrush = Brushes.DarkGreen;
@@ -29,6 +30,7 @@ namespace GameModelDll
         public static Brush silverBg = Brushes.Silver;
         public static Brush goldBg = Brushes.Gold;
         public static Brush diamondBg = Brushes.LightCyan;
+        public static Brush stoneBg = Brushes.DarkGray;
 
         public static Brush oreLine = Brushes.Black;
         public static int oreWidth = 45;
@@ -37,6 +39,8 @@ namespace GameModelDll
         public static int oreY = 0;
 
         public static Brush GateBg = Brushes.Pink;
+        public static Brush MapThreetoOneGateBg = Brushes.Green;
+        public static Brush MapTwoToOneGateBg = Brushes.Red;
         public static int GateWidth = 30;
         public static int GateHeight = 60;
 
@@ -46,10 +50,21 @@ namespace GameModelDll
         public static int BuildingWidth = 90;
         public static int BuildingHeight = 110;
 
-        public static Brush PickaxShopBg = Brushes.Red;
-        public static Brush HealthShopBg = Brushes.Orange;
-        public static Brush PetrolShopBg = Brushes.PaleGreen;
+        public static Brush PickaxShopBg = Brushes.Transparent;
+        public static Brush HealthShopBg = Brushes.Transparent;
+        public static Brush PetrolShopBg = Brushes.Transparent;
         public static int ShopWidth = 45;
         public static int ShopHeight = 45;
+
+        public static Brush ButtonBg = Brushes.White;
+        public static int ButtonWidth = 90;
+        public static int ButtonHeight = 45;
+        public static int ButtonBgWidth = 400;
+        public static int ButtonBgHeight = 150;
+
+        public static int EndGameButtonWidth = 180;
+        public static int EndGameButtonHeight = 50;
+
+        public static Brush LadderBg = Brushes.Bisque;
     }
 }

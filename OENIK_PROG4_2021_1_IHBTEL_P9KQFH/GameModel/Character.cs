@@ -18,6 +18,10 @@ namespace GameModelDll
 
         public int PickAxLevel { get; set; }
 
+        public List<string> Map { get; set; }
+
+        public string Name { get; set; }
+
         public List<Ore> Backpack;
 
         public double DX { get; set; }
@@ -26,6 +30,29 @@ namespace GameModelDll
 
         public Character()
         {
+        }
+
+        public Character(int health, int fuel, int money, int score, int pickAxLevel, List<string> map, string name)
+        {
+            Health = health;
+            Fuel = fuel;
+            Money = money;
+            Score = score;
+            PickAxLevel = pickAxLevel;
+            Map = map;
+            Name = name;
+        }
+
+        public Character(int health, int fuel, int money, int score, int pickAxLevel, List<string> map, string name, double x, double y, double w, double h)
+            : base(x, y, w, h)
+        {
+            Health = health;
+            Fuel = fuel;
+            Money = money;
+            Score = score;
+            PickAxLevel = pickAxLevel;
+            Map = map;
+            Name = name;
         }
 
         public Character(double x, double y, double w, double h)
