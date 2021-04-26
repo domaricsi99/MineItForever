@@ -111,6 +111,8 @@ namespace GameRendererDll
 
         Brush MineGate2Brush { get { return GetBrush("GameRendererDll.Images.gatebottom.bmp", false); } }
 
+        Brush MinerBrush { get { return GetBrush("GameRendererDll.Images.Miner.png", false); } }
+
         public void Draw(DrawingContext ctx, int mapID, string intersectShop) // todo mindent kirajzolni, flappybol atirni
         {
             Pen black = null;//new Pen(Brushes.Black, 1);
@@ -229,7 +231,7 @@ namespace GameRendererDll
                 }
 
                 GeometryDrawing miner = new GeometryDrawing(
-                    Config.MinerBgBrush,
+                    MinerBrush,
                     black,
                     new RectangleGeometry(character.Area));
 
@@ -250,7 +252,7 @@ namespace GameRendererDll
                 this.dg.Children.Add(gate);
 
                 GeometryDrawing miner = new GeometryDrawing(
-                    Config.MinerBgBrush,
+                    MinerBrush,
                     black,
                     new RectangleGeometry(this.character.Area));
 
