@@ -57,9 +57,9 @@ namespace GameModelDll
 
             this.ButtonBackground = new Shape(Config.Width / 2, Config.Height / 6, Config.ButtonBgWidth, Config.ButtonBgHeight);
 
-            this.ButtonShape = new Shape(550, ButtonBackground.Area.Y + 100, Config.ButtonWidth, Config.ButtonHeight);
+            this.ButtonShape = new Shape(550, ButtonBackground.Area.Y + 90, Config.ButtonWidth, Config.ButtonHeight);
 
-            this.PetrolButtonShape = new Shape(ButtonBackground.Area.X + 40, ButtonBackground.Area.Y + 100, Config.ButtonWidth, Config.ButtonHeight);
+            this.PetrolButtonShape = new Shape(ButtonBackground.Area.X + 40, ButtonBackground.Area.Y + 90, Config.ButtonWidth, Config.ButtonHeight);
             this.HealthButtonShape = new Shape(220 + PetrolButtonShape.Area.X, PetrolButtonShape.Area.Y, Config.ButtonWidth, Config.ButtonHeight);
 
             this.EndGameButton = new Shape(Config.Width / 2 - (Config.EndGameButtonWidth / 2), Config.Height - Config.EndGameButtonHeight - 20, Config.EndGameButtonWidth, Config.EndGameButtonHeight);

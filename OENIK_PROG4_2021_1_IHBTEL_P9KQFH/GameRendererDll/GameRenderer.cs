@@ -29,7 +29,7 @@ namespace GameRendererDll
         Point petrolLocation = new Point(Config.Width - 150, 0);
         Point moneyLocation = new Point(0, 0);
 
-        Point shopMessageLocation = new Point(550, Config.ButtonBgHeight - 50);
+        Point shopMessageLocation = new Point(500, Config.ButtonBgHeight - 50);
         Point HealthPriceShopTextLocation = new Point(700, Config.ButtonBgHeight - 50);
         Point PetrolPriceShopTextLocation = new Point(475, Config.ButtonBgHeight - 50);
         Point ReturnShopTextLocation = new Point(Config.Width / 2, Config.Height / 2);
@@ -100,6 +100,8 @@ namespace GameRendererDll
         Brush SellButtonBrush { get { return GetBrush("GameRendererDll.Images.sell button.bmp", false); } }
 
         Brush EndGameButtonBrush { get { return GetBrush("GameRendererDll.Images.Main menu.bmp", false); } }
+
+        Brush ShopBrush { get { return GetBrush("GameRendererDll.Images.shopbg.bmp", false); } }
 
         public void Draw(DrawingContext ctx, int mapID, string intersectShop) // todo mindent kirajzolni, flappybol atirni
         {
@@ -260,7 +262,7 @@ namespace GameRendererDll
                     new RectangleGeometry(this.model.ButtonShape.Area));
 
                     GeometryDrawing ButtonBackg = new GeometryDrawing(
-                    Config.ButtonBg,
+                    ShopBrush,
                     black,
                     new RectangleGeometry(this.model.ButtonBackground.Area));
 
@@ -280,7 +282,7 @@ namespace GameRendererDll
                     new RectangleGeometry(this.model.HealthButtonShape.Area));
 
                     GeometryDrawing ButtonBackg = new GeometryDrawing(
-                    Brushes.White,
+                    ShopBrush,
                     black,
                     new RectangleGeometry(this.model.ButtonBackground.Area));
 
@@ -296,7 +298,7 @@ namespace GameRendererDll
                     new RectangleGeometry(this.model.ButtonShape.Area));
 
                     GeometryDrawing ButtonBackg = new GeometryDrawing(
-                    Config.ButtonBg,
+                    ShopBrush,
                     black,
                     new RectangleGeometry(this.model.ButtonBackground.Area));
 
@@ -468,7 +470,7 @@ namespace GameRendererDll
             {
                 if (this.character.PickAxLevel == 4)
                 {
-                    shopMessage = $"Gratulálok, a legerõsebb csákánnyal rendelkezel!";
+                    shopMessage = $"Gratulálok, a legerõsebb csákánnyal \nrendelkezel!";
                 }
                 else
                 {
@@ -484,7 +486,7 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.Black, 1);
+                    Brushes.White, 1);
             ctx.DrawText(this.formattedText, this.shopMessageLocation);
 
             return this.formattedText;
@@ -502,7 +504,7 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.Black, 1);
+                    Brushes.White, 1);
             ctx.DrawText(this.formattedText, this.HealthPriceShopTextLocation); // todo elhelyezés
 
             return this.formattedText;
@@ -520,7 +522,7 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.Black, 1);
+                    Brushes.White, 1);
             ctx.DrawText(this.formattedText, this.PetrolPriceShopTextLocation); // todo elhelyezés
 
             return this.formattedText;
