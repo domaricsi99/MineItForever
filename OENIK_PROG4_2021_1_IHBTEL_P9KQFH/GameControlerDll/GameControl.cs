@@ -41,6 +41,8 @@ namespace GameControlerDll
         private CharacterRepository charRepo;
         public Character character;
 
+        Key k;
+
         public GameControl()
         {
             this.Loaded += this.GameControl_Loaded;
@@ -124,6 +126,8 @@ namespace GameControlerDll
 
         public void Win_KeyDown(object sender, KeyEventArgs e)
         {
+            k = e.Key;
+
             switch (e.Key)
             {
                 case Key.Left: this.logic.MoveCharacter(Direction.Left, this.mapID); break;
@@ -138,7 +142,7 @@ namespace GameControlerDll
         {
             if (this.renderer != null)
             {
-                this.renderer.Draw(drawingContext, this.mapID, this.intersectShop);
+                this.renderer.Draw(drawingContext, this.mapID, this.intersectShop, this.k);
             }
         }
     }

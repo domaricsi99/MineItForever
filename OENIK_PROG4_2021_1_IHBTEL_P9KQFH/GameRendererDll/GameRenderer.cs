@@ -29,11 +29,11 @@ namespace GameRendererDll
         Point petrolLocation = new Point(Config.Width - 150, 0);
         Point moneyLocation = new Point(0, 0);
 
-        Point shopMessageLocation = new Point(550, Config.ButtonBgHeight - 50);
+        Point shopMessageLocation = new Point(500, Config.ButtonBgHeight - 65);
         Point HealthPriceShopTextLocation = new Point(700, Config.ButtonBgHeight - 50);
         Point PetrolPriceShopTextLocation = new Point(475, Config.ButtonBgHeight - 50);
         Point ReturnShopTextLocation = new Point(Config.Width / 2, Config.Height / 2);
-        int returnMessageTimeCounter = 0;
+        Key lastKey = Key.Left;
         int num = 1;
         Dictionary<string, Brush> myBrushes = new Dictionary<string, Brush>();
 
@@ -101,7 +101,21 @@ namespace GameRendererDll
 
         Brush EndGameButtonBrush { get { return GetBrush("GameRendererDll.Images.Main menu.bmp", false); } }
 
-        public void Draw(DrawingContext ctx, int mapID, string intersectShop) // todo mindent kirajzolni, flappybol atirni
+        Brush ShopBrush { get { return GetBrush("GameRendererDll.Images.shopbg.bmp", false); } }
+
+        Brush EngGameLogoBrush { get { return GetBrush("GameRendererDll.Images.gameover.bmp", false); } }
+
+        Brush GateBrush { get { return GetBrush("GameRendererDll.Images.gate.bmp", false); } }
+
+        Brush MineGate1Brush { get { return GetBrush("GameRendererDll.Images.gatetop.bmp", false); } }
+
+        Brush MineGate2Brush { get { return GetBrush("GameRendererDll.Images.gatebottom.bmp", false); } }
+
+        Brush MinerRightBrush { get { return GetBrush("GameRendererDll.Images.minerLeft.bmp", false); } }
+
+        Brush MinerLeftBrush { get { return GetBrush("GameRendererDll.Images.minerRight.bmp", false); } }
+
+        public void Draw(DrawingContext ctx, int mapID, string intersectShop, Key k) // todo mindent kirajzolni, flappybol atirni
         {
             Pen black = null;//new Pen(Brushes.Black, 1);
 
@@ -179,7 +193,7 @@ namespace GameRendererDll
                                 this.dg.Children.Add(Stone);
                                 break;
                             case "gate":
-                                GeometryDrawing mapOneGate = new GeometryDrawing(Config.MapTwoToOneGateBg,
+                                GeometryDrawing mapOneGate = new GeometryDrawing(GateBrush,
                                 black,
                                 RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(mapOneGate);
@@ -202,16 +216,40 @@ namespace GameRendererDll
                                 RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(lava);
                                 break;
+                            case "gate2":
+                                GeometryDrawing MineGatePart1 = new GeometryDrawing(MineGate1Brush,
+                                black,
+                                RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
+                                this.dg.Children.Add(MineGatePart1);
+                                break;
+                            case "gate3":
+                                GeometryDrawing MineGatePart2 = new GeometryDrawing(MineGate2Brush,
+                                black,
+                                RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
+                                this.dg.Children.Add(MineGatePart2);
+                                break;
                         }
                     }
                 }
 
-                GeometryDrawing miner = new GeometryDrawing(
-                    Config.MinerBgBrush,
+                if (k == Key.Left || (k == Key.Up && this.lastKey == Key.Left) || (k == Key.Down && this.lastKey == Key.Left) || (k == Key.Space && this.lastKey == Key.Left))
+                {
+                    GeometryDrawing miner = new GeometryDrawing(
+                    this.MinerLeftBrush,
                     black,
-                    new RectangleGeometry(character.Area));
-
-                this.dg.Children.Add(miner);
+                    new RectangleGeometry(this.character.Area));
+                    this.dg.Children.Add(miner);
+                    this.lastKey = Key.Left;
+                }
+                else if (k == Key.Right || (k == Key.Up && this.lastKey == Key.Right) || (k == Key.Down && this.lastKey == Key.Right) || (k == Key.Space && this.lastKey == Key.Right))
+                {
+                    GeometryDrawing miner = new GeometryDrawing(
+                    this.MinerRightBrush,
+                    black,
+                    new RectangleGeometry(this.character.Area));
+                    this.dg.Children.Add(miner);
+                    this.lastKey = Key.Right;
+                }
             }
             else if (mapID == 0) // SHOP AND GATE TO MINE
             {
@@ -221,16 +259,11 @@ namespace GameRendererDll
                    new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
                 this.dg.Children.Add(background);
 
-                GeometryDrawing gate = new GeometryDrawing(Config.GateBg,
+                GeometryDrawing gate = new GeometryDrawing(GateBrush,
                    black,
                    new RectangleGeometry(this.model.Gate.Area));
 
                 this.dg.Children.Add(gate);
-
-                GeometryDrawing miner = new GeometryDrawing(
-                    Config.MinerBgBrush,
-                    black,
-                    new RectangleGeometry(this.character.Area));
 
                 GeometryDrawing ground = new GeometryDrawing(
                     groundBrush,
@@ -260,7 +293,7 @@ namespace GameRendererDll
                     new RectangleGeometry(this.model.ButtonShape.Area));
 
                     GeometryDrawing ButtonBackg = new GeometryDrawing(
-                    Config.ButtonBg,
+                    ShopBrush,
                     black,
                     new RectangleGeometry(this.model.ButtonBackground.Area));
 
@@ -280,7 +313,7 @@ namespace GameRendererDll
                     new RectangleGeometry(this.model.HealthButtonShape.Area));
 
                     GeometryDrawing ButtonBackg = new GeometryDrawing(
-                    Brushes.White,
+                    ShopBrush,
                     black,
                     new RectangleGeometry(this.model.ButtonBackground.Area));
 
@@ -296,7 +329,7 @@ namespace GameRendererDll
                     new RectangleGeometry(this.model.ButtonShape.Area));
 
                     GeometryDrawing ButtonBackg = new GeometryDrawing(
-                    Config.ButtonBg,
+                    ShopBrush,
                     black,
                     new RectangleGeometry(this.model.ButtonBackground.Area));
 
@@ -308,13 +341,31 @@ namespace GameRendererDll
                 this.dg.Children.Add(pickaxShop);
                 this.dg.Children.Add(healthShop);
                 this.dg.Children.Add(petrolShop);
-                this.dg.Children.Add(miner);
+
+                if (k == Key.Left || (k == Key.Up && this.lastKey == Key.Left) || (k == Key.Down && this.lastKey == Key.Left) || (k == Key.Space && this.lastKey == Key.Left))
+                {
+                    GeometryDrawing miner = new GeometryDrawing(
+                    this.MinerLeftBrush,
+                    black,
+                    new RectangleGeometry(this.character.Area));
+                    this.dg.Children.Add(miner);
+                    this.lastKey = Key.Left;
+                }
+                else if (k == Key.Right || (k == Key.Up && this.lastKey == Key.Right) || (k == Key.Down && this.lastKey == Key.Right) || (k == Key.Space && this.lastKey == Key.Right))
+                {
+                    GeometryDrawing miner = new GeometryDrawing(
+                    this.MinerRightBrush,
+                    black,
+                    new RectangleGeometry(this.character.Area));
+                    this.dg.Children.Add(miner);
+                    this.lastKey = Key.Right;
+                }
             }
             else if (mapID == 2)
             {
                 GeometryDrawing background = new GeometryDrawing(
-                   Config.bgBrush,
-                   black,
+                   EngGameLogoBrush,
+                   null,
                    new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
 
                 GeometryDrawing endGameButton = new GeometryDrawing(
@@ -468,11 +519,11 @@ namespace GameRendererDll
             {
                 if (this.character.PickAxLevel == 4)
                 {
-                    shopMessage = $"Gratulálok, a legerõsebb csákánnyal rendelkezel!";
+                    shopMessage = $"Gratulálok, a legerõsebb csákánnyal \nrendelkezel!";
                 }
                 else
                 {
-                    shopMessage = $"Jelenlegi csákányod ereje: {this.character.PickAxLevel}! \nKövetkezõ csákány ereje:{this.character.PickAxLevel + 1}!";
+                    shopMessage = $"Jelenlegi csákányod ereje: {this.character.PickAxLevel}! \nKövetkezõ csákány ereje:{this.character.PickAxLevel + 1}!\nA csákány ára: 100$";
                 }
             }
 
@@ -484,7 +535,7 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.Black, 1);
+                    Brushes.White, 1);
             ctx.DrawText(this.formattedText, this.shopMessageLocation);
 
             return this.formattedText;
@@ -502,7 +553,7 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.Black, 1);
+                    Brushes.White, 1);
             ctx.DrawText(this.formattedText, this.HealthPriceShopTextLocation); // todo elhelyezés
 
             return this.formattedText;
@@ -520,7 +571,7 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.Black, 1);
+                    Brushes.White, 1);
             ctx.DrawText(this.formattedText, this.PetrolPriceShopTextLocation); // todo elhelyezés
 
             return this.formattedText;
@@ -550,15 +601,15 @@ namespace GameRendererDll
 
             Typeface font = new Typeface("Arial");
 
-            Point p = new Point(255, 200);
+            Point p = new Point(310, 280);
 
             this.formattedText = new FormattedText(
-                    $"GAME OVER\nYour score: {this.character.Score}",
+                    $"Your score: {this.character.Score}",
                     System.Globalization.CultureInfo.CurrentCulture,
                     FlowDirection.LeftToRight,
                     font,
                     40,
-                    Brushes.HotPink, 1);
+                    Brushes.White, 1);
             ctx.DrawText(this.formattedText, p);
 
             return this.formattedText;
