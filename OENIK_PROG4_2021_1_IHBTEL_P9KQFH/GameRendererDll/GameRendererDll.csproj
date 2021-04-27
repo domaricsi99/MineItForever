@@ -28,6 +28,8 @@
     <None Remove="Images\ladder.bmp" />
     <None Remove="Images\lava.bmp" />
     <None Remove="Images\Main menu.bmp" />
+    <None Remove="Images\minerLeft.bmp" />
+    <None Remove="Images\minerRight.bmp" />
     <None Remove="Images\sell button.bmp" />
     <None Remove="Images\shop button.bmp" />
     <None Remove="Images\shopbg.bmp" />
@@ -56,6 +58,8 @@
     <EmbeddedResource Include="Images\ladder.bmp" />
     <EmbeddedResource Include="Images\lava.bmp" />
     <EmbeddedResource Include="Images\Main menu.bmp" />
+    <EmbeddedResource Include="Images\minerLeft.bmp" />
+    <EmbeddedResource Include="Images\minerRight.bmp" />
     <EmbeddedResource Include="Images\sell button.bmp" />
     <EmbeddedResource Include="Images\shop button.bmp" />
     <EmbeddedResource Include="Images\shopbg.bmp" />

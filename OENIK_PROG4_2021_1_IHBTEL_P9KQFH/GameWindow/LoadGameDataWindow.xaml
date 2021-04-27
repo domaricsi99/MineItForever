@@ -18,7 +18,7 @@
     </Window.Resources>
     <Grid HorizontalAlignment="Right" Width="800" Height="434" VerticalAlignment="Center">
         <Grid.Background>
-            <ImageBrush ImageSource= "C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\Féléves feladat\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameWindow\BgImages\load game.bmp" Stretch="Fill"/>
+            <ImageBrush ImageSource= "BgImages\load game.bmp" Stretch="Fill"/>
         </Grid.Background>
         <Button Background="Transparent" Foreground="White" BorderThickness="0" Content="Load Game" Margin="73,339,593,63" Click="Load_Game_Click"/>
         <Button Background="Transparent" Foreground="White" BorderThickness="0" Content="Exit to Main Menu" Margin="607,334,73,68" Click="Exit_Click"/>

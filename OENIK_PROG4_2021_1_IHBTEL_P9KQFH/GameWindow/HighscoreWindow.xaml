@@ -22,7 +22,7 @@
     </Window.Resources>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource= "C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\Féléves feladat\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameWindow\BgImages\highscore.bmp" Stretch="Fill"/>
+            <ImageBrush ImageSource= "BgImages\highscore.bmp" Stretch="Fill"/>
         </Grid.Background>
 
         <Label Foreground="White" Content="Highscores:" HorizontalAlignment="Left" Margin="60,10,0,0" VerticalAlignment="Top" FontSize="24"/>

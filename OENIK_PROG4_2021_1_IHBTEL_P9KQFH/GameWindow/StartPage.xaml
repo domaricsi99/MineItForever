@@ -8,7 +8,7 @@
         Title="Main Menu" Height="450" Width="800">
     <Grid HorizontalAlignment="Right" Width="800" Height="450" VerticalAlignment="Center">
         <Grid.Background>
-            <ImageBrush ImageSource= "C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\Féléves feladat\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameWindow\BgImages\StartBg2.bmp" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource= "BgImages\StartBg2.bmp" Stretch="UniformToFill"/>
         </Grid.Background>
         <Button Background="Transparent" Foreground="White" BorderThickness="0" Click="LoadGame_Click"  Content="Load Game" Margin="339,196,339,217" Height="20" Width="100"/>
         <Button Background="Transparent" Foreground="White" BorderThickness="0" Click="NewGame_Click" Content="New Game" Margin="339,167,339,246" Height="20" Width="100"/>

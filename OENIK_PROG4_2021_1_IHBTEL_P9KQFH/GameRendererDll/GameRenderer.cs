@@ -111,9 +111,9 @@ namespace GameRendererDll
 
         Brush MineGate2Brush { get { return GetBrush("GameRendererDll.Images.gatebottom.bmp", false); } }
 
-        Brush MinerRightBrush { get { return GetBrush("GameRendererDll.Images.DancingMinerRight.gif", false); } }
+        Brush MinerRightBrush { get { return GetBrush("GameRendererDll.Images.minerLeft.bmp", false); } }
 
-        Brush MinerLeftBrush { get { return GetBrush("GameRendererDll.Images.DancingMinerLeft.gif", false); } }
+        Brush MinerLeftBrush { get { return GetBrush("GameRendererDll.Images.minerRight.bmp", false); } }
 
         public void Draw(DrawingContext ctx, int mapID, string intersectShop, Key k) // todo mindent kirajzolni, flappybol atirni
         {
