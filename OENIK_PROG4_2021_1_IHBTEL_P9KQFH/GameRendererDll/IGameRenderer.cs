@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace GameRendererDll
@@ -11,7 +12,7 @@ namespace GameRendererDll
     {
         public RectangleGeometry RectangleG(double oreX, double oreY);
 
-        public void Draw(DrawingContext ctx, int mapID, string intersectShop);
+        public void Draw(DrawingContext ctx, int mapID, string intersectShop, Key k);
 
         public FormattedText DrawScoreText(DrawingContext ctx, int mapID);
 

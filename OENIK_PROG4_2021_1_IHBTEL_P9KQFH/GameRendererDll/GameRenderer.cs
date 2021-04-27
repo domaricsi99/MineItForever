@@ -33,7 +33,7 @@ namespace GameRendererDll
         Point HealthPriceShopTextLocation = new Point(700, Config.ButtonBgHeight - 50);
         Point PetrolPriceShopTextLocation = new Point(475, Config.ButtonBgHeight - 50);
         Point ReturnShopTextLocation = new Point(Config.Width / 2, Config.Height / 2);
-        int returnMessageTimeCounter = 0;
+        Key lastKey = Key.Left;
         int num = 1;
         Dictionary<string, Brush> myBrushes = new Dictionary<string, Brush>();
 
@@ -111,9 +111,11 @@ namespace GameRendererDll
 
         Brush MineGate2Brush { get { return GetBrush("GameRendererDll.Images.gatebottom.bmp", false); } }
 
-        Brush MinerBrush { get { return GetBrush("GameRendererDll.Images.Miner.png", false); } }
+        Brush MinerRightBrush { get { return GetBrush("GameRendererDll.Images.DancingMinerRight.gif", false); } }
 
-        public void Draw(DrawingContext ctx, int mapID, string intersectShop) // todo mindent kirajzolni, flappybol atirni
+        Brush MinerLeftBrush { get { return GetBrush("GameRendererDll.Images.DancingMinerLeft.gif", false); } }
+
+        public void Draw(DrawingContext ctx, int mapID, string intersectShop, Key k) // todo mindent kirajzolni, flappybol atirni
         {
             Pen black = null;//new Pen(Brushes.Black, 1);
 
@@ -230,12 +232,24 @@ namespace GameRendererDll
                     }
                 }
 
-                GeometryDrawing miner = new GeometryDrawing(
-                    MinerBrush,
+                if (k == Key.Left || (k == Key.Up && this.lastKey == Key.Left) || (k == Key.Down && this.lastKey == Key.Left) || (k == Key.Space && this.lastKey == Key.Left))
+                {
+                    GeometryDrawing miner = new GeometryDrawing(
+                    this.MinerLeftBrush,
                     black,
-                    new RectangleGeometry(character.Area));
-
-                this.dg.Children.Add(miner);
+                    new RectangleGeometry(this.character.Area));
+                    this.dg.Children.Add(miner);
+                    this.lastKey = Key.Left;
+                }
+                else if (k == Key.Right || (k == Key.Up && this.lastKey == Key.Right) || (k == Key.Down && this.lastKey == Key.Right) || (k == Key.Space && this.lastKey == Key.Right))
+                {
+                    GeometryDrawing miner = new GeometryDrawing(
+                    this.MinerRightBrush,
+                    black,
+                    new RectangleGeometry(this.character.Area));
+                    this.dg.Children.Add(miner);
+                    this.lastKey = Key.Right;
+                }
             }
             else if (mapID == 0) // SHOP AND GATE TO MINE
             {
@@ -250,11 +264,6 @@ namespace GameRendererDll
                    new RectangleGeometry(this.model.Gate.Area));
 
                 this.dg.Children.Add(gate);
-
-                GeometryDrawing miner = new GeometryDrawing(
-                    MinerBrush,
-                    black,
-                    new RectangleGeometry(this.character.Area));
 
                 GeometryDrawing ground = new GeometryDrawing(
                     groundBrush,
@@ -332,7 +341,25 @@ namespace GameRendererDll
                 this.dg.Children.Add(pickaxShop);
                 this.dg.Children.Add(healthShop);
                 this.dg.Children.Add(petrolShop);
-                this.dg.Children.Add(miner);
+
+                if (k == Key.Left || (k == Key.Up && this.lastKey == Key.Left) || (k == Key.Down && this.lastKey == Key.Left) || (k == Key.Space && this.lastKey == Key.Left))
+                {
+                    GeometryDrawing miner = new GeometryDrawing(
+                    this.MinerLeftBrush,
+                    black,
+                    new RectangleGeometry(this.character.Area));
+                    this.dg.Children.Add(miner);
+                    this.lastKey = Key.Left;
+                }
+                else if (k == Key.Right || (k == Key.Up && this.lastKey == Key.Right) || (k == Key.Down && this.lastKey == Key.Right) || (k == Key.Space && this.lastKey == Key.Right))
+                {
+                    GeometryDrawing miner = new GeometryDrawing(
+                    this.MinerRightBrush,
+                    black,
+                    new RectangleGeometry(this.character.Area));
+                    this.dg.Children.Add(miner);
+                    this.lastKey = Key.Right;
+                }
             }
             else if (mapID == 2)
             {

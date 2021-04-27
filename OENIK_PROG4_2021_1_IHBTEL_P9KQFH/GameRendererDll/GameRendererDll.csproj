@@ -15,6 +15,8 @@
   <ItemGroup>
     <None Remove="Images\BackGround.bmp" />
     <None Remove="Images\copper.bmp" />
+    <None Remove="Images\DancingMinerLeft.gif" />
+    <None Remove="Images\DancingMinerRight.gif" />
     <None Remove="Images\diamond.bmp" />
     <None Remove="Images\dirt.bmp" />
     <None Remove="Images\gameover.bmp" />
@@ -26,7 +28,6 @@
     <None Remove="Images\ladder.bmp" />
     <None Remove="Images\lava.bmp" />
     <None Remove="Images\Main menu.bmp" />
-    <None Remove="Images\Miner.png" />
     <None Remove="Images\sell button.bmp" />
     <None Remove="Images\shop button.bmp" />
     <None Remove="Images\shopbg.bmp" />
@@ -38,6 +39,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Images\BackGround.bmp" />
     <EmbeddedResource Include="Images\copper.bmp" />
+    <EmbeddedResource Include="Images\DancingMinerLeft.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\DancingMinerRight.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Images\diamond.bmp" />
     <EmbeddedResource Include="Images\dirt.bmp" />
     <EmbeddedResource Include="Images\gameover.bmp" />
@@ -49,7 +56,6 @@
     <EmbeddedResource Include="Images\ladder.bmp" />
     <EmbeddedResource Include="Images\lava.bmp" />
     <EmbeddedResource Include="Images\Main menu.bmp" />
-    <EmbeddedResource Include="Images\Miner.png" />
     <EmbeddedResource Include="Images\sell button.bmp" />
     <EmbeddedResource Include="Images\shop button.bmp" />
     <EmbeddedResource Include="Images\shopbg.bmp" />
