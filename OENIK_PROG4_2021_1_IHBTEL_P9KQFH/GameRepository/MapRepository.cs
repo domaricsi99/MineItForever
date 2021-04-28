@@ -35,8 +35,8 @@ namespace GameRepository
         public List<Ore> StringToOreList(Character character)
         {
             this.map = new List<Ore>();
-            int localOreX = Config.oreX;
-            int localOreY = Config.oreY;
+            int localOreX = Config.OreX;
+            int localOreY = Config.OreY;
             int counter = 0;
             foreach (string item in character.Map)
             {
@@ -51,7 +51,7 @@ namespace GameRepository
                             Level = 0,
                             OreType = "air",
                             CanPass = true,
-                            area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
+                            Area = new Rect(localOreX, localOreY, Config.OreWidth, Config.OreHeight),
                         });
                         break;
                     case "1":
@@ -63,7 +63,7 @@ namespace GameRepository
                             Level = 0,
                             OreType = "dirt",
                             CanPass = false,
-                            area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
+                            Area = new Rect(localOreX, localOreY, Config.OreWidth, Config.OreHeight),
                         });
                         break;
                     case "2":
@@ -75,7 +75,7 @@ namespace GameRepository
                             Level = 1,
                             OreType = "copper",
                             CanPass = false,
-                            area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
+                            Area = new Rect(localOreX, localOreY, Config.OreWidth, Config.OreHeight),
                         });
                         break;
                     case "3":
@@ -87,7 +87,7 @@ namespace GameRepository
                             Level = 2,
                             OreType = "silver",
                             CanPass = false,
-                            area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
+                            Area = new Rect(localOreX, localOreY, Config.OreWidth, Config.OreHeight),
                         });
                         break;
                     case "4":
@@ -99,7 +99,7 @@ namespace GameRepository
                             Level = 3,
                             OreType = "gold",
                             CanPass = false,
-                            area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
+                            Area = new Rect(localOreX, localOreY, Config.OreWidth, Config.OreHeight),
                         });
                         break;
                     case "5":
@@ -111,7 +111,7 @@ namespace GameRepository
                             Level = 3,
                             OreType = "stone",
                             CanPass = false,
-                            area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
+                            Area = new Rect(localOreX, localOreY, Config.OreWidth, Config.OreHeight),
                         });
                         break;
                     case "6":
@@ -123,7 +123,7 @@ namespace GameRepository
                             Level = 4,
                             OreType = "diamond",
                             CanPass = false,
-                            area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
+                            Area = new Rect(localOreX, localOreY, Config.OreWidth, Config.OreHeight),
                         });
                         break;
                     case "7":
@@ -135,7 +135,7 @@ namespace GameRepository
                             Level = 4,
                             OreType = "lava",
                             CanPass = false,
-                            area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
+                            Area = new Rect(localOreX, localOreY, Config.OreWidth, Config.OreHeight),
                         });
                         break;
                     case "8":
@@ -147,7 +147,7 @@ namespace GameRepository
                             Level = 99999,
                             OreType = "ground2",
                             CanPass = false,
-                            area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
+                            Area = new Rect(localOreX, localOreY, Config.OreWidth, Config.OreHeight),
                         });
                         break;
                     case "9":
@@ -159,7 +159,7 @@ namespace GameRepository
                             Level = 99999,
                             OreType = "gate",
                             CanPass = false,
-                            area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
+                            Area = new Rect(localOreX, localOreY, Config.OreWidth, Config.OreHeight),
                         });
                         break;
                     case "10":
@@ -172,7 +172,7 @@ namespace GameRepository
                             OreType = "ladder",
                             Score = 0,
                             Value = 0,
-                            area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
+                            Area = new Rect(localOreX, localOreY, Config.OreWidth, Config.OreHeight),
                         });
                         break;
                     case "11":
@@ -184,7 +184,7 @@ namespace GameRepository
                             Level = 99999,
                             OreType = "gate2",
                             CanPass = false,
-                            area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
+                            Area = new Rect(localOreX, localOreY, Config.OreWidth, Config.OreHeight),
                         });
                         break;
                     case "12":
@@ -196,7 +196,7 @@ namespace GameRepository
                             Level = 99999,
                             OreType = "gate3",
                             CanPass = false,
-                            area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
+                            Area = new Rect(localOreX, localOreY, Config.OreWidth, Config.OreHeight),
                         });
                         break;
                 }

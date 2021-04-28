@@ -37,7 +37,7 @@
         </member>
         <member name="P:GameWindow.HighscoreWindow.AllChar">
             <summary>
-            Gets or sets all character.
+            Gets all character.
             </summary>
         </member>
         <member name="M:GameWindow.HighscoreWindow.InitializeComponent">
@@ -60,7 +60,7 @@
         </member>
         <member name="P:GameWindow.LoadGameDataWindow.AllChar">
             <summary>
-            Gets or sets all character.
+            Gets all character.
             </summary>
         </member>
         <member name="P:GameWindow.LoadGameDataWindow.SelectedProfile">

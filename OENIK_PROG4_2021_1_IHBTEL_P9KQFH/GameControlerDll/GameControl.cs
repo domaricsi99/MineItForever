@@ -85,11 +85,6 @@ namespace GameControlerDll
 
             this.MouseRightButtonDown += this.GameControl_MouseRightButtonDown;
 
-            this.logic.ShopScreen += (obj, args) =>
-            {
-                this.mapID = 0;
-            };
-
             this.logic.BackToMapOneScreen += (obj, args) =>
             {
                 this.mapID = 0;

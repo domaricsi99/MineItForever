@@ -5,7 +5,7 @@
 namespace GameLogicTest
 {
     /// <summary>
-    /// nothing.
+    /// nothing yet.
     /// </summary>
     public class Class1
     {

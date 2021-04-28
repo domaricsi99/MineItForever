@@ -11,41 +11,144 @@ namespace GameModelDll
     /// </summary>
     public static class Config
     {
-        public static double Width = 900;
-        public static double Height = 400;
-        public static int BorderSize = 4;
-        public static int MapDelimeter = 20;
+        /// <summary>
+        /// Window width.
+        /// </summary>
+        public const double Width = 900;
 
-        public static int MinerWidth = 30;
-        public static int MinerHeight = 40;
+        /// <summary>
+        /// Window hegiht.
+        /// </summary>
+        public const double Height = 400;
 
-        public static int GroundWidth = (int)Config.Width;
-        public static int GroundHeight = 30;
+        /// <summary>
+        /// Window border size.
+        /// </summary>
+        public const int BorderSize = 4;
 
-        public static Brush airBg = Brushes.Transparent;
-        public static int oreWidth = 45;
-        public static int oreHeight = 45;
-        public static int oreX = 0;
-        public static int oreY = 0;
+        /// <summary>
+        /// Map delimeter.
+        /// </summary>
+        public const int MapDelimeter = 20;
 
-        public static int GateWidth = 30;
-        public static int GateHeight = 60;
+        /// <summary>
+        /// Miner width.
+        /// </summary>
+        public const int MinerWidth = 30;
 
-        public static int BuildingWidth = 90;
-        public static int BuildingHeight = 110;
+        /// <summary>
+        /// Miner height.
+        /// </summary>
+        public const int MinerHeight = 40;
 
-        public static Brush PickaxShopBg = Brushes.Transparent;
-        public static Brush HealthShopBg = Brushes.Transparent;
-        public static Brush PetrolShopBg = Brushes.Transparent;
-        public static int ShopWidth = 45;
-        public static int ShopHeight = 45;
+        /// <summary>
+        /// Ground width.
+        /// </summary>
+        public const int GroundWidth = (int)Config.Width;
 
-        public static int ButtonWidth = 90;
-        public static int ButtonHeight = 45;
-        public static int ButtonBgWidth = 400;
-        public static int ButtonBgHeight = 150;
+        /// <summary>
+        /// Ground height.
+        /// </summary>
+        public const int GroundHeight = 30;
 
-        public static int EndGameButtonWidth = 180;
-        public static int EndGameButtonHeight = 50;
+        /// <summary>
+        /// Ore width.
+        /// </summary>
+        public const int OreWidth = 45;
+
+        /// <summary>
+        /// Ore height.
+        /// </summary>
+        public const int OreHeight = 45;
+
+        /// <summary>
+        /// Ore x coordinate.
+        /// </summary>
+        public const int OreX = 0;
+
+        /// <summary>
+        /// Ore y coordinate.
+        /// </summary>
+        public const int OreY = 0;
+
+        /// <summary>
+        /// Gatw width.
+        /// </summary>
+        public const int GateWidth = 30;
+
+        /// <summary>
+        /// Gate height.
+        /// </summary>
+        public const int GateHeight = 60;
+
+        /// <summary>
+        /// Building width.
+        /// </summary>
+        public const int BuildingWidth = 90;
+
+        /// <summary>
+        /// Building height.
+        /// </summary>
+        public const int BuildingHeight = 110;
+
+        /// <summary>
+        /// Shop intersect width.
+        /// </summary>
+        public const int ShopWidth = 45;
+
+        /// <summary>
+        /// Shop intersect height.
+        /// </summary>
+        public const int ShopHeight = 45;
+
+        /// <summary>
+        /// Button width.
+        /// </summary>
+        public const int ButtonWidth = 90;
+
+        /// <summary>
+        /// Button height.
+        /// </summary>
+        public const int ButtonHeight = 45;
+
+        /// <summary>
+        /// Button background width.
+        /// </summary>
+        public const int ButtonBgWidth = 400;
+
+        /// <summary>
+        /// Button background height.
+        /// </summary>
+        public const int ButtonBgHeight = 150;
+
+        /// <summary>
+        /// End game button width.
+        /// </summary>
+        public const int EndGameButtonWidth = 180;
+
+        /// <summary>
+        /// End game button height.
+        /// </summary>
+        public const int EndGameButtonHeight = 50;
+
+        /// <summary>
+        /// Air background.
+        /// </summary>
+        public static readonly Brush AirBg = Brushes.Transparent;
+
+        /// <summary>
+        /// Pickax shop background.
+        /// </summary>
+        public static readonly Brush PickaxShopBg = Brushes.Transparent;
+
+        /// <summary>
+        /// Health shop background.
+        /// </summary>
+        public static readonly Brush HealthShopBg = Brushes.Transparent;
+
+        /// <summary>
+        /// Petrol shop background.
+        /// </summary>
+        public static readonly Brush PetrolShopBg = Brushes.Transparent;
     }
 }

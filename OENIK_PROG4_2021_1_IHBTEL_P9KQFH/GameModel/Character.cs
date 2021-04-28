@@ -16,6 +16,11 @@ namespace GameModelDll
     public class Character : Shape
     {
         /// <summary>
+        /// Gets or sets.
+        /// </summary>
+        public List<Ore> Backpack;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Character"/> class.
         /// </summary>
         public Character()
@@ -51,13 +56,12 @@ namespace GameModelDll
         /// <param name="money">money.</param>
         /// <param name="score">score.</param>
         /// <param name="pickAxLevel">pickax level.</param>
-        /// <param name="map">map.</param>
         /// <param name="name">name.</param>
         /// <param name="x">x coordinate.</param>
         /// <param name="y">y coordinate.</param>
         /// <param name="w">width.</param>
         /// <param name="h">height.</param>
-        public Character(int health, int fuel, int money, int score, int pickAxLevel, List<string> map, string name, double x, double y, double w, double h)
+        public Character(int health, int fuel, int money, int score, int pickAxLevel, string name, double x, double y, double w, double h)
             : base(x, y, w, h)
         {
             this.Health = health;
@@ -114,11 +118,6 @@ namespace GameModelDll
         /// Gets or sets .
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets.
-        /// </summary>
-        public List<Ore> Backpack;
 
         /// <summary>
         /// Gets or sets .

@@ -163,6 +163,17 @@
             </summary>
             <returns>Random map.</returns>
         </member>
+        <member name="T:GameRepository.IShopRepository">
+            <summary>
+            Shop repositroy interface.
+            </summary>
+        </member>
+        <member name="M:GameRepository.IShopRepository.PickaxList">
+            <summary>
+            Pickax list.
+            </summary>
+            <returns>list pickax.</returns>
+        </member>
         <member name="T:GameRepository.MapRepository">
             <summary>
             Map repository.

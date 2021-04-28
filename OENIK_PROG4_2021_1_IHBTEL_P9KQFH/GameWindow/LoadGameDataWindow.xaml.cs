@@ -37,9 +37,9 @@ namespace GameWindow
         }
 
         /// <summary>
-        /// Gets or sets all character.
+        /// Gets all character.
         /// </summary>
-        public List<Character> AllChar { get; set; }
+        public List<Character> AllChar { get; }
 
         /// <summary>
         /// Gets or sets selected profile.

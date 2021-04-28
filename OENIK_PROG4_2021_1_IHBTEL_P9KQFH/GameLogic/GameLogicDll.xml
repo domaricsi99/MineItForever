@@ -71,11 +71,6 @@
             Back to map one screen event.
             </summary>
         </member>
-        <member name="E:GameLogicDll.GameLogic.ShopScreen">
-            <summary>
-            Shop screen event.
-            </summary>
-        </member>
         <member name="E:GameLogicDll.GameLogic.EndGameEvent">
             <summary>
             End game event.
@@ -125,6 +120,13 @@
             Fall checker.
             </summary>
             <param name="mapID">Which map we are on.</param>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.Movement(GameLogicDll.Direction)">
+            <summary>
+            Movement range.
+            </summary>
+            <param name="d">Direction.</param>
+            <returns>How much more we can move.</returns>
         </member>
         <member name="M:GameLogicDll.GameLogic.MineGate(System.Int32)">
             <summary>
@@ -276,6 +278,13 @@
             Fall checker.
             </summary>
             <param name="mapID">Which map we are on.</param>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.Movement(GameLogicDll.Direction)">
+            <summary>
+            Movement range.
+            </summary>
+            <param name="d">Direction.</param>
+            <returns>How much more we can move.</returns>
         </member>
         <member name="M:GameLogicDll.IGameLogic.MineGate(System.Int32)">
             <summary>

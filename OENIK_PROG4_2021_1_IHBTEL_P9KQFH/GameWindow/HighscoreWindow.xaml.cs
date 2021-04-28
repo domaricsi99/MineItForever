@@ -37,9 +37,9 @@ namespace GameWindow
         }
 
         /// <summary>
-        /// Gets or sets all character.
+        /// Gets all character.
         /// </summary>
-        public List<Character> AllChar { get; set; }
+        public List<Character> AllChar { get; }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {

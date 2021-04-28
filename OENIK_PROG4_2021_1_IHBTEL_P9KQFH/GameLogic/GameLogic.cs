@@ -115,11 +115,6 @@ namespace GameLogicDll
         public event EventHandler BackToMapOneScreen;
 
         /// <summary>
-        /// Shop screen event.
-        /// </summary>
-        public event EventHandler ShopScreen;
-
-        /// <summary>
         /// End game event.
         /// </summary>
         public event EventHandler EndGameEvent;
@@ -337,6 +332,11 @@ namespace GameLogicDll
             this.RefreshScreen?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Movement range.
+        /// </summary>
+        /// <param name="d">Direction.</param>
+        /// <returns>How much more we can move.</returns>
         public double Movement(Direction d)
         {
             Ore[,] renderedOres = this.MapPart();

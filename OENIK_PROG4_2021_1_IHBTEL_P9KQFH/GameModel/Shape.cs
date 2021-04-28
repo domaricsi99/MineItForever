@@ -13,9 +13,9 @@ namespace GameModelDll
     public class Shape
     {
         /// <summary>
-        /// 
+        /// Shape rect area.
         /// </summary>
-        public Rect area;
+        private Rect area;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Shape"/> class.

@@ -57,6 +57,11 @@ namespace GameLogicDll
         /// <param name="mapID">Which map we are on.</param>
         public void Fall(int mapID);
 
+        /// <summary>
+        /// Movement range.
+        /// </summary>
+        /// <param name="d">Direction.</param>
+        /// <returns>How much more we can move.</returns>
         public double Movement(Direction d);
 
         /// <summary>

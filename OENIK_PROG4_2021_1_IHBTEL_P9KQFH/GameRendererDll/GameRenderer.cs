@@ -23,65 +23,6 @@ namespace GameRendererDll
         private DrawingGroup dg;
         private GameModel model;
         private GameLogic gdll;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GameRenderer"/> class.
-        /// </summary>
-        /// <param name="model">model repo.</param>
-        /// <param name="logic">game logic.</param>
-        /// <param name="character">current character.</param>
-        public GameRenderer(GameModel model, GameLogic logic, Character character)
-        {
-            this.model = model;
-            this.gdll = logic;
-            this.map = this.gdll.DrawMap();
-            this.dg = new DrawingGroup();
-            this.character = character;
-        }
-
-        private Brush BgBrush { get { return this.GetBrush("GameRendererDll.Images.BackGround.bmp", true); } }
-
-        private Brush CopperBrush { get { return this.GetBrush("GameRendererDll.Images.copper.bmp", false); } }
-
-        private Brush DiamondBrush { get { return this.GetBrush("GameRendererDll.Images.diamond.bmp", false); } }
-
-        private Brush DirtBrush { get { return this.GetBrush("GameRendererDll.Images.dirt.bmp", false); } }
-
-        private Brush GoldBrush { get { return this.GetBrush("GameRendererDll.Images.gold.bmp", false); } }
-
-        private Brush SilverBrush { get { return this.GetBrush("GameRendererDll.Images.silver.bmp", false); } }
-
-        private Brush StoneBrush { get { return this.GetBrush("GameRendererDll.Images.stone.bmp", false); } }
-
-        private Brush LadderBrush { get { return this.GetBrush("GameRendererDll.Images.ladder.bmp", false); } }
-
-        private Brush ShopWindowBackgroundBrush { get { return this.GetBrush("GameRendererDll.Images.shopWindowBackground.bmp", true); } }
-
-        private Brush GroundBrush { get { return this.GetBrush("GameRendererDll.Images.ground.bmp", false); } }
-
-        private Brush LavaBrush { get { return this.GetBrush("GameRendererDll.Images.lava.bmp", false); } }
-
-        private Brush BuyButtonBrush { get { return this.GetBrush("GameRendererDll.Images.shop button.bmp", false); } }
-
-        private Brush SellButtonBrush { get { return this.GetBrush("GameRendererDll.Images.sell button.bmp", false); } }
-
-        private Brush EndGameButtonBrush { get { return this.GetBrush("GameRendererDll.Images.Main menu.bmp", false); } }
-
-        private Brush ShopBrush { get { return this.GetBrush("GameRendererDll.Images.shopbg.bmp", false); } }
-
-        private Brush EngGameLogoBrush { get { return this.GetBrush("GameRendererDll.Images.gameover.bmp", false); } }
-
-        private Brush GateBrush { get { return this.GetBrush("GameRendererDll.Images.gate.bmp", false); } }
-
-        private Brush MineGate1Brush { get { return this.GetBrush("GameRendererDll.Images.gatetop.bmp", false); } }
-
-        private Brush MineGate2Brush { get { return this.GetBrush("GameRendererDll.Images.gatebottom.bmp", false); } }
-
-        private Brush MinerRightBrush { get { return this.GetBrush("GameRendererDll.Images.minerLeft.bmp", false); } }
-
-        private Brush MinerLeftBrush { get { return this.GetBrush("GameRendererDll.Images.minerRight.bmp", false); } }
-
-        private Ore[,] map;
         private FormattedText formattedText;
         private int score;
         private Character character;
@@ -98,6 +39,125 @@ namespace GameRendererDll
         private Dictionary<string, Brush> myBrushes = new Dictionary<string, Brush>();
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="GameRenderer"/> class.
+        /// </summary>
+        /// <param name="model">model repo.</param>
+        /// <param name="logic">game logic.</param>
+        /// <param name="character">current character.</param>
+        public GameRenderer(GameModel model, GameLogic logic, Character character)
+        {
+            this.model = model;
+            this.gdll = logic;
+            this.dg = new DrawingGroup();
+            this.character = character;
+        }
+
+        private Brush BgBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.BackGround.bmp", true); }
+        }
+
+        private Brush CopperBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.copper.bmp", false); }
+        }
+
+        private Brush DiamondBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.diamond.bmp", false); }
+        }
+
+        private Brush DirtBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.dirt.bmp", false); }
+        }
+
+        private Brush GoldBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.gold.bmp", false); }
+        }
+
+        private Brush SilverBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.silver.bmp", false); }
+        }
+
+        private Brush StoneBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.stone.bmp", false); }
+        }
+
+        private Brush LadderBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.ladder.bmp", false); }
+        }
+
+        private Brush ShopWindowBackgroundBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.shopWindowBackground.bmp", true); }
+        }
+
+        private Brush GroundBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.ground.bmp", false); }
+        }
+
+        private Brush LavaBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.lava.bmp", false); }
+        }
+
+        private Brush BuyButtonBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.shop button.bmp", false); }
+        }
+
+        private Brush SellButtonBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.sell button.bmp", false); }
+        }
+
+        private Brush EndGameButtonBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.Main menu.bmp", false); }
+        }
+
+        private Brush ShopBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.shopbg.bmp", false); }
+        }
+
+        private Brush EngGameLogoBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.gameover.bmp", false); }
+        }
+
+        private Brush GateBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.gate.bmp", false); }
+        }
+
+        private Brush MineGate1Brush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.gatetop.bmp", false); }
+        }
+
+        private Brush MineGate2Brush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.gatebottom.bmp", false); }
+        }
+
+        private Brush MinerRightBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.minerLeft.bmp", false); }
+        }
+
+        private Brush MinerLeftBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.minerRight.bmp", false); }
+        }
+
+        /// <summary>
         /// Create rectange here due to optimisation.
         /// </summary>
         /// <param name="oreX">x.</param>
@@ -105,7 +165,7 @@ namespace GameRendererDll
         /// <returns>rectangle.</returns>
         public RectangleGeometry RectangleG(double oreX, double oreY)
         {
-            return new RectangleGeometry(new Rect(oreX, oreY, Config.oreWidth, Config.oreHeight));
+            return new RectangleGeometry(new Rect(oreX, oreY, Config.OreWidth, Config.OreHeight));
         }
 
         /// <summary>
@@ -152,7 +212,7 @@ namespace GameRendererDll
                         {
                             case "air":
                                 GeometryDrawing air = new GeometryDrawing(
-                                    Config.airBg,
+                                    Config.AirBg,
                                     black,
                                     this.RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
                                 this.dg.Children.Add(air);
@@ -193,11 +253,11 @@ namespace GameRendererDll
                                 this.dg.Children.Add(diamond);
                                 break;
                             case "stone":
-                                GeometryDrawing Stone = new GeometryDrawing(
+                                GeometryDrawing stone = new GeometryDrawing(
                                     this.StoneBrush,
                                     black,
                                     this.RectangleG(oreMatrix[i, j].Area.X, oreMatrix[i, j].Area.Y));
-                                this.dg.Children.Add(Stone);
+                                this.dg.Children.Add(stone);
                                 break;
                             case "gate":
                                 GeometryDrawing mapOneGate = new GeometryDrawing(
@@ -433,12 +493,13 @@ namespace GameRendererDll
             Typeface font = new Typeface("Arial");
 
             this.formattedText = new FormattedText(
-                    score.ToString(),
+                    this.score.ToString(),
                     System.Globalization.CultureInfo.CurrentCulture,
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    color, 1);
+                    color,
+                    1);
             ctx.DrawText(this.formattedText, this.scoreLocation);
 
             return this.formattedText;
@@ -466,7 +527,8 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.Red, 1);
+                    Brushes.Red,
+                    1);
             ctx.DrawText(this.formattedText, this.healthLocation);
 
             return this.formattedText;
@@ -496,7 +558,8 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    color, 1);
+                    color,
+                    1);
             ctx.DrawText(this.formattedText, this.petrolLocation);
 
             return this.formattedText;
@@ -526,7 +589,8 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    color, 1);
+                    color,
+                    1);
             ctx.DrawText(this.formattedText, this.moneyLocation);
 
             return this.formattedText;
@@ -566,7 +630,7 @@ namespace GameRendererDll
                 }
                 else
                 {
-                    shopMessage = $"Jelenlegi csákányod ereje: {this.character.PickAxLevel}! \nKövetkezõ csákány ereje:{this.character.PickAxLevel + 1}!\nA csákány ára: 100$";
+                    shopMessage = $"Jelenlegi csákányod ereje: {this.character.PickAxLevel}! \nKövetkezõ csákány ereje:{this.character.PickAxLevel + 1}!\nA csákány ára: {(this.character.PickAxLevel + 1) * 100}";
                 }
             }
 
@@ -578,7 +642,8 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.White, 1);
+                    Brushes.White,
+                    1);
             ctx.DrawText(this.formattedText, this.shopMessageLocation);
 
             return this.formattedText;
@@ -601,7 +666,8 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.White, 1);
+                    Brushes.White,
+                    1);
             ctx.DrawText(this.formattedText, this.healthPriceShopTextLocation); // todo elhelyezés
 
             return this.formattedText;
@@ -624,7 +690,8 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     20,
-                    Brushes.White, 1);
+                    Brushes.White,
+                    1);
             ctx.DrawText(this.formattedText, this.petrolPriceShopTextLocation); // todo elhelyezés
 
             return this.formattedText;
@@ -649,7 +716,8 @@ namespace GameRendererDll
                     FlowDirection.LeftToRight,
                     font,
                     40,
-                    Brushes.White, 1);
+                    Brushes.White,
+                    1);
             ctx.DrawText(this.formattedText, p);
 
             return this.formattedText;

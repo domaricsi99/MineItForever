@@ -33,6 +33,11 @@
             Character model.
             </summary>
         </member>
+        <member name="F:GameModelDll.Character.Backpack">
+            <summary>
+            Gets or sets.
+            </summary>
+        </member>
         <member name="M:GameModelDll.Character.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:GameModelDll.Character"/> class.
@@ -50,7 +55,7 @@
             <param name="map">map.</param>
             <param name="name">name.</param>
         </member>
-        <member name="M:GameModelDll.Character.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{System.String},System.String,System.Double,System.Double,System.Double,System.Double)">
+        <member name="M:GameModelDll.Character.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Initializes a new instance of the <see cref="T:GameModelDll.Character"/> class.
             </summary>
@@ -59,7 +64,6 @@
             <param name="money">money.</param>
             <param name="score">score.</param>
             <param name="pickAxLevel">pickax level.</param>
-            <param name="map">map.</param>
             <param name="name">name.</param>
             <param name="x">x coordinate.</param>
             <param name="y">y coordinate.</param>
@@ -110,11 +114,6 @@
             Gets or sets .
             </summary>
         </member>
-        <member name="F:GameModelDll.Character.Backpack">
-            <summary>
-            Gets or sets.
-            </summary>
-        </member>
         <member name="P:GameModelDll.Character.DX">
             <summary>
             Gets or sets .
@@ -128,6 +127,146 @@
         <member name="T:GameModelDll.Config">
             <summary>
             Fix modell size.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.Width">
+            <summary>
+            Window width.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.Height">
+            <summary>
+            Window hegiht.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.BorderSize">
+            <summary>
+            Window border size.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.MapDelimeter">
+            <summary>
+            Map delimeter.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.MinerWidth">
+            <summary>
+            Miner width.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.MinerHeight">
+            <summary>
+            Miner height.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.GroundWidth">
+            <summary>
+            Ground width.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.GroundHeight">
+            <summary>
+            Ground height.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.OreWidth">
+            <summary>
+            Ore width.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.OreHeight">
+            <summary>
+            Ore height.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.OreX">
+            <summary>
+            Ore x coordinate.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.OreY">
+            <summary>
+            Ore y coordinate.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.GateWidth">
+            <summary>
+            Gatw width.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.GateHeight">
+            <summary>
+            Gate height.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.BuildingWidth">
+            <summary>
+            Building width.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.BuildingHeight">
+            <summary>
+            Building height.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.ShopWidth">
+            <summary>
+            Shop intersect width.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.ShopHeight">
+            <summary>
+            Shop intersect height.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.ButtonWidth">
+            <summary>
+            Button width.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.ButtonHeight">
+            <summary>
+            Button height.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.ButtonBgWidth">
+            <summary>
+            Button background width.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.ButtonBgHeight">
+            <summary>
+            Button background height.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.EndGameButtonWidth">
+            <summary>
+            End game button width.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.EndGameButtonHeight">
+            <summary>
+            End game button height.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.AirBg">
+            <summary>
+            Air background.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.PickaxShopBg">
+            <summary>
+            Pickax shop background.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.HealthShopBg">
+            <summary>
+            Health shop background.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.PetrolShopBg">
+            <summary>
+            Petrol shop background.
             </summary>
         </member>
         <member name="T:GameModelDll.GameModel">
@@ -297,7 +436,7 @@
         </member>
         <member name="F:GameModelDll.Shape.area">
             <summary>
-            
+            Shape rect area.
             </summary>
         </member>
         <member name="M:GameModelDll.Shape.#ctor">
