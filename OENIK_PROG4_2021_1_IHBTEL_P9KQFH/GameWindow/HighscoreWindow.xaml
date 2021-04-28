@@ -12,9 +12,9 @@
         <DataTemplate x:Key="highscoreVertical" DataType="{x:Type charModel:Character}">
             <Grid Background="Transparent">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
                 <Label Foreground="White" Content="{Binding Path=Name}"/>
                 <Label Foreground="White" HorizontalContentAlignment="Right" Grid.Column="1" Content="{Binding Path=Score}"/>
             </Grid>
@@ -37,9 +37,7 @@
             <Label Foreground="White">Name:</Label>
             <Label Foreground="White" HorizontalContentAlignment="Right" Margin="104,0,0,0" HorizontalAlignment="Left" Width="42" Grid.ColumnSpan="2">Score:</Label>
         </Grid>
-        <ScrollViewer Margin="147,182,146,159" >
-            <ItemsControl Foreground="White"  ItemsSource="{Binding AllChar, ElementName=ScoreWindow}" ItemTemplate="{StaticResource highscoreVertical}" Height="143" Width="177"/>
-        </ScrollViewer>
+        <ListBox Margin="147,182,146,159" Background="Transparent" Foreground="White"  ItemsSource="{Binding AllChar, ElementName=ScoreWindow}" ItemTemplate="{StaticResource highscoreVertical}"/>
         <Button BorderThickness="0" Foreground="White" Background="Transparent" Content="Exit to Main Menu" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="140" Click="Exit_Click" Margin="0,394,0,0"/>
     </Grid>
 </Window>
