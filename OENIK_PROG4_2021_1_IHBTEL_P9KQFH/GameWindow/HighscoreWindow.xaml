@@ -37,7 +37,7 @@
             <Label Foreground="White">Name:</Label>
             <Label Foreground="White" HorizontalContentAlignment="Right" Margin="104,0,0,0" HorizontalAlignment="Left" Width="42" Grid.ColumnSpan="2">Score:</Label>
         </Grid>
-        <ScrollViewer Margin="147,182,146,159">
+        <ScrollViewer Margin="147,182,146,159" >
             <ItemsControl Foreground="White"  ItemsSource="{Binding AllChar, ElementName=ScoreWindow}" ItemTemplate="{StaticResource highscoreVertical}" Height="143" Width="177"/>
         </ScrollViewer>
         <Button BorderThickness="0" Foreground="White" Background="Transparent" Content="Exit to Main Menu" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="140" Click="Exit_Click" Margin="0,394,0,0"/>

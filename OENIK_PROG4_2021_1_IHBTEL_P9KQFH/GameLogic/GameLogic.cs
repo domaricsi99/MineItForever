@@ -317,7 +317,6 @@ namespace GameLogicDll
                     {
                         item2.ChangeY(-5);
                     }
-
                     this.fallCounter += 5;
                     this.falling = true;
                 }
@@ -879,8 +878,8 @@ namespace GameLogicDll
         {
             if (this.character.Health <= 0 || this.character.Fuel <= 0)
             {
-                // Delete save --> Highscore
-                        this.EndGameEvent?.Invoke(this, EventArgs.Empty);
+                this.charRepo.DeleteProfile(this.character);
+                this.EndGameEvent?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -913,7 +912,7 @@ namespace GameLogicDll
                 case 225:
                     this.character.Health -= 80;
                     break;
-                case 270:
+                case >=270:
                     this.character.Health -= 100;
                     break;
             }
