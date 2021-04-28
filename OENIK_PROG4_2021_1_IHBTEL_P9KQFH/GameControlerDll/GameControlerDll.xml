@@ -9,5 +9,96 @@
             Control the game.
             </summary>
         </member>
+        <member name="F:GameControlerDll.GameControl.character">
+            <summary>
+            Chraracter.
+            </summary>
+        </member>
+        <member name="M:GameControlerDll.GameControl.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameControlerDll.GameControl"/> class.
+            </summary>
+        </member>
+        <member name="M:GameControlerDll.GameControl.GameControl_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Load game control.
+            </summary>
+            <param name="sender"> sender.</param>
+            <param name="e">e.</param>
+        </member>
+        <member name="M:GameControlerDll.GameControl.GameControl_MouseRightButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Mouse right click event.
+            </summary>
+            <param name="sender">sender.</param>
+            <param name="e">e.</param>
+        </member>
+        <member name="M:GameControlerDll.GameControl.GameControl_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Mouse left click event.
+            </summary>
+            <param name="sender">sender.</param>
+            <param name="e">e.</param>
+        </member>
+        <member name="M:GameControlerDll.GameControl.TickTimer_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Tick timer.
+            </summary>
+            <param name="sender">sender.</param>
+            <param name="e">e.</param>
+        </member>
+        <member name="M:GameControlerDll.GameControl.Win_KeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Wich button to press.
+            </summary>
+            <param name="sender">sender.</param>
+            <param name="e">e.</param>
+        </member>
+        <member name="M:GameControlerDll.GameControl.OnRender(System.Windows.Media.DrawingContext)">
+            <summary>
+            Call renderer.
+            </summary>
+            <param name="drawingContext">drawingContext.</param>
+        </member>
+        <member name="T:GameControlerDll.IGameControl">
+            <summary>
+            Game control interface.
+            </summary>
+        </member>
+        <member name="M:GameControlerDll.IGameControl.GameControl_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Game contorl loaded interface.
+            </summary>
+            <param name="sender">sender.</param>
+            <param name="e">e.</param>
+        </member>
+        <member name="M:GameControlerDll.IGameControl.GameControl_MouseRightButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Mouse right click event.
+            </summary>
+            <param name="sender">sender.</param>
+            <param name="e">e.</param>
+        </member>
+        <member name="M:GameControlerDll.IGameControl.GameControl_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Mouse left click event.
+            </summary>
+            <param name="sender">sender.</param>
+            <param name="e">e.</param>
+        </member>
+        <member name="M:GameControlerDll.IGameControl.TickTimer_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Tick timer.
+            </summary>
+            <param name="sender">sender.</param>
+            <param name="e">e.</param>
+        </member>
+        <member name="M:GameControlerDll.IGameControl.Win_KeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Wich button to press.
+            </summary>
+            <param name="sender">sender.</param>
+            <param name="e">e.</param>
+        </member>
     </members>
 </doc>

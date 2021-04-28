@@ -6,7 +6,7 @@
     <members>
         <member name="T:GameWindow.App">
             <summary>
-            Interaction logic for App.xaml
+            Interaction logic for App.xaml.
             </summary>
             <summary>
             App
@@ -24,10 +24,20 @@
         </member>
         <member name="T:GameWindow.HighscoreWindow">
             <summary>
-            Interaction logic for HighscoreWindow.xaml
+            Interaction logic for HighscoreWindow.xaml.
             </summary>
             <summary>
             HighscoreWindow
+            </summary>
+        </member>
+        <member name="M:GameWindow.HighscoreWindow.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameWindow.HighscoreWindow"/> class.
+            </summary>
+        </member>
+        <member name="P:GameWindow.HighscoreWindow.AllChar">
+            <summary>
+            Gets or sets all character.
             </summary>
         </member>
         <member name="M:GameWindow.HighscoreWindow.InitializeComponent">
@@ -43,6 +53,21 @@
             LoadGameDataWindow
             </summary>
         </member>
+        <member name="M:GameWindow.LoadGameDataWindow.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameWindow.LoadGameDataWindow"/> class.
+            </summary>
+        </member>
+        <member name="P:GameWindow.LoadGameDataWindow.AllChar">
+            <summary>
+            Gets or sets all character.
+            </summary>
+        </member>
+        <member name="P:GameWindow.LoadGameDataWindow.SelectedProfile">
+            <summary>
+            Gets or sets selected profile.
+            </summary>
+        </member>
         <member name="M:GameWindow.LoadGameDataWindow.InitializeComponent">
             <summary>
             InitializeComponent
@@ -54,6 +79,11 @@
             </summary>
             <summary>
             MainWindow
+            </summary>
+        </member>
+        <member name="M:GameWindow.MainWindow.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameWindow.MainWindow"/> class.
             </summary>
         </member>
         <member name="M:GameWindow.MainWindow.InitializeComponent">
@@ -69,6 +99,11 @@
             NewGameDataWindow
             </summary>
         </member>
+        <member name="M:GameWindow.NewGameDataWindow.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameWindow.NewGameDataWindow"/> class.
+            </summary>
+        </member>
         <member name="M:GameWindow.NewGameDataWindow.InitializeComponent">
             <summary>
             InitializeComponent
@@ -80,6 +115,11 @@
             </summary>
             <summary>
             StartPage
+            </summary>
+        </member>
+        <member name="M:GameWindow.StartPage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameWindow.StartPage"/> class.
             </summary>
         </member>
         <member name="M:GameWindow.StartPage.InitializeComponent">

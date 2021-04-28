@@ -4,10 +4,339 @@
         <name>GameModelDll</name>
     </assembly>
     <members>
+        <member name="T:GameModelDll.Building">
+            <summary>
+            Building model.
+            </summary>
+        </member>
+        <member name="M:GameModelDll.Building.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameModelDll.Building"/> class.
+            </summary>
+        </member>
+        <member name="M:GameModelDll.Building.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameModelDll.Building"/> class.
+            </summary>
+            <param name="x">x coordinate.</param>
+            <param name="y">y coordinate.</param>
+            <param name="w">width.</param>
+            <param name="h">height.</param>
+        </member>
+        <member name="P:GameModelDll.Building.Name">
+            <summary>
+            Gets or sets building name.
+            </summary>
+        </member>
+        <member name="T:GameModelDll.Character">
+            <summary>
+            Character model.
+            </summary>
+        </member>
+        <member name="M:GameModelDll.Character.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameModelDll.Character"/> class.
+            </summary>
+        </member>
+        <member name="M:GameModelDll.Character.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameModelDll.Character"/> class.
+            </summary>
+            <param name="health">health.</param>
+            <param name="fuel">fuel.</param>
+            <param name="money">money.</param>
+            <param name="score">score.</param>
+            <param name="pickAxLevel">pickax level.</param>
+            <param name="map">map.</param>
+            <param name="name">name.</param>
+        </member>
+        <member name="M:GameModelDll.Character.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{System.String},System.String,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameModelDll.Character"/> class.
+            </summary>
+            <param name="health">health.</param>
+            <param name="fuel">fuel.</param>
+            <param name="money">money.</param>
+            <param name="score">score.</param>
+            <param name="pickAxLevel">pickax level.</param>
+            <param name="map">map.</param>
+            <param name="name">name.</param>
+            <param name="x">x coordinate.</param>
+            <param name="y">y coordinate.</param>
+            <param name="w">width.</param>
+            <param name="h">height.</param>
+        </member>
+        <member name="M:GameModelDll.Character.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameModelDll.Character"/> class.
+            </summary>
+            <param name="x">x coordinate.</param>
+            <param name="y">y coordinate.</param>
+            <param name="w">width.</param>
+            <param name="h">height.</param>
+        </member>
+        <member name="P:GameModelDll.Character.Health">
+            <summary>
+            Gets or sets.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Character.Fuel">
+            <summary>
+            Gets or sets.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Character.Money">
+            <summary>
+            Gets or sets .
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Character.Score">
+            <summary>
+            Gets or sets .
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Character.PickAxLevel">
+            <summary>
+            Gets or sets .
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Character.Map">
+            <summary>
+            Gets or sets .
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Character.Name">
+            <summary>
+            Gets or sets .
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Character.Backpack">
+            <summary>
+            Gets or sets.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Character.DX">
+            <summary>
+            Gets or sets .
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Character.DY">
+            <summary>
+            Gets or sets .
+            </summary>
+        </member>
+        <member name="T:GameModelDll.Config">
+            <summary>
+            Fix modell size.
+            </summary>
+        </member>
+        <member name="T:GameModelDll.GameModel">
+            <summary>
+            All game models.
+            </summary>
+        </member>
+        <member name="M:GameModelDll.GameModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameModelDll.GameModel"/> class.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.Ground">
+            <summary>
+            Gets or sets ground model.
+            </summary>
+        </member>
         <member name="P:GameModelDll.GameModel.Gate">
             <summary>
             Gets or sets out of the first screen to mine.
             </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.PickaxShopHouse">
+            <summary>
+            Gets or sets pickaxe shop.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.HealthShopHouse">
+            <summary>
+            Gets or sets health shop.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.PetrolShopHouse">
+            <summary>
+            Gets or sets petrol shop.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.SaveButtonRectangle">
+            <summary>
+            Gets or sets save button.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.LoadButtonRectangle">
+            <summary>
+            Gets or sets load button.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.PickaxShop">
+            <summary>
+            Gets or sets health shop.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.SellShop">
+            <summary>
+            Gets or sets sell ore shop.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.PetrolAndHealthShop">
+            <summary>
+            Gets or sets petrol and health shop.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.ButtonShape">
+            <summary>
+            Gets or sets button shape.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.PetrolButtonShape">
+            <summary>
+            Gets or sets petrol button shape.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.HealthButtonShape">
+            <summary>
+            Gets or sets health button shape.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.ButtonBackground">
+            <summary>
+            Gets or sets button background.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.EndGameButton">
+            <summary>
+            Gets or sets end game button.
+            </summary>
+        </member>
+        <member name="T:GameModelDll.Ladder">
+            <summary>
+            Ladder model.
+            </summary>
+        </member>
+        <member name="T:GameModelDll.Map">
+            <summary>
+            Map model.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Map.GameMap">
+            <summary>
+            Gets or sets game map.
+            </summary>
+        </member>
+        <member name="T:GameModelDll.Ore">
+            <summary>
+            Ore model.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Ore.Hurt">
+            <summary>
+            Gets or sets a value indicating whether hurt.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Ore.Value">
+            <summary>
+            Gets or sets value.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Ore.Score">
+            <summary>
+            Gets or sets socer.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Ore.OreType">
+            <summary>
+            Gets or sets ore type.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Ore.Level">
+            <summary>
+            Gets or sets level.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Ore.CanPass">
+            <summary>
+            Gets or sets a value indicating whether can pass.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Ore.BreakLevel">
+            <summary>
+            Gets or sets break level.
+            </summary>
+        </member>
+        <member name="T:GameModelDll.Pickax">
+            <summary>
+            Pickax model.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Pickax.Name">
+            <summary>
+            Gets or sets name.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Pickax.Level">
+            <summary>
+            Gets or sets level.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.Pickax.Price">
+            <summary>
+            Gets or sets price.
+            </summary>
+        </member>
+        <member name="T:GameModelDll.Shape">
+            <summary>
+            Shape model.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Shape.area">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GameModelDll.Shape.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameModelDll.Shape"/> class.
+            </summary>
+        </member>
+        <member name="M:GameModelDll.Shape.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameModelDll.Shape"/> class.
+            </summary>
+            <param name="x">x coordinate.</param>
+            <param name="y">y coordinate.</param>
+            <param name="w">width.</param>
+            <param name="h">height.</param>
+        </member>
+        <member name="P:GameModelDll.Shape.Area">
+            <summary>
+            Gets or sets area.
+            </summary>
+        </member>
+        <member name="M:GameModelDll.Shape.SetXY(System.Double,System.Double)">
+            <summary>
+            Set x and y coordinate.
+            </summary>
+            <param name="x">x coordinate.</param>
+            <param name="y">y coordinate.</param>
+        </member>
+        <member name="M:GameModelDll.Shape.ChangeX(System.Double)">
+            <summary>
+            Change x coordinate.
+            </summary>
+            <param name="dif">difference.</param>
+        </member>
+        <member name="M:GameModelDll.Shape.ChangeY(System.Double)">
+            <summary>
+            Change y coordinate.
+            </summary>
+            <param name="dif">difference.</param>
         </member>
     </members>
 </doc>

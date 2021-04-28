@@ -21,19 +21,25 @@ namespace GameWindow
     using GameRepository;
 
     /// <summary>
-    /// Interaction logic for HighscoreWindow.xaml
+    /// Interaction logic for HighscoreWindow.xaml.
     /// </summary>
     public partial class HighscoreWindow : Window
     {
-        public List<Character> AllChar { get; set; }
+        private CharacterRepository repo = new CharacterRepository();
 
-        CharacterRepository repo = new CharacterRepository();
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HighscoreWindow"/> class.
+        /// </summary>
         public HighscoreWindow()
         {
             this.AllChar = this.repo.LoadHighscore();
             this.InitializeComponent();
         }
+
+        /// <summary>
+        /// Gets or sets all character.
+        /// </summary>
+        public List<Character> AllChar { get; set; }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {

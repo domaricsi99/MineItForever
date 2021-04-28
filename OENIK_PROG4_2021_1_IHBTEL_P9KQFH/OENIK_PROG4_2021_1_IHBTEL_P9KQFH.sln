@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameRendererDll", "GameRend
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameControlerDll", "GameControlerDll\GameControlerDll.csproj", "{38303E1E-3590-46AC-8CEA-CD7779E316FB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameData", "GameData\GameData.csproj", "{157ADE62-2140-4F2E-86EB-B231A00C340D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameRepository", "GameRepository\GameRepository.csproj", "{70845BD4-1253-4702-88D6-B42CEBA1AF96}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameLogicTest", "GameLogicTest\GameLogicTest.csproj", "{DB7F2A68-83AD-4329-99D4-47F186781FE7}"
@@ -45,10 +43,6 @@ Global
 		{38303E1E-3590-46AC-8CEA-CD7779E316FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38303E1E-3590-46AC-8CEA-CD7779E316FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38303E1E-3590-46AC-8CEA-CD7779E316FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{157ADE62-2140-4F2E-86EB-B231A00C340D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{157ADE62-2140-4F2E-86EB-B231A00C340D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{157ADE62-2140-4F2E-86EB-B231A00C340D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{157ADE62-2140-4F2E-86EB-B231A00C340D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{70845BD4-1253-4702-88D6-B42CEBA1AF96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{70845BD4-1253-4702-88D6-B42CEBA1AF96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70845BD4-1253-4702-88D6-B42CEBA1AF96}.Release|Any CPU.ActiveCfg = Release|Any CPU

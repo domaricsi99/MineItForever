@@ -1,8 +1,14 @@
-using System;
-using System.Windows.Media;
+// <copyright file="Config.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace GameModelDll
 {
+    using System.Windows.Media;
+
+    /// <summary>
+    /// Fix modell size.
+    /// </summary>
     public static class Config
     {
         public static double Width = 900;
@@ -10,43 +16,21 @@ namespace GameModelDll
         public static int BorderSize = 4;
         public static int MapDelimeter = 20;
 
-        public static Brush bgBrush = Brushes.White;
-        public static Brush BorderBrush = Brushes.DarkGray;
-
-        public static Brush MinerBgBrush = Brushes.Black;
-        public static Brush MinerLineBrush = Brushes.Blue;
-
         public static int MinerWidth = 30;
         public static int MinerHeight = 40;
 
-        public static Brush BgGroundBrush = Brushes.RosyBrown;
-        public static Brush GroundLineBrush = Brushes.DarkGreen;
-        public static int GroundWidth = (int)Config.Width; // 700
+        public static int GroundWidth = (int)Config.Width;
         public static int GroundHeight = 30;
 
         public static Brush airBg = Brushes.Transparent;
-        public static Brush dirtBg = Brushes.Brown;
-        public static Brush copperBg = Brushes.Orange;
-        public static Brush silverBg = Brushes.Silver;
-        public static Brush goldBg = Brushes.Gold;
-        public static Brush diamondBg = Brushes.LightCyan;
-        public static Brush stoneBg = Brushes.DarkGray;
-
-        public static Brush oreLine = Brushes.Black;
         public static int oreWidth = 45;
         public static int oreHeight = 45;
         public static int oreX = 0;
         public static int oreY = 0;
 
-        public static Brush GateBg = Brushes.Pink;
-        public static Brush MapThreetoOneGateBg = Brushes.Green;
-        public static Brush MapTwoToOneGateBg = Brushes.Red;
         public static int GateWidth = 30;
         public static int GateHeight = 60;
 
-        public static Brush PickaxShopHouseBg = Brushes.DarkBlue;
-        public static Brush HealthShopHouseBg = Brushes.DarkCyan;
-        public static Brush PetrolShopHouseBg = Brushes.DarkGoldenrod;
         public static int BuildingWidth = 90;
         public static int BuildingHeight = 110;
 
@@ -56,7 +40,6 @@ namespace GameModelDll
         public static int ShopWidth = 45;
         public static int ShopHeight = 45;
 
-        public static Brush ButtonBg = Brushes.White;
         public static int ButtonWidth = 90;
         public static int ButtonHeight = 45;
         public static int ButtonBgWidth = 400;
@@ -64,7 +47,5 @@ namespace GameModelDll
 
         public static int EndGameButtonWidth = 180;
         public static int EndGameButtonHeight = 50;
-
-        public static Brush LadderBg = Brushes.Bisque;
     }
 }

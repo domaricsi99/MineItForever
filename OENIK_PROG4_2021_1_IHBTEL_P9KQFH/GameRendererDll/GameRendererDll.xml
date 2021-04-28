@@ -4,5 +4,187 @@
         <name>GameRendererDll</name>
     </assembly>
     <members>
+        <member name="T:GameRendererDll.GameRenderer">
+            <summary>
+            Game renderer.
+            </summary>
+        </member>
+        <member name="M:GameRendererDll.GameRenderer.#ctor(GameModelDll.GameModel,GameLogicDll.GameLogic,GameModelDll.Character)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameRendererDll.GameRenderer"/> class.
+            </summary>
+            <param name="model">model repo.</param>
+            <param name="logic">game logic.</param>
+            <param name="character">current character.</param>
+        </member>
+        <member name="M:GameRendererDll.GameRenderer.RectangleG(System.Double,System.Double)">
+            <summary>
+            Create rectange here due to optimisation.
+            </summary>
+            <param name="oreX">x.</param>
+            <param name="oreY">y.</param>
+            <returns>rectangle.</returns>
+        </member>
+        <member name="M:GameRendererDll.GameRenderer.Draw(System.Windows.Media.DrawingContext,System.Int32,System.String,System.Windows.Input.Key)">
+            <summary>
+            Draw the models.
+            </summary>
+            <param name="ctx">DrawingContext.</param>
+            <param name="mapID">which map.</param>
+            <param name="intersectShop">which shop we are intersect.</param>
+            <param name="k">which key was pressed.</param>
+        </member>
+        <member name="M:GameRendererDll.GameRenderer.DrawScoreText(System.Windows.Media.DrawingContext,System.Int32)">
+            <summary>
+            Draw score to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <param name="mapID">which map.</param>
+            <returns>Score in text.</returns>
+        </member>
+        <member name="M:GameRendererDll.GameRenderer.DrawHealthText(System.Windows.Media.DrawingContext,System.Int32)">
+            <summary>
+            Draw health to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <param name="mapID">which map.</param>
+            <returns>Health in text.</returns>
+        </member>
+        <member name="M:GameRendererDll.GameRenderer.DrawPetrolText(System.Windows.Media.DrawingContext,System.Int32)">
+            <summary>
+            Draw petrol to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <param name="mapID">which map.</param>
+            <returns>Petrol in text.</returns>
+        </member>
+        <member name="M:GameRendererDll.GameRenderer.DrawMoneyText(System.Windows.Media.DrawingContext,System.Int32)">
+            <summary>
+            Draw money to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <param name="mapID">which map.</param>
+            <returns>Money in text.</returns>
+        </member>
+        <member name="M:GameRendererDll.GameRenderer.ShopText(System.Windows.Media.DrawingContext,System.String)">
+            <summary>
+            Draw shop text to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <param name="intersectShop">which shop.</param>
+            <returns>Shop in text.</returns>
+        </member>
+        <member name="M:GameRendererDll.GameRenderer.HealthPriceShopText(System.Windows.Media.DrawingContext)">
+            <summary>
+            Draw health price to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <returns>Health price in text.</returns>
+        </member>
+        <member name="M:GameRendererDll.GameRenderer.PetrolPriceShopText(System.Windows.Media.DrawingContext)">
+            <summary>
+            Draw petrol price to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <returns>Petrol price in text.</returns>
+        </member>
+        <member name="M:GameRendererDll.GameRenderer.EndGameText(System.Windows.Media.DrawingContext)">
+            <summary>
+            Draw end game text to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <returns>End game in text.</returns>
+        </member>
+        <member name="M:GameRendererDll.GameRenderer.GetBrush(System.String,System.Boolean)">
+            <summary>
+            Individual Brush maker.
+            </summary>
+            <param name="fname">image path.</param>
+            <param name="isTiled">to bg true, else false.</param>
+            <returns>Individual brush.</returns>
+        </member>
+        <member name="T:GameRendererDll.IGameRenderer">
+            <summary>
+            Game renderer interface.
+            </summary>
+        </member>
+        <member name="M:GameRendererDll.IGameRenderer.RectangleG(System.Double,System.Double)">
+            <summary>
+            Create rectange here due to optimisation.
+            </summary>
+            <param name="oreX">x.</param>
+            <param name="oreY">y.</param>
+            <returns>rectangle.</returns>
+        </member>
+        <member name="M:GameRendererDll.IGameRenderer.Draw(System.Windows.Media.DrawingContext,System.Int32,System.String,System.Windows.Input.Key)">
+            <summary>
+            Draw the models.
+            </summary>
+            <param name="ctx">DrawingContext.</param>
+            <param name="mapID">which map.</param>
+            <param name="intersectShop">which shop we are intersect.</param>
+            <param name="k">which key was pressed.</param>
+        </member>
+        <member name="M:GameRendererDll.IGameRenderer.DrawScoreText(System.Windows.Media.DrawingContext,System.Int32)">
+            <summary>
+            Draw score to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <param name="mapID">which map.</param>
+            <returns>Score in text.</returns>
+        </member>
+        <member name="M:GameRendererDll.IGameRenderer.DrawHealthText(System.Windows.Media.DrawingContext,System.Int32)">
+            <summary>
+            Draw health to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <param name="mapID">which map.</param>
+            <returns>Health in text.</returns>
+        </member>
+        <member name="M:GameRendererDll.IGameRenderer.DrawPetrolText(System.Windows.Media.DrawingContext,System.Int32)">
+            <summary>
+            Draw petrol to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <param name="mapID">which map.</param>
+            <returns>Petrol in text.</returns>
+        </member>
+        <member name="M:GameRendererDll.IGameRenderer.DrawMoneyText(System.Windows.Media.DrawingContext,System.Int32)">
+            <summary>
+            Draw money to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <param name="mapID">which map.</param>
+            <returns>Money in text.</returns>
+        </member>
+        <member name="M:GameRendererDll.IGameRenderer.ShopText(System.Windows.Media.DrawingContext,System.String)">
+            <summary>
+            Draw shop text to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <param name="intersectShop">which shop.</param>
+            <returns>Shop in text.</returns>
+        </member>
+        <member name="M:GameRendererDll.IGameRenderer.HealthPriceShopText(System.Windows.Media.DrawingContext)">
+            <summary>
+            Draw health price to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <returns>Health price in text.</returns>
+        </member>
+        <member name="M:GameRendererDll.IGameRenderer.PetrolPriceShopText(System.Windows.Media.DrawingContext)">
+            <summary>
+            Draw petrol price to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <returns>Petrol price in text.</returns>
+        </member>
+        <member name="M:GameRendererDll.IGameRenderer.EndGameText(System.Windows.Media.DrawingContext)">
+            <summary>
+            Draw end game text to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <returns>End game in text.</returns>
+        </member>
     </members>
 </doc>

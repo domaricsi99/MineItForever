@@ -25,17 +25,26 @@ namespace GameWindow
     /// </summary>
     public partial class LoadGameDataWindow : Window
     {
-        public List<Character> AllChar { get; set; }
+        private CharacterRepository repo = new CharacterRepository();
 
-        public Character SelectedProfile { get; set; }
-
-        CharacterRepository repo = new CharacterRepository();
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoadGameDataWindow"/> class.
+        /// </summary>
         public LoadGameDataWindow()
         {
-            AllChar = this.repo.LoadAllProfile();
-            InitializeComponent();
+            this.AllChar = this.repo.LoadAllProfile();
+            this.InitializeComponent();
         }
+
+        /// <summary>
+        /// Gets or sets all character.
+        /// </summary>
+        public List<Character> AllChar { get; set; }
+
+        /// <summary>
+        /// Gets or sets selected profile.
+        /// </summary>
+        public Character SelectedProfile { get; set; }
 
         private void Load_Game_Click(object sender, RoutedEventArgs e)
         {
@@ -54,5 +63,4 @@ namespace GameWindow
             sp.ShowDialog();
         }
     }
-
 }

@@ -1,22 +1,37 @@
-﻿using GameModelDll;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿// <copyright file="MapRepository.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace GameRepository
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using GameModelDll;
+
+    /// <summary>
+    /// Map repository.
+    /// </summary>
     public class MapRepository : IMapRepository
     {
         private List<Ore> map;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MapRepository"/> class.
+        /// </summary>
         public MapRepository()
         {
         }
 
+        /// <summary>
+        /// Strinng ore list.
+        /// </summary>
+        /// <param name="character">Current character.</param>
+        /// <returns>List Ore.</returns>
         public List<Ore> StringToOreList(Character character)
         {
             this.map = new List<Ore>();
@@ -35,7 +50,7 @@ namespace GameRepository
                             Score = 0,
                             Level = 0,
                             OreType = "air",
-                            canPass = true,
+                            CanPass = true,
                             area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                         });
                         break;
@@ -47,7 +62,7 @@ namespace GameRepository
                             Score = 20,
                             Level = 0,
                             OreType = "dirt",
-                            canPass = false,
+                            CanPass = false,
                             area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                         });
                         break;
@@ -59,7 +74,7 @@ namespace GameRepository
                             Score = 100,
                             Level = 1,
                             OreType = "copper",
-                            canPass = false,
+                            CanPass = false,
                             area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                         });
                         break;
@@ -71,7 +86,7 @@ namespace GameRepository
                             Score = 200,
                             Level = 2,
                             OreType = "silver",
-                            canPass = false,
+                            CanPass = false,
                             area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                         });
                         break;
@@ -83,7 +98,7 @@ namespace GameRepository
                             Score = 400,
                             Level = 3,
                             OreType = "gold",
-                            canPass = false,
+                            CanPass = false,
                             area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                         });
                         break;
@@ -95,7 +110,7 @@ namespace GameRepository
                             Score = 50,
                             Level = 3,
                             OreType = "stone",
-                            canPass = false,
+                            CanPass = false,
                             area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                         });
                         break;
@@ -107,7 +122,7 @@ namespace GameRepository
                             Score = 1000,
                             Level = 4,
                             OreType = "diamond",
-                            canPass = false,
+                            CanPass = false,
                             area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                         });
                         break;
@@ -119,7 +134,7 @@ namespace GameRepository
                             Score = 2000,
                             Level = 4,
                             OreType = "lava",
-                            canPass = false,
+                            CanPass = false,
                             area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                         });
                         break;
@@ -131,7 +146,7 @@ namespace GameRepository
                             Score = 0,
                             Level = 99999,
                             OreType = "ground2",
-                            canPass = false,
+                            CanPass = false,
                             area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                         });
                         break;
@@ -143,7 +158,7 @@ namespace GameRepository
                             Score = 0,
                             Level = 99999,
                             OreType = "gate",
-                            canPass = false,
+                            CanPass = false,
                             area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                         });
                         break;
@@ -151,7 +166,7 @@ namespace GameRepository
                         this.map.Add(new Ore()
                         {
                             BreakLevel = 0,
-                            canPass = true,
+                            CanPass = true,
                             Hurt = false,
                             Level = 0,
                             OreType = "ladder",
@@ -168,7 +183,7 @@ namespace GameRepository
                             Score = 0,
                             Level = 99999,
                             OreType = "gate2",
-                            canPass = false,
+                            CanPass = false,
                             area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                         });
                         break;
@@ -180,7 +195,7 @@ namespace GameRepository
                             Score = 0,
                             Level = 99999,
                             OreType = "gate3",
-                            canPass = false,
+                            CanPass = false,
                             area = new Rect(localOreX, localOreY, Config.oreWidth, Config.oreHeight),
                         });
                         break;
@@ -208,7 +223,7 @@ namespace GameRepository
             return new Ore()
             {
                 BreakLevel = 0,
-                canPass = true,
+                CanPass = true,
                 Hurt = false,
                 Level = 0,
                 OreType = "air",
@@ -226,7 +241,7 @@ namespace GameRepository
             return new Ore()
             {
                 BreakLevel = 0,
-                canPass = true,
+                CanPass = true,
                 Hurt = false,
                 Level = 0,
                 OreType = "ladder",
@@ -283,27 +298,27 @@ namespace GameRepository
                 else
                 {
                     int randomNumber = r.Next(0, 101);
-                    if (randomNumber <= 50) // dirt
+                    if (randomNumber <= 50)
                     {
                         map.Add("1");
                     }
-                    else if (randomNumber > 50 && randomNumber <= 70) // copper
+                    else if (randomNumber > 50 && randomNumber <= 70)
                     {
                         map.Add("2");
                     }
-                    else if (randomNumber > 70 && randomNumber <= 80) // silver
+                    else if (randomNumber > 70 && randomNumber <= 80)
                     {
                         map.Add("3");
                     }
-                    else if (randomNumber > 80 && randomNumber <= 90 && i >= size / 4) // gold
+                    else if (randomNumber > 80 && randomNumber <= 90 && i >= size / 4)
                     {
                         map.Add("4");
                     }
-                    else if (randomNumber > 90 && randomNumber <= 95 && i >= size / 2) // diamond
+                    else if (randomNumber > 90 && randomNumber <= 95 && i >= size / 2)
                     {
                         map.Add("6");
                     }
-                    else if (randomNumber > 95 && randomNumber <= 100 && i >= size / 2) // lava
+                    else if (randomNumber > 95 && randomNumber <= 100 && i >= size / 2)
                     {
                         map.Add("7");
                     }

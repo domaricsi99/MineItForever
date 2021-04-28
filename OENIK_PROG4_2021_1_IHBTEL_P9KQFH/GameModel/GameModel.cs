@@ -1,49 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿// <copyright file="GameModel.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace GameModelDll
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Controls;
+
+    /// <summary>
+    /// All game models.
+    /// </summary>
     public class GameModel
     {
-        // public Character Miner { get; set; }
-
-        public Shape Ground { get; set; }
-
         /// <summary>
-        /// Gets or sets out of the first screen to mine.
+        /// Initializes a new instance of the <see cref="GameModel"/> class.
         /// </summary>
-        public Shape Gate { get; set; }
-
-        public Building PickaxShopHouse { get; set; }
-
-        public Building HealthShopHouse { get; set; }
-
-        public Building PetrolShopHouse { get; set; }
-
-        public Shape SaveButtonRectangle { get; set; }
-
-        public Shape LoadButtonRectangle { get; set; }
-
-        public Shape PickaxShop { get; set; }
-
-        public Shape SellShop { get; set; }
-
-        public Shape PetrolAndHealthShop { get; set; }
-
-        public Shape ButtonShape { get; set; }
-
-        public Shape PetrolButtonShape { get; set; }
-
-        public Shape HealthButtonShape { get; set; }
-
-        public Shape ButtonBackground { get; set; }
-
-        public Shape EndGameButton{ get; set; }
-
         public GameModel()
         {
             this.Ground = new Shape(0, Config.Height - Config.GroundHeight, Config.GroundWidth, Config.GroundHeight);
@@ -57,12 +32,87 @@ namespace GameModelDll
 
             this.ButtonBackground = new Shape(Config.Width / 2, Config.Height / 6, Config.ButtonBgWidth, Config.ButtonBgHeight);
 
-            this.ButtonShape = new Shape(550, ButtonBackground.Area.Y + 90, Config.ButtonWidth, Config.ButtonHeight);
+            this.ButtonShape = new Shape(550, this.ButtonBackground.Area.Y + 90, Config.ButtonWidth, Config.ButtonHeight);
 
-            this.PetrolButtonShape = new Shape(ButtonBackground.Area.X + 40, ButtonBackground.Area.Y + 90, Config.ButtonWidth, Config.ButtonHeight);
-            this.HealthButtonShape = new Shape(220 + PetrolButtonShape.Area.X, PetrolButtonShape.Area.Y, Config.ButtonWidth, Config.ButtonHeight);
+            this.PetrolButtonShape = new Shape(this.ButtonBackground.Area.X + 40, this.ButtonBackground.Area.Y + 90, Config.ButtonWidth, Config.ButtonHeight);
+            this.HealthButtonShape = new Shape(220 + this.PetrolButtonShape.Area.X, this.PetrolButtonShape.Area.Y, Config.ButtonWidth, Config.ButtonHeight);
 
-            this.EndGameButton = new Shape(Config.Width / 2 - (Config.EndGameButtonWidth / 2), Config.Height - Config.EndGameButtonHeight - 20, Config.EndGameButtonWidth, Config.EndGameButtonHeight);
+            this.EndGameButton = new Shape((Config.Width / 2) - (Config.EndGameButtonWidth / 2), Config.Height - Config.EndGameButtonHeight - 20, Config.EndGameButtonWidth, Config.EndGameButtonHeight);
         }
+
+        /// <summary>
+        /// Gets or sets ground model.
+        /// </summary>
+        public Shape Ground { get; set; }
+
+        /// <summary>
+        /// Gets or sets out of the first screen to mine.
+        /// </summary>
+        public Shape Gate { get; set; }
+
+        /// <summary>
+        /// Gets or sets pickaxe shop.
+        /// </summary>
+        public Building PickaxShopHouse { get; set; }
+
+        /// <summary>
+        /// Gets or sets health shop.
+        /// </summary>
+        public Building HealthShopHouse { get; set; }
+
+        /// <summary>
+        /// Gets or sets petrol shop.
+        /// </summary>
+        public Building PetrolShopHouse { get; set; }
+
+        /// <summary>
+        /// Gets or sets save button.
+        /// </summary>
+        public Shape SaveButtonRectangle { get; set; }
+
+        /// <summary>
+        /// Gets or sets load button.
+        /// </summary>
+        public Shape LoadButtonRectangle { get; set; }
+
+        /// <summary>
+        /// Gets or sets health shop.
+        /// </summary>
+        public Shape PickaxShop { get; set; }
+
+        /// <summary>
+        /// Gets or sets sell ore shop.
+        /// </summary>
+        public Shape SellShop { get; set; }
+
+        /// <summary>
+        /// Gets or sets petrol and health shop.
+        /// </summary>
+        public Shape PetrolAndHealthShop { get; set; }
+
+        /// <summary>
+        /// Gets or sets button shape.
+        /// </summary>
+        public Shape ButtonShape { get; set; }
+
+        /// <summary>
+        /// Gets or sets petrol button shape.
+        /// </summary>
+        public Shape PetrolButtonShape { get; set; }
+
+        /// <summary>
+        /// Gets or sets health button shape.
+        /// </summary>
+        public Shape HealthButtonShape { get; set; }
+
+        /// <summary>
+        /// Gets or sets button background.
+        /// </summary>
+        public Shape ButtonBackground { get; set; }
+
+        /// <summary>
+        /// Gets or sets end game button.
+        /// </summary>
+        public Shape EndGameButton { get; set; }
     }
 }
