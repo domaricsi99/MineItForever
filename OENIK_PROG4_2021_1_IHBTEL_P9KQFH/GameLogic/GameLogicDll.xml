@@ -4,5 +4,393 @@
         <name>GameLogicDll</name>
     </assembly>
     <members>
+        <member name="T:GameLogicDll.Direction">
+            <summary>
+            Where we can move to.
+            </summary>
+        </member>
+        <member name="F:GameLogicDll.Direction.Left">
+            <summary>
+            Move left.
+            </summary>
+        </member>
+        <member name="F:GameLogicDll.Direction.Right">
+            <summary>
+            Move right
+            </summary>
+        </member>
+        <member name="F:GameLogicDll.Direction.Up">
+            <summary>
+            Move up.
+            </summary>
+        </member>
+        <member name="F:GameLogicDll.Direction.Down">
+            <summary>
+            Move down.
+            </summary>
+        </member>
+        <member name="F:GameLogicDll.Direction.Climb">
+            <summary>
+            Climb the ladder.
+            </summary>
+        </member>
+        <member name="T:GameLogicDll.GameLogic">
+            <summary>
+            The logic of the game.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.#ctor(GameModelDll.GameModel,GameRepository.MapRepository,GameRepository.CharacterRepository,GameModelDll.Character)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameLogicDll.GameLogic"/> class.
+            </summary>
+            <param name="model">models.</param>
+            <param name="mapRepo">map.</param>
+            <param name="charRepo">character repo.</param>
+            <param name="character">character.</param>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.#ctor(GameModelDll.GameModel,GameRepository.MapRepository,GameRepository.CharacterRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameLogicDll.GameLogic"/> class.
+            </summary>
+            <param name="model">model.</param>
+            <param name="mapRepo">map.</param>
+            <param name="charRepo">character.</param>
+        </member>
+        <member name="E:GameLogicDll.GameLogic.RefreshScreen">
+            <summary>
+            Refresh screen event.
+            </summary>
+        </member>
+        <member name="E:GameLogicDll.GameLogic.ChangeScreen">
+            <summary>
+            Change screen event.
+            </summary>
+        </member>
+        <member name="E:GameLogicDll.GameLogic.BackToMapOneScreen">
+            <summary>
+            Back to map one screen event.
+            </summary>
+        </member>
+        <member name="E:GameLogicDll.GameLogic.EndGameEvent">
+            <summary>
+            End game event.
+            </summary>
+        </member>
+        <member name="E:GameLogicDll.GameLogic.BackToMainMenuEvent">
+            <summary>
+            Main menu event.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.MoveCharacter(GameLogicDll.Direction,System.Int32)">
+            <summary>
+            How the character moves.
+            </summary>
+            <param name="d">Direction.</param>
+            <param name="mapID">Which map.</param>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.MapMovementDownLadder">
+            <summary>
+            Map as if moving downwards (LADDER).
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.MapMovementUpLadder">
+            <summary>
+            Map as if moving upwards (LADDER).
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.MapMovementDown">
+            <summary>
+            Map as if moving downwards.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.CanJumpMethod">
+            <summary>
+            See if the jump is possible.
+            </summary>
+            <returns>If we can jump back true.</returns>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.DrawMap">
+            <summary>
+            Make mine to matrix.
+            </summary>
+            <returns>Ore[,] map.</returns>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.Fall(System.Int32)">
+            <summary>
+            Fall checker.
+            </summary>
+            <param name="mapID">Which map we are on.</param>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.Movement(GameLogicDll.Direction)">
+            <summary>
+            Movement range.
+            </summary>
+            <param name="d">Direction.</param>
+            <returns>How much more we can move.</returns>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.MineGate(System.Int32)">
+            <summary>
+            Mine gate intersect.
+            </summary>
+            <param name="mapID">Which map we are on.</param>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.IntersectsWithShop">
+            <summary>
+            Miner intersects with shop.
+            </summary>
+            <returns>Shop name.</returns>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.SetCharPosition(System.Double,System.Double)">
+            <summary>
+            Set character position.
+            </summary>
+            <param name="x">X coordinate.</param>
+            <param name="y">Y coordinate.</param>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.MapPart">
+            <summary>
+            What can we see in mine.
+            </summary>
+            <returns>5x5 Ore matrix.</returns>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.SaveGame(GameModelDll.Character)">
+            <summary>
+            Save game.
+            </summary>
+            <param name="character">Character what we save.</param>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.LoadGame">
+            <summary>
+            Load game.
+            </summary>
+            <returns>Current character.</returns>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.Mining(GameLogicDll.Direction)">
+            <summary>
+            Mining logic.
+            </summary>
+            <param name="d">Which direction to mine.</param>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.DropLadder(System.Windows.Point,System.Int32)">
+            <summary>
+            Drop one ladder.
+            </summary>
+            <param name="point">mouse click coordinate.</param>
+            <param name="mapID">Which map we are on.</param>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.PickUpLadder(System.Windows.Point,System.Int32)">
+            <summary>
+            Pick up one ladder.
+            </summary>
+            <param name="point">mouse click coordinate.</param>
+            <param name="mapID">Which map we are on.</param>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.HealthBuyLogic">
+            <summary>
+            Health buy logic.
+            </summary>
+            <returns>Purchase success rate.</returns>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.PetrolBuyLogic">
+            <summary>
+            Petrol buy logic.
+            </summary>
+            <returns>Purchase success rate.</returns>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.SellOreLogic">
+            <summary>
+            Sell ores logic.
+            </summary>
+            <returns>Purchase success rate.</returns>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.PickaxBuyLogic">
+            <summary>
+            Pickax buy logic.
+            </summary>
+            <returns>Purchase success rate.</returns>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.EndGame">
+            <summary>
+            End game logic.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.Damage(GameModelDll.Ore)">
+            <summary>
+            Get hurt from lava.
+            </summary>
+            <param name="ore">lava.</param>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.DeadFall(System.Int32)">
+            <summary>
+            Get hurt from a fall.
+            </summary>
+            <param name="counter">How many pixel we fall.</param>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.Click(System.Windows.Point,System.Int32,System.String)">
+            <summary>
+            Where can we click logic.
+            </summary>
+            <param name="point">click coordinate.</param>
+            <param name="mapID">which map.</param>
+            <param name="shop">which shop.</param>
+        </member>
+        <member name="T:GameLogicDll.IGameLogic">
+            <summary>
+            Game logic interface.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.MoveCharacter(GameLogicDll.Direction,System.Int32)">
+            <summary>
+            How the character moves.
+            </summary>
+            <param name="d">Direction.</param>
+            <param name="mapID">Which map.</param>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.MapMovementDownLadder">
+            <summary>
+            Map as if moving downwards (LADDER).
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.MapMovementUpLadder">
+            <summary>
+            Map as if moving upwards (LADDER).
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.MapMovementDown">
+            <summary>
+            Map as if moving downwards.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.CanJumpMethod">
+            <summary>
+            See if the jump is possible.
+            </summary>
+            <returns>If we can jump back true.</returns>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.DrawMap">
+            <summary>
+            Make mine to matrix.
+            </summary>
+            <returns>Ore[,] map.</returns>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.Fall(System.Int32)">
+            <summary>
+            Fall checker.
+            </summary>
+            <param name="mapID">Which map we are on.</param>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.Movement(GameLogicDll.Direction)">
+            <summary>
+            Movement range.
+            </summary>
+            <param name="d">Direction.</param>
+            <returns>How much more we can move.</returns>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.MineGate(System.Int32)">
+            <summary>
+            Mine gate intersect.
+            </summary>
+            <param name="mapID">Which map we are on.</param>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.IntersectsWithShop">
+            <summary>
+            Miner intersects with shop.
+            </summary>
+            <returns>Shop name.</returns>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.SetCharPosition(System.Double,System.Double)">
+            <summary>
+            Set character position.
+            </summary>
+            <param name="x">X coordinate.</param>
+            <param name="y">Y coordinate.</param>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.MapPart">
+            <summary>
+            What can we see in mine.
+            </summary>
+            <returns>5x5 Ore matrix.</returns>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.SaveGame(GameModelDll.Character)">
+            <summary>
+            Save game.
+            </summary>
+            <param name="character">Character what we save.</param>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.LoadGame">
+            <summary>
+            Load game.
+            </summary>
+            <returns>Current character.</returns>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.Mining(GameLogicDll.Direction)">
+            <summary>
+            Mining logic.
+            </summary>
+            <param name="d">Which direction to mine.</param>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.DropLadder(System.Windows.Point,System.Int32)">
+            <summary>
+            Drop one ladder.
+            </summary>
+            <param name="point">mouse click coordinate.</param>
+            <param name="mapID">Which map we are on.</param>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.PickUpLadder(System.Windows.Point,System.Int32)">
+            <summary>
+            Pick up one ladder.
+            </summary>
+            <param name="point">mouse click coordinate.</param>
+            <param name="mapID">Which map we are on.</param>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.HealthBuyLogic">
+            <summary>
+            Health buy logic.
+            </summary>
+            <returns>Purchase success rate.</returns>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.PetrolBuyLogic">
+            <summary>
+            Petrol buy logic.
+            </summary>
+            <returns>Purchase success rate.</returns>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.SellOreLogic">
+            <summary>
+            Sell ores logic.
+            </summary>
+            <returns>Purchase success rate.</returns>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.PickaxBuyLogic">
+            <summary>
+            Pickax buy logic.
+            </summary>
+            <returns>Purchase success rate.</returns>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.EndGame">
+            <summary>
+            End game logic.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.Damage(GameModelDll.Ore)">
+            <summary>
+            Get hurt from lava.
+            </summary>
+            <param name="ore">lava.</param>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.DeadFall(System.Int32)">
+            <summary>
+            Get hurt from a fall.
+            </summary>
+            <param name="counter">How many pixel we fall.</param>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.Click(System.Windows.Point,System.Int32,System.String)">
+            <summary>
+            Where can we click logic.
+            </summary>
+            <param name="point">click coordinate.</param>
+            <param name="mapID">which map.</param>
+            <param name="shop">which shop.</param>
+        </member>
     </members>
 </doc>

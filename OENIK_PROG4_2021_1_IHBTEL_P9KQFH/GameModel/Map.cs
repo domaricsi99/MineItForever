@@ -10,8 +10,14 @@ namespace GameModelDll
     using System.Text;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Map model.
+    /// </summary>
     public class Map
     {
+        /// <summary>
+        /// Gets or sets game map.
+        /// </summary>
         public string[] GameMap { get; set; }
     }
 }
