@@ -121,7 +121,7 @@ namespace GameRepository
         }
 
         /// <summary>
-        /// Load selected profil.
+        /// Load selected profile.
         /// </summary>
         /// <param name="selectedChar">selected character.</param>
         public void LoadSelectedProfile(Character selectedChar)
@@ -314,6 +314,33 @@ namespace GameRepository
             }
 
             return profiles;
+        }
+
+        /// <summary>
+        /// Deletes a profile from the xml.
+        /// </summary>
+        /// <param name="character"> profile to be deleted. </param>
+        public void DeleteProfile(Character character)
+        {
+            XDocument selProfile = XDocument.Load("Profiles.xml");
+            if (selProfile.Root.Elements("Character").Elements("Name")
+                      .SingleOrDefault(profName => profName.Value == character.Name) != null)
+            {
+                XDocument highscore = XDocument.Load("Highscore.xml");
+                highscore.Root.Add(new XElement(
+                    "Character",
+                    new XElement(
+                        "Name",
+                        character.Name),
+                    new XElement(
+                        "Score",
+                        character.Score)));
+
+                selProfile.Root.Elements("Character").Elements("Name")
+                      .SingleOrDefault(profName => profName.Value == character.Name).Parent.Remove();
+                selProfile.Save("Profiles.xml");
+                highscore.Save("Highscore.xml");
+            }
         }
 
         /// <summary>

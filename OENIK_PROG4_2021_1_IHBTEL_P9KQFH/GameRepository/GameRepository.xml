@@ -28,7 +28,7 @@
         </member>
         <member name="M:GameRepository.CharacterRepository.LoadSelectedProfile(GameModelDll.Character)">
             <summary>
-            Load selected profil.
+            Load selected profile.
             </summary>
             <param name="selectedChar">selected character.</param>
         </member>
@@ -58,6 +58,12 @@
             Load all profile.
             </summary>
             <returns>List Character.</returns>
+        </member>
+        <member name="M:GameRepository.CharacterRepository.DeleteProfile(GameModelDll.Character)">
+            <summary>
+            Deletes a profile from the xml.
+            </summary>
+            <param name="character"> profile to be deleted. </param>
         </member>
         <member name="M:GameRepository.CharacterRepository.LoadHighscore">
             <summary>
