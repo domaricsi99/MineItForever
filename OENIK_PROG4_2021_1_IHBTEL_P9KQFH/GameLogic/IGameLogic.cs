@@ -15,7 +15,7 @@ namespace GameLogicDll
     /// <summary>
     /// Game logic interface.
     /// </summary>
-    internal interface IGameLogic
+    public interface IGameLogic
     {
         /// <summary>
         /// How the character moves.

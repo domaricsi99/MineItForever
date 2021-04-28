@@ -23,4 +23,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GameLogic\GameLogicDll.csproj" />
+    <ProjectReference Include="..\GameModel\GameModelDll.csproj" />
+    <ProjectReference Include="..\GameRepository\GameRepository.csproj" />
+  </ItemGroup>
+
 </Project>
