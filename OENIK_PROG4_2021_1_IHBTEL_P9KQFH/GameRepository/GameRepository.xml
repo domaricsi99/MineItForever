@@ -203,6 +203,12 @@
             </summary>
             <returns>Air.</returns>
         </member>
+        <member name="M:GameRepository.MapRepository.MakeDirt">
+            <summary>
+            Make dirt.
+            </summary>
+            <returns>dirt.</returns>
+        </member>
         <member name="M:GameRepository.MapRepository.MakeLadder">
             <summary>
             Make ladder.

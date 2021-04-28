@@ -4,9 +4,14 @@
         <name>GameLogicTest</name>
     </assembly>
     <members>
-        <member name="T:GameLogicTest.Class1">
+        <member name="T:GameLogicTest.GameLogicTest">
             <summary>
-            nothing yet.
+            Game logic test class.
+            </summary>
+        </member>
+        <member name="M:GameLogicTest.GameLogicTest.Init">
+            <summary>
+            Init mock logic.
             </summary>
         </member>
     </members>
