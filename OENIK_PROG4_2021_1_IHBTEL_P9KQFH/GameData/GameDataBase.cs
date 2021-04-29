@@ -50,7 +50,7 @@ namespace GameData
                 Score = 0,
                 Level = 0,
                 OreType = "air",
-                canPass = true,
+                CanPass = true,
             };
 
             Ore copper = new Ore()

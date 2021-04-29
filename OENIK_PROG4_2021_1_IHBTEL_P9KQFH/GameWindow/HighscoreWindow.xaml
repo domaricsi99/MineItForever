@@ -10,28 +10,34 @@
         Title="HighscoreWindow" Height="500" Width="500">
     <Window.Resources>
         <DataTemplate x:Key="highscoreVertical" DataType="{x:Type charModel:Character}">
-            <Grid>
+            <Grid Background="Transparent">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Label Content="{Binding Path=Name}"/>
-                <Label HorizontalContentAlignment="Right" Grid.Column="1" Content="{Binding Path=Score}"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                <Label Foreground="White" Content="{Binding Path=Name}"/>
+                <Label Foreground="White" HorizontalContentAlignment="Right" Grid.Column="1" Content="{Binding Path=Score}"/>
             </Grid>
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <Label Content="Highscores:" HorizontalAlignment="Left" Margin="60,10,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Grid Margin="60,55">
+        <Grid.Background>
+            <ImageBrush ImageSource= "BgImages\highscore.bmp" Stretch="Fill"/>
+        </Grid.Background>
+
+        <Label Foreground="White" Content="Highscores:" HorizontalAlignment="Left" Margin="60,10,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Grid Margin="147,157,146,159">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="106*"/>
+                <ColumnDefinition Width="101*"/>
             </Grid.ColumnDefinitions>
-            <Label>Name:</Label>
-            <Label Grid.Column="1" HorizontalContentAlignment="Right">Score:</Label>
+            <Label Foreground="White">Name:</Label>
+            <Label Foreground="White" HorizontalContentAlignment="Right" Margin="104,0,0,0" HorizontalAlignment="Left" Width="42" Grid.ColumnSpan="2">Score:</Label>
         </Grid>
-        <ItemsControl ItemsSource="{Binding ElementName=ScoreWindow, Path=AllChar}" ItemTemplate="{StaticResource highscoreVertical}" Margin="60,90">
-        </ItemsControl>
-        <Button Content="Exit to Main Menu" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="40" Width="140" Click="Exit_Click" Margin="30"/>
+        <ListBox Margin="147,182,146,159" Background="Transparent" Foreground="White"  ItemsSource="{Binding AllChar, ElementName=ScoreWindow}" ItemTemplate="{StaticResource highscoreVertical}"/>
+        <Button BorderThickness="0" Foreground="White" Background="Transparent" Content="Exit to Main Menu" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="140" Click="Exit_Click" Margin="0,394,0,0"/>
     </Grid>
 </Window>

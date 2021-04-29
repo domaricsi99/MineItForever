@@ -1,14 +1,21 @@
-﻿using GameModelDll;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="ShopRepsitory.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace GameRepository
 {
+    using System.Collections.Generic;
+    using GameModelDll;
+
+    /// <summary>
+    /// Shop repository.
+    /// </summary>
     public class ShopRepsitory : IShopRepository
     {
+        /// <summary>
+        /// Pickax list.
+        /// </summary>
+        /// <returns>list pickax.</returns>
         public List<Pickax> PickaxList()
         {
             List<Pickax> pickaxes = new List<Pickax>();

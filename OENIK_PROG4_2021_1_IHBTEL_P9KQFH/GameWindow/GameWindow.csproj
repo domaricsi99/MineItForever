@@ -14,6 +14,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="BgImages\highscore.bmp" />
+    <None Remove="BgImages\load game.bmp" />
+    <None Remove="BgImages\new game.bmp" />
+    <None Remove="BgImages\new game2.bmp" />
+    <None Remove="BgImages\StartBg.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="BgImages\highscore.bmp" />
+    <Resource Include="BgImages\load game.bmp" />
+    <Resource Include="BgImages\new game.bmp">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="BgImages\new game2.bmp" />
+    <Resource Include="BgImages\StartBg2.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

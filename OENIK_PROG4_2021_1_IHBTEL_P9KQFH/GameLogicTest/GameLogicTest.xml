@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GameLogicTest</name>
+    </assembly>
+    <members>
+        <member name="T:GameLogicTest.GameLogicTest">
+            <summary>
+            Game logic test class.
+            </summary>
+        </member>
+        <member name="M:GameLogicTest.GameLogicTest.Init">
+            <summary>
+            Init mock logic.
+            </summary>
+        </member>
+    </members>
+</doc>

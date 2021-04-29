@@ -9,16 +9,44 @@ namespace GameLogicDll
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Windows;
     using GameModelDll;
     using GameRepository;
-    using System.Windows;
 
-
+    /// <summary>
+    /// Where we can move to.
+    /// </summary>
     public enum Direction
     {
-        Left, Right, Up, Down, Climb
+        /// <summary>
+        /// Move left.
+        /// </summary>
+        Left,
+
+        /// <summary>
+        /// Move right
+        /// </summary>
+        Right,
+
+        /// <summary>
+        /// Move up.
+        /// </summary>
+        Up,
+
+        /// <summary>
+        /// Move down.
+        /// </summary>
+        Down,
+
+        /// <summary>
+        /// Climb the ladder.
+        /// </summary>
+        Climb,
     }
 
+    /// <summary>
+    /// The logic of the game.
+    /// </summary>
     public class GameLogic : IGameLogic
     {
         private GameModel model;
@@ -26,28 +54,23 @@ namespace GameLogicDll
         private CharacterRepository charRepo;
         private ShopRepsitory shopRepo;
         private List<Ore> map;
-        Ore[,] ore;
-        Character character;
-        Ore newAir;
-        Ore newLadder;
-        bool falling;
-        int fallCounter;
-        bool dead = false;
 
-        public string message = "";
+        private Ore[,] ore;
+        private Character character;
+        private Ore newAir;
+        private Ore newLadder;
+        private bool falling;
+        private int fallCounter;
 
-        public event EventHandler RefreshScreen;
+        private string message;
 
-        public event EventHandler ChangeScreen;
-
-        public event EventHandler BackToMapOneScreen;
-
-        public event EventHandler ShopScreen;
-
-        public event EventHandler EndGameEvent;
-
-        public event EventHandler BackToMainMenuEvent;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameLogic"/> class.
+        /// </summary>
+        /// <param name="model">models.</param>
+        /// <param name="mapRepo">map.</param>
+        /// <param name="charRepo">character repo.</param>
+        /// <param name="character">character.</param>
         public GameLogic(GameModel model, MapRepository mapRepo, CharacterRepository charRepo, Character character)
         {
             this.character = character;
@@ -61,6 +84,12 @@ namespace GameLogicDll
             this.shopRepo = new ShopRepsitory();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameLogic"/> class.
+        /// </summary>
+        /// <param name="model">model.</param>
+        /// <param name="mapRepo">map.</param>
+        /// <param name="charRepo">character.</param>
         public GameLogic(GameModel model, MapRepository mapRepo, CharacterRepository charRepo)
         {
             this.model = model;
@@ -70,6 +99,36 @@ namespace GameLogicDll
             this.ore = this.DrawMap();
         }
 
+        /// <summary>
+        /// Refresh screen event.
+        /// </summary>
+        public event EventHandler RefreshScreen;
+
+        /// <summary>
+        /// Change screen event.
+        /// </summary>
+        public event EventHandler ChangeScreen;
+
+        /// <summary>
+        /// Back to map one screen event.
+        /// </summary>
+        public event EventHandler BackToMapOneScreen;
+
+        /// <summary>
+        /// End game event.
+        /// </summary>
+        public event EventHandler EndGameEvent;
+
+        /// <summary>
+        /// Main menu event.
+        /// </summary>
+        public event EventHandler BackToMainMenuEvent;
+
+        /// <summary>
+        /// How the character moves.
+        /// </summary>
+        /// <param name="d">Direction.</param>
+        /// <param name="mapID">Which map.</param>
         public void MoveCharacter(Direction d, int mapID)
         {
             if (mapID == 0)
@@ -89,14 +148,14 @@ namespace GameLogicDll
             }
             else if (mapID == 1)
             {
-                double moveSize = Movement(d);
+                double moveSize = this.Movement(d);
 
                 if (d == Direction.Left && this.character.Area.Left > 0)
                 {
                     this.character.ChangeX(-moveSize);
                     if (moveSize == 0 && !this.falling)
                     {
-                        Mining(d);
+                        this.Mining(d);
                     }
                 }
                 else if (d == Direction.Right && this.character.Area.Right < Config.Width)
@@ -104,32 +163,32 @@ namespace GameLogicDll
                     this.character.ChangeX(moveSize);
                     if (moveSize == 0 && !this.falling)
                     {
-                        Mining(d);
+                        this.Mining(d);
                     }
                 }
                 else if (d == Direction.Up)
                 {
                     if (this.CanJumpMethod())
                     {
-                        MapMovementDown();
+                        this.MapMovementDown();
                     }
                 }
                 else if (d == Direction.Down)
                 {
                     if (moveSize == 0 && !this.falling)
                     {
-                        Mining(d);
+                        this.Mining(d);
                     }
                     else if (moveSize == 1)
                     {
-                        MapMovementUpLadder();
+                        this.MapMovementUpLadder();
                     }
                 }
                 else if (d == Direction.Climb)
                 {
                     if (moveSize == 1 && !this.falling)
                     {
-                        MapMovementDownLadder();
+                        this.MapMovementDownLadder();
                     }
                 }
             }
@@ -137,22 +196,31 @@ namespace GameLogicDll
             this.RefreshScreen?.Invoke(this, EventArgs.Empty);
         }
 
-        public void MapMovementDownLadder() // mint h lfele mennenk
+        /// <summary>
+        /// Map as if moving downwards (LADDER).
+        /// </summary>
+        public void MapMovementDownLadder()
         {
             foreach (var item in this.ore)
             {
-                item.ChangeY(5); // TODO beallit
+                item.ChangeY(5);
             }
         }
 
-        public void MapMovementUpLadder() // mint ha felfele mennenk
+        /// <summary>
+        /// Map as if moving upwards (LADDER).
+        /// </summary>
+        public void MapMovementUpLadder()
         {
             foreach (var item in this.ore)
             {
-                item.ChangeY(-5); // TODO beallit
+                item.ChangeY(-5);
             }
         }
 
+        /// <summary>
+        /// Map as if moving downwards.
+        /// </summary>
         public void MapMovementDown()
         {
             foreach (var item in this.ore)
@@ -161,6 +229,10 @@ namespace GameLogicDll
             }
         }
 
+        /// <summary>
+        /// See if the jump is possible.
+        /// </summary>
+        /// <returns>If we can jump back true.</returns>
         public bool CanJumpMethod()
         {
             Ore[,] renderedOres = this.MapPart();
@@ -190,6 +262,10 @@ namespace GameLogicDll
             return false;
         }
 
+        /// <summary>
+        /// Make mine to matrix.
+        /// </summary>
+        /// <returns>Ore[,] map.</returns>
         public Ore[,] DrawMap()
         {
             int delimeter = 20;
@@ -207,7 +283,11 @@ namespace GameLogicDll
             return oreMatrix;
         }
 
-        public void Fall(int mapID) // csak alattunk
+        /// <summary>
+        /// Fall checker.
+        /// </summary>
+        /// <param name="mapID">Which map we are on.</param>
+        public void Fall(int mapID)
         {
             if (!this.character.Area.IntersectsWith(this.model.Ground.Area) && mapID == 0)
             {
@@ -219,7 +299,7 @@ namespace GameLogicDll
                 Ore[,] renderedOres = this.MapPart();
                 foreach (var item in renderedOres)
                 {
-                    if (item.Area.IntersectsWith(this.character.Area) && item.canPass == false)
+                    if (item.Area.IntersectsWith(this.character.Area) && item.CanPass == false)
                     {
                         canFall = false;
 
@@ -233,26 +313,30 @@ namespace GameLogicDll
 
                 if (canFall)
                 {
-                    foreach (var item2 in ore)
+                    foreach (var item2 in this.ore)
                     {
                         item2.ChangeY(-5);
                     }
 
-                    fallCounter += 5;
-                    falling = true;
+                    this.fallCounter += 5;
+                    this.falling = true;
                 }
                 else
                 {
-                    DeadFall(fallCounter);
-                    falling = false;
-                    fallCounter = 0;
-
+                    this.DeadFall(this.fallCounter);
+                    this.falling = false;
+                    this.fallCounter = 0;
                 }
             }
 
             this.RefreshScreen?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Movement range.
+        /// </summary>
+        /// <param name="d">Direction.</param>
+        /// <returns>How much more we can move.</returns>
         public double Movement(Direction d)
         {
             Ore[,] renderedOres = this.MapPart();
@@ -272,7 +356,7 @@ namespace GameLogicDll
                     predictedChar.X -= 7.5;
                     foreach (var item in renderedOres)
                     {
-                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder" && item.OreType != "gate")
+                        if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder" && item.OreType != "gate" && item.OreType != "gate2" && item.OreType != "gate3")
                         {
                             movementRange = (predictedChar.X + 7.5) - item.Area.Right - 1;
                             if (movementRange < 2)
@@ -280,7 +364,9 @@ namespace GameLogicDll
                                 return 0;
                             }
                         }
-                        else if (item.Area.IntersectsWith(predictedChar) && item.OreType == "gate")
+                        else if ((item.Area.IntersectsWith(predictedChar) && item.OreType == "gate")
+                            || (item.Area.IntersectsWith(predictedChar) && item.OreType == "gate2")
+                            || (item.Area.IntersectsWith(predictedChar) && item.OreType == "gate3"))
                         {
                             this.BackToMapOneScreen?.Invoke(this, EventArgs.Empty);
                         }
@@ -351,26 +437,34 @@ namespace GameLogicDll
             return movementRange;
         }
 
+        /// <summary>
+        /// Mine gate intersect.
+        /// </summary>
+        /// <param name="mapID">Which map we are on.</param>
         public void MineGate(int mapID)
         {
             if (this.character.Area.IntersectsWith(this.model.Gate.Area) && mapID == 0)
             {
                 this.ChangeScreen?.Invoke(this, EventArgs.Empty);
-                SaveGame(this.character);
+                this.SaveGame(this.character);
             }
         }
 
-        public string IntersectsWithShop() // TODO: Eventként
+        /// <summary>
+        /// Miner intersects with shop.
+        /// </summary>
+        /// <returns>Shop name.</returns>
+        public string IntersectsWithShop()
         {
-            if (this.character.Area.IntersectsWith(this.model.SellShop.Area)) // sell
+            if (this.character.Area.IntersectsWith(this.model.SellShop.Area))
             {
                 return "sell";
             }
-            else if (this.character.Area.IntersectsWith(this.model.PetrolAndHealthShop.Area)) // 1
+            else if (this.character.Area.IntersectsWith(this.model.PetrolAndHealthShop.Area))
             {
                 return "petrol;Health";
             }
-            else if (this.character.Area.IntersectsWith(this.model.PickaxShop.Area)) // 3
+            else if (this.character.Area.IntersectsWith(this.model.PickaxShop.Area))
             {
                 return "pickax";
             }
@@ -378,22 +472,31 @@ namespace GameLogicDll
             return "none";
         }
 
-        public void setCharPosition(double x, double y)
+        /// <summary>
+        /// Set character position.
+        /// </summary>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        public void SetCharPosition(double x, double y)
         {
             this.character.SetXY(x, y);
         }
 
+        /// <summary>
+        /// What can we see in mine.
+        /// </summary>
+        /// <returns>5x5 Ore matrix.</returns>
         public Ore[,] MapPart()
         {
             Ore[,] renderedOres = new Ore[5, 5];
             int intersectOreX = 2;
             int intersectOreY = 2;
 
-            for (int i = 0; i < ore.GetLength(0); i++) // TODO: WHile megoldás szebb!
+            for (int i = 0; i < this.ore.GetLength(0); i++)
             {
-                for (int j = 0; j < ore.GetLength(1); j++)
+                for (int j = 0; j < this.ore.GetLength(1); j++)
                 {
-                    if (this.character.Area.IntersectsWith(this.ore[i,j].Area))
+                    if (this.character.Area.IntersectsWith(this.ore[i, j].Area))
                     {
                         intersectOreX = i;
                         intersectOreY = j;
@@ -437,6 +540,10 @@ namespace GameLogicDll
             return renderedOres;
         }
 
+        /// <summary>
+        /// Save game.
+        /// </summary>
+        /// <param name="character">Character what we save.</param>
         public void SaveGame(Character character)
         {
             List<string> mapStringList = new List<string>();
@@ -477,21 +584,35 @@ namespace GameLogicDll
                     case "ladder":
                         mapStringList.Add("10");
                         break;
+                    case "gate2":
+                        mapStringList.Add("11");
+                        break;
+                    case "gate3":
+                        mapStringList.Add("12");
+                        break;
                     default:
                         break;
                 }
             }
 
-            character.Map = mapStringList;
+            this.character.Map = mapStringList;
             this.charRepo.SaveGame(character);
         }
 
+        /// <summary>
+        /// Load game.
+        /// </summary>
+        /// <returns>Current character.</returns>
         public Character LoadGame()
         {
             return this.charRepo.StartGame();
         }
 
-        public void Mining(Direction d) // TODO rendes mapbol irjuk felul
+        /// <summary>
+        /// Mining logic.
+        /// </summary>
+        /// <param name="d">Which direction to mine.</param>
+        public void Mining(Direction d)
         {
             Ore[,] renderedOres = this.MapPart();
             Rect predictedChar = new Rect()
@@ -518,9 +639,9 @@ namespace GameLogicDll
                             });
 
                             this.character.Score += item.Score;
-                            Damage(item);
+                            this.Damage(item);
                             item.OreType = this.newAir.OreType;
-                            item.canPass = this.newAir.canPass;
+                            item.CanPass = this.newAir.CanPass;
                             item.Hurt = this.newAir.Hurt;
                             item.BreakLevel = this.newAir.BreakLevel;
                             item.Score = this.newAir.Score;
@@ -543,9 +664,9 @@ namespace GameLogicDll
                                     Value = item.Value,
                                 });
                                 this.character.Score += item.Score;
-                                Damage(item);
+                                this.Damage(item);
                                 item.OreType = this.newAir.OreType;
-                                item.canPass = this.newAir.canPass;
+                                item.CanPass = this.newAir.CanPass;
                                 item.Hurt = this.newAir.Hurt;
                                 item.BreakLevel = this.newAir.BreakLevel;
                                 item.Score = this.newAir.Score;
@@ -568,9 +689,9 @@ namespace GameLogicDll
                                 Value = item.Value,
                             });
                             this.character.Score += item.Score;
-                            Damage(item);
+                            this.Damage(item);
                             item.OreType = this.newAir.OreType;
-                            item.canPass = this.newAir.canPass;
+                            item.CanPass = this.newAir.CanPass;
                             item.Hurt = this.newAir.Hurt;
                             item.BreakLevel = this.newAir.BreakLevel;
                             item.Score = this.newAir.Score;
@@ -583,6 +704,11 @@ namespace GameLogicDll
             }
         }
 
+        /// <summary>
+        /// Drop one ladder.
+        /// </summary>
+        /// <param name="point">mouse click coordinate.</param>
+        /// <param name="mapID">Which map we are on.</param>
         public void DropLadder(Point point, int mapID)
         {
             if (mapID == 1)
@@ -597,7 +723,7 @@ namespace GameLogicDll
                             && renderedOres[i, j].Area.Bottom >= point.Y && renderedOres[i, j].Area.Top <= point.Y)
                         {
                             renderedOres[i, j].OreType = this.newLadder.OreType;
-                            renderedOres[i, j].canPass = this.newLadder.canPass;
+                            renderedOres[i, j].CanPass = this.newLadder.CanPass;
                             renderedOres[i, j].Hurt = this.newLadder.Hurt;
                             renderedOres[i, j].BreakLevel = this.newLadder.BreakLevel;
                             renderedOres[i, j].Score = this.newLadder.Score;
@@ -610,6 +736,11 @@ namespace GameLogicDll
             }
         }
 
+        /// <summary>
+        /// Pick up one ladder.
+        /// </summary>
+        /// <param name="point">mouse click coordinate.</param>
+        /// <param name="mapID">Which map we are on.</param>
         public void PickUpLadder(Point point, int mapID)
         {
             if (mapID == 1)
@@ -624,7 +755,7 @@ namespace GameLogicDll
                             && renderedOres[i, j].Area.Bottom >= point.Y && renderedOres[i, j].Area.Top <= point.Y)
                         {
                             renderedOres[i, j].OreType = this.newAir.OreType;
-                            renderedOres[i, j].canPass = this.newAir.canPass;
+                            renderedOres[i, j].CanPass = this.newAir.CanPass;
                             renderedOres[i, j].Hurt = this.newAir.Hurt;
                             renderedOres[i, j].BreakLevel = this.newAir.BreakLevel;
                             renderedOres[i, j].Score = this.newAir.Score;
@@ -635,47 +766,58 @@ namespace GameLogicDll
                     }
                 }
             }
-
         }
 
+        /// <summary>
+        /// Health buy logic.
+        /// </summary>
+        /// <returns>Purchase success rate.</returns>
         public string HealthBuyLogic()
         {
             int maxHealth = 100 - this.character.Health;
 
-            int cost = maxHealth * 2; // 1 health vasarlasa 2 pénz
+            int cost = maxHealth * 2;
             if (this.character.Money - cost >= 0)
             {
                 this.character.Money -= cost;
                 this.character.Health = 100;
-                message = "Your health is 100!";
+                this.message = "Your health is 100!";
             }
             else
             {
-                message = "You don't have enough money!";
+                this.message = "You don't have enough money!";
             }
 
-            return message;
+            return this.message;
         }
 
+        /// <summary>
+        /// Petrol buy logic.
+        /// </summary>
+        /// <returns>Purchase success rate.</returns>
         public string PetrolBuyLogic()
         {
             var maxPetrol = 100 - this.character.Fuel;
 
-            int cost = maxPetrol * 2; // 1 petrol vasarlasa 2 pénz
+            int cost = maxPetrol * 2;
             if (this.character.Money - cost >= 0)
             {
                 this.character.Money -= cost;
                 this.character.Fuel = 100;
-                message = "Your petrol tank is full!";
+                this.message = "Your petrol tank is full!";
             }
             else
             {
-                message = "You don't have enough money!";
+                this.message = "You don't have enough money!";
             }
 
-            return message;
+            return this.message;
         }
 
+        /// <summary>
+        /// Sell ores logic.
+        /// </summary>
+        /// <returns>Purchase success rate.</returns>
         public string SellOreLogic()
         {
             int money = 0;
@@ -690,10 +832,14 @@ namespace GameLogicDll
 
             this.character.Backpack.Clear();
 
-            message = $"You got {money}$ !";
-            return message;
+            this.message = $"You got {money}$ !";
+            return this.message;
         }
 
+        /// <summary>
+        /// Pickax buy logic.
+        /// </summary>
+        /// <returns>Purchase success rate.</returns>
         public string PickaxBuyLogic()
         {
             List<Pickax> pickaxes = this.shopRepo.PickaxList();
@@ -707,34 +853,41 @@ namespace GameLogicDll
                     {
                         this.character.Money -= item.Price;
                         this.character.PickAxLevel = item.Level;
-                        message = $"Your pickax level is {item.Level}!"; // miket tudsz vele kiszedni csicsa
+                        this.message = $"Your pickax level is {item.Level}!";
                         break;
                     }
                     else if (this.character.Money - item.Price <= 0)
                     {
-                        message = "You don't have enough money!";
+                        this.message = "You don't have enough money!";
                         break;
                     }
                 }
                 else if (currentPickaxLevel == 4)
                 {
-                    message = "You have the highest level of pickax!";
+                    this.message = "You have the highest level of pickax!";
                     break;
                 }
             }
 
-            return message;
+            return this.message;
         }
 
+        /// <summary>
+        /// End game logic.
+        /// </summary>
         public void EndGame()
         {
             if (this.character.Health <= 0 || this.character.Fuel <= 0)
             {
-                // Delete save --> Highscore
-                        this.EndGameEvent?.Invoke(this, EventArgs.Empty);
+                this.charRepo.DeleteProfile(this.character);
+                this.EndGameEvent?.Invoke(this, EventArgs.Empty);
             }
         }
 
+        /// <summary>
+        /// Get hurt from lava.
+        /// </summary>
+        /// <param name="ore">lava.</param>
         public void Damage(Ore ore)
         {
             if (ore.OreType == "lava")
@@ -743,26 +896,35 @@ namespace GameLogicDll
             }
         }
 
+        /// <summary>
+        /// Get hurt from a fall.
+        /// </summary>
+        /// <param name="counter">How many pixel we fall.</param>
         public void DeadFall(int counter)
         {
             switch (counter)
             {
                 case 135:
-                    character.Health -= 20;
+                    this.character.Health -= 20;
                     break;
                 case 180:
-                    character.Health -= 40;
+                    this.character.Health -= 40;
                     break;
                 case 225:
-                    character.Health -= 80;
+                    this.character.Health -= 80;
                     break;
-                case 270:
-                    character.Health -= 100;
-                    dead = true;
+                case >=270:
+                    this.character.Health -= 100;
                     break;
             }
         }
 
+        /// <summary>
+        /// Where can we click logic.
+        /// </summary>
+        /// <param name="point">click coordinate.</param>
+        /// <param name="mapID">which map.</param>
+        /// <param name="shop">which shop.</param>
         public void Click(Point point, int mapID, string shop)
         {
             if (mapID == 0)
@@ -772,7 +934,7 @@ namespace GameLogicDll
                     if (this.model.HealthButtonShape.Area.Left <= point.X && this.model.HealthButtonShape.Area.Right >= point.X
                    && this.model.HealthButtonShape.Area.Bottom >= point.Y && this.model.HealthButtonShape.Area.Top <= point.Y)
                     {
-                        this.HealthBuyLogic(); // jobb oldali buy
+                        this.HealthBuyLogic();
                     }
                     else if (this.model.PetrolButtonShape.Area.Left <= point.X && this.model.PetrolButtonShape.Area.Right >= point.X
                    && this.model.PetrolButtonShape.Area.Bottom >= point.Y && this.model.PetrolButtonShape.Area.Top <= point.Y)
@@ -780,7 +942,7 @@ namespace GameLogicDll
                         this.PetrolBuyLogic();
                     }
                 }
-                else if (shop == "sell" // TODO SELL SHOP
+                else if (shop == "sell"
                    && this.model.ButtonShape.Area.Left <= point.X && this.model.ButtonShape.Area.Right >= point.X
                    && this.model.ButtonShape.Area.Bottom >= point.Y && this.model.ButtonShape.Area.Top <= point.Y)
                 {
