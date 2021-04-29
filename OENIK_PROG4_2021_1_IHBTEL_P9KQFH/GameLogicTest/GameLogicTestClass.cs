@@ -1,4 +1,4 @@
-﻿// <copyright file="GameLogicTest.cs" company="PlaceholderCompany">
+﻿// <copyright file="GameLogicTestClass.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -15,11 +15,11 @@ namespace GameLogicTest
     /// Game logic test class.
     /// </summary>
     [TestFixture]
-    class GameLogicTest
+    public class GameLogicTestClass
     {
-        MapRepository mapRepo;
-        CharacterRepository charRepo;
-        GameModel model;
+        private MapRepository mapRepo;
+        private CharacterRepository charRepo;
+        private GameModel model;
 
         /// <summary>
         /// Init mock logic.
@@ -32,6 +32,9 @@ namespace GameLogicTest
             this.model = new GameModel();
         }
 
+        /// <summary>
+        /// Creates a character and checks if it actually exists.
+        /// </summary>
         [Test]
         public void CreateCharacter()
         {
@@ -42,6 +45,9 @@ namespace GameLogicTest
             Assert.AreEqual("newTestCharacter", testChar.Name);
         }
 
+        /// <summary>
+        /// Loads a new character and checks if it actually exists.
+        /// </summary>
         [Test]
         public void LoadCharacter()
         {
@@ -50,6 +56,9 @@ namespace GameLogicTest
             Assert.AreNotEqual(null, character);
         }
 
+        /// <summary>
+        /// Checks if highscore XML works properly.
+        /// </summary>
         [Test]
         public void HighscoreXML()
         {
@@ -66,6 +75,9 @@ namespace GameLogicTest
             Assert.That(highscoreProfile.Score.Equals(6666));
         }
 
+        /// <summary>
+        /// Checks if the character actually changes position.
+        /// </summary>
         [Test]
         public void Movement()
         {
@@ -83,6 +95,9 @@ namespace GameLogicTest
             Assert.That(charX.Equals(character.Area.X));
         }
 
+        /// <summary>
+        /// Tests the mining method.
+        /// </summary>
         [Test]
         public void Mining()
         {
@@ -97,6 +112,9 @@ namespace GameLogicTest
             Assert.NotNull(character.Backpack);
         }
 
+        /// <summary>
+        /// Does the character fall if it is in the air?.
+        /// </summary>
         [Test]
         public void Falling()
         {
@@ -114,6 +132,9 @@ namespace GameLogicTest
             Assert.That(charposY.Equals(character.Area.Y));
         }
 
+        /// <summary>
+        /// Can we jump during a fall?.
+        /// </summary>
         [Test]
         public void JumpWhileFalling()
         {
@@ -127,6 +148,9 @@ namespace GameLogicTest
             Assert.AreEqual(false, value);
         }
 
+        /// <summary>
+        /// Checks if fall dmg changes health.
+        /// </summary>
         [Test]
         public void FallDmg()
         {
@@ -138,6 +162,9 @@ namespace GameLogicTest
             Assert.That(character.Health.Equals(20));
         }
 
+        /// <summary>
+        /// Jumping on surface test.
+        /// </summary>
         [Test]
         public void JumpOnSurface()
         {
@@ -154,6 +181,9 @@ namespace GameLogicTest
             Assert.That(charY.Equals(character.Area.Y));
         }
 
+        /// <summary>
+        /// Selling item actually gets rid of it from the backpack Test.
+        /// </summary>
         [Test]
         public void SellItem()
         {
@@ -185,6 +215,9 @@ namespace GameLogicTest
             }
         }
 
+        /// <summary>
+        /// Buying pickaxe actually increasing pickaxe level.
+        /// </summary>
         [Test]
         public void BuyPickaxe()
         {
@@ -202,6 +235,9 @@ namespace GameLogicTest
             Assert.That(pickLevel.Equals(character.PickAxLevel));
         }
 
+        /// <summary>
+        /// Filling up petrol actually decrease our money.
+        /// </summary>
         [Test]
         public void BuyPetrol()
         {

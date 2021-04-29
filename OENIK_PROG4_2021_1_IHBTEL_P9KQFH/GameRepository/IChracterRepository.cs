@@ -33,9 +33,9 @@ namespace GameRepository
         /// <summary>
         /// Map to xml.
         /// </summary>
-        /// <param name="selectedChar">current character.</param>
+        /// <param name="map"> Current map. </param>
         /// <returns>string map.</returns>
-        public string MapToXml(List<string> Map);
+        public string MapToXml(List<string> map);
 
         /// <summary>
         /// Backpack to xml.
