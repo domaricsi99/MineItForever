@@ -36,7 +36,7 @@
             <summary>
             Map to xml.
             </summary>
-            <param name="selectedChar">current character.</param>
+            <param name="map"> Current map. </param>
             <returns>string map.</returns>
         </member>
         <member name="M:GameRepository.CharacterRepository.BackpackToXml(GameModelDll.Character)">
@@ -104,7 +104,7 @@
             <summary>
             Map to xml.
             </summary>
-            <param name="selectedChar">current character.</param>
+            <param name="map"> Current map. </param>
             <returns>string map.</returns>
         </member>
         <member name="M:GameRepository.IChracterRepository.BackpackToXml(GameModelDll.Character)">

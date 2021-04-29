@@ -150,20 +150,20 @@ namespace GameRepository
         /// <summary>
         /// Map to xml.
         /// </summary>
-        /// <param name="selectedChar">current character.</param>
+        /// <param name="map"> Current map. </param>
         /// <returns>string map.</returns>
-        public string MapToXml(List<string> Map)
+        public string MapToXml(List<string> map)
         {
             string mapString = string.Empty;
-            for (int i = 0; i < Map.Count; i++)
+            for (int i = 0; i < map.Count; i++)
             {
-                if (i == Map.Count - 1)
+                if (i == map.Count - 1)
                 {
-                    mapString += Map[i];
+                    mapString += map[i];
                 }
                 else
                 {
-                    mapString += Map[i] + ";";
+                    mapString += map[i] + ";";
                 }
             }
 
