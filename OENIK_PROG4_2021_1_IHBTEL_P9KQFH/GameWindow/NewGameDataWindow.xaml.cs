@@ -25,11 +25,14 @@ namespace GameWindow
     /// </summary>
     public partial class NewGameDataWindow : Window
     {
-        CharacterRepository repo = new CharacterRepository();
+        private CharacterRepository repo = new CharacterRepository();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewGameDataWindow"/> class.
+        /// </summary>
         public NewGameDataWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private void OK_Click(object sender, RoutedEventArgs e)

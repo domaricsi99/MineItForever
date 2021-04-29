@@ -1,6 +1,8 @@
-﻿namespace GameWindow
+﻿// <copyright file="StartPage.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+namespace GameWindow
 {
-    using GameRepository;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -14,18 +16,22 @@
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using System.Windows.Shapes;
+    using GameRepository;
 
     /// <summary>
     /// Interaction logic for StartPage.xaml.
     /// </summary>
     public partial class StartPage : Window
     {
-        CharacterRepository characterRepository;
+        private CharacterRepository characterRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StartPage"/> class.
+        /// </summary>
         public StartPage()
         {
-            characterRepository = new CharacterRepository();
-            InitializeComponent();
+            this.characterRepository = new CharacterRepository();
+            this.InitializeComponent();
         }
 
         private void NewGame_Click(object sender, RoutedEventArgs e)

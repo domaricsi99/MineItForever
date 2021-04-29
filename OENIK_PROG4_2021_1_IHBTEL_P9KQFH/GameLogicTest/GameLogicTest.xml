@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GameLogicTest</name>
+    </assembly>
+    <members>
+        <member name="T:GameLogicTest.GameLogicTestClass">
+            <summary>
+            Game logic test class.
+            </summary>
+        </member>
+        <member name="M:GameLogicTest.GameLogicTestClass.Init">
+            <summary>
+            Init mock logic.
+            </summary>
+        </member>
+        <member name="M:GameLogicTest.GameLogicTestClass.CreateCharacter">
+            <summary>
+            Creates a character and checks if it actually exists.
+            </summary>
+        </member>
+        <member name="M:GameLogicTest.GameLogicTestClass.LoadCharacter">
+            <summary>
+            Loads a new character and checks if it actually exists.
+            </summary>
+        </member>
+        <member name="M:GameLogicTest.GameLogicTestClass.HighscoreXML">
+            <summary>
+            Checks if highscore XML works properly.
+            </summary>
+        </member>
+        <member name="M:GameLogicTest.GameLogicTestClass.Movement">
+            <summary>
+            Checks if the character actually changes position.
+            </summary>
+        </member>
+        <member name="M:GameLogicTest.GameLogicTestClass.Mining">
+            <summary>
+            Tests the mining method.
+            </summary>
+        </member>
+        <member name="M:GameLogicTest.GameLogicTestClass.Falling">
+            <summary>
+            Does the character fall if it is in the air?.
+            </summary>
+        </member>
+        <member name="M:GameLogicTest.GameLogicTestClass.JumpWhileFalling">
+            <summary>
+            Can we jump during a fall?.
+            </summary>
+        </member>
+        <member name="M:GameLogicTest.GameLogicTestClass.FallDmg">
+            <summary>
+            Checks if fall dmg changes health.
+            </summary>
+        </member>
+        <member name="M:GameLogicTest.GameLogicTestClass.JumpOnSurface">
+            <summary>
+            Jumping on surface test.
+            </summary>
+        </member>
+        <member name="M:GameLogicTest.GameLogicTestClass.SellItem">
+            <summary>
+            Selling item actually gets rid of it from the backpack Test.
+            </summary>
+        </member>
+        <member name="M:GameLogicTest.GameLogicTestClass.BuyPickaxe">
+            <summary>
+            Buying pickaxe actually increasing pickaxe level.
+            </summary>
+        </member>
+        <member name="M:GameLogicTest.GameLogicTestClass.BuyPetrol">
+            <summary>
+            Filling up petrol actually decrease our money.
+            </summary>
+        </member>
+    </members>
+</doc>

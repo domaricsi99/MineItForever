@@ -4,42 +4,152 @@
         <name>GameRepository</name>
     </assembly>
     <members>
-        <member name="T:GameRepository.IGameRepository`1">
+        <member name="T:GameRepository.CharacterRepository">
             <summary>
-            base repo interface.
+            Character repository.
             </summary>
-            <typeparam name="T"></typeparam>
         </member>
-        <member name="M:GameRepository.IGameRepository`1.Add(`0)">
+        <member name="M:GameRepository.CharacterRepository.#ctor">
             <summary>
-            add.
+            Initializes a new instance of the <see cref="T:GameRepository.CharacterRepository"/> class.
             </summary>
-            <param name="entity"></param>
         </member>
-        <member name="M:GameRepository.IGameRepository`1.Delete(`0)">
+        <member name="M:GameRepository.CharacterRepository.StartGame">
             <summary>
-            delete.
+            Start game.
             </summary>
-            <param name="entity"></param>
+            <returns>Current Character.</returns>
         </member>
-        <member name="M:GameRepository.IGameRepository`1.Update(`0)">
+        <member name="M:GameRepository.CharacterRepository.SaveGame(GameModelDll.Character)">
             <summary>
-            update.
+            Save game.
             </summary>
-            <param name="entity"></param>
+            <param name="character">Current character.</param>
         </member>
-        <member name="M:GameRepository.IGameRepository`1.GetOne(System.String)">
+        <member name="M:GameRepository.CharacterRepository.LoadSelectedProfile(GameModelDll.Character)">
             <summary>
-            get one.
+            Load selected profile.
             </summary>
-            <param name="shortName"></param>
-            <returns>asd.</returns>
+            <param name="selectedChar">selected character.</param>
         </member>
-        <member name="M:GameRepository.IGameRepository`1.GetAll">
+        <member name="M:GameRepository.CharacterRepository.MapToXml(System.Collections.Generic.List{System.String})">
             <summary>
-            get all.
+            Map to xml.
             </summary>
-            <returns>asd.</returns>
+            <param name="map"> Current map. </param>
+            <returns>string map.</returns>
+        </member>
+        <member name="M:GameRepository.CharacterRepository.BackpackToXml(GameModelDll.Character)">
+            <summary>
+            Backpack to xml.
+            </summary>
+            <param name="character">current character.</param>
+            <returns>string backpack.</returns>
+        </member>
+        <member name="M:GameRepository.CharacterRepository.ListToOre(System.Collections.Generic.List{System.String})">
+            <summary>
+            List to ore.
+            </summary>
+            <param name="stringList">string list Ore.</param>
+            <returns>List Ore.</returns>
+        </member>
+        <member name="M:GameRepository.CharacterRepository.LoadAllProfile">
+            <summary>
+            Load all profile.
+            </summary>
+            <returns>List Character.</returns>
+        </member>
+        <member name="M:GameRepository.CharacterRepository.DeleteProfile(GameModelDll.Character)">
+            <summary>
+            Deletes a profile from the xml.
+            </summary>
+            <param name="character"> profile to be deleted. </param>
+        </member>
+        <member name="M:GameRepository.CharacterRepository.LoadHighscore">
+            <summary>
+            Load Highscore.
+            </summary>
+            <returns>List Character.</returns>
+        </member>
+        <member name="M:GameRepository.CharacterRepository.NewCharacter(System.String)">
+            <summary>
+            Make new Character.
+            </summary>
+            <param name="name">Character name.</param>
+        </member>
+        <member name="T:GameRepository.IChracterRepository">
+            <summary>
+            Character Repository.
+            </summary>
+        </member>
+        <member name="M:GameRepository.IChracterRepository.StartGame">
+            <summary>
+            Start game.
+            </summary>
+            <returns>Current Character.</returns>
+        </member>
+        <member name="M:GameRepository.IChracterRepository.SaveGame(GameModelDll.Character)">
+            <summary>
+            Save game.
+            </summary>
+            <param name="character">Current character.</param>
+        </member>
+        <member name="M:GameRepository.IChracterRepository.LoadSelectedProfile(GameModelDll.Character)">
+            <summary>
+            Load selected profil.
+            </summary>
+            <param name="selectedChar">selected character.</param>
+        </member>
+        <member name="M:GameRepository.IChracterRepository.MapToXml(System.Collections.Generic.List{System.String})">
+            <summary>
+            Map to xml.
+            </summary>
+            <param name="map"> Current map. </param>
+            <returns>string map.</returns>
+        </member>
+        <member name="M:GameRepository.IChracterRepository.BackpackToXml(GameModelDll.Character)">
+            <summary>
+            Backpack to xml.
+            </summary>
+            <param name="character">current character.</param>
+            <returns>string backpack.</returns>
+        </member>
+        <member name="M:GameRepository.IChracterRepository.ListToOre(System.Collections.Generic.List{System.String})">
+            <summary>
+            List to ore.
+            </summary>
+            <param name="stringList">string list Ore.</param>
+            <returns>List Ore.</returns>
+        </member>
+        <member name="M:GameRepository.IChracterRepository.LoadAllProfile">
+            <summary>
+            Load all profile.
+            </summary>
+            <returns>List Character.</returns>
+        </member>
+        <member name="M:GameRepository.IChracterRepository.LoadHighscore">
+            <summary>
+            Load Highscore.
+            </summary>
+            <returns>List Character.</returns>
+        </member>
+        <member name="M:GameRepository.IChracterRepository.NewCharacter(System.String)">
+            <summary>
+            Make new Character.
+            </summary>
+            <param name="name">Character name.</param>
+        </member>
+        <member name="T:GameRepository.IMapRepository">
+            <summary>
+            Map repository interface.
+            </summary>
+        </member>
+        <member name="M:GameRepository.IMapRepository.StringToOreList(GameModelDll.Character)">
+            <summary>
+            Strinng ore list.
+            </summary>
+            <param name="character">Current character.</param>
+            <returns>List Ore.</returns>
         </member>
         <member name="M:GameRepository.IMapRepository.MakeAir">
             <summary>
@@ -59,6 +169,34 @@
             </summary>
             <returns>Random map.</returns>
         </member>
+        <member name="T:GameRepository.IShopRepository">
+            <summary>
+            Shop repositroy interface.
+            </summary>
+        </member>
+        <member name="M:GameRepository.IShopRepository.PickaxList">
+            <summary>
+            Pickax list.
+            </summary>
+            <returns>list pickax.</returns>
+        </member>
+        <member name="T:GameRepository.MapRepository">
+            <summary>
+            Map repository.
+            </summary>
+        </member>
+        <member name="M:GameRepository.MapRepository.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:GameRepository.MapRepository"/> class.
+            </summary>
+        </member>
+        <member name="M:GameRepository.MapRepository.StringToOreList(GameModelDll.Character)">
+            <summary>
+            Strinng ore list.
+            </summary>
+            <param name="character">Current character.</param>
+            <returns>List Ore.</returns>
+        </member>
         <member name="M:GameRepository.MapRepository.MakeAir">
             <summary>
             Make air.
@@ -76,6 +214,17 @@
             Make random map.
             </summary>
             <returns>Random map in string list.</returns>
+        </member>
+        <member name="T:GameRepository.ShopRepsitory">
+            <summary>
+            Shop repository.
+            </summary>
+        </member>
+        <member name="M:GameRepository.ShopRepsitory.PickaxList">
+            <summary>
+            Pickax list.
+            </summary>
+            <returns>list pickax.</returns>
         </member>
     </members>
 </doc>

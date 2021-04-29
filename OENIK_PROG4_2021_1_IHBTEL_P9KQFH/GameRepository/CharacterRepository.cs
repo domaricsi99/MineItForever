@@ -1,16 +1,26 @@
-﻿using GameModelDll;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿// <copyright file="CharacterRepository.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace GameRepository
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Xml.Linq;
+    using GameModelDll;
+
+    /// <summary>
+    /// Character repository.
+    /// </summary>
     public class CharacterRepository : IChracterRepository
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CharacterRepository"/> class.
+        /// </summary>
         public CharacterRepository()
         {
             try
@@ -40,17 +50,26 @@ namespace GameRepository
             {
                 new XDocument(new XElement("Character")).Save("Highscore.xml");
             }
+
             try
             {
                 XDocument.Load("Map.xml");
             }
-            catch (Exception)
+            catch (FileNotFoundException)
             {
-
-                throw;
+                MapRepository newMap = new MapRepository();
+                List<string> mapList = newMap.RandomMap();
+                string mapString = this.MapToXml(mapList);
+                XDocument xdoc = new XDocument();
+                xdoc.Add(new XElement("Map", mapString));
+                xdoc.Save("Map.xml");
             }
         }
 
+        /// <summary>
+        /// Start game.
+        /// </summary>
+        /// <returns>Current Character.</returns>
         public Character StartGame()
         {
             XDocument character = XDocument.Load("selectedProfile.xml");
@@ -70,10 +89,14 @@ namespace GameRepository
             return selectedChar;
         }
 
+        /// <summary>
+        /// Save game.
+        /// </summary>
+        /// <param name="character">Current character.</param>
         public void SaveGame(Character character)
         {
-            string mapString = this.mapToXml(character);
-            string backpackString = this.backpackToXml(character);
+            string mapString = this.MapToXml(character.Map);
+            string backpackString = this.BackpackToXml(character);
             XDocument selProfile = XDocument.Load("Profiles.xml");
             selProfile.Root.Elements("Character").Elements("Name")
                 .Single(profName => profName.Value == character.Name)
@@ -102,13 +125,18 @@ namespace GameRepository
             selProfile.Save("Profiles.xml");
         }
 
+        /// <summary>
+        /// Load selected profile.
+        /// </summary>
+        /// <param name="selectedChar">selected character.</param>
         public void LoadSelectedProfile(Character selectedChar)
         {
-            string mapString = mapToXml(selectedChar);
-            string backpackString = backpackToXml(selectedChar);
+            string mapString = this.MapToXml(selectedChar.Map);
+            string backpackString = this.BackpackToXml(selectedChar);
 
             new XDocument(
-                    new XElement("Character",
+                    new XElement(
+                        "Character",
                         new XElement("Name", selectedChar.Name),
                         new XElement("PickLevel", selectedChar.PickAxLevel),
                         new XElement("Fuel", selectedChar.Fuel),
@@ -119,25 +147,35 @@ namespace GameRepository
                         new XElement("Backpack", backpackString))).Save("selectedProfile.xml");
         }
 
-        public string mapToXml(Character selectedChar)
+        /// <summary>
+        /// Map to xml.
+        /// </summary>
+        /// <param name="map"> Current map. </param>
+        /// <returns>string map.</returns>
+        public string MapToXml(List<string> map)
         {
             string mapString = string.Empty;
-            for (int i = 0; i < selectedChar.Map.Count; i++)
+            for (int i = 0; i < map.Count; i++)
             {
-                if (i == selectedChar.Map.Count - 1)
+                if (i == map.Count - 1)
                 {
-                    mapString += selectedChar.Map[i];
+                    mapString += map[i];
                 }
                 else
                 {
-                    mapString += selectedChar.Map[i] + ";";
+                    mapString += map[i] + ";";
                 }
             }
 
             return mapString;
         }
 
-        public string backpackToXml(Character character)
+        /// <summary>
+        /// Backpack to xml.
+        /// </summary>
+        /// <param name="character">current character.</param>
+        /// <returns>string backpack.</returns>
+        public string BackpackToXml(Character character)
         {
             string backpackString = string.Empty;
             for (int i = 0; i < character.Backpack.Count; i++)
@@ -155,6 +193,11 @@ namespace GameRepository
             return backpackString;
         }
 
+        /// <summary>
+        /// List to ore.
+        /// </summary>
+        /// <param name="stringList">string list Ore.</param>
+        /// <returns>List Ore.</returns>
         public List<Ore> ListToOre(List<string> stringList)
         {
             List<Ore> oreList = new List<Ore>();
@@ -170,7 +213,7 @@ namespace GameRepository
                             Score = 20,
                             Level = 0,
                             OreType = "dirt",
-                            canPass = false,
+                            CanPass = false,
                         });
                         break;
                     case "2":
@@ -181,7 +224,7 @@ namespace GameRepository
                             Score = 100,
                             Level = 1,
                             OreType = "copper",
-                            canPass = false,
+                            CanPass = false,
                         });
                         break;
                     case "3":
@@ -192,7 +235,7 @@ namespace GameRepository
                             Score = 200,
                             Level = 2,
                             OreType = "silver",
-                            canPass = false,
+                            CanPass = false,
                         });
                         break;
                     case "4":
@@ -203,7 +246,7 @@ namespace GameRepository
                             Score = 400,
                             Level = 3,
                             OreType = "gold",
-                            canPass = false,
+                            CanPass = false,
                         });
                         break;
                     case "5":
@@ -214,7 +257,7 @@ namespace GameRepository
                             Score = 50,
                             Level = 3,
                             OreType = "stone",
-                            canPass = false,
+                            CanPass = false,
                         });
                         break;
                     case "6":
@@ -225,7 +268,7 @@ namespace GameRepository
                             Score = 1000,
                             Level = 4,
                             OreType = "diamond",
-                            canPass = false,
+                            CanPass = false,
                         });
                         break;
                     case "7":
@@ -236,7 +279,7 @@ namespace GameRepository
                             Score = 2000,
                             Level = 4,
                             OreType = "lava",
-                            canPass = false,
+                            CanPass = false,
                         });
                         break;
                     default:
@@ -247,6 +290,10 @@ namespace GameRepository
             return oreList;
         }
 
+        /// <summary>
+        /// Load all profile.
+        /// </summary>
+        /// <returns>List Character.</returns>
         public List<Character> LoadAllProfile()
         {
             List<Character> profiles = new List<Character>();
@@ -274,6 +321,37 @@ namespace GameRepository
             return profiles;
         }
 
+        /// <summary>
+        /// Deletes a profile from the xml.
+        /// </summary>
+        /// <param name="character"> profile to be deleted. </param>
+        public void DeleteProfile(Character character)
+        {
+            XDocument selProfile = XDocument.Load("Profiles.xml");
+            if (selProfile.Root.Elements("Character").Elements("Name")
+                      .SingleOrDefault(profName => profName.Value == character.Name) != null)
+            {
+                XDocument highscore = XDocument.Load("Highscore.xml");
+                highscore.Root.Add(new XElement(
+                    "Character",
+                    new XElement(
+                        "Name",
+                        character.Name),
+                    new XElement(
+                        "Score",
+                        character.Score)));
+
+                selProfile.Root.Elements("Character").Elements("Name")
+                      .SingleOrDefault(profName => profName.Value == character.Name).Parent.Remove();
+                selProfile.Save("Profiles.xml");
+                highscore.Save("Highscore.xml");
+            }
+        }
+
+        /// <summary>
+        /// Load Highscore.
+        /// </summary>
+        /// <returns>List Character.</returns>
         public List<Character> LoadHighscore()
         {
             List<Character> profiles = new List<Character>();
@@ -295,6 +373,10 @@ namespace GameRepository
             return sortedHighscore;
         }
 
+        /// <summary>
+        /// Make new Character.
+        /// </summary>
+        /// <param name="name">Character name.</param>
         public void NewCharacter(string name)
         {
             MapRepository newMap = new MapRepository();
@@ -312,10 +394,11 @@ namespace GameRepository
                 Backpack = new List<Ore>(),
             };
 
-            string mapString = mapToXml(character);
+            string mapString = this.MapToXml(character.Map);
 
             new XDocument(
-                new XElement("Character",
+                new XElement(
+                    "Character",
                     new XElement("Name", character.Name),
                     new XElement("PickLevel", character.PickAxLevel),
                     new XElement("Fuel", character.Fuel),
@@ -325,7 +408,8 @@ namespace GameRepository
                     new XElement("Map", mapString),
                     new XElement("Backpack", character.Backpack))).Save("selectedProfile.xml");
 
-            xdoc.Root.Add(new XElement("Character",
+            xdoc.Root.Add(new XElement(
+                    "Character",
                     new XElement("Name", character.Name),
                     new XElement("PickLevel", character.PickAxLevel),
                     new XElement("Fuel", character.Fuel),
