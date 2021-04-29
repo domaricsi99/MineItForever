@@ -55,9 +55,14 @@ namespace GameRepository
             {
                 XDocument.Load("Map.xml");
             }
-            catch (Exception)
+            catch (FileNotFoundException)
             {
-                throw;
+                MapRepository newMap = new MapRepository();
+                List<string> mapList = newMap.RandomMap();
+                string mapString = this.MapToXml(mapList);
+                XDocument xdoc = new XDocument();
+                xdoc.Add(new XElement("Map", mapString));
+                xdoc.Save("Map.xml");
             }
         }
 
@@ -90,7 +95,7 @@ namespace GameRepository
         /// <param name="character">Current character.</param>
         public void SaveGame(Character character)
         {
-            string mapString = this.MapToXml(character);
+            string mapString = this.MapToXml(character.Map);
             string backpackString = this.BackpackToXml(character);
             XDocument selProfile = XDocument.Load("Profiles.xml");
             selProfile.Root.Elements("Character").Elements("Name")
@@ -126,7 +131,7 @@ namespace GameRepository
         /// <param name="selectedChar">selected character.</param>
         public void LoadSelectedProfile(Character selectedChar)
         {
-            string mapString = this.MapToXml(selectedChar);
+            string mapString = this.MapToXml(selectedChar.Map);
             string backpackString = this.BackpackToXml(selectedChar);
 
             new XDocument(
@@ -147,18 +152,18 @@ namespace GameRepository
         /// </summary>
         /// <param name="selectedChar">current character.</param>
         /// <returns>string map.</returns>
-        public string MapToXml(Character selectedChar)
+        public string MapToXml(List<string> Map)
         {
             string mapString = string.Empty;
-            for (int i = 0; i < selectedChar.Map.Count; i++)
+            for (int i = 0; i < Map.Count; i++)
             {
-                if (i == selectedChar.Map.Count - 1)
+                if (i == Map.Count - 1)
                 {
-                    mapString += selectedChar.Map[i];
+                    mapString += Map[i];
                 }
                 else
                 {
-                    mapString += selectedChar.Map[i] + ";";
+                    mapString += Map[i] + ";";
                 }
             }
 
@@ -389,7 +394,7 @@ namespace GameRepository
                 Backpack = new List<Ore>(),
             };
 
-            string mapString = this.MapToXml(character);
+            string mapString = this.MapToXml(character.Map);
 
             new XDocument(
                 new XElement(

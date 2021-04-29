@@ -32,7 +32,7 @@
             </summary>
             <param name="selectedChar">selected character.</param>
         </member>
-        <member name="M:GameRepository.CharacterRepository.MapToXml(GameModelDll.Character)">
+        <member name="M:GameRepository.CharacterRepository.MapToXml(System.Collections.Generic.List{System.String})">
             <summary>
             Map to xml.
             </summary>
@@ -100,7 +100,7 @@
             </summary>
             <param name="selectedChar">selected character.</param>
         </member>
-        <member name="M:GameRepository.IChracterRepository.MapToXml(GameModelDll.Character)">
+        <member name="M:GameRepository.IChracterRepository.MapToXml(System.Collections.Generic.List{System.String})">
             <summary>
             Map to xml.
             </summary>
@@ -202,12 +202,6 @@
             Make air.
             </summary>
             <returns>Air.</returns>
-        </member>
-        <member name="M:GameRepository.MapRepository.MakeDirt">
-            <summary>
-            Make dirt.
-            </summary>
-            <returns>dirt.</returns>
         </member>
         <member name="M:GameRepository.MapRepository.MakeLadder">
             <summary>

@@ -56,13 +56,6 @@
             <param name="mapRepo">map.</param>
             <param name="charRepo">character.</param>
         </member>
-        <member name="M:GameLogicDll.GameLogic.#ctor(GameRepository.MapRepository,GameRepository.CharacterRepository)">
-            <summary>
-            Initializes a new instance of the <see cref="T:GameLogicDll.GameLogic"/> class.
-            </summary>
-            <param name="mapRepository">map.</param>
-            <param name="characterRepository">character.</param>
-        </member>
         <member name="E:GameLogicDll.GameLogic.RefreshScreen">
             <summary>
             Refresh screen event.

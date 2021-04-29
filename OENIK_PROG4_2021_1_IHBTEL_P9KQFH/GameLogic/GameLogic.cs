@@ -100,17 +100,6 @@ namespace GameLogicDll
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GameLogic"/> class.
-        /// </summary>
-        /// <param name="mapRepository">map.</param>
-        /// <param name="characterRepository">character.</param>
-        public GameLogic(MapRepository mapRepository, CharacterRepository characterRepository)
-        {
-            this.mapRepo = mapRepository;
-            this.charRepo = characterRepository;
-        }
-
-        /// <summary>
         /// Refresh screen event.
         /// </summary>
         public event EventHandler RefreshScreen;
@@ -328,6 +317,7 @@ namespace GameLogicDll
                     {
                         item2.ChangeY(-5);
                     }
+
                     this.fallCounter += 5;
                     this.falling = true;
                 }
