@@ -1,0 +1,28 @@
+var interface_game_logic_dll_1_1_i_game_logic =
+[
+    [ "CanJumpMethod", "interface_game_logic_dll_1_1_i_game_logic.html#affad0285816ee820e2bf8576a4ec3fb8", null ],
+    [ "Click", "interface_game_logic_dll_1_1_i_game_logic.html#ae49057201f55911a4c3c37f8af98b3b6", null ],
+    [ "Damage", "interface_game_logic_dll_1_1_i_game_logic.html#aa4f91d893f4c1237cbf26938f07b19c1", null ],
+    [ "DeadFall", "interface_game_logic_dll_1_1_i_game_logic.html#afbc67706b2822d258b62706dd90cd75d", null ],
+    [ "DrawMap", "interface_game_logic_dll_1_1_i_game_logic.html#aff65c44e6c98fd8b7a8048ca44f9223c", null ],
+    [ "DropLadder", "interface_game_logic_dll_1_1_i_game_logic.html#a5b11db8b309617db8841102f93581e3f", null ],
+    [ "EndGame", "interface_game_logic_dll_1_1_i_game_logic.html#a49a8ed7509a2a015c52d56ab3221e7d6", null ],
+    [ "Fall", "interface_game_logic_dll_1_1_i_game_logic.html#aabe3ef87f1deb148bc34d63f7f0b98d0", null ],
+    [ "HealthBuyLogic", "interface_game_logic_dll_1_1_i_game_logic.html#afc3351b3edcb90a70e8ff4b33b6a2bda", null ],
+    [ "IntersectsWithShop", "interface_game_logic_dll_1_1_i_game_logic.html#abce5a620ec4b8d0704bcf67733f9586d", null ],
+    [ "LoadGame", "interface_game_logic_dll_1_1_i_game_logic.html#a5ad8d5d88837a732e5a47ad4fb4785f8", null ],
+    [ "MapMovementDown", "interface_game_logic_dll_1_1_i_game_logic.html#ab57de1701af4e3e572ac70fc8d80d10a", null ],
+    [ "MapMovementDownLadder", "interface_game_logic_dll_1_1_i_game_logic.html#a1222a8e830b16b06e43b52f079406e43", null ],
+    [ "MapMovementUpLadder", "interface_game_logic_dll_1_1_i_game_logic.html#af067c551ccf59a6ec1fb82a9f6413765", null ],
+    [ "MapPart", "interface_game_logic_dll_1_1_i_game_logic.html#a3e4eeae2ff9250551c6e0e426312b853", null ],
+    [ "MineGate", "interface_game_logic_dll_1_1_i_game_logic.html#ac24fe5a1f35bd5daacff3d3d79c29254", null ],
+    [ "Mining", "interface_game_logic_dll_1_1_i_game_logic.html#a9bc389687d5a3d46af2332fc3873f4d9", null ],
+    [ "MoveCharacter", "interface_game_logic_dll_1_1_i_game_logic.html#adc7febe8fe5c1711bdda32759c780084", null ],
+    [ "Movement", "interface_game_logic_dll_1_1_i_game_logic.html#a9362e45b887ddfee91b99921affa03eb", null ],
+    [ "PetrolBuyLogic", "interface_game_logic_dll_1_1_i_game_logic.html#a60e9535f2d6368584f01a76cb23eeb9b", null ],
+    [ "PickaxBuyLogic", "interface_game_logic_dll_1_1_i_game_logic.html#ade75a146b6dc510afd9ba10d3d4ba182", null ],
+    [ "PickUpLadder", "interface_game_logic_dll_1_1_i_game_logic.html#a40ad707a9edad79bcc9d646fb8bd28c7", null ],
+    [ "SaveGame", "interface_game_logic_dll_1_1_i_game_logic.html#a29a03d2208d95cda7a79e718180ed1fc", null ],
+    [ "SellOreLogic", "interface_game_logic_dll_1_1_i_game_logic.html#a7ba711c3f6900aad58849d7ce00be05e", null ],
+    [ "SetCharPosition", "interface_game_logic_dll_1_1_i_game_logic.html#a9c6ab3f701bbe2449f58a328161cef95", null ]
+];
