@@ -68,5 +68,11 @@ namespace GameRepository
         /// </summary>
         /// <param name="name">Character name.</param>
         public void NewCharacter(string name);
+
+        /// <summary>
+        /// Deletes a profile from the xml.
+        /// </summary>
+        /// <param name="character"> profile to be deleted. </param>
+        public void DeleteProfile(Character character);
     }
 }

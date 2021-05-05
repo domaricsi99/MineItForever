@@ -656,7 +656,7 @@ namespace GameRendererDll
         /// <returns>Health price in text.</returns>
         public FormattedText HealthPriceShopText(DrawingContext ctx)
         {
-            string priceShopMessage = "Life: 2$/piece";
+            string priceShopMessage = "Élet: 2$/életpont";
 
             Typeface font = new Typeface("Arial");
 
@@ -680,7 +680,7 @@ namespace GameRendererDll
         /// <returns>Petrol price in text.</returns>
         public FormattedText PetrolPriceShopText(DrawingContext ctx)
         {
-            string priceShopMessage = "Petrol: 2$/liter";
+            string priceShopMessage = "Petróleum: 2$/liter";
 
             Typeface font = new Typeface("Arial");
 
