@@ -50,9 +50,9 @@ namespace GameLogicDll
     public class GameLogic : IGameLogic
     {
         private GameModel model;
-        private MapRepository mapRepo;
-        private CharacterRepository charRepo;
-        private ShopRepsitory shopRepo;
+        private IMapRepository mapRepo;
+        private IChracterRepository charRepo;
+        private IShopRepository shopRepo;
         private List<Ore> map;
 
         private Ore[,] ore;
@@ -71,7 +71,7 @@ namespace GameLogicDll
         /// <param name="mapRepo">map.</param>
         /// <param name="charRepo">character repo.</param>
         /// <param name="character">character.</param>
-        public GameLogic(GameModel model, MapRepository mapRepo, CharacterRepository charRepo, Character character)
+        public GameLogic(GameModel model, IMapRepository mapRepo, IChracterRepository charRepo, Character character)
         {
             this.character = character;
             this.model = model;
@@ -90,7 +90,7 @@ namespace GameLogicDll
         /// <param name="model">model.</param>
         /// <param name="mapRepo">map.</param>
         /// <param name="charRepo">character.</param>
-        public GameLogic(GameModel model, MapRepository mapRepo, CharacterRepository charRepo)
+        public GameLogic(GameModel model, IMapRepository mapRepo, IChracterRepository charRepo)
         {
             this.model = model;
             this.mapRepo = mapRepo;

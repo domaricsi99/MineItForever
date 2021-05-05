@@ -354,21 +354,6 @@
             Gets or sets end game button.
             </summary>
         </member>
-        <member name="T:GameModelDll.Ladder">
-            <summary>
-            Ladder model.
-            </summary>
-        </member>
-        <member name="T:GameModelDll.Map">
-            <summary>
-            Map model.
-            </summary>
-        </member>
-        <member name="P:GameModelDll.Map.GameMap">
-            <summary>
-            Gets or sets game map.
-            </summary>
-        </member>
         <member name="T:GameModelDll.Ore">
             <summary>
             Ore model.

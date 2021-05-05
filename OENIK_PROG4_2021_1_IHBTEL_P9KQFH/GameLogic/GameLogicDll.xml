@@ -39,7 +39,7 @@
             The logic of the game.
             </summary>
         </member>
-        <member name="M:GameLogicDll.GameLogic.#ctor(GameModelDll.GameModel,GameRepository.MapRepository,GameRepository.CharacterRepository,GameModelDll.Character)">
+        <member name="M:GameLogicDll.GameLogic.#ctor(GameModelDll.GameModel,GameRepository.IMapRepository,GameRepository.IChracterRepository,GameModelDll.Character)">
             <summary>
             Initializes a new instance of the <see cref="T:GameLogicDll.GameLogic"/> class.
             </summary>
@@ -48,7 +48,7 @@
             <param name="charRepo">character repo.</param>
             <param name="character">character.</param>
         </member>
-        <member name="M:GameLogicDll.GameLogic.#ctor(GameModelDll.GameModel,GameRepository.MapRepository,GameRepository.CharacterRepository)">
+        <member name="M:GameLogicDll.GameLogic.#ctor(GameModelDll.GameModel,GameRepository.IMapRepository,GameRepository.IChracterRepository)">
             <summary>
             Initializes a new instance of the <see cref="T:GameLogicDll.GameLogic"/> class.
             </summary>
