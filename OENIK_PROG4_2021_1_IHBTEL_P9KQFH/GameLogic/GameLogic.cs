@@ -904,13 +904,15 @@ namespace GameLogicDll
         {
             switch (counter)
             {
-                case 135:
+                case <=135:
+                    break;
+                case <=180:
                     this.character.Health -= 20;
                     break;
-                case 180:
+                case <=225:
                     this.character.Health -= 40;
                     break;
-                case 225:
+                case <=270:
                     this.character.Health -= 80;
                     break;
                 case >=270:
