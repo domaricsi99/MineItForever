@@ -32,7 +32,8 @@ namespace GameRendererDll
         /// <param name="mapID">which map.</param>
         /// <param name="intersectShop">which shop we are intersect.</param>
         /// <param name="k">which key was pressed.</param>
-        public void Draw(DrawingContext ctx, int mapID, string intersectShop, Key k);
+        /// <param name="time">time.</param>
+        public void Draw(DrawingContext ctx, int mapID, string intersectShop, Key k, DateTime time);
 
         /// <summary>
         /// Draw score to window.

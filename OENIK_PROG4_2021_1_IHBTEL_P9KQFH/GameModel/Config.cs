@@ -49,7 +49,7 @@ namespace GameModelDll
         /// <summary>
         /// Ground height.
         /// </summary>
-        public const int GroundHeight = 30;
+        public const int GroundHeight = 50; // 30
 
         /// <summary>
         /// Ore width.
@@ -74,7 +74,7 @@ namespace GameModelDll
         /// <summary>
         /// Gatw width.
         /// </summary>
-        public const int GateWidth = 30;
+        public const int GateWidth = 10; // 30
 
         /// <summary>
         /// Gate height.
@@ -84,22 +84,22 @@ namespace GameModelDll
         /// <summary>
         /// Building width.
         /// </summary>
-        public const int BuildingWidth = 90;
+        public const int BuildingWidth = 100;
 
         /// <summary>
         /// Building height.
         /// </summary>
-        public const int BuildingHeight = 110;
+        public const int BuildingHeight = 120;
 
         /// <summary>
         /// Shop intersect width.
         /// </summary>
-        public const int ShopWidth = 45;
+        public const int ShopWidth = 40;
 
         /// <summary>
         /// Shop intersect height.
         /// </summary>
-        public const int ShopHeight = 45;
+        public const int ShopHeight = 40;
 
         /// <summary>
         /// Button width.
@@ -130,6 +130,11 @@ namespace GameModelDll
         /// End game button height.
         /// </summary>
         public const int EndGameButtonHeight = 50;
+
+        /// <summary>
+        /// Heart symbol height and width.
+        /// </summary>
+        public const int HeartWH = 20;
 
         /// <summary>
         /// Air background.
