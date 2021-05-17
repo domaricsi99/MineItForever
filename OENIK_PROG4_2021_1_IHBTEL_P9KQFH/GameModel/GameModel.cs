@@ -42,6 +42,9 @@ namespace GameModelDll
             this.EndGameButton = new Shape((Config.Width / 2) - (Config.EndGameButtonWidth / 2), Config.Height - Config.EndGameButtonHeight - 20, Config.EndGameButtonWidth, Config.EndGameButtonHeight);
 
             this.HeartSymbol = new Shape(Config.Width - Config.HeartWH, 0, Config.HeartWH, Config.HeartWH);
+            this.TorchSymbol = new Shape(Config.Width - 135, 0, Config.HeartWH, Config.HeartWH);
+
+            this.DragonSymbol = new Shape(50, 75, Config.DragonWidth, Config.DragonHeight);
         }
 
         /// <summary>
@@ -123,5 +126,15 @@ namespace GameModelDll
         /// Gets or sets heart symbol.
         /// </summary>
         public Shape HeartSymbol { get; set; }
+
+        /// <summary>
+        /// Gets or sets heart symbol.
+        /// </summary>
+        public Shape TorchSymbol { get; set; }
+
+        /// <summary>
+        /// Gets or sets heart symbol.
+        /// </summary>
+        public Shape DragonSymbol { get; set; }
     }
 }

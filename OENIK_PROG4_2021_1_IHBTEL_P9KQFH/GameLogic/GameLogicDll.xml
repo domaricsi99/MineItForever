@@ -234,6 +234,63 @@
             <param name="mapID">which map.</param>
             <param name="shop">which shop.</param>
         </member>
+        <member name="M:GameLogicDll.GameLogic.ShopMoneyMessage(System.Boolean)">
+            <summary>
+            Logic message.
+            </summary>
+            /// <param name="b">b.</param>
+            <returns>logic message.</returns>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.Dirt">
+            <summary>
+            Dirt sound.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.Gold">
+            <summary>
+            Gold sound.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.Silver">
+            <summary>
+            Silver sound.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.Copper">
+            <summary>
+            Copper sound.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.Diamond">
+            <summary>
+            Diamond sound.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.Lava">
+            <summary>
+            Lava sound.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.StoreClose">
+            <summary>
+            Store close sound.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.StoreOpen">
+            <summary>
+            Store open sound.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.Dead">
+            <summary>
+            Dead sound.
+            </summary>
+        </member>
+        <member name="M:GameLogicDll.GameLogic.Heartbeat">
+            <summary>
+            Heartbeat sound.
+            </summary>
+        </member>
         <member name="T:GameLogicDll.IGameLogic">
             <summary>
             Game logic interface.
@@ -391,6 +448,13 @@
             <param name="point">click coordinate.</param>
             <param name="mapID">which map.</param>
             <param name="shop">which shop.</param>
+        </member>
+        <member name="M:GameLogicDll.IGameLogic.ShopMoneyMessage(System.Boolean)">
+            <summary>
+            Shop money message.
+            </summary>
+            <param name="b">b.</param>
+            <returns>string.</returns>
         </member>
     </members>
 </doc>

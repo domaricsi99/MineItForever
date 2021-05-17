@@ -96,11 +96,12 @@
             <param name="ctx">ctx.</param>
             <returns>End game in text.</returns>
         </member>
-        <member name="M:GameRendererDll.GameRenderer.NoMoneyText(System.Windows.Media.DrawingContext)">
+        <member name="M:GameRendererDll.GameRenderer.NoMoneyText(System.Windows.Media.DrawingContext,System.Boolean)">
             <summary>
             No Money Text to window.
             </summary>
             <param name="ctx">ctx.</param>
+            <param name="b">bool.</param>
             <returns>End game in text.</returns>
         </member>
         <member name="M:GameRendererDll.GameRenderer.GetBrush(System.String,System.Boolean)">

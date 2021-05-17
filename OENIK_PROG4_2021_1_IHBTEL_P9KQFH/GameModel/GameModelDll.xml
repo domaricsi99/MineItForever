@@ -254,6 +254,16 @@
             Heart symbol height and width.
             </summary>
         </member>
+        <member name="F:GameModelDll.Config.DragonWidth">
+            <summary>
+            Dragon width.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.DragonHeight">
+            <summary>
+            Dragon height.
+            </summary>
+        </member>
         <member name="F:GameModelDll.Config.AirBg">
             <summary>
             Air background.
@@ -360,6 +370,16 @@
             </summary>
         </member>
         <member name="P:GameModelDll.GameModel.HeartSymbol">
+            <summary>
+            Gets or sets heart symbol.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.TorchSymbol">
+            <summary>
+            Gets or sets heart symbol.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.DragonSymbol">
             <summary>
             Gets or sets heart symbol.
             </summary>

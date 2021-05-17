@@ -134,7 +134,17 @@ namespace GameModelDll
         /// <summary>
         /// Heart symbol height and width.
         /// </summary>
-        public const int HeartWH = 20;
+        public const int HeartWH = 25;
+
+        /// <summary>
+        /// Dragon width.
+        /// </summary>
+        public const int DragonWidth = 150;
+
+        /// <summary>
+        /// Dragon height.
+        /// </summary>
+        public const int DragonHeight = 100;
 
         /// <summary>
         /// Air background.

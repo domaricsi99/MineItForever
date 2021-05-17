@@ -10,9 +10,18 @@
         <Grid.Background>
             <ImageBrush ImageSource= "BgImages\StartBg2.bmp" Stretch="UniformToFill"/>
         </Grid.Background>
-        <Button Background="Transparent" Foreground="White" BorderThickness="0" Click="LoadGame_Click"  Content="Load Game" Margin="339,196,339,217" Height="20" Width="100"/>
-        <Button Background="Transparent" Foreground="White" BorderThickness="0" Click="NewGame_Click" Content="New Game" Margin="339,167,339,246" Height="20" Width="100"/>
-        <Button Background="Transparent" Foreground="White" BorderThickness="0" Click="Exit_Click" Content="Exit" Margin="339,255,339,157" Height="20" Width="100"/>
-        <Button Background="Transparent" Foreground="White" BorderThickness="0" Click="Highscore_Click" Content="Highscore" Margin="339,226,339,184" Height="20" Width="100"/>
+        <Button Background="Transparent" Foreground="White" BorderThickness="0" Click="LoadGame_Click"  Content="Load Game" Margin="338,205,338,222" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.211"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Background="Transparent" Foreground="White" BorderThickness="0" Click="NewGame_Click" Content="New Game" Margin="338,176,338,250"/>
+        <Button Background="Transparent" Foreground="White" BorderThickness="0" Click="Exit_Click" Content="Exit" Margin="338,264,338,163"/>
+        <Button Background="Transparent" Foreground="White" BorderThickness="0" Click="Highscore_Click" Content="Highscore" Margin="338,234,338,191"/>
     </Grid>
 </Window>
