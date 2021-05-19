@@ -6,6 +6,7 @@ namespace GameLogicDll
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -1087,15 +1088,18 @@ namespace GameLogicDll
             }
         }
 
-        // Sound TODO
-
         /// <summary>
         /// Dirt sound.
         /// </summary>
         public void Dirt()
         {
-            string soundfile = @"C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\Féléves feladat\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameLogic\Music\Dirt.wav";
-            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundfile);
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Dirt.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
             sound.Play();
         }
 
@@ -1104,8 +1108,13 @@ namespace GameLogicDll
         /// </summary>
         public void Gold()
         {
-            string soundfile = @"C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\Féléves feladat\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameLogic\Music\Gold.wav";
-            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundfile);
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Gold.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
             sound.Play();
         }
 
@@ -1114,8 +1123,13 @@ namespace GameLogicDll
         /// </summary>
         public void Silver()
         {
-            string soundfile = @"C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\Féléves feladat\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameLogic\Music\Silver.wav";
-            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundfile);
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Silver.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
             sound.Play();
         }
 
@@ -1124,8 +1138,13 @@ namespace GameLogicDll
         /// </summary>
         public void Copper()
         {
-            string soundfile = @"C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\Féléves feladat\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameLogic\Music\Copper.wav";
-            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundfile);
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Copper.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
             sound.Play();
         }
 
@@ -1134,8 +1153,13 @@ namespace GameLogicDll
         /// </summary>
         public void Diamond()
         {
-            string soundfile = @"C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\Féléves feladat\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameLogic\Music\Diamond.wav";
-            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundfile);
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Diamond.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
             sound.Play();
         }
 
@@ -1144,8 +1168,13 @@ namespace GameLogicDll
         /// </summary>
         public void Lava()
         {
-            string soundfile = @"C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\Féléves feladat\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameLogic\Music\Titanium.wav";
-            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundfile);
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Lava.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
             sound.Play();
         }
 
@@ -1154,8 +1183,13 @@ namespace GameLogicDll
         /// </summary>
         public void StoreClose()
         {
-            string soundfile = @"C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\Féléves feladat\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameLogic\Music\Store Close.wav";
-            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundfile);
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Store Close.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
             sound.Play();
         }
 
@@ -1164,8 +1198,13 @@ namespace GameLogicDll
         /// </summary>
         public void StoreOpen()
         {
-            string soundfile = @"C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\Féléves feladat\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameLogic\Music\Store Open.wav";
-            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundfile);
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Store Open.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
             sound.Play();
         }
 
@@ -1174,8 +1213,13 @@ namespace GameLogicDll
         /// </summary>
         public void Dead()
         {
-            string soundfile = @"C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\Féléves feladat\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameLogic\Music\dead.wav";
-            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundfile);
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\dead.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
             sound.Play();
         }
 
@@ -1184,8 +1228,13 @@ namespace GameLogicDll
         /// </summary>
         public void Heartbeat()
         {
-            string soundfile = @"C:\Users\DomanitsRichárdFeren\OneDrive - Óbudai egyetem\Asztal\suli\PROG4\Féléves feladat\OENIK_PROG4_2021_1_IHBTEL_P9KQFH\GameLogic\Music\HearbeatTrim.wav";
-            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundfile);
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\HearbeatTrim.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
             sound.Play();
         }
     }
