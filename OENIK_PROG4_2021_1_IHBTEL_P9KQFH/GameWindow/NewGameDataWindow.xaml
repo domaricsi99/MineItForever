@@ -15,8 +15,8 @@
         </Grid.Background>
         <TextBox FontSize="12" BorderThickness="0" Foreground="White" Background="Transparent" Name="newName" HorizontalAlignment="Left" TextWrapping="Wrap" Width="120" Margin="140,175,0,174" />
         <Label FontSize="20" Foreground="White" Content="PLEASE ADD YOUR CHRACTER NAME" HorizontalAlignment="Center" Margin="0,36,0,0" VerticalAlignment="Top" Height="39" Width="344"/>
-        <Button BorderThickness="0" Foreground="White" Background="Transparent" Click="OK_Click" Content="OK" Margin="27,317,241,0" Height="34" VerticalAlignment="Top"/>
-        <Button BorderThickness="0" Foreground="White" Background="Transparent" Click="Cancel_Click" Content="CANCEL" Margin="240,317,28,33" />
+        <Button BorderThickness="0" Foreground="White" Background="Transparent" Click="OK_Click" Content="OK" Margin="22,313,241,0" Height="38" VerticalAlignment="Top"/>
+        <Button BorderThickness="0" Foreground="White" Background="Transparent" Click="Cancel_Click" Content="CANCEL" Margin="237,313,24,33" />
 
     </Grid>
 </Window>

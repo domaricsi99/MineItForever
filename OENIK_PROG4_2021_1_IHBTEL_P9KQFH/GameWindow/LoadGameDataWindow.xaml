@@ -20,8 +20,8 @@
         <Grid.Background>
             <ImageBrush ImageSource= "BgImages\load game.bmp" Stretch="Fill"/>
         </Grid.Background>
-        <Button Background="Transparent" Foreground="White" BorderThickness="0" Content="Load Game" Margin="73,339,593,63" Click="Load_Game_Click"/>
-        <Button Background="Transparent" Foreground="White" BorderThickness="0" Content="Exit to Main Menu" Margin="607,334,73,68" Click="Exit_Click"/>
+        <Button Background="Transparent" Foreground="White" BorderThickness="0" Content="Load Game" Margin="70,334,586,55" Click="Load_Game_Click"/>
+        <Button Background="Transparent" Foreground="White" BorderThickness="0" Content="Exit to Main Menu" Margin="593,330,62,60" Click="Exit_Click"/>
         <ListBox ItemsSource="{Binding ElementName=LoadGameWindow, Path=AllChar}" ItemTemplate="{StaticResource horizontalProfiles}" Margin="234,145,233,143"
              SelectedItem="{Binding ElementName=LoadGameWindow, Path=SelectedProfile}" Background="Transparent" BorderThickness="0">
             <ListBox.ItemsPanel>

@@ -6,6 +6,7 @@ namespace GameLogicDll
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -61,7 +62,7 @@ namespace GameLogicDll
         private Ore newLadder;
         private bool falling;
         private int fallCounter;
-
+        private int n = 1;
         private string message;
 
         /// <summary>
@@ -458,14 +459,17 @@ namespace GameLogicDll
         {
             if (this.character.Area.IntersectsWith(this.model.SellShop.Area))
             {
+                // this.StoreOpen();
                 return "sell";
             }
             else if (this.character.Area.IntersectsWith(this.model.PetrolAndHealthShop.Area))
             {
+                // this.StoreOpen();
                 return "petrol;Health";
             }
             else if (this.character.Area.IntersectsWith(this.model.PickaxShop.Area))
             {
+                // this.StoreOpen();
                 return "pickax";
             }
 
@@ -631,6 +635,31 @@ namespace GameLogicDll
                     {
                         if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder" && this.character.PickAxLevel >= item.Level)
                         {
+                            if (item.OreType == "dirt")
+                            {
+                                this.Dirt();
+                            }
+                            else if (item.OreType == "copper")
+                            {
+                                this.Copper();
+                            }
+                            else if (item.OreType == "silver")
+                            {
+                                this.Silver();
+                            }
+                            else if (item.OreType == "gold")
+                            {
+                                this.Gold();
+                            }
+                            else if (item.OreType == "diamond")
+                            {
+                                this.Diamond();
+                            }
+                            else if (item.OreType == "lava")
+                            {
+                                this.Lava();
+                            }
+
                             this.character.Backpack.Add(new Ore()
                             {
                                 Score = item.Score,
@@ -657,21 +686,46 @@ namespace GameLogicDll
                     {
                         if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder" && this.character.PickAxLevel >= item.Level)
                         {
-                                this.character.Backpack.Add(new Ore()
+                            if (item.OreType == "dirt")
+                            {
+                                this.Dirt();
+                            }
+                            else if (item.OreType == "copper")
+                            {
+                                this.Copper();
+                            }
+                            else if (item.OreType == "silver")
+                            {
+                                this.Silver();
+                            }
+                            else if (item.OreType == "gold")
+                            {
+                                this.Gold();
+                            }
+                            else if (item.OreType == "diamond")
+                            {
+                                this.Diamond();
+                            }
+                            else if (item.OreType == "lava")
+                            {
+                                this.Lava();
+                            }
+
+                            this.character.Backpack.Add(new Ore()
                                 {
                                     Score = item.Score,
                                     OreType = item.OreType,
                                     Value = item.Value,
                                 });
-                                this.character.Score += item.Score;
-                                this.Damage(item);
-                                item.OreType = this.newAir.OreType;
-                                item.CanPass = this.newAir.CanPass;
-                                item.Hurt = this.newAir.Hurt;
-                                item.BreakLevel = this.newAir.BreakLevel;
-                                item.Score = this.newAir.Score;
-                                item.Level = this.newAir.Level;
-                                item.Value = this.newAir.Value;
+                            this.character.Score += item.Score;
+                            this.Damage(item);
+                            item.OreType = this.newAir.OreType;
+                            item.CanPass = this.newAir.CanPass;
+                            item.Hurt = this.newAir.Hurt;
+                            item.BreakLevel = this.newAir.BreakLevel;
+                            item.Score = this.newAir.Score;
+                            item.Level = this.newAir.Level;
+                            item.Value = this.newAir.Value;
                         }
                     }
 
@@ -682,6 +736,31 @@ namespace GameLogicDll
                     {
                         if (item.Area.IntersectsWith(predictedChar) && item.OreType != "air" && item.OreType != "ladder" && this.character.PickAxLevel >= item.Level)
                         {
+                            if (item.OreType == "dirt")
+                            {
+                                this.Dirt();
+                            }
+                            else if (item.OreType == "copper")
+                            {
+                                this.Copper();
+                            }
+                            else if (item.OreType == "silver")
+                            {
+                                this.Silver();
+                            }
+                            else if (item.OreType == "gold")
+                            {
+                                this.Gold();
+                            }
+                            else if (item.OreType == "diamond")
+                            {
+                                this.Diamond();
+                            }
+                            else if (item.OreType == "lava")
+                            {
+                                this.Lava();
+                            }
+
                             this.character.Backpack.Add(new Ore()
                             {
                                 Score = item.Score,
@@ -781,7 +860,7 @@ namespace GameLogicDll
             {
                 this.character.Money -= cost;
                 this.character.Health = 100;
-                this.message = "Your health is 100!";
+                this.message = "Your health is max!";
             }
             else
             {
@@ -821,18 +900,19 @@ namespace GameLogicDll
         public string SellOreLogic()
         {
             int money = 0;
-            if (this.character.Backpack != null)
+            if (this.character.Backpack.Count != 0)
             {
                 foreach (var item in this.character.Backpack)
                 {
                     this.character.Money += item.Value;
                     money += item.Value;
                 }
+
+                this.message = $"You got {money}$ !";
             }
 
             this.character.Backpack.Clear();
 
-            this.message = $"You got {money}$ !";
             return this.message;
         }
 
@@ -853,7 +933,7 @@ namespace GameLogicDll
                     {
                         this.character.Money -= item.Price;
                         this.character.PickAxLevel = item.Level;
-                        this.message = $"Your pickax level is {item.Level}!";
+                        this.message = $"Your pickaxe level is {item.Level}!";
                         break;
                     }
                     else if (this.character.Money - item.Price <= 0)
@@ -864,7 +944,7 @@ namespace GameLogicDll
                 }
                 else if (currentPickaxLevel == 4)
                 {
-                    this.message = "You have the highest level of pickax!";
+                    this.message = "You have the highest level of pickaxe!";
                     break;
                 }
             }
@@ -877,10 +957,23 @@ namespace GameLogicDll
         /// </summary>
         public void EndGame()
         {
-            if (this.character.Health <= 0 || this.character.Fuel <= 0)
+            if (this.n <= 3)
             {
-                this.charRepo.DeleteProfile(this.character);
-                this.EndGameEvent?.Invoke(this, EventArgs.Empty);
+                if (this.character.Health <= 0 || this.character.Fuel <= 0)
+                {
+                    this.n++;
+                    this.charRepo.DeleteProfile(this.character);
+                    this.EndGameEvent?.Invoke(this, EventArgs.Empty);
+                    this.Dead();
+                }
+            }
+            else
+            {
+                if (this.character.Health <= 0 || this.character.Fuel <= 0)
+                {
+                    this.charRepo.DeleteProfile(this.character);
+                    this.EndGameEvent?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -893,6 +986,7 @@ namespace GameLogicDll
             if (ore.OreType == "lava")
             {
                 this.character.Health -= 20;
+                this.Heartbeat();
             }
         }
 
@@ -904,16 +998,22 @@ namespace GameLogicDll
         {
             switch (counter)
             {
-                case 135:
+                case <=135:
+                    break;
+                case <=180:
+                    this.Heartbeat();
                     this.character.Health -= 20;
                     break;
-                case 180:
+                case <=225:
+                    this.Heartbeat();
                     this.character.Health -= 40;
                     break;
-                case 225:
+                case <=270:
+                    this.Heartbeat();
                     this.character.Health -= 80;
                     break;
                 case >=270:
+                    this.Heartbeat();
                     this.character.Health -= 100;
                     break;
             }
@@ -927,6 +1027,8 @@ namespace GameLogicDll
         /// <param name="shop">which shop.</param>
         public void Click(Point point, int mapID, string shop)
         {
+            this.StoreOpen();
+
             if (mapID == 0)
             {
                 if (shop == "petrol;Health")
@@ -965,6 +1067,175 @@ namespace GameLogicDll
                     this.BackToMainMenuEvent?.Invoke(this, EventArgs.Empty);
                 }
             }
+        }
+
+        /// <summary>
+        /// Logic message.
+        /// </summary>
+        /// /// <param name="b">b.</param>
+        /// <returns>logic message.</returns>
+        public string ShopMoneyMessage(bool b)
+        {
+            if (b == false)
+            {
+                this.message = null;
+                return " ";
+            }
+            else
+            {
+                string m = this.message;
+                return m;
+            }
+        }
+
+        /// <summary>
+        /// Dirt sound.
+        /// </summary>
+        public void Dirt()
+        {
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Dirt.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
+            sound.Play();
+        }
+
+        /// <summary>
+        /// Gold sound.
+        /// </summary>
+        public void Gold()
+        {
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Gold.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
+            sound.Play();
+        }
+
+        /// <summary>
+        /// Silver sound.
+        /// </summary>
+        public void Silver()
+        {
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Silver.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
+            sound.Play();
+        }
+
+        /// <summary>
+        /// Copper sound.
+        /// </summary>
+        public void Copper()
+        {
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Copper.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
+            sound.Play();
+        }
+
+        /// <summary>
+        /// Diamond sound.
+        /// </summary>
+        public void Diamond()
+        {
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Diamond.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
+            sound.Play();
+        }
+
+        /// <summary>
+        /// Lava sound.
+        /// </summary>
+        public void Lava()
+        {
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Lava.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
+            sound.Play();
+        }
+
+        /// <summary>
+        /// Store close sound.
+        /// </summary>
+        public void StoreClose()
+        {
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Store Close.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
+            sound.Play();
+        }
+
+        /// <summary>
+        /// Store open sound.
+        /// </summary>
+        public void StoreOpen()
+        {
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\Store Open.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
+            sound.Play();
+        }
+
+        /// <summary>
+        /// Dead sound.
+        /// </summary>
+        public void Dead()
+        {
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\dead.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
+            sound.Play();
+        }
+
+        /// <summary>
+        /// Heartbeat sound.
+        /// </summary>
+        public void Heartbeat()
+        {
+            string soundFile = AppDomain.CurrentDomain.BaseDirectory;
+            var asd = soundFile.Split("GameWindow");
+            asd[0] += "GameLogic\\Music\\HearbeatTrim.wav";
+
+            soundFile = asd[0];
+
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer(soundFile);
+            sound.Play();
         }
     }
 }

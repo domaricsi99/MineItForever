@@ -169,5 +169,12 @@ namespace GameLogicDll
         /// <param name="mapID">which map.</param>
         /// <param name="shop">which shop.</param>
         public void Click(Point point, int mapID, string shop);
+
+        /// <summary>
+        /// Shop money message.
+        /// </summary>
+        /// <param name="b">b.</param>
+        /// <returns>string.</returns>
+        string ShopMoneyMessage(bool b);
     }
 }

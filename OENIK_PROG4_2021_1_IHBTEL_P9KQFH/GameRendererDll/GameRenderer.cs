@@ -27,15 +27,17 @@ namespace GameRendererDll
         private int score;
         private Character character;
         private Point scoreLocation = new Point(Config.Width / 2, 0);
-        private Point healthLocation = new Point(Config.Width - 35, 0);
-        private Point petrolLocation = new Point(Config.Width - 150, 0);
+        private Point healthLocation = new Point(Config.Width - 70, 0);
+        private Point petrolLocation = new Point(Config.Width - 175, 0); // 150
         private Point moneyLocation = new Point(0, 0);
 
-        private Point shopMessageLocation = new Point(500, Config.ButtonBgHeight - 65);
+        private Point shopMessageLocation = new Point(485, Config.ButtonBgHeight - 65);
         private Point healthPriceShopTextLocation = new Point(700, Config.ButtonBgHeight - 50);
         private Point petrolPriceShopTextLocation = new Point(475, Config.ButtonBgHeight - 50);
         private Key lastKey = Key.Left;
         private int num = 1;
+        private int dragonTickNum = 1;
+        private bool b;
         private Dictionary<string, Brush> myBrushes = new Dictionary<string, Brush>();
 
         /// <summary>
@@ -92,9 +94,69 @@ namespace GameRendererDll
             get { return this.GetBrush("GameRendererDll.Images.ladder.bmp", false); }
         }
 
-        private Brush ShopWindowBackgroundBrush
+        private Brush Frame1
         {
-            get { return this.GetBrush("GameRendererDll.Images.shopWindowBackground.bmp", true); }
+            get { return this.GetBrush("GameRendererDll.Images.frame1.png", true); }
+        }
+
+        private Brush Frame2
+        {
+            get { return this.GetBrush("GameRendererDll.Images.frame2.png", true); }
+        }
+
+        private Brush Frame3
+        {
+            get { return this.GetBrush("GameRendererDll.Images.frame3.png", true); }
+        }
+
+        private Brush Frame4
+        {
+            get { return this.GetBrush("GameRendererDll.Images.frame4.png", true); }
+        }
+
+        private Brush Frame5
+        {
+            get { return this.GetBrush("GameRendererDll.Images.frame5.png", true); }
+        }
+
+        private Brush Frame6
+        {
+            get { return this.GetBrush("GameRendererDll.Images.frame6.png", true); }
+        }
+
+        private Brush Frame7
+        {
+            get { return this.GetBrush("GameRendererDll.Images.frame7.png", true); }
+        }
+
+        private Brush Frame8
+        {
+            get { return this.GetBrush("GameRendererDll.Images.frame8.png", true); }
+        }
+
+        private Brush Frame9
+        {
+            get { return this.GetBrush("GameRendererDll.Images.frame9.png", true); }
+        }
+
+        private Brush Frame10
+        {
+            get { return this.GetBrush("GameRendererDll.Images.frame10.png", true); }
+        }
+
+        private Brush Frame11
+        {
+            get { return this.GetBrush("GameRendererDll.Images.frame11.png", true); }
+        }
+
+        private Brush Frame12
+        {
+            get { return this.GetBrush("GameRendererDll.Images.frame12.png", true); }
+        }
+
+        private Brush MountainBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.MountainOnSide.png", true); }
         }
 
         private Brush GroundBrush
@@ -157,6 +219,86 @@ namespace GameRendererDll
             get { return this.GetBrush("GameRendererDll.Images.minerRight.bmp", false); }
         }
 
+        private Brush PetrolShopBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.petrolShop.png", false); }
+        }
+
+        private Brush PickaxeShopBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.PickaxeShop.png", false); }
+        }
+
+        private Brush SellShopBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.sellShop.png", false); }
+        }
+
+        private Brush HeartBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.heart.png", false); }
+        }
+
+        private Brush MuteBrush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.mute.png", false); }
+        }
+
+        private Brush Torch100
+        {
+            get { return this.GetBrush("GameRendererDll.Images.100%torch.png", false); }
+        }
+
+        private Brush Torch80
+        {
+            get { return this.GetBrush("GameRendererDll.Images.80%torch.png", false); }
+        }
+
+        private Brush Torch60
+        {
+            get { return this.GetBrush("GameRendererDll.Images.60%torch.png", false); }
+        }
+
+        private Brush Torch40
+        {
+            get { return this.GetBrush("GameRendererDll.Images.40%torch.png", false); }
+        }
+
+        private Brush Torch20
+        {
+            get { return this.GetBrush("GameRendererDll.Images.20%torch.png", false); }
+        }
+
+        private Brush Torch10
+        {
+            get { return this.GetBrush("GameRendererDll.Images.10%torch.png", false); }
+        }
+
+        private Brush Dragon1Brush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.Fram1Dragon.png", false); }
+        }
+
+        private Brush Dragon2Brush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.Frame2Dragon.png", false); }
+        }
+
+        private Brush Dragon3Brush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.Frame3Dragon.png", false); }
+        }
+
+        private Brush Dragon4Brush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.Frame4Dragon.png", false); }
+        }
+
+        private Brush Dragon5Brush
+        {
+            get { return this.GetBrush("GameRendererDll.Images.Frame5Dragon.png", false); }
+        }
+
         /// <summary>
         /// Create rectange here due to optimisation.
         /// </summary>
@@ -175,7 +317,8 @@ namespace GameRendererDll
         /// <param name="mapID">which map.</param>
         /// <param name="intersectShop">which shop we are intersect.</param>
         /// <param name="k">which key was pressed.</param>
-        public void Draw(DrawingContext ctx, int mapID, string intersectShop, Key k)
+        /// <param name="time">time.</param>
+        public void Draw(DrawingContext ctx, int mapID, string intersectShop, Key k, DateTime time)
         {
             Pen black = null;
 
@@ -201,7 +344,16 @@ namespace GameRendererDll
                     this.BgBrush,
                     new Pen(null, Config.BorderSize),
                     new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+
+                GeometryDrawing scoreGround = new GeometryDrawing(
+                    Brushes.Gray,
+                    new Pen(null, Config.BorderSize),
+                    new RectangleGeometry(new Rect(0, 0, Config.Width, 27)));
+
                 this.dg.Children.Add(background);
+
+                this.dg.Children.Add(scoreGround);
+
                 this.DrawScoreText(ctx, mapID);
 
                 for (int i = 0; i < oreMatrix.GetLength(0); i++)
@@ -326,33 +478,229 @@ namespace GameRendererDll
             }
             else if (mapID == 0)
             {
-                GeometryDrawing background = new GeometryDrawing(
-                   this.ShopWindowBackgroundBrush,
+                GeometryDrawing scoreGround = new GeometryDrawing(
+                    Brushes.Gray,
+                    new Pen(null, Config.BorderSize),
+                    new RectangleGeometry(new Rect(0, 0, Config.Width, 27)));
+
+                #region min
+                if (time.Minute == 0 || time.Minute == 12 || time.Minute == 24 || time.Minute == 36 || time.Minute == 48)
+                {
+                    GeometryDrawing background = new GeometryDrawing(
+                   this.Frame1,
                    black,
                    new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
-                this.dg.Children.Add(background);
+                    this.dg.Children.Add(background);
+                }
+                else if (time.Minute == 1 || time.Minute == 13 || time.Minute == 25 || time.Minute == 37 || time.Minute == 49)
+                {
+                    GeometryDrawing background = new GeometryDrawing(
+                   this.Frame2,
+                   black,
+                   new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+                    this.dg.Children.Add(background);
+                }
+                else if (time.Minute == 2 || time.Minute == 14 || time.Minute == 26 || time.Minute == 38 || time.Minute == 50)
+                {
+                    GeometryDrawing background = new GeometryDrawing(
+                   this.Frame3,
+                   black,
+                   new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+                    this.dg.Children.Add(background);
+                }
+                else if (time.Minute == 3 || time.Minute == 15 || time.Minute == 27 || time.Minute == 39 || time.Minute == 51)
+                {
+                    GeometryDrawing background = new GeometryDrawing(
+                   this.Frame4,
+                   black,
+                   new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+                    this.dg.Children.Add(background);
+                }
+                else if (time.Minute == 4 || time.Minute == 16 || time.Minute == 28 || time.Minute == 40 || time.Minute == 52)
+                {
+                    GeometryDrawing background = new GeometryDrawing(
+                   this.Frame5,
+                   black,
+                   new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+                    this.dg.Children.Add(background);
+                }
+                else if (time.Minute == 5 || time.Minute == 17 || time.Minute == 29 || time.Minute == 41 || time.Minute == 53)
+                {
+                    GeometryDrawing background = new GeometryDrawing(
+                   this.Frame6,
+                   black,
+                   new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+                    this.dg.Children.Add(background);
+                }
+                else if (time.Minute == 6 || time.Minute == 18 || time.Minute == 30 || time.Minute == 42 || time.Minute == 54)
+                {
+                    GeometryDrawing background = new GeometryDrawing(
+                   this.Frame7,
+                   black,
+                   new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+                    this.dg.Children.Add(background);
+                }
+                else if (time.Minute == 7 || time.Minute == 19 || time.Minute == 31 || time.Minute == 43 || time.Minute == 55)
+                {
+                    GeometryDrawing background = new GeometryDrawing(
+                   this.Frame8,
+                   black,
+                   new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+                    this.dg.Children.Add(background);
+                }
+                else if (time.Minute == 8 || time.Minute == 20 || time.Minute == 32 || time.Minute == 44 || time.Minute == 56)
+                {
+                    GeometryDrawing background = new GeometryDrawing(
+                   this.Frame9,
+                   black,
+                   new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+                    this.dg.Children.Add(background);
+                }
+                else if (time.Minute == 9 || time.Minute == 21 || time.Minute == 33 || time.Minute == 45 || time.Minute == 57)
+                {
+                    GeometryDrawing background = new GeometryDrawing(
+                   this.Frame10,
+                   black,
+                   new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+                    this.dg.Children.Add(background);
+                }
+                else if (time.Minute == 10 || time.Minute == 22 || time.Minute == 34 || time.Minute == 46 || time.Minute == 58)
+                {
+                    GeometryDrawing background = new GeometryDrawing(
+                   this.Frame11,
+                   black,
+                   new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+                    this.dg.Children.Add(background);
+                }
+                else if (time.Minute == 11 || time.Minute == 23 || time.Minute == 35 || time.Minute == 47 || time.Minute == 59)
+                {
+                    GeometryDrawing background = new GeometryDrawing(
+                   this.Frame12,
+                   black,
+                   new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+                    this.dg.Children.Add(background);
+                }
+
+                this.dg.Children.Add(scoreGround);
+                #endregion
+                GeometryDrawing dragon = null;
+                dragon = new GeometryDrawing(
+                       Brushes.Transparent,
+                       black,
+                       new RectangleGeometry(this.model.DragonSymbol.Area));
+                if ((this.model.DragonSymbol.Area.X + Config.DragonWidth) >= 0)
+                {
+                    if (this.dragonTickNum <= 5)
+                    {
+                        this.dragonTickNum++;
+
+                        dragon = new GeometryDrawing(
+                       this.Dragon1Brush,
+                       black,
+                       new RectangleGeometry(this.model.DragonSymbol.Area));
+                        if (this.dragonTickNum == 5)
+                        {
+                            this.model.DragonSymbol.ChangeX(-10);
+                        }
+                    }
+                    else if (this.dragonTickNum > 5 && this.dragonTickNum <= 10)
+                    {
+                        this.dragonTickNum++;
+                        dragon = new GeometryDrawing(
+                       this.Dragon2Brush,
+                       black,
+                       new RectangleGeometry(this.model.DragonSymbol.Area));
+                        if (this.dragonTickNum == 10)
+                        {
+                            this.model.DragonSymbol.ChangeX(-10);
+                        }
+                    }
+                    else if (this.dragonTickNum > 10 && this.dragonTickNum <= 15)
+                    {
+                        this.dragonTickNum++;
+                        dragon = new GeometryDrawing(
+                       this.Dragon3Brush,
+                       black,
+                       new RectangleGeometry(this.model.DragonSymbol.Area));
+                        if (this.dragonTickNum == 15)
+                        {
+                            this.model.DragonSymbol.ChangeX(-10);
+                        }
+                    }
+                    else if (this.dragonTickNum > 15 && this.dragonTickNum <= 20)
+                    {
+                        this.dragonTickNum++;
+                        dragon = new GeometryDrawing(
+                       this.Dragon4Brush,
+                       black,
+                       new RectangleGeometry(this.model.DragonSymbol.Area));
+                        if (this.dragonTickNum == 20)
+                        {
+                            this.model.DragonSymbol.ChangeX(-10);
+                        }
+                    }
+                    else if (this.dragonTickNum > 20 && this.dragonTickNum <= 25)
+                    {
+                        this.dragonTickNum++;
+                        dragon = new GeometryDrawing(
+                       this.Dragon5Brush,
+                       black,
+                       new RectangleGeometry(this.model.DragonSymbol.Area));
+                        if (this.dragonTickNum == 25)
+                        {
+                            this.model.DragonSymbol.ChangeX(-10);
+                            this.dragonTickNum = 1;
+                        }
+                    }
+                }
+                else
+                {
+                    this.model.DragonSymbol.SetXY(875, 75);
+                }
+
+                this.dg.Children.Add(dragon);
+                GeometryDrawing mountain = new GeometryDrawing(
+                   this.MountainBrush,
+                   black,
+                   new RectangleGeometry(new Rect(0, 0, Config.Width, Config.Height)));
+                this.dg.Children.Add(mountain);
 
                 GeometryDrawing gate = new GeometryDrawing(
-                    this.GateBrush,
+                    Brushes.Transparent,
                     black,
                     new RectangleGeometry(this.model.Gate.Area));
 
                 this.dg.Children.Add(gate);
 
                 GeometryDrawing ground = new GeometryDrawing(
-                    this.GroundBrush,
+                    Brushes.Transparent,
                     black,
                     new RectangleGeometry(this.model.Ground.Area));
+
+                GeometryDrawing pickaxShopHouse = new GeometryDrawing(
+                    this.PickaxeShopBrush,
+                    black,
+                    new RectangleGeometry(this.model.PickaxShopHouse.Area));
 
                 GeometryDrawing pickaxShop = new GeometryDrawing(
                     Config.PickaxShopBg,
                     black,
                     new RectangleGeometry(this.model.PickaxShop.Area));
 
+                GeometryDrawing healthShopHouse = new GeometryDrawing(
+                    this.PetrolShopBrush,
+                    black,
+                    new RectangleGeometry(this.model.PetrolAndHealthShopHouse.Area));
+
                 GeometryDrawing healthShop = new GeometryDrawing(
                     Config.HealthShopBg,
                     black,
                     new RectangleGeometry(this.model.SellShop.Area));
+
+                GeometryDrawing sellShopHouse = new GeometryDrawing(
+                    this.SellShopBrush,
+                    black,
+                    new RectangleGeometry(this.model.SellShopHouse.Area));
 
                 GeometryDrawing petrolShop = new GeometryDrawing(
                     Config.PetrolShopBg,
@@ -361,6 +709,7 @@ namespace GameRendererDll
 
                 if (intersectShop == "sell")
                 {
+                    this.b = true;
                     GeometryDrawing buttonShop = new GeometryDrawing(
                     this.SellButtonBrush,
                     black,
@@ -376,6 +725,8 @@ namespace GameRendererDll
                 }
                 else if (intersectShop == "petrol;Health")
                 {
+                    this.b = true;
+
                     GeometryDrawing petrolButtonShop = new GeometryDrawing(
                     this.BuyButtonBrush,
                     black,
@@ -397,6 +748,8 @@ namespace GameRendererDll
                 }
                 else if (intersectShop == "pickax")
                 {
+                    this.b = true;
+
                     GeometryDrawing buttonShop1 = new GeometryDrawing(
                     this.BuyButtonBrush,
                     black,
@@ -410,13 +763,20 @@ namespace GameRendererDll
                     this.dg.Children.Add(buttonBackg2);
                     this.dg.Children.Add(buttonShop1);
                 }
+                else
+                {
+                    this.b = false;
+                }
 
                 this.dg.Children.Add(ground);
                 this.dg.Children.Add(pickaxShop);
+                this.dg.Children.Add(pickaxShopHouse);
                 this.dg.Children.Add(healthShop);
+                this.dg.Children.Add(healthShopHouse);
                 this.dg.Children.Add(petrolShop);
+                this.dg.Children.Add(sellShopHouse);
 
-                if (k == Key.Left || (k == Key.Up && this.lastKey == Key.Left) || (k == Key.Down && this.lastKey == Key.Left) || (k == Key.Space && this.lastKey == Key.Left))
+                if (k == Key.None || k == Key.Left || (k == Key.Up && this.lastKey == Key.Left) || (k == Key.Down && this.lastKey == Key.Left) || (k == Key.Space && this.lastKey == Key.Left))
                 {
                     GeometryDrawing miner = new GeometryDrawing(
                     this.MinerLeftBrush,
@@ -458,19 +818,42 @@ namespace GameRendererDll
             }
             else
             {
+                GeometryDrawing heartSym = new GeometryDrawing(
+                    this.HeartBrush,
+                    black,
+                    new RectangleGeometry(this.model.HeartSymbol.Area));
+
+                GeometryDrawing torch100 = new GeometryDrawing(
+                    this.Torch100,
+                    black,
+                    new RectangleGeometry(this.model.TorchSymbol.Area));
+
+                GeometryDrawing mute = new GeometryDrawing(
+                    this.MuteBrush,
+                    black,
+                    new RectangleGeometry(new Rect(150, 0, 25, 25)));
+
+                this.dg.Children.Add(heartSym);
+                this.dg.Children.Add(mute);
+                this.dg.Children.Add(torch100);
+                ctx.DrawDrawing(this.dg);
+
                 this.DrawScoreText(ctx, mapID);
                 this.DrawHealthText(ctx, mapID);
                 this.DrawPetrolText(ctx, mapID);
                 this.DrawMoneyText(ctx, mapID);
+                this.NoMoneyText(ctx, this.b);
             }
 
             if (intersectShop == "sell" || intersectShop == "pickax")
             {
                 this.ShopText(ctx, intersectShop);
+                this.NoMoneyText(ctx, this.b);
             }
             else if (intersectShop == "petrol;Health")
             {
                 this.HealthPriceShopText(ctx);
+                this.NoMoneyText(ctx, this.b);
                 this.PetrolPriceShopText(ctx);
             }
         }
@@ -486,9 +869,10 @@ namespace GameRendererDll
             SolidColorBrush color = Brushes.White;
             if (mapID == 0)
             {
-                color = Brushes.Black;
+                color = Brushes.White;
             }
 
+            // Money: xy$       Score: xy       Petrol: xy      Healt: xy
             this.score = this.character.Score;
             Typeface font = new Typeface("Arial");
 
@@ -497,9 +881,9 @@ namespace GameRendererDll
                     System.Globalization.CultureInfo.CurrentCulture,
                     FlowDirection.LeftToRight,
                     font,
-                    20,
+                    25,
                     color,
-                    1);
+                    5);
             ctx.DrawText(this.formattedText, this.scoreLocation);
 
             return this.formattedText;
@@ -526,9 +910,9 @@ namespace GameRendererDll
                     System.Globalization.CultureInfo.CurrentCulture,
                     FlowDirection.LeftToRight,
                     font,
-                    20,
+                    25,
                     Brushes.Red,
-                    1);
+                    5);
             ctx.DrawText(this.formattedText, this.healthLocation);
 
             return this.formattedText;
@@ -545,7 +929,7 @@ namespace GameRendererDll
             SolidColorBrush color = Brushes.White;
             if (mapID == 0)
             {
-                color = Brushes.Black;
+                color = Brushes.White;
             }
 
             int petrol = this.character.Fuel;
@@ -557,9 +941,9 @@ namespace GameRendererDll
                     System.Globalization.CultureInfo.CurrentCulture,
                     FlowDirection.LeftToRight,
                     font,
-                    20,
+                    25,
                     color,
-                    1);
+                    5);
             ctx.DrawText(this.formattedText, this.petrolLocation);
 
             return this.formattedText;
@@ -576,7 +960,7 @@ namespace GameRendererDll
             SolidColorBrush color = Brushes.White;
             if (mapID == 0)
             {
-                color = Brushes.Black;
+                color = Brushes.White;
             }
 
             string money = this.character.Money + " $";
@@ -588,9 +972,9 @@ namespace GameRendererDll
                     System.Globalization.CultureInfo.CurrentCulture,
                     FlowDirection.LeftToRight,
                     font,
-                    20,
+                    25,
                     color,
-                    1);
+                    5);
             ctx.DrawText(this.formattedText, this.moneyLocation);
 
             return this.formattedText;
@@ -610,27 +994,34 @@ namespace GameRendererDll
             {
                 if (this.character.Backpack == null)
                 {
-                    shopMessage = "A táskád üres!";
+                    shopMessage = "Your bag is empty!";
                 }
                 else
                 {
-                    foreach (var item in this.character.Backpack)
+                    if (this.character.Backpack.Count == 0)
                     {
-                        money += item.Value;
+                        shopMessage = $"Your bag is empty!";
                     }
+                    else
+                    {
+                        foreach (var item in this.character.Backpack)
+                        {
+                            money += item.Value;
+                        }
 
-                    shopMessage = $"A táskádban {this.character.Backpack.Count} darab érc van! \nÖssz értéke: {money}$ ";
+                        shopMessage = $"You have {this.character.Backpack.Count} pieces of ore in your bag! \nTotal value: {money}$ ";
+                    }
                 }
             }
             else if (intersectShop == "pickax")
             {
                 if (this.character.PickAxLevel == 4)
                 {
-                    shopMessage = $"Gratulálok, a legerõsebb csákánnyal \nrendelkezel!";
+                    shopMessage = $"Congratulations, you have the\nstrongest pickaxe!";
                 }
                 else
                 {
-                    shopMessage = $"Jelenlegi csákányod ereje: {this.character.PickAxLevel}! \nKövetkezõ csákány ereje:{this.character.PickAxLevel + 1}!\nA csákány ára: {(this.character.PickAxLevel + 1) * 100}";
+                    shopMessage = $"Your current pickaxe strength: {this.character.PickAxLevel}! \nNext pickaxe strength:{this.character.PickAxLevel + 1}!\nPickaxe price: {(this.character.PickAxLevel + 1) * 100}";
                 }
             }
 
@@ -656,7 +1047,7 @@ namespace GameRendererDll
         /// <returns>Health price in text.</returns>
         public FormattedText HealthPriceShopText(DrawingContext ctx)
         {
-            string priceShopMessage = "Élet: 2$/életpont";
+            string priceShopMessage = "Life: 2$/point";
 
             Typeface font = new Typeface("Arial");
 
@@ -680,7 +1071,7 @@ namespace GameRendererDll
         /// <returns>Petrol price in text.</returns>
         public FormattedText PetrolPriceShopText(DrawingContext ctx)
         {
-            string priceShopMessage = "Petróleum: 2$/liter";
+            string priceShopMessage = "Petroleum: 2$/L";
 
             Typeface font = new Typeface("Arial");
 
@@ -704,8 +1095,6 @@ namespace GameRendererDll
         /// <returns>End game in text.</returns>
         public FormattedText EndGameText(DrawingContext ctx)
         {
-            int petrol = this.character.Fuel;
-
             Typeface font = new Typeface("Arial");
 
             Point p = new Point(310, 280);
@@ -721,6 +1110,54 @@ namespace GameRendererDll
             ctx.DrawText(this.formattedText, p);
 
             return this.formattedText;
+        }
+
+        /// <summary>
+        /// No Money Text to window.
+        /// </summary>
+        /// <param name="ctx">ctx.</param>
+        /// <param name="b">bool.</param>
+        /// <returns>End game in text.</returns>
+        public FormattedText NoMoneyText(DrawingContext ctx, bool b)
+        {
+            string message = this.gdll.ShopMoneyMessage(b);
+            Typeface font = new Typeface("Arial");
+            Point p = new Point(Config.Width / 8, Config.Height / 3);
+
+            if (b == true)
+            {
+                if (message == null)
+                {
+                    message = " ";
+                }
+
+                this.formattedText = new FormattedText(
+                        message,
+                        System.Globalization.CultureInfo.CurrentCulture,
+                        FlowDirection.LeftToRight,
+                        font,
+                        20,
+                        Brushes.White,
+                        1);
+                ctx.DrawText(this.formattedText, p);
+
+                message = null;
+                return this.formattedText;
+            }
+            else
+            {
+                message = " ";
+                this.formattedText = new FormattedText(
+                        message,
+                        System.Globalization.CultureInfo.CurrentCulture,
+                        FlowDirection.LeftToRight,
+                        font,
+                        20,
+                        Brushes.White,
+                        1);
+                ctx.DrawText(this.formattedText, p);
+                return this.formattedText;
+            }
         }
 
         /// <summary>

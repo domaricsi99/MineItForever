@@ -36,6 +36,8 @@ namespace GameControlerDll
         private MapRepository mapRepo;
         private CharacterRepository charRepo;
 
+        private DateTime time;
+
         /// <summary>
         /// Chraracter.
         /// </summary>
@@ -57,6 +59,7 @@ namespace GameControlerDll
         /// <param name="e">e.</param>
         public void GameControl_Loaded(object sender, RoutedEventArgs e)
         {
+            this.time = default(DateTime);
             this.model = new GameModel();
             this.mapRepo = new MapRepository();
             this.charRepo = new CharacterRepository();
@@ -165,9 +168,11 @@ namespace GameControlerDll
         /// <param name="drawingContext">drawingContext.</param>
         protected override void OnRender(DrawingContext drawingContext)
         {
+            this.time = DateTime.Now;
+
             if (this.renderer != null)
             {
-                this.renderer.Draw(drawingContext, this.mapID, this.intersectShop, this.k);
+                this.renderer.Draw(drawingContext, this.mapID, this.intersectShop, this.k, this.time);
             }
         }
     }

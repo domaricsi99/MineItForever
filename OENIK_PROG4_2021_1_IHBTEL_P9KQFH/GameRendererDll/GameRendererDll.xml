@@ -25,7 +25,7 @@
             <param name="oreY">y.</param>
             <returns>rectangle.</returns>
         </member>
-        <member name="M:GameRendererDll.GameRenderer.Draw(System.Windows.Media.DrawingContext,System.Int32,System.String,System.Windows.Input.Key)">
+        <member name="M:GameRendererDll.GameRenderer.Draw(System.Windows.Media.DrawingContext,System.Int32,System.String,System.Windows.Input.Key,System.DateTime)">
             <summary>
             Draw the models.
             </summary>
@@ -33,6 +33,7 @@
             <param name="mapID">which map.</param>
             <param name="intersectShop">which shop we are intersect.</param>
             <param name="k">which key was pressed.</param>
+            <param name="time">time.</param>
         </member>
         <member name="M:GameRendererDll.GameRenderer.DrawScoreText(System.Windows.Media.DrawingContext,System.Int32)">
             <summary>
@@ -95,6 +96,14 @@
             <param name="ctx">ctx.</param>
             <returns>End game in text.</returns>
         </member>
+        <member name="M:GameRendererDll.GameRenderer.NoMoneyText(System.Windows.Media.DrawingContext,System.Boolean)">
+            <summary>
+            No Money Text to window.
+            </summary>
+            <param name="ctx">ctx.</param>
+            <param name="b">bool.</param>
+            <returns>End game in text.</returns>
+        </member>
         <member name="M:GameRendererDll.GameRenderer.GetBrush(System.String,System.Boolean)">
             <summary>
             Individual Brush maker.
@@ -116,7 +125,7 @@
             <param name="oreY">y.</param>
             <returns>rectangle.</returns>
         </member>
-        <member name="M:GameRendererDll.IGameRenderer.Draw(System.Windows.Media.DrawingContext,System.Int32,System.String,System.Windows.Input.Key)">
+        <member name="M:GameRendererDll.IGameRenderer.Draw(System.Windows.Media.DrawingContext,System.Int32,System.String,System.Windows.Input.Key,System.DateTime)">
             <summary>
             Draw the models.
             </summary>
@@ -124,6 +133,7 @@
             <param name="mapID">which map.</param>
             <param name="intersectShop">which shop we are intersect.</param>
             <param name="k">which key was pressed.</param>
+            <param name="time">time.</param>
         </member>
         <member name="M:GameRendererDll.IGameRenderer.DrawScoreText(System.Windows.Media.DrawingContext,System.Int32)">
             <summary>

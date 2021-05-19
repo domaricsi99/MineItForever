@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GameControlerDll;assembly=GameControlerDll"
         xmlns:repo="clr-namespace:GameRepository;assembly=GameRepository"
         mc:Ignorable="d"
-        Title="MainWindow" Width="925" Height="427"
+        Title="MainWindow" Width="913" Height="425"
         Closed="Window_Closed">
     
 
@@ -17,7 +17,7 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Grid HorizontalAlignment="Center" Width="900" Height="400" VerticalAlignment="Top">
+    <Grid HorizontalAlignment="Center" Width="900" Height="420" VerticalAlignment="Top">
         <local:GameControl Margin="0,0,100,0" Height="366" VerticalAlignment="Top"/>
 
     </Grid>

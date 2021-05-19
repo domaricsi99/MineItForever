@@ -82,7 +82,7 @@ namespace GameRepository
                 Score = int.Parse(character.Root.Element("Score").Value),
                 Money = int.Parse(character.Root.Element("Money").Value),
                 PickAxLevel = int.Parse(character.Root.Element("PickLevel").Value),
-                Area = new System.Windows.Rect(Config.Width / 2, Config.Height / 2, Config.MinerWidth, Config.MinerHeight),
+                Area = new System.Windows.Rect(Config.Width / 2, Config.Height - (Config.GroundHeight + Config.MinerHeight), Config.MinerWidth, Config.MinerHeight),
                 Map = character.Root.Element("Map").Value.Split(';').ToList(),
                 Backpack = oreList,
             };
@@ -312,7 +312,7 @@ namespace GameRepository
                     Score = int.Parse(item.Element("Score").Value),
                     Money = int.Parse(item.Element("Money").Value),
                     PickAxLevel = int.Parse(item.Element("PickLevel").Value),
-                    Area = new System.Windows.Rect(Config.Width / 2, Config.Height / 2, Config.MinerWidth, Config.MinerHeight),
+                    Area = new System.Windows.Rect(Config.Width / 2, Config.GroundHeight, Config.MinerWidth, Config.MinerHeight), // new System.Windows.Rect(Config.Width / 2, Config.Height / 2, Config.MinerWidth, Config.MinerHeight)
                     Map = item.Element("Map").Value.Split(';').ToList(),
                     Backpack = new List<Ore>(),
                 });

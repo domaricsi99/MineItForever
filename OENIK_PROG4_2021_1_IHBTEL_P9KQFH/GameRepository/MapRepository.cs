@@ -57,7 +57,7 @@ namespace GameRepository
                     case "1":
                         this.map.Add(new Ore()
                         {
-                            Value = 5,
+                            Value = 10,
                             Hurt = false,
                             Score = 20,
                             Level = 0,
@@ -69,7 +69,7 @@ namespace GameRepository
                     case "2":
                         this.map.Add(new Ore()
                         {
-                            Value = 10,
+                            Value = 20,
                             Hurt = false,
                             Score = 100,
                             Level = 1,
@@ -81,7 +81,7 @@ namespace GameRepository
                     case "3":
                         this.map.Add(new Ore()
                         {
-                            Value = 20,
+                            Value = 30,
                             Hurt = false,
                             Score = 200,
                             Level = 2,
@@ -93,7 +93,7 @@ namespace GameRepository
                     case "4":
                         this.map.Add(new Ore()
                         {
-                            Value = 40,
+                            Value = 45,
                             Hurt = false,
                             Score = 400,
                             Level = 3,
@@ -117,7 +117,7 @@ namespace GameRepository
                     case "6":
                         this.map.Add(new Ore()
                         {
-                            Value = 100,
+                            Value = 150,
                             Hurt = false,
                             Score = 1000,
                             Level = 4,
@@ -129,7 +129,7 @@ namespace GameRepository
                     case "7":
                         this.map.Add(new Ore()
                         {
-                            Value = 200,
+                            Value = 300,
                             Hurt = true,
                             Score = 2000,
                             Level = 4,

@@ -249,6 +249,21 @@
             End game button height.
             </summary>
         </member>
+        <member name="F:GameModelDll.Config.HeartWH">
+            <summary>
+            Heart symbol height and width.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.DragonWidth">
+            <summary>
+            Dragon width.
+            </summary>
+        </member>
+        <member name="F:GameModelDll.Config.DragonHeight">
+            <summary>
+            Dragon height.
+            </summary>
+        </member>
         <member name="F:GameModelDll.Config.AirBg">
             <summary>
             Air background.
@@ -294,12 +309,12 @@
             Gets or sets pickaxe shop.
             </summary>
         </member>
-        <member name="P:GameModelDll.GameModel.HealthShopHouse">
+        <member name="P:GameModelDll.GameModel.SellShopHouse">
             <summary>
             Gets or sets health shop.
             </summary>
         </member>
-        <member name="P:GameModelDll.GameModel.PetrolShopHouse">
+        <member name="P:GameModelDll.GameModel.PetrolAndHealthShopHouse">
             <summary>
             Gets or sets petrol shop.
             </summary>
@@ -352,6 +367,21 @@
         <member name="P:GameModelDll.GameModel.EndGameButton">
             <summary>
             Gets or sets end game button.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.HeartSymbol">
+            <summary>
+            Gets or sets heart symbol.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.TorchSymbol">
+            <summary>
+            Gets or sets heart symbol.
+            </summary>
+        </member>
+        <member name="P:GameModelDll.GameModel.DragonSymbol">
+            <summary>
+            Gets or sets heart symbol.
             </summary>
         </member>
         <member name="T:GameModelDll.Ore">

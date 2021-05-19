@@ -23,12 +23,14 @@ namespace GameModelDll
         {
             this.Ground = new Shape(0, Config.Height - Config.GroundHeight, Config.GroundWidth, Config.GroundHeight);
             this.Gate = new Shape(Config.Width - Config.GateWidth, Config.Height - (Config.GroundHeight + Config.GateHeight), Config.GateWidth, Config.GateHeight);
-            this.PickaxShopHouse = new Building(10, Config.Height - (Config.GroundHeight + Config.BuildingHeight), Config.BuildingWidth, Config.BuildingHeight);
-            this.HealthShopHouse = new Building(this.PickaxShopHouse.Area.Y / 2, Config.Height - (Config.GroundHeight + Config.BuildingHeight), Config.BuildingWidth, Config.BuildingHeight);
-            this.PetrolShopHouse = new Building(this.HealthShopHouse.Area.Y - 10, Config.Height - (Config.GroundHeight + Config.BuildingHeight), Config.BuildingWidth, Config.BuildingHeight);
-            this.PickaxShop = new Shape((Config.BuildingWidth / 2) - 5, this.PickaxShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
-            this.SellShop = new Shape(this.HealthShopHouse.Area.X + (Config.BuildingWidth / 2) - 20, this.HealthShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
-            this.PetrolAndHealthShop = new Shape(this.PetrolShopHouse.Area.X + (Config.BuildingWidth / 2) - 20, this.PetrolShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
+
+            this.PickaxShopHouse = new Building(40, Config.Height - (Config.GroundHeight + Config.BuildingHeight), Config.BuildingWidth, Config.BuildingHeight);
+            this.SellShopHouse = new Building(this.PickaxShopHouse.Area.X + 150, Config.Height - (Config.GroundHeight + Config.BuildingHeight), Config.BuildingWidth, Config.BuildingHeight);
+            this.PetrolAndHealthShopHouse = new Building(this.SellShopHouse.Area.X + 150, Config.Height - (Config.GroundHeight + Config.BuildingHeight), Config.BuildingWidth, Config.BuildingHeight);
+
+            this.PickaxShop = new Shape(this.PickaxShopHouse.Area.X + (Config.BuildingWidth / 2) - 20, this.PickaxShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
+            this.SellShop = new Shape(this.SellShopHouse.Area.X + (Config.BuildingWidth / 2) - 20, this.SellShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
+            this.PetrolAndHealthShop = new Shape(this.PetrolAndHealthShopHouse.Area.X + (Config.BuildingWidth / 2) - 20, this.PetrolAndHealthShopHouse.Area.Bottom - Config.ShopHeight, Config.ShopWidth, Config.ShopHeight);
 
             this.ButtonBackground = new Shape(Config.Width / 2, Config.Height / 6, Config.ButtonBgWidth, Config.ButtonBgHeight);
 
@@ -38,6 +40,11 @@ namespace GameModelDll
             this.HealthButtonShape = new Shape(220 + this.PetrolButtonShape.Area.X, this.PetrolButtonShape.Area.Y, Config.ButtonWidth, Config.ButtonHeight);
 
             this.EndGameButton = new Shape((Config.Width / 2) - (Config.EndGameButtonWidth / 2), Config.Height - Config.EndGameButtonHeight - 20, Config.EndGameButtonWidth, Config.EndGameButtonHeight);
+
+            this.HeartSymbol = new Shape(Config.Width - Config.HeartWH, 0, Config.HeartWH, Config.HeartWH);
+            this.TorchSymbol = new Shape(Config.Width - 135, 0, Config.HeartWH, Config.HeartWH);
+
+            this.DragonSymbol = new Shape(50, 75, Config.DragonWidth, Config.DragonHeight);
         }
 
         /// <summary>
@@ -58,12 +65,12 @@ namespace GameModelDll
         /// <summary>
         /// Gets or sets health shop.
         /// </summary>
-        public Building HealthShopHouse { get; set; }
+        public Building SellShopHouse { get; set; }
 
         /// <summary>
         /// Gets or sets petrol shop.
         /// </summary>
-        public Building PetrolShopHouse { get; set; }
+        public Building PetrolAndHealthShopHouse { get; set; }
 
         /// <summary>
         /// Gets or sets save button.
@@ -114,5 +121,20 @@ namespace GameModelDll
         /// Gets or sets end game button.
         /// </summary>
         public Shape EndGameButton { get; set; }
+
+        /// <summary>
+        /// Gets or sets heart symbol.
+        /// </summary>
+        public Shape HeartSymbol { get; set; }
+
+        /// <summary>
+        /// Gets or sets heart symbol.
+        /// </summary>
+        public Shape TorchSymbol { get; set; }
+
+        /// <summary>
+        /// Gets or sets heart symbol.
+        /// </summary>
+        public Shape DragonSymbol { get; set; }
     }
 }
